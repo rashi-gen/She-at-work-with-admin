@@ -185,16 +185,8 @@ export default function DashboardSidebar({ role }: DashboardSidebarProps) {
           );
         })}
       </nav>
+
       
-      {/* Footer section with gradient */}
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border">
-        <div className="text-center">
-          <div className="text-xs text-muted-foreground mb-2">
-            Need help? <a href="/contact" className="text-primary hover:underline">Contact Support</a>
-          </div>
-          <div className="w-full h-1 rounded-full bg-gradient-to-r from-primary via-accent to-secondary"></div>
-        </div>
-      </div>
     </aside>
   );
 }
