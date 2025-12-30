@@ -1,18 +1,8 @@
 // src/components/dashboard/author/AuthorAnalytics.tsx
 "use client";
 
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import {
-  BarChart3,
-  Eye,
-  TrendingUp,
-  Users,
-  Calendar,
-  Download,
-  Filter
-} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Select,
   SelectContent,
@@ -20,6 +10,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Calendar,
+  Download,
+  Eye,
+  TrendingUp,
+  Users
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 interface AnalyticsData {
   overview: {

@@ -1,3 +1,4 @@
+/*eslint-disable @typescript-eslint/no-unused-vars */
 // src/app/api/tags/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'

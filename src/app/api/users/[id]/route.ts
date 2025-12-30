@@ -4,7 +4,8 @@ import { auth } from '@/auth'
 import { db } from '@/db'
 import { 
   UsersTable,
-  RoleAssignmentLogsTable 
+  RoleAssignmentLogsTable, 
+  AuthorsTable
 } from '@/db/schema'
 import { eq } from 'drizzle-orm'
 
@@ -278,5 +279,286 @@ export async function PATCH(
       },
       { status: 500 }
     )
+  }
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*                                    GET                                     */
+/* -------------------------------------------------------------------------- */
+export async function GET(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params;
+  try {
+    /* ----------------------------- AUTH CHECK ----------------------------- */
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "UNAUTHORIZED",
+            message: "Authentication required",
+          },
+        },
+        { status: 401 }
+      );
+    }
+
+    // Get current user from database
+    const [currentUser] = await db
+      .select()
+      .from(UsersTable)
+      .where(eq(UsersTable.id, session.user.id))
+      .limit(1);
+
+    if (!currentUser) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "UNAUTHORIZED",
+            message: "User not found",
+          },
+        },
+        { status: 401 }
+      );
+    }
+
+    // Only SUPER_ADMIN can view user details
+    if (currentUser.role !== "SUPER_ADMIN") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "FORBIDDEN",
+            message: "Super admin access required",
+          },
+        },
+        { status: 403 }
+      );
+    }
+
+    const userId = params.id;
+
+    if (!userId) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "BAD_REQUEST",
+            message: "User ID is required",
+          },
+        },
+        { status: 400 }
+      );
+    }
+
+    /* -------------------------- GET USER DATA ----------------------------- */
+    const [user] = await db
+      .select({
+        id: UsersTable.id,
+        name: UsersTable.name,
+        email: UsersTable.email,
+        role: UsersTable.role,
+        mobile: UsersTable.mobile,
+        bio: UsersTable.bio,
+        company: UsersTable.company,
+        designation: UsersTable.designation,
+        location: UsersTable.location,
+        website: UsersTable.website,
+        isActive: UsersTable.isActive,
+        isSuspended: UsersTable.isSuspended,
+        suspensionReason: UsersTable.suspensionReason,
+        suspendedUntil: UsersTable.suspendedUntil,
+        isEntrepreneur: UsersTable.isEntrepreneur,
+        businessType: UsersTable.businessType,
+        isNewsletterSubscribed: UsersTable.isNewsletterSubscribed,
+        lastLoginAt: UsersTable.lastLoginAt,
+        createdAt: UsersTable.createdAt,
+        updatedAt: UsersTable.updatedAt,
+      })
+      .from(UsersTable)
+      .where(eq(UsersTable.id, userId))
+      .limit(1);
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "NOT_FOUND",
+            message: "User not found",
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    /* ----------------------- GET AUTHOR PROFILE --------------------------- */
+    let authorProfile = null;
+    if (user.role === "AUTHOR") {
+      const [author] = await db
+        .select({
+          id: AuthorsTable.id,
+          slug: AuthorsTable.slug,
+          expertise: AuthorsTable.expertise,
+          socialLinks: AuthorsTable.socialLinks,
+          isVerified: AuthorsTable.isVerified,
+          isFeatured: AuthorsTable.isFeatured,
+          articlesCount: AuthorsTable.articlesCount,
+          followersCount: AuthorsTable.followersCount,
+          totalViews: AuthorsTable.totalViews,
+        })
+        .from(AuthorsTable)
+        .where(eq(AuthorsTable.userId, userId))
+        .limit(1);
+
+      authorProfile = author || null;
+    }
+
+    /* ------------------------------ RESPONSE ------------------------------ */
+    return NextResponse.json({
+      success: true,
+      data: {
+        user,
+        authorProfile,
+      },
+    });
+  } catch (error: any) {
+    console.error("GET /api/users/[id] error:", error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: "INTERNAL_ERROR",
+          message: "Failed to fetch user details",
+          details:
+            process.env.NODE_ENV === "development" ? error.message : undefined,
+        },
+      },
+      { status: 500 }
+    );
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    PUT                                     */
+/* -------------------------------------------------------------------------- */
+export async function PUT(
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const params = await context.params;
+  try {
+    /* ----------------------------- AUTH CHECK ----------------------------- */
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "UNAUTHORIZED",
+            message: "Authentication required",
+          },
+        },
+        { status: 401 }
+      );
+    }
+
+    // Get current user from database
+    const [currentUser] = await db
+      .select()
+      .from(UsersTable)
+      .where(eq(UsersTable.id, session.user.id))
+      .limit(1);
+
+    if (!currentUser || currentUser.role !== "SUPER_ADMIN") {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "FORBIDDEN",
+            message: "Super admin access required",
+          },
+        },
+        { status: 403 }
+      );
+    }
+
+    const userId = params.id;
+    const body = await req.json();
+
+    const {
+      name,
+      email,
+      mobile,
+      bio,
+      company,
+      designation,
+      location,
+      website,
+      businessType,
+    } = body;
+
+    /* ---------------------------- UPDATE USER ----------------------------- */
+    const [updatedUser] = await db
+      .update(UsersTable)
+      .set({
+        name,
+        email,
+        mobile: mobile || null,
+        bio: bio || null,
+        company: company || null,
+        designation: designation || null,
+        location: location || null,
+        website: website || null,
+        businessType: businessType || null,
+        updatedAt: new Date(),
+      })
+      .where(eq(UsersTable.id, userId))
+      .returning({
+        id: UsersTable.id,
+        name: UsersTable.name,
+        email: UsersTable.email,
+      });
+
+    if (!updatedUser) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: {
+            code: "NOT_FOUND",
+            message: "User not found",
+          },
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      data: updatedUser,
+    });
+  } catch (error: any) {
+    console.error("PUT /api/users/[id] error:", error);
+
+    return NextResponse.json(
+      {
+        success: false,
+        error: {
+          code: "INTERNAL_ERROR",
+          message: "Failed to update user",
+          details:
+            process.env.NODE_ENV === "development" ? error.message : undefined,
+        },
+      },
+      { status: 500 }
+    );
   }
 }

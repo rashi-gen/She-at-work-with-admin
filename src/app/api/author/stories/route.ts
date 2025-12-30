@@ -1,13 +1,13 @@
+/*eslint-disable @typescript-eslint/no-unused-vars */
 // src/app/api/author/stories/route.ts
-import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { db } from '@/db'
 import {
   StorySubmissionsTable,
-  UsersTable,
-  ContentStatus
+  UsersTable
 } from '@/db/schema'
-import { eq, desc } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
+import { NextRequest, NextResponse } from 'next/server'
 
 /* ============================ GET STORIES ============================ */
 export async function GET(req: NextRequest) {
