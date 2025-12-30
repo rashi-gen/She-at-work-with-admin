@@ -1,0 +1,406 @@
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ArrowRight, Clock, TrendingUp, Calendar, Menu, X } from "lucide-react";
+
+const blogCategories = [
+  "All Blogs",
+  "Leadership",
+  "Finance",
+  "Marketing",
+  "Technology",
+  "Wellness",
+  "Growth",
+  "Strategy",
+  "Innovation",
+  "Success Stories",
+];
+
+const trendingPosts = [
+  {
+    title: "Mastering Work-Life Balance as an Entrepreneur",
+    date: "3 hrs ago",
+    category: "Wellness",
+  },
+  {
+    title: "Funding Strategies for Women-Led Startups",
+    date: "5 hrs ago",
+    category: "Finance",
+  },
+  {
+    title: "Building a Strong Personal Brand Online",
+    date: "Yesterday",
+    category: "Marketing",
+  },
+  {
+    title: "Tech Tools Every Entrepreneur Needs in 2025",
+    date: "2 days ago",
+    category: "Technology",
+  },
+];
+
+const featuredPost = {
+  category: "LEADERSHIP",
+  title: "The New Era of Women Leadership in Global Business",
+  excerpt:
+    "Exploring how women leaders are redefining corporate culture, driving innovation, and shaping the future landscape of business.",
+  author: {
+    name: "Sarah Mitchell",
+    role: "CEO & Serial Entrepreneur",
+    avatar: "/avatar.jpg",
+  },
+  date: "Jan 15",
+  readTime: "8 min read",
+};
+
+const blogPosts = [
+  {
+    id: 1,
+    category: "FINANCE",
+    title: "Smart Investment Strategies for Women Entrepreneurs",
+    excerpt:
+      "Learn how to make your money work for you with smart investment choices tailored for women in business.",
+    date: "Jan 14",
+    readTime: "5 min read",
+  },
+  {
+    id: 2,
+    category: "MARKETING",
+    title: "Social Media Marketing: A Complete Guide for Beginners",
+    excerpt:
+      "Master the art of social media marketing with proven strategies to grow your business online.",
+    date: "Jan 13",
+    readTime: "7 min read",
+  },
+  {
+    id: 3,
+    category: "SUCCESS STORY",
+    title: "From Side Hustle to Million-Dollar Business",
+    excerpt:
+      "An inspiring journey of how one woman turned her passion project into a thriving enterprise.",
+    date: "Jan 12",
+    readTime: "6 min read",
+  },
+  {
+    id: 4,
+    category: "WELLNESS",
+    title: "AI Tools Transforming Small Business Operations",
+    excerpt:
+      "Discover how artificial intelligence can streamline your business and boost productivity.",
+    date: "Jan 11",
+    readTime: "6 min read",
+  },
+  {
+    id: 5,
+    category: "HEALTH",
+    title: "Mental Health Matters: Self-Care for Busy Entrepreneurs",
+    excerpt:
+      "Practical advice to maintain emotional well-being while managing the demands of entrepreneurship.",
+    date: "Jan 10",
+    readTime: "5 min read",
+  },
+  {
+    id: 6,
+    category: "GROWTH",
+    title: "Scaling Your Business: When and How to Expand",
+    excerpt:
+      "Strategic insights on recognizing the right time and approach to scale your business successfully.",
+    date: "Jan 9",
+    readTime: "8 min read",
+  },
+  {
+    id: 7,
+    category: "STRATEGY",
+    title: "Building a Resilient Business in Uncertain Times",
+    excerpt:
+      "Learn how to develop business strategies that withstand market volatility and economic challenges.",
+    date: "Jan 8",
+    readTime: "7 min read",
+  },
+  {
+    id: 8,
+    category: "PRODUCTIVITY",
+    title: "Design Thinking for Problem Solving in Business",
+    excerpt:
+      "Apply human-centered design principles to tackle business challenges with innovative solutions.",
+    date: "Jan 7",
+    readTime: "6 min read",
+  },
+  {
+    id: 9,
+    category: "LEADERSHIP",
+    title: "The Art of Delegation: Empowering Your Team",
+    excerpt:
+      "Master effective delegation techniques to empower your team and focus on strategic growth.",
+    date: "Jan 6",
+    readTime: "5 min read",
+  },
+];
+
+export default function BlogsPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All Blogs");
+  const [email, setEmail] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <main className="bg-background min-h-screen  pt-20 sm:pt-14">
+      {/* ================= HERO WITH GRADIENT ================= */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+
+        <div className="relative w-full mx-auto text-center text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
+            Inspiring Blogs
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
+            Insights, tips and actionable content from experts and entrepreneurs
+            worldwide
+          </p>
+
+          {/* MOBILE CATEGORY MENU TOGGLE */}
+          <div className="lg:hidden mb-4">
+            <Button
+              variant="outline"
+              className="bg-white/20 text-white border-white/30 w-full"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
+              Categories
+            </Button>
+          </div>
+
+          {/* CATEGORY FILTERS */}
+          <div
+            className={`${
+              mobileMenuOpen ? "block" : "hidden lg:flex"
+            } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
+          >
+            {blogCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setMobileMenuOpen(false);
+                }}
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                  selectedCategory === cat
+                    ? "bg-white text-primary shadow-lg scale-105"
+                    : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FEATURED POST + TRENDING ================= */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
+        <div className="w-full mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
+          {/* LEFT - FEATURED POST */}
+          <div className="lg:col-span-2">
+            <div className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10">
+              {/* FEATURED BADGE */}
+              <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
+                <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent text-white text-xs font-bold uppercase shadow-lg">
+                  Featured
+                </span>
+              </div>
+
+              {/* IMAGE */}
+              <div className="relative bg-gradient-to-br from-muted to-secondary h-48 sm:h-60 lg:h-72">
+                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 text-4xl sm:text-5xl lg:text-6xl font-display">
+                  Featured
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+
+              {/* CONTENT */}
+              <div className="p-4 sm:p-6 lg:p-8">
+                <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3 sm:mb-4 uppercase">
+                  {featuredPost.category}
+                </span>
+
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors">
+                  {featuredPost.title}
+                </h2>
+
+                <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
+                  {featuredPost.excerpt}
+                </p>
+
+                {/* AUTHOR INFO */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg">
+                      SM
+                    </div>
+                    <div>
+                      <p className="font-semibold text-foreground text-sm sm:text-base">
+                        {featuredPost.author.name}
+                      </p>
+                      <p className="text-xs sm:text-sm text-muted-foreground">
+                        {featuredPost.author.role}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto text-sm sm:text-base">
+                    Read Article{" "}
+                    <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT - TRENDING NOW */}
+          <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-lg sm:shadow-xl border-2 border-border lg:sticky lg:top-24">
+            <div className="flex items-center gap-2 mb-4 sm:mb-6">
+              <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+              <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
+                Trending Now
+              </h3>
+            </div>
+
+            <div className="space-y-4 sm:space-y-5">
+              {trendingPosts.map((post, i) => (
+                <div
+                  key={i}
+                  className="group cursor-pointer pb-4 sm:pb-5 border-b border-border last:border-0 last:pb-0"
+                >
+                  <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 sm:mb-2 leading-snug text-sm sm:text-base">
+                    {post.title}
+                  </h4>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <span>{post.date}</span>
+                    <span>•</span>
+                    <span className="text-primary font-medium">
+                      {post.category}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= GRADIENT DIVIDER ================= */}
+      <section className="h-16 sm:h-20 lg:h-32 bg-gradient-to-r from-primary via-accent to-primary" />
+
+      {/* ================= LATEST ARTICLES GRID ================= */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="w-full mx-auto">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
+              Latest Articles
+            </h2>
+            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
+              Discover insights and know-how to fuel your entrepreneurial
+              journey
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {blogPosts.map((post) => (
+              <div
+                key={post.id}
+                className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+              >
+                {/* IMAGE */}
+                <div className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56">
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 text-3xl sm:text-4xl font-display">
+                    Blog
+                  </div>
+                </div>
+
+                {/* CONTENT */}
+                <div className="p-4 sm:p-6">
+                  <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
+                    {post.category}
+                  </span>
+
+                  <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                    {post.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+
+                  <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-xs text-muted-foreground">
+                      <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                      <span>{post.date}</span>
+                      <span>•</span>
+                      <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                      <span>{post.readTime}</span>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm"
+                    >
+                      Read{" "}
+                      <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* LOAD MORE */}
+          <div className="text-center mt-8 sm:mt-12">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 sm:px-8 text-sm sm:text-base"
+            >
+              Load More Articles
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= NEWSLETTER CTA ================= */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
+
+        <div className="relative w-full mx-auto text-center text-white px-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold mb-3 sm:mb-4">
+            Never Miss a Post
+          </h2>
+          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-3xl mx-auto">
+            Get the latest articles delivered to your inbox weekly
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 max-w-md mx-auto mb-4 sm:mb-6">
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="h-10 sm:h-12 bg-white/20 backdrop-blur-sm border-white/30 text-white placeholder:text-white/60 focus:bg-white/30 text-sm sm:text-base"
+            />
+            <Button className="h-10 sm:h-12 bg-white text-primary hover:bg-white/90 font-semibold px-4 sm:px-8 whitespace-nowrap text-sm sm:text-base">
+              Subscribe <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+            </Button>
+          </div>
+
+          <p className="text-white/70 text-xs sm:text-sm">
+            We respect your inbox. Unsubscribe anytime.
+          </p>
+        </div>
+      </section>
+    </main>
+  );
+}

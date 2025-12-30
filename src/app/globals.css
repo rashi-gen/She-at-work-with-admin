@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* 🌸 Backgrounds */
+    --background: #F1E8E4;
+    --card: #FFFFFF;
+    --card-foreground: #2C2A2D;
+    --popover: #FFFFFF;
+    --popover-foreground: #2C2A2D;
+
+    /* 🖋 Text */
+    --foreground: #2C2A2D;
+
+    /* 💜 Primary */
+    --primary: #3A3285;
+    --primary-foreground: #FFFFFF;
+
+    /* 💗 Accent */
+    --accent: #CF2554;
+    --accent-foreground: #FFFFFF;
+
+    /* 🌷 Secondary */
+    --secondary: #E6CBC1;
+    --secondary-foreground: #2C2A2D;
+
+    /* 🌫 Muted */
+    --muted: #D5B5A9;
+    --muted-foreground: #2C2A2D;
+
+    /* 🧱 Borders & Inputs */
+    --border: #D5B5A9;
+    --input: #D5B5A9;
+    --ring: #CF2554;
+
+    /* 📊 Charts */
+    --chart-1: #CF2554;
+    --chart-2: #E6CBC1;
+    --chart-3: #3A3285;
+    --chart-4: #D5B5A9;
+    --chart-5: #2C2A2D;
+  }
+
+  .dark {
+    --background: #2C2A2D;
+    --foreground: #F1E8E4;
+
+    --card: #3A3285;
+    --card-foreground: #FFFFFF;
+    --popover: #3A3285;
+    --popover-foreground: #FFFFFF;
+
+    --primary: #CF2554;
+    --primary-foreground: #FFFFFF;
+
+    --accent: #E6CBC1;
+    --accent-foreground: #2C2A2D;
+
+    --secondary: #3A3285;
+    --secondary-foreground: #FFFFFF;
+
+    --muted: #3A3285;
+    --muted-foreground: #E6CBC1;
+
+    --border: rgba(255, 255, 255, 0.15);
+    --input: rgba(255, 255, 255, 0.2);
+    --ring: #CF2554;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    #3A3285 0%,
+    #5A4FB5 35%,
+    #CF2554 70%,
+    #E64B78 100%
+  );
+}
+
+.btn-gradient-pdf {
+  background: linear-gradient(135deg, #CF2554, #E64B78);
+}
+
+.footer-gradient {
+  background: linear-gradient(
+    135deg,
+    #2D1B4E 0%,
+    #251739 35%,
+    #1E1428 65%,
+    #1A1625 100%
+  );
+}
+
+.footer-solid {
+  background: #1E1428;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
