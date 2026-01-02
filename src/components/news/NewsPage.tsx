@@ -1,20 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   ArrowRight,
-  Clock,
-  TrendingUp,
   Calendar,
-  Search,
-  Filter,
   ChevronRight,
+  Clock,
   ExternalLink,
+  Filter,
   Menu,
-  X,
+  TrendingUp,
+  X
 } from "lucide-react";
+import { useState } from "react";
 
 const newsCategories = [
   "All News",
@@ -37,24 +36,6 @@ const featuredNews = {
   image: "/news-featured.jpg",
   source: "TechCrunch",
 };
-
-const breakingNews = [
-  {
-    title: "New Government Initiative Supports Women Entrepreneurs",
-    date: "2 hours ago",
-    category: "Policy",
-  },
-  {
-    title: "Forbes Announces Top 50 Women Leaders of 2024",
-    date: "5 hours ago",
-    category: "Awards",
-  },
-  {
-    title: "Female-Founded Fintech Unicorn Goes Public",
-    date: "1 day ago",
-    category: "Funding",
-  },
-];
 
 const newsArticles = [
   {
@@ -137,129 +118,85 @@ const newsArticles = [
     readTime: "5 min read",
     source: "WWD",
   },
-  {
-    id: 9,
-    category: "PARTNERSHIPS",
-    title: "Global Accelerator Program Opens for Women Entrepreneurs",
-    excerpt:
-      "Leading venture capital firms launch exclusive program to support high-potential female founders.",
-    date: "Dec 18, 2024",
-    readTime: "6 min read",
-    source: "TechCrunch",
-  },
+  
 ];
 
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
-  const [searchQuery, setSearchQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
-      {/* ================= HERO WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
+      <section className="relative w-full ">
+        {/* Fixed aspect ratio container - same as your HeroSection */}
+        <div className="relative w-full aspect-[5/1] overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          {/* Content container */}
+          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
+            <div className="max-w-6xl w-full">
+            
 
-        <div className="relative w-full mx-auto text-center text-white">
-          <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium mb-4 sm:mb-6">
-            <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4" />
-            Latest Updates
-          </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                Women in Business News
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                Stay informed with the latest news, insights, and success stories
+                from women entrepreneurs worldwide
+              </p>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-            Women in Business News
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-            Stay informed with the latest news, insights, and success stories
-            from women entrepreneurs worldwide
-          </p>
+             
 
-          {/* SEARCH BAR */}
-          <div className="w-full max-w-5xl mx-auto mb-6 sm:mb-8 px-4 sm:px-0">
-            <div className="relative">
-              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-white/60" />
-              <Input
-                type="text"
-                placeholder="Search news articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-12 sm:h-14 pl-10 sm:pl-12 pr-4 bg-white/20 backdrop-blur-sm border-white/30 text-white placeholder:text-white/60 focus:bg-white/30 rounded-xl sm:rounded-2xl text-sm sm:text-lg w-full"
-              />
-            </div>
-          </div>
-
-          {/* MOBILE CATEGORY MENU TOGGLE */}
-          <div className="lg:hidden mb-4">
-            <Button
-              variant="outline"
-              className="bg-white/20 text-white border-white/30"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <Menu className="h-4 w-4" />
-              )}
-              Categories
-            </Button>
-          </div>
-
-          {/* CATEGORY FILTERS */}
-          <div
-            className={`${
-              mobileMenuOpen ? "block" : "hidden lg:flex"
-            } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
-          >
-            {newsCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setMobileMenuOpen(false);
-                }}
-                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  selectedCategory === cat
-                    ? "bg-white text-primary shadow-lg scale-105"
-                    : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ================= BREAKING NEWS TICKER ================= */}
-      <section className="bg-accent text-white py-2 sm:py-3 px-4 sm:px-6 lg:px-8 overflow-hidden">
-        <div className="flex items-center gap-3 sm:gap-4 overflow-hidden">
-          <div className="flex items-center gap-2 shrink-0 font-bold uppercase text-xs sm:text-sm">
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            Breaking
-          </div>
-          <div className="flex-1 overflow-hidden">
-            <div className="flex animate-marquee whitespace-nowrap">
-              {breakingNews.map((news, i) => (
-                <div
-                  key={i}
-                  className="flex items-center gap-2 px-4 sm:px-8 text-xs sm:text-sm"
+              {/* MOBILE CATEGORY MENU TOGGLE */}
+              <div className="lg:hidden mb-4">
+                <Button
+                  variant="outline"
+                  className="bg-white/20 text-white border-white/30"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 >
-                  <span className="font-medium truncate max-w-50 sm:max-w-none">
-                    {news.title}
-                  </span>
-                  <span className="text-white/70 hidden sm:inline">
-                    • {news.date}
-                  </span>
-                </div>
-              ))}
+                  {mobileMenuOpen ? (
+                    <X className="h-4 w-4" />
+                  ) : (
+                    <Menu className="h-4 w-4" />
+                  )}
+                  Categories
+                </Button>
+              </div>
+
+              {/* CATEGORY FILTERS */}
+              <div
+                className={`${
+                  mobileMenuOpen ? "block" : "hidden lg:flex"
+                } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg: mb-5`}
+              >
+                {newsCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      selectedCategory === cat
+                        ? "bg-white text-primary shadow-lg scale-105"
+                        : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 bg-secondary/30">
-        <div className="w-full mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16  ">
+        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* FEATURED - 2 COLUMNS */}
           <div className="lg:col-span-2">
             <div className="group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10">
@@ -327,7 +264,7 @@ export default function NewsPage() {
               </h3>
 
               <div className="space-y-3 sm:space-y-4">
-                {newsArticles.slice(0, 5).map((news, i) => (
+                {newsArticles.slice(0, 3).map((news, i) => (
                   <div
                     key={i}
                     className="group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0"
@@ -360,7 +297,7 @@ export default function NewsPage() {
 
       {/* ================= ALL NEWS GRID ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
-        <div className="w-full mx-auto">
+        <div className="max-w-screen-xl mx-auto">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
@@ -380,7 +317,7 @@ export default function NewsPage() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {newsArticles.map((news) => (
               <div
                 key={news.id}

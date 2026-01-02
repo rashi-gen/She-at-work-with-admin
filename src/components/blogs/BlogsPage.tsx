@@ -128,15 +128,6 @@ const blogPosts = [
     date: "Jan 7",
     readTime: "6 min read",
   },
-  {
-    id: 9,
-    category: "LEADERSHIP",
-    title: "The Art of Delegation: Empowering Your Team",
-    excerpt:
-      "Master effective delegation techniques to empower your team and focus on strategic growth.",
-    date: "Jan 6",
-    readTime: "5 min read",
-  },
 ];
 
 export default function BlogsPage() {
@@ -202,8 +193,8 @@ export default function BlogsPage() {
       </section>
 
       {/* ================= FEATURED POST + TRENDING ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
-        <div className="w-full mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-secondary/30">
+        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* LEFT - FEATURED POST */}
           <div className="lg:col-span-2">
             <div className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10">
@@ -294,11 +285,11 @@ export default function BlogsPage() {
       </section>
 
       {/* ================= GRADIENT DIVIDER ================= */}
-      <section className="h-16 sm:h-20 lg:h-32 bg-gradient-to-r from-primary via-accent to-primary" />
+      {/* <section className="h-16 sm:h-20 lg:h-32 bg-gradient-to-r from-primary via-accent to-primary" /> */}
 
       {/* ================= LATEST ARTICLES GRID ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="w-full mx-auto">
+        <div className="max-w-screen-xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
               Latest Articles
@@ -309,7 +300,7 @@ export default function BlogsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {blogPosts.map((post) => (
               <div
                 key={post.id}

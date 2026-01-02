@@ -105,31 +105,37 @@ const journey = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-        {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(58,50,133,0.08),transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_70%,rgba(207,37,84,0.08),transparent_50%)]" /> */}
-
-        <div className="relative w-full mx-auto text-center px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold text-white mb-4 sm:mb-6">
-            Empowering Women{" "}
-            <span className="text-transparent bg-clip-text bg-accent-foreground">
-              Entrepreneurs
-            </span>
-            <br className="hidden sm:block" />
-            Since 2018
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white max-w-4xl mx-auto leading-relaxed px-4">
-            We are a dynamic platform dedicated to amplifying the voices,
-            achievements, and insights of women entrepreneurs across the globe.
-          </p>
+    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
+      <section className="relative w-full">
+        {/* Fixed aspect ratio container - same as NewsPage */}
+        <div className="relative w-full aspect-[5/1] overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          {/* Content container */}
+          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
+            <div className="max-w-6xl w-full">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                Empowering Women{" "}
+                <span className="text-transparent bg-clip-text bg-white">
+                  Entrepreneurs
+                </span>
+                <br className="hidden sm:block" />
+                Since 2018
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                We are a dynamic platform dedicated to amplifying the voices, achievements, and insights of women entrepreneurs across the globe.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ================= OUR STORY ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="w-full mx-auto text-center px-4">
+        <div className="max-w-screen-xl mx-auto text-center px-4">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
             Our Story
           </h2>
@@ -161,7 +167,7 @@ export default function AboutPage() {
       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
-        <div className="relative w-full mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center text-white px-4">
+        <div className="relative max-w-screen-xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center text-white px-4">
           {stats.map((stat, i) => (
             <div key={i} className="space-y-1 sm:space-y-2">
               <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold">
@@ -177,7 +183,7 @@ export default function AboutPage() {
 
       {/* ================= CORE VALUES ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
-        <div className="w-full mx-auto px-4">
+        <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
               Our Core Values
@@ -213,7 +219,7 @@ export default function AboutPage() {
 
       {/* ================= OUR MISSION ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="w-full mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center px-4">
+        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center px-4">
           {/* LEFT TEXT */}
           <div>
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
@@ -244,8 +250,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= MEET OUR TEAM ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
-        <div className="w-full mx-auto px-4">
+      <section className="  bg-secondary/30">
+        <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
               Meet Our Team
@@ -301,7 +307,7 @@ export default function AboutPage() {
 
       {/* ================= OUR JOURNEY - TIMELINE ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="w-full mx-auto px-4">
+        <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
               Our Journey
@@ -358,7 +364,7 @@ export default function AboutPage() {
       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
 
-        <div className="relative w-full mx-auto text-center text-white px-4">
+        <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold mb-3 sm:mb-4">
             Join Our Mission
           </h2>

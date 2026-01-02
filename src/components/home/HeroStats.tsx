@@ -1,46 +1,66 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
+const stats = [
+  { value: "875+", label: "Stories" },
+  { value: "121+", label: "Contributors" },
+  { value: "50k+", label: "Community" },
+];
+
 export const HeroStats = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % stats.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className=" border-t border-border">
-      <div className="mx-auto px-5 py-10">
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-10 sm:gap-24">
+    <section className="border-t border-border bg-background">
+      <div className="mx-auto max-w-screen-xl px-5 py-10 sm:py-14">
 
-          {/* Stories */}
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-end text-foreground">
-              <span className="text-4xl sm:text-6xl font-normal">8</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">75</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">+</span>
+        {/* ================= MOBILE PPT SLIDE ================= */}
+        <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className={`absolute flex flex-col items-center text-center
+                transition-all duration-500 ease-in-out
+                ${
+                  index === activeIndex
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 translate-x-6 pointer-events-none"
+                }
+              `}
+            >
+              <div className="text-4xl font-bold tracking-tight text-foreground">
+                {stat.value}
+              </div>
+              <span className="mt-2 text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                {stat.label}
+              </span>
             </div>
-            <span className="mt-3 text-md font-medium text-muted-foreground">
-              Stories
-            </span>
-          </div>
-
-          {/* Contributors */}
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-end text-foreground">
-              <span className="text-3xl sm:text-5xl font-medium">1</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">21</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">+</span>
-            </div>
-            <span className="mt-4 text-md font-medium text-muted-foreground">
-              Contributors
-            </span>
-          </div>
-
-          {/* Community */}
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-end text-foreground">
-              <span className="text-4xl sm:text-6xl font-normal">5</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">0</span>
-              <span className="text-3xl sm:text-5xl font-medium ml-0.5">k+</span>
-            </div>
-            <span className="mt-3 text-md font-medium text-muted-foreground">
-              Community Members
-            </span>
-          </div>
-
+          ))}
         </div>
+
+        {/* ================= DESKTOP / TABLET ================= */}
+        <div className="hidden sm:grid grid-cols-3 gap-1 text-center">
+          {stats.map((stat, index) => (
+            <div key={index} className="flex flex-col items-center">
+              <div className="text-3xl lg:text-5xl font-medium tracking-tight">
+                {stat.value}
+              </div>
+              <span className="mt-3 text-base font-medium text-muted-foreground uppercase tracking-wide">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );

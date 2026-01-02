@@ -1,28 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  MessageCircle,
-  Users,
-  TrendingUp,
-  Heart,
-  MessageSquare,
-  Share2,
-  Search,
-  Send,
-  ChevronRight,
-  Clock,
-  Sparkles,
-  Filter,
-  Plus,
   Award,
   Bookmark,
+  ChevronRight,
+  Clock,
+  Filter,
+  Heart,
   Menu,
-  X,
+  MessageSquare,
+  Send,
+  Share2,
+  Sparkles,
+  TrendingUp,
+  Users,
+  X
 } from "lucide-react";
+import { useState } from "react";
 
 const categories = [
   "All Topics",
@@ -169,52 +165,81 @@ const communityStats = [
 
 export default function EntreChatPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Topics");
-  const [searchQuery, setSearchQuery] = useState("");
   const [newPost, setNewPost] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
+      <section className="relative w-full">
+        {/* Fixed aspect ratio container - same as NewsPage */}
+        <div className="relative w-full aspect-[5/1] overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          {/* Content container */}
+          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
+            <div className="max-w-6xl w-full">
+           
 
-        <div className="relative w-full mx-auto text-center text-white px-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/20 backdrop-blur-sm text-white text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-            <MessageCircle className="h-3 w-3 sm:h-4 sm:w-4" />
-            Community Forum
-          </div>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                EntreChat Community
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                Connect, share insights, and get advice from fellow women entrepreneurs around the world
+              </p>
 
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-            EntreChat Community
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
-            Connect, share insights, and get advice from fellow women
-            entrepreneurs around the world
-          </p>
+              {/* MOBILE CATEGORY MENU TOGGLE */}
+              <div className="lg:hidden mb-4">
+                <Button
+                  variant="outline"
+                  className="bg-white/20 text-white border-white/30"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-4 w-4" />
+                  ) : (
+                    <Menu className="h-4 w-4" />
+                  )}
+                  Categories
+                </Button>
+              </div>
 
-          {/* SEARCH BAR */}
-          <div className="w-full max-w-4xl mx-auto px-4 sm:px-0">
-            <div className="relative">
-              <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 sm:h-5 sm:w-5 text-white/60" />
-              <Input
-                type="text"
-                placeholder="Search discussions..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-10 sm:h-12 lg:h-14 pl-9 sm:pl-12 pr-4 bg-white/20 backdrop-blur-sm border-white/30 text-white placeholder:text-white/60 focus:bg-white/30 rounded-xl sm:rounded-2xl text-sm sm:text-base lg:text-lg w-full"
-              />
+              {/* CATEGORY FILTERS */}
+              <div
+                className={`${
+                  mobileMenuOpen ? "block" : "hidden lg:flex"
+                } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
+              >
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      selectedCategory === cat
+                        ? "bg-white text-primary shadow-lg scale-105"
+                        : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* ================= COMMUNITY STATS ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 bg-secondary/30 border-b border-border">
-        <div className="w-full mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
+      <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 bg-secondary ">
+        <div className="max-w-screen-xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 text-center">
           {communityStats.map((stat, i) => (
             <div key={i} className="space-y-1">
-              <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-primary">
+              <div className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-black">
                 {stat.value}
               </div>
               <div className="text-xs sm:text-sm text-muted-foreground">
@@ -226,63 +251,8 @@ export default function EntreChatPage() {
       </section>
 
       {/* ================= MAIN CONTENT AREA ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div className="w-full mx-auto">
-          {/* MOBILE CATEGORY MENU TOGGLE */}
-          <div className="lg:hidden mb-4">
-            <div className="flex items-center justify-between gap-4">
-              <Button
-                variant="outline"
-                className="flex-1 bg-card border-border"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-4 w-4" />
-                ) : (
-                  <Menu className="h-4 w-4" />
-                )}
-                Categories
-              </Button>
-              <Button className="bg-gradient-to-r from-accent to-accent/80 text-white font-semibold shadow-lg hover:shadow-xl whitespace-nowrap text-sm">
-                <Plus className="mr-2 h-3 w-3 sm:h-4 sm:w-4" />
-                New Post
-              </Button>
-            </div>
-          </div>
-
-          {/* CATEGORY FILTERS + NEW POST BUTTON */}
-          <div
-            className={`${
-              mobileMenuOpen ? "block" : "hidden lg:block"
-            } mb-6 sm:mb-8`}
-          >
-            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-              <div className="flex flex-wrap gap-2">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      setSelectedCategory(cat);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                      selectedCategory === cat
-                        ? "bg-primary text-white shadow-md"
-                        : "bg-card text-foreground hover:bg-secondary border border-border"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
-
-              <Button className="hidden lg:flex bg-gradient-to-r from-accent to-accent/80 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all whitespace-nowrap">
-                <Plus className="mr-2 h-4 w-4" />
-                Start Discussion
-              </Button>
-            </div>
-          </div>
-
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="max-w-screen-xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* MAIN FEED - 2 COLUMNS */}
             <div className="lg:col-span-2 space-y-4 sm:space-y-6">

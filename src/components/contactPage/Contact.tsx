@@ -45,26 +45,32 @@ export default function ContactPage() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
-      {/* ================= HERO WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-        {/* <div className="absolute inset-0 hero-gradient opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
-         */}
-        <div className="relative w-full mx-auto text-center px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold text-white mb-3 sm:mb-4">
-            Get In Touch
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white max-w-4xl mx-auto">
-            Have questions or want to collaborate? We&apos;d love to hear from
-            you and support your entrepreneurial journey.
-          </p>
+    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
+      <section className="relative w-full">
+        {/* Fixed aspect ratio container - same as NewsPage */}
+        <div className="relative w-full aspect-[5/1] overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          {/* Content container */}
+          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
+            <div className="max-w-6xl w-full">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                Get In Touch
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ================= CONTACT + FORM ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-        <div className="w-full mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 px-4">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {/* LEFT INFO WITH ENHANCED STYLING */}
           <div className="space-y-6 sm:space-y-8">
             <div>
@@ -194,7 +200,7 @@ export default function ContactPage() {
 
       {/* ================= FAQ WITH ROYAL STYLING ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="w-full mx-auto text-center mb-8 sm:mb-12 px-4">
+        <div className="max-w-screen-xl mx-auto text-center mb-8 sm:mb-12">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
             Frequently Asked Questions
           </h2>
@@ -203,7 +209,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div className="w-full max-w-4xl mx-auto space-y-3 sm:space-y-4 px-4">
+        <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
           {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -264,8 +270,10 @@ export default function ContactPage() {
 
       {/* ================= SOCIAL WITH ENHANCED STYLING ================= */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
-        <div className="relative text-center px-4">
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-white mb-2 sm:mb-3">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
+        
+        <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold mb-2 sm:mb-3">
             Follow Us on Social Media
           </h3>
           <p className="text-white/90 text-sm sm:text-base mb-6 sm:mb-8 max-w-3xl mx-auto">
@@ -287,7 +295,7 @@ export default function ContactPage() {
                 href="#"
                 key={i}
                 className={`group w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center
-                bg-card border-2 border-border text-muted-foreground
+                bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white
                 ${color} hover:text-white hover:border-transparent
                 transition-all duration-300 hover:scale-105 sm:hover:scale-110 hover:shadow-lg hover:-translate-y-0.5 sm:hover:-translate-y-1`}
               >

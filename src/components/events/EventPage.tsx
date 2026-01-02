@@ -95,66 +95,73 @@ export default function EventsPage() {
   const regularEvents = upcomingEvents.filter((e) => !e.featured);
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
-      {/* ================= HERO WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
+      <section className="relative w-full">
+        {/* Fixed aspect ratio container - same as NewsPage */}
+        <div className="relative w-full aspect-[5/1] overflow-hidden">
+          {/* Background gradient */}
+          <div className="absolute inset-0 hero-gradient" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+          
+          {/* Content container */}
+          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
+            <div className="max-w-6xl w-full">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                Upcoming Events
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                Join workshops, webinars and networking opportunities designed to empower and inspire
+              </p>
 
-        <div className="relative w-full mx-auto text-center text-white px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-            Upcoming Events
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
-            Join workshops, webinars and networking opportunities designed to
-            empower and inspire
-          </p>
+              {/* MOBILE CATEGORY MENU TOGGLE */}
+              <div className="lg:hidden mb-4">
+                <Button
+                  variant="outline"
+                  className="bg-white/20 text-white border-white/30"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                >
+                  {mobileMenuOpen ? (
+                    <X className="h-4 w-4" />
+                  ) : (
+                    <Menu className="h-4 w-4" />
+                  )}
+                  Categories
+                </Button>
+              </div>
 
-          {/* MOBILE CATEGORY MENU TOGGLE */}
-          <div className="lg:hidden mb-4">
-            <Button
-              variant="outline"
-              className="bg-white/20 text-white border-white/30"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <Menu className="h-4 w-4" />
-              )}
-              Categories
-            </Button>
-          </div>
-
-          {/* CATEGORY FILTERS */}
-          <div
-            className={`${
-              mobileMenuOpen ? "block" : "hidden lg:flex"
-            } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
-          >
-            {eventCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setMobileMenuOpen(false);
-                }}
-                className={`px-4 py-1.5 sm:px-5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  selectedCategory === cat
-                    ? "bg-white text-primary shadow-lg scale-105 mx-1 my-1 lg:my-0"
-                    : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm  mx-1 my-1 lg:my-0"
-                }`}
+              {/* CATEGORY FILTERS */}
+              <div
+                className={`${
+                  mobileMenuOpen ? "block" : "hidden lg:flex"
+                } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0 mb-5`}
               >
-                {cat}
-              </button>
-            ))}
+                {eventCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setSelectedCategory(cat);
+                      setMobileMenuOpen(false);
+                    }}
+                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                      selectedCategory === cat
+                        ? "bg-white text-primary shadow-lg scale-105"
+                        : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ================= FEATURED EVENT ================= */}
       {featuredEvent && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-          <div className="w-full mx-auto">
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 ">
+          <div className="max-w-screen-xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10">
               {/* LEFT IMAGE */}
               <div className="relative bg-gradient-to-br from-muted to-secondary min-h-48 sm:min-h-64 lg:min-h-80">
@@ -204,7 +211,7 @@ export default function EventsPage() {
                   </div>
                 </div>
 
-                <Button className="w-full h-10 sm:h-12 bg-gradient-to-r from-accent to-accent/80 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base">
+                <Button className="w-full h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base">
                   Register Now
                   <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                 </Button>
@@ -216,7 +223,7 @@ export default function EventsPage() {
 
       {/* ================= ALL EVENTS GRID ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
-        <div className="w-full mx-auto">
+        <div className="max-w-screen-xl mx-auto">
           <div className="text-center mb-8 sm:mb-12">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
               Upcoming Events
@@ -226,7 +233,7 @@ export default function EventsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {regularEvents.map((event) => {
               const month = event.date.split(" ")[0];
               const day = event.date.split(" ")[1]?.replace("•", "").trim();
@@ -250,7 +257,7 @@ export default function EventsPage() {
 
                   {/* CONTENT */}
                   <div className="p-4 sm:p-6">
-                    <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
+                    <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent text-white text-xs sm:text-xs font-semibold mb-2  w-fit">
                       {event.category}
                     </span>
 
@@ -293,7 +300,7 @@ export default function EventsPage() {
       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
 
-        <div className="relative w-full mx-auto text-center text-white px-4">
+        <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
           <Bell className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto mb-4 sm:mb-6 text-white/90" />
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold mb-3 sm:mb-4">
             Never Miss an Event
