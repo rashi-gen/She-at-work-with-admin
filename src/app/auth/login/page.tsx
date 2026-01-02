@@ -2,7 +2,7 @@ import LoginForm from "@/components/form/auth/LoginForm";
 
 function LoginPage() {
   return (
-    <div className="mt-3 flex items-center">
+    <div className="min-h-screen flex items-center bg-white">
       <div className="flex-grow">
         <LoginForm />
       </div>

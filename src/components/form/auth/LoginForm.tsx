@@ -14,12 +14,13 @@ import Link from "next/link";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { loginUser } from "@/actions/loginUser";
 import { FormSuccess } from "../form-success";
 import { FormError } from "../form-error";
 import { LoginSchema } from "@/validaton-schema";
+import { Sparkles } from "lucide-react";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +29,9 @@ function LoginForm() {
   };
 
   const [error, setError] = useState<string | undefined>(undefined);
-  const [isRedirecting, setIsRedirecting] = useState<boolean | undefined>(undefined);
+  const [isRedirecting, setIsRedirecting] = useState<boolean | undefined>(
+    undefined
+  );
   const [success, setSuccess] = useState<string | undefined>(undefined);
   const [isPending, startTransition] = useTransition();
 
@@ -40,166 +43,277 @@ function LoginForm() {
     },
   });
 
-// LoginForm.tsx (relevant changes only)
-async function onSubmit(data: z.infer<typeof LoginSchema>) {
-  if (isPending || isRedirecting) return;
+  async function onSubmit(data: z.infer<typeof LoginSchema>) {
+    if (isPending || isRedirecting) return;
 
-  setError(undefined);
-  setSuccess(undefined);
+    setError(undefined);
+    setSuccess(undefined);
 
-  try {
-    startTransition(async () => {
-      const result = await loginUser(data);
-      
-      if (result?.error) {
-        setError(result.error);
-        return;
-      }
+    try {
+      startTransition(async () => {
+        const result = await loginUser(data);
 
-      if (result?.success) {
-        setSuccess(result.success);
-        
-        if (result.redirectTo) {
-          setIsRedirecting(true);
-          // Small delay to show success message
-          await new Promise(resolve => setTimeout(resolve, 500));
-          window.location.href = result.redirectTo;
+        if (result?.error) {
+          setError(result.error);
+          return;
         }
-      }
-    });
-  } catch (e) {
-    console.error("Login error:", e);
-    setError("Authentication failed. Please try again.");
+
+        if (result?.success) {
+          setSuccess(result.success);
+
+          if (result.redirectTo) {
+            setIsRedirecting(true);
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            window.location.href = result.redirectTo;
+          }
+        }
+      });
+    } catch (e) {
+      console.error("Login error:", e);
+      setError("Authentication failed. Please try again.");
+    }
   }
-}
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
-        {/* Logo Section */}
-        <div className="flex flex-col items-center space-y-2">
-          <Link href="/">
-            <Image
-              alt="logo"
-              src="/next.svg"
-              height={100}
-              width={100}
-              className="shadow-md hover:shadow-xl transition-shadow duration-300 p-4"
-            />
-          </Link>
-          <h1 className="text-red-500 font-bold text-xl">The - Library</h1>
+    <div className="min-h-screen flex bg-white">
+      {/* Left Side - Decorative with Pink Gradient */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-secondary">
+          {/* Decorative circles */}
+          <div className="absolute top-20 left-20 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-white/10 to-transparent rounded-full blur-2xl"></div>
         </div>
 
-        {/* Login Header */}
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900">Welcome Back</h1>
-          <p className="mt-2 text-sm text-gray-600">Please login to your account</p>
-        </div>
+        {/* Content */}
+        <div className="relative z-10 flex flex-col justify-center items-center w-full p-16 text-black">
+          <div className="max-w-md space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
+              <Sparkles className="w-4 h-4" />
+              <span className="text-sm font-medium">
+                Welcome to She At Work
+              </span>
+            </div>
 
-        {/* Login Form */}
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="text-sm font-medium text-gray-700">Email</div>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder="john.snow@gmail.com"
-                      className="h-12 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                      type="email"
+            <h2 className="text-5xl font-bold leading-tight">
+              Empowering Women in the Workplace
+            </h2>
+
+            <p className="text-lg text-black">
+              Join thousands of professionals building their careers and
+              connecting with opportunities that matter.
+            </p>
+
+            <div className="space-y-4 pt-8">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 rounded-full bg-black"></div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Career Growth</h3>
+                  <p className="text-black text-sm">
+                    Access exclusive opportunities and resources
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 rounded-full bg-black"></div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Community</h3>
+                  <p className="text-black text-sm">
+                    Connect with like-minded professionals
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0 mt-1">
+                  <div className="w-2 h-2 rounded-full bg-black"></div>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg">Support</h3>
+                  <p className="text-black text-sm">
+                    Get guidance from experienced mentors
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Side - Login Form */}
+      <div className="flex-1 flex items-center justify-center p-8 py-2">
+        <div className="w-full max-w-md">
+          {/* Logo Section */}
+          <div className="text-center ">
+            <Link href="/" className="inline-block">
+              <div
+                className="inline-flex items-center justify-center 
+                    w-36 h-28 sm:w-44 sm:h-36 md:w-52 md:h-44
+                    transition-shadow"
+              >
+                <Image
+                  alt="She At Work"
+                  src="/logo.png"
+                  width={180}
+                  height={180}
+                  className="rounded-lg object-contain"
+                  priority
+                />
+              </div>
+            </Link>
+          </div>
+
+          {/* Login Card */}
+          <div className="bg-white rounded-2xl shadow-xl p-8 border border-[#D5B5A9]/30">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-5"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="text-md font-semibold text-[#2C2A2D] mb-2">
+                        Email Address
+                      </div>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder="john.snow@gmail.com"
+                          className="h-11 px-4  border-[#D5B5A9] rounded-xl focus:ring-2 focus:ring-[#CF2554] focus:border-transparent transition-all"
+                          type="email"
+                          disabled={isPending}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-sm text-[#CF2554]" />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <div className="text-md font-semibold text-[#2C2A2D] mb-2">
+                        Password
+                      </div>
+                      <div className="relative">
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="••••••••"
+                            className="h-11 px-4 pr-12  border-[#D5B5A9] rounded-xl focus:ring-2 focus:ring-[#CF2554] focus:border-transparent transition-all"
+                            type={showPassword ? "text" : "password"}
+                            disabled={isPending}
+                          />
+                        </FormControl>
+                        <button
+                          type="button"
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-[#2C2A2D]/50 hover:text-[#2C2A2D] transition-colors"
+                          onClick={togglePasswordVisibility}
+                        >
+                          {showPassword ? (
+                            <EyeOff size={18} />
+                          ) : (
+                            <Eye size={18} />
+                          )}
+                        </button>
+                      </div>
+                      <FormMessage className="text-sm text-[#CF2554]" />
+                    </FormItem>
+                  )}
+                />
+
+                <div className="flex items-center justify-between">
+                  <label className="flex items-center cursor-pointer group">
+                    <input
+                      type="checkbox"
+                      className="rounded border-[#D5B5A9] text-[#CF2554] focus:ring-[#CF2554] cursor-pointer w-4 h-4"
                       disabled={isPending}
                     />
-                  </FormControl>
-                  <FormMessage className="text-sm text-red-500" />
-                </FormItem>
-              )}
-            />
+                    <span className="ml-2 text-sm text-[#2C2A2D] group-hover:text-[#CF2554] transition-colors">
+                      Remember me
+                    </span>
+                  </label>
+                  <Button
+                    asChild
+                    variant="link"
+                    size="sm"
+                    className="px-0 text-sm text-[#CF2554] hover:text-[#E64B78] font-medium"
+                  >
+                    <Link href="/auth/forgot-password">Forgot password?</Link>
+                  </Button>
+                </div>
 
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <div className="text-sm font-medium text-gray-700">Password</div>
-                  <div className="relative">
-                    <FormControl>
-                      <Input
-                        {...field}
-                        placeholder="********"
-                        className="h-12 rounded-lg border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                        type={showPassword ? "text" : "password"}
-                        disabled={isPending}
-                      />
-                    </FormControl>
-                    <button
-                      type="button"
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
-                      onClick={togglePasswordVisibility}
-                    >
-                      {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                    </button>
+                <FormError message={error} />
+                <FormSuccess message={success} />
+
+                <button
+                  type="submit"
+                  disabled={isPending}
+                  className="w-full h-11 bg-gradient-to-r from-[#CF2554] to-[#E64B78] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 text-sm shadow-md"
+                >
+                  {isPending ? (
+                    <span className="flex items-center justify-center">
+                      <svg
+                        className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Signing in...
+                    </span>
+                  ) : (
+                    "Sign In"
+                  )}
+                </button>
+
+                <div className="relative my-6">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-[#D5B5A9]"></div>
                   </div>
-                  <FormMessage className="text-sm text-red-500" />
-                </FormItem>
-              )}
-            />
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-4 bg-white text-[#2C2A2D]/50">or</span>
+                  </div>
+                </div>
 
-            <div className="flex items-center justify-between">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                />
-                <span className="ml-2 text-sm text-gray-600">Remember me</span>
-              </label>
-              <Button
-                asChild
-                variant="link"
-                size="sm"
-                className="px-0 text-sm text-blue-600 hover:text-blue-800"
-              >
-                <Link href="/auth/forgot-password">Forgot password?</Link>
-              </Button>
-            </div>
-
-            <FormError message={error} />
-            <FormSuccess message={success} />
-
-            <button
-              type="submit"
-              disabled={isPending}
-              className="w-full h-12 bg-[#1B2B65] text-white rounded-lg font-medium hover:bg-[#152451] transition-all duration-300 transform hover:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isPending ? (
-                <span className="flex items-center justify-center">
-                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  Loading...
-                </span>
-              ) : (
-                "Login now"
-              )}
-            </button>
-
-            <div className="text-center">
-              <Link 
-                href="/auth/register" 
-                className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Don&apos;t have an account? {" "}
-                <span className="text-blue-600 hover:text-blue-800 font-medium">
-                  Register Instead
-                </span>
-              </Link>
-            </div>
-          </form>
-        </Form>
+                <div className="text-center">
+                  <Link
+                    href="/auth/register"
+                    className="text-sm text-[#2C2A2D]/60 hover:text-[#2C2A2D] transition-colors"
+                  >
+                    Don&apos;t have an account?{" "}
+                    <span className="text-[#CF2554] hover:text-[#E64B78] font-semibold">
+                      Create an account
+                    </span>
+                  </Link>
+                </div>
+              </form>
+            </Form>
+          </div>
+        </div>
       </div>
     </div>
   );

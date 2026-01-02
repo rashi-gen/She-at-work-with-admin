@@ -1,3 +1,4 @@
+/*eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -43,6 +44,62 @@ const faqs = [
 
 export default function ContactPage() {
   const [open, setOpen] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setError("Name, email, and message are required");
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/contact-submissions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) throw new Error(data.message || "Something went wrong");
+
+      setSuccess(true);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      });
+    } catch (err: any) {
+      setError(err.message || "Failed to submit your message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <main className="bg-background min-h-screen pt-20 sm:pt-24">
@@ -146,49 +203,126 @@ export default function ContactPage() {
                 </h3>
               </div>
 
-              <form className="space-y-3 sm:space-y-4 lg:space-y-5">
+              {/* Success Message */}
+              {success && (
+                <div className="mb-6 rounded-xl bg-green-50 border-2 border-green-200 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-green-800 text-base">Message Sent Successfully!</h3>
+                      <p className="text-green-700 text-sm">
+                        Thank you for contacting us. We&apos;ll get back to you within 24-48 hours.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {error && (
+                <div className="mb-6 rounded-xl bg-red-50 border-2 border-red-200 p-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                      <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.698-.833-2.464 0L4.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-red-800 text-base">Submission Failed</h3>
+                      <p className="text-red-700 text-sm">{error}</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
                 <div>
                   <Input
-                    placeholder="Full Name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Full Name *"
                     className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
+                    required
                   />
                 </div>
                 <div>
                   <Input
                     type="email"
-                    placeholder="Email Address"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Email Address *"
+                    className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
+                    required
+                  />
+                </div>
+                <div>
+                  <Input
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    placeholder="Phone Number (Optional)"
                     className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
                   />
                 </div>
                 <div>
                   <Input
-                    placeholder="Subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="Subject (Optional)"
                     className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
                   />
                 </div>
                 <div>
                   <Textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     rows={4}
-                    placeholder="Your Message"
+                    placeholder="Your Message *"
                     className="border-2 focus:border-primary transition-colors resize-none text-sm sm:text-base min-h-32"
+                    required
                   />
                 </div>
 
                 <Button
+                  type="submit"
+                  disabled={loading}
                   className="
                     w-full h-10 sm:h-12
-                    bg-primary text-primary-foreground
+                    bg-gradient-to-r from-primary to-accent
+                    text-white
                     font-semibold
                     shadow-lg
-                    hover:bg-primary/90
+                    hover:from-primary/90 hover:to-accent/90
                     hover:shadow-xl
                     transition-all
                     text-sm sm:text-base
+                    disabled:opacity-50 disabled:cursor-not-allowed
                   "
                 >
-                  Send Message
-                  <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+                  {loading ? (
+                    <>
+                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      Send Message
+                      <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+                    </>
+                  )}
                 </Button>
+                
+                <p className="text-xs text-center text-muted-foreground mt-2">
+                  * Required fields. We respect your privacy and will never share your information.
+                </p>
               </form>
             </div>
           </div>
@@ -281,18 +415,21 @@ export default function ContactPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4">
             {[
-              { Icon: Facebook, color: "hover:bg-[#1877F2]" },
-              { Icon: Twitter, color: "hover:bg-[#1DA1F2]" },
+              { Icon: Facebook, color: "hover:bg-[#1877F2]" ,href:"https://www.facebook.com/sheatwork" },
+              { Icon: Twitter, color: "hover:bg-[#1DA1F2]",href:"https://x.com/sheatwork_com" },
               {
                 Icon: Instagram,
                 color:
-                  "hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF]",
+                  "hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF]", href:"https://www.instagram.com/she_at_work"
               },
-              { Icon: Linkedin, color: "hover:bg-[#0A66C2]" },
-              { Icon: Youtube, color: "hover:bg-[#FF0000]" },
-            ].map(({ Icon, color }, i) => (
+
+              
+              { Icon: Linkedin, color: "hover:bg-[#0A66C2]",href:"https://www.linkedin.com/company/SheatWork" },
+              { Icon: Youtube, color: "hover:bg-[#FF0000]",href:"https://www.youtube.com/@sheatwork" },
+            ].map(({ Icon, color ,href }, i) => (
               <a
-                href="#"
+                href={href}
+                target="_blank"
                 key={i}
                 className={`group w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center
                 bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white

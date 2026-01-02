@@ -26,11 +26,11 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { name: "Facebook", icon: Facebook, href: "#" },
-  { name: "Twitter", icon: Twitter, href: "#" },
-  { name: "Instagram", icon: Instagram, href: "#" },
-  { name: "LinkedIn", icon: Linkedin, href: "#" },
-  { name: "YouTube", icon: Youtube, href: "#" },
+  { name: "Facebook", icon: Facebook, href: "https://www.facebook.com/sheatwork" },
+  { name: "Twitter", icon: Twitter, href: "https://x.com/sheatwork_com" },
+  { name: "Instagram", icon: Instagram, href: "https://www.instagram.com/she_at_work" },
+  { name: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/company/SheatWork" },
+  { name: "YouTube", icon: Youtube, href: "https://www.youtube.com/@sheatwork" },
 ];
 
 export const Footer = () => {
@@ -54,6 +54,7 @@ export const Footer = () => {
                 <a
                   key={social.name}
                   href={social.href}
+                  target="_blank"
                   className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white/70 hover:bg-primary hover:text-white transition-colors"
                   aria-label={social.name}
                 >

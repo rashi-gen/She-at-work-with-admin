@@ -72,7 +72,9 @@ export const Navbar = () => {
                 bg-accent text-accent-foreground hover:bg-accent/90
               `}
             >
-              Share Your Story
+             <Link href="/share-your-story">
+    Share Your Story
+  </Link>
             </Button>
           </div>
 
@@ -111,15 +113,18 @@ export const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-
+              
               <Button
                 className={`
                   mt-4 transition-all
                  bg-accent text-accent-foreground hover:bg-accent/90
                 `}
               >
+                <Link href="/share-your-story">
                 Share Your Story
+                </Link>
               </Button>
+              
             </div>
           </div>
         )}
