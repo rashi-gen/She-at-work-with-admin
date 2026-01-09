@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Heart, Lightbulb, Target, Users } from "lucide-react";
+import { Heart, Lightbulb,  Target, Users } from "lucide-react";
+import Link from "next/link";
 
 const values = [
   {
@@ -35,7 +36,7 @@ export const About = () => {
               About She At Work
             </span>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
-              Championing Women &apos;s Voices in Business Since 2018
+              Championing Women &apos;s Voices in Business Since 2017
             </h2>
             <p className="text-lg text-muted-foreground mb-6">
               She At Work is a dynamic platform dedicated to amplifying the stories, achievements, and insights of women entrepreneurs across the globe. We believe that when women succeed in business, entire communities thrive.
@@ -43,10 +44,12 @@ export const About = () => {
             <p className="text-muted-foreground mb-8">
               Through our curated content, interviews, and events, we create spaces where women can learn, connect, and grow together. Our mission is to inspire the next generation of women leaders and founders.
             </p>
+            <Link href="/about">
             <Button className=" text-[#3B2E7E] font-semibold shadow-glow bg-transparent  border-white border-2">
               Learn More About Us
               {/* <ArrowRight className="ml-2 h-4 w-4" /> */}
             </Button>
+            </Link>
           </div>
 
           {/* Values Grid */}

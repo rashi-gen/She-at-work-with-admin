@@ -10,6 +10,7 @@ import {
   Twitter,
   Users,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
@@ -100,20 +101,25 @@ const journey = [
 ];
 
 export default function AboutPage() {
+    const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % stats.length);
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
   return (
     <main className="bg-background min-h-screen pt-24 sm:pt-24">
-      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
-      <section className="relative w-full">
-        {/* Fixed aspect ratio container - same as NewsPage */}
-        <div className="relative w-full aspect-[5/1] overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 hero-gradient" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-          
-          {/* Content container */}
-          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
-            <div className="max-w-6xl w-full">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+     
+
+      
+           <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12  overflow-hidden hero-gradient">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      
+              <div className="relative w-full mx-auto text-center text-white px-4">
+                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
                 Empowering Women{" "}
                 <span className="text-transparent bg-clip-text bg-white">
                   Entrepreneurs
@@ -121,13 +127,12 @@ export default function AboutPage() {
                 <br className="hidden sm:block" />
                 Since 2017
               </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+               <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
               A dynamic one-stop knowledge hub dedicated to amplifying the voices, achievements, and insights of women entrepreneurs globally.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
+              </div>
+            </section>
 
       {/* ================= OUR STORY ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -147,23 +152,54 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= STATS WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
-        <div className="relative max-w-screen-xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center text-white px-4">
-          {stats.map((stat, i) => (
-            <div key={i} className="space-y-1 sm:space-y-2">
-              <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold">
-                {stat.value}
-              </div>
-              <div className="text-xs sm:text-sm lg:text-base text-white/90">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+
+{/* ================= STATS WITH GRADIENT ================= */}
+<section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
+  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+
+  <div className="relative max-w-screen-xl mx-auto px-5">
+    
+    {/* ================= MOBILE PPT SLIDE ================= */}
+    <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
+      {stats.map((stat, index) => (
+        <div
+          key={index}
+          className={`absolute flex flex-col items-center text-center text-white
+            transition-all duration-500 ease-in-out
+            ${
+              index === activeIndex
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-6 pointer-events-none"
+            }
+          `}
+        >
+          <div className="text-4xl font-bold tracking-tight">
+            {stat.value}
+          </div>
+          <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
+            {stat.label}
+          </span>
         </div>
-      </section>
+      ))}
+    </div>
+
+    {/* ================= DESKTOP / TABLET ================= */}
+    <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
+      {stats.map((stat, index) => (
+        <div key={index} className="flex flex-col items-center">
+          <div className="text-3xl lg:text-5xl font-medium tracking-tight">
+            {stat.value}
+          </div>
+          <span className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide">
+            {stat.label}
+          </span>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
 
       {/* ================= CORE VALUES ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">

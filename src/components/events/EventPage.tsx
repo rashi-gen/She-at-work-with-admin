@@ -183,83 +183,76 @@ export default function EventsPage() {
 
   return (
     <main className="bg-background min-h-screen pt-20 sm:pt-24">
-      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
-      <section className="relative w-full">
-        {/* Fixed aspect ratio container - same as NewsPage */}
-        <div className="relative w-full aspect-[5/1] overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 hero-gradient" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-          
-          {/* Content container */}
-          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
-            <div className="max-w-6xl w-full">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-                Upcoming Events
-              </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-                Join workshops, webinars and networking opportunities designed to empower and inspire
-              </p>
 
-              {/* Active filter indicator */}
-              {selectedCategory !== "All Events" && (
-                <div className="mb-4">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
-                    <span>Filtering by:</span>
-                    <span className="font-semibold">{selectedCategory}</span>
-                    <button 
-                      onClick={() => setSelectedCategory("All Events")}
-                      className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                    >
-                      <X className="h-3 w-3" />
-                    </button>
+          <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12 overflow-hidden hero-gradient">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      
+              <div className="relative w-full mx-auto text-center text-white px-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
+                  Upcoming Events
+                </h1>
+                <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
+                 Join workshops, webinars and networking opportunities designed to empower and inspire
+                </p>
+      
+                {/* Active filter indicator */}
+                {selectedCategory !== "All Events" && (
+                  <div className="mb-4">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+                      <span>Filtering by:</span>
+                      <span className="font-semibold">{selectedCategory}</span>
+                      <button 
+                        onClick={() => setSelectedCategory("All Events")}
+                        className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
+                      >
+                        <X className="h-3 w-3" />
+                      </button>
+                    </div>
                   </div>
-                </div>
-              )}
-
-              {/* MOBILE CATEGORY MENU TOGGLE */}
-              <div className="lg:hidden mb-4">
-                <Button
-                  variant="outline"
-                  className="bg-white/20 text-white border-white/30"
-                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                  {mobileMenuOpen ? (
-                    <X className="h-4 w-4" />
-                  ) : (
-                    <Menu className="h-4 w-4" />
-                  )}
-                  Categories
-                </Button>
-              </div>
-
-              {/* CATEGORY FILTERS */}
-              <div
-                className={`${
-                  mobileMenuOpen ? "block" : "hidden lg:flex"
-                } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0 mb-5`}
-              >
-                {eventCategories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => {
-                      setSelectedCategory(cat);
-                      setMobileMenuOpen(false);
-                    }}
-                    className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                      selectedCategory === cat
-                        ? "bg-white text-primary shadow-lg scale-105"
-                        : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-                    }`}
+                )}
+      
+                {/* MOBILE CATEGORY MENU TOGGLE */}
+                <div className="lg:hidden mb-4">
+                  <Button
+                    variant="outline"
+                    className="bg-white/20 text-white border-white/30 w-full"
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   >
-                    {cat}
-                  </button>
-                ))}
+                    {mobileMenuOpen ? (
+                      <X className="h-4 w-4" />
+                    ) : (
+                      <Menu className="h-4 w-4" />
+                    )}
+                    Categories
+                  </Button>
+                </div>
+      
+                {/* CATEGORY FILTERS */}
+                <div
+                  className={`${
+                    mobileMenuOpen ? "block" : "hidden lg:flex"
+                  } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
+                >
+                  {eventCategories.map((cat) => (
+                    <button
+                      key={cat}
+                      onClick={() => {
+                        setSelectedCategory(cat);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`px-3 m-2 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                        selectedCategory === cat
+                          ? "bg-white text-primary shadow-lg scale-105"
+                          : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+                      }`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </section>
+      
 
       {/* ================= FEATURED EVENT ================= */}
       {showFeaturedEvent && featuredEvent && (

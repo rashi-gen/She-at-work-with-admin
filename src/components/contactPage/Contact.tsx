@@ -103,27 +103,17 @@ export default function ContactPage() {
 
   return (
     <main className="bg-background min-h-screen pt-20 sm:pt-24">
-      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
-      <section className="relative w-full">
-        {/* Fixed aspect ratio container - same as NewsPage */}
-        <div className="relative w-full aspect-[5/1] overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 hero-gradient" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-          
-          {/* Content container */}
-          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
-            <div className="max-w-6xl w-full">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12 overflow-hidden hero-gradient">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      
+              <div className="relative w-full mx-auto text-center text-white px-4">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
                 Get In Touch
-              </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-                Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+                </h1>
+                <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
+                 Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey.                </p>
+              </div>
+            </section>
 
       {/* ================= CONTACT + FORM ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">

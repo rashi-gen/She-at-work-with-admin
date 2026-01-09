@@ -203,7 +203,7 @@ export default function BlogsPage() {
   return (
     <main className="bg-background min-h-screen pt-20 sm:pt-14">
       {/* ================= HERO WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
+      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
         <div className="relative w-full mx-auto text-center text-white px-4">
@@ -259,7 +259,7 @@ export default function BlogsPage() {
                   setSelectedCategory(cat);
                   setMobileMenuOpen(false);
                 }}
-                className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                className={`px-3 m-2 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                   selectedCategory === cat
                     ? "bg-white text-primary shadow-lg scale-105"
                     : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
