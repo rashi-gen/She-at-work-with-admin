@@ -1,3 +1,4 @@
+import Cta from "@/components/common/Cta";
 import { About } from "@/components/home/About";
 import { Categories } from "@/components/home/Categories";
 import FeaturedStories from "@/components/home/FeaturedNews";
@@ -17,7 +18,7 @@ export default function Home() {
       <FeaturedStories />
       <Categories />
       <LatestBlogs />
-      <Newsletter />
+     <Cta/>
     </div>
   );
 }

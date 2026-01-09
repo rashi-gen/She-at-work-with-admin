@@ -19,6 +19,7 @@ import {
   X
 } from "lucide-react";
 import { useState } from "react";
+import Cta from "../common/Cta";
 
 const categories = [
   "All Topics",
@@ -738,26 +739,7 @@ export default function EntreChatPage() {
         </div>
       </section>
 
-      {/* ================= CTA SECTION ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
-
-        <div className="relative w-full mx-auto text-center text-white px-4">
-          <Users className="h-10 w-10 sm:h-12 sm:w-12 lg:h-16 lg:w-16 mx-auto mb-4 sm:mb-6 text-white/90" />
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold mb-3 sm:mb-4">
-            Join the Conversation
-          </h2>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-3xl mx-auto">
-            Connect with thousands of women entrepreneurs and grow together
-            {selectedCategory !== "All Topics" && ` in ${selectedCategory}`}
-          </p>
-
-          <Button className="h-10 sm:h-12 bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 text-sm sm:text-base">
-            Become a Member
-            <ChevronRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-          </Button>
-        </div>
-      </section>
+<Cta/>
     </main>
   );
 }

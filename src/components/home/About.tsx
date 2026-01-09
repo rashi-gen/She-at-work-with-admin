@@ -38,11 +38,11 @@ export const About = () => {
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-6">
               Championing Women &apos;s Voices in Business Since 2017
             </h2>
-            <p className="text-lg text-muted-foreground mb-6">
-              She At Work is a dynamic platform dedicated to amplifying the stories, achievements, and insights of women entrepreneurs across the globe. We believe that when women succeed in business, entire communities thrive.
+            <p className="text-xl text-muted-foreground mb-6">
+              SheAtWork.com germinated with a singular objective: to support women who are looking to start an entrepreneurial venture that aligns with their abilities and skills. Launched in January 2017, our aim is to educate, train, support, and motivate women entrepreneurs globally.
             </p>
-            <p className="text-muted-foreground mb-8">
-              Through our curated content, interviews, and events, we create spaces where women can learn, connect, and grow together. Our mission is to inspire the next generation of women leaders and founders.
+            <p className="text-muted-foreground text-lg mb-8">
+              We provide a storehouse of information to increase awareness on all relevant areas of entrepreneurship—from innovative business ideas and startup funding avenues to legal support and mentor connections.
             </p>
             <Link href="/about">
             <Button className=" text-[#3B2E7E] font-semibold shadow-glow bg-transparent  border-white border-2">

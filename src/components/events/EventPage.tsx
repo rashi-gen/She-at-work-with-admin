@@ -14,6 +14,7 @@ import {
   X,
   Filter,
 } from "lucide-react";
+import Cta from "../common/Cta";
 
 const eventCategories = [
   "All Events",
@@ -485,7 +486,7 @@ export default function EventsPage() {
       </section>
 
       {/* ================= NEWSLETTER CTA ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
+      {/* <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
 
         <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
@@ -515,7 +516,8 @@ export default function EventsPage() {
             We respect your inbox. Unsubscribe anytime.
           </p>
         </div>
-      </section>
+      </section> */}
+      <Cta/>
     </main>
   );
 }
