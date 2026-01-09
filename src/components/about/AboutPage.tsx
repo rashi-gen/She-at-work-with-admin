@@ -1,14 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import {
-  ArrowRight,
   Lightbulb,
   Linkedin,
   Sparkles,
   Target,
   Twitter,
-  Users,
+  Users
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";

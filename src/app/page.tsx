@@ -5,7 +5,6 @@ import FeaturedStories from "@/components/home/FeaturedNews";
 import { HeroSection } from "@/components/home/HeroSection";
 import { HeroStats } from "@/components/home/HeroStats";
 import { LatestBlogs } from "@/components/home/LatestBlogs";
-import { Newsletter } from "@/components/home/Newsletter";
 import { Navbar } from "@/components/navbar/Navbar";
 export default function Home() {
   return (

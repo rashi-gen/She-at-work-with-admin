@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ArrowRight, Clock, TrendingUp, Calendar, Menu, X, Filter } from "lucide-react";
+import { ArrowRight, Calendar, Clock, Filter, Menu, TrendingUp, X } from "lucide-react";
+import { useState } from "react";
 import Cta from "../common/Cta";
 
 const blogCategories = [
@@ -161,7 +160,7 @@ const blogPosts = [
 
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [visiblePosts, setVisiblePosts] = useState(8);

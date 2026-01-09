@@ -1,19 +1,17 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
-  Calendar,
-  MapPin,
-  Users,
-  DollarSign,
   ArrowRight,
-  Bell,
-  Menu,
-  X,
+  Calendar,
+  DollarSign,
   Filter,
+  MapPin,
+  Menu,
+  Users,
+  X
 } from "lucide-react";
+import { useState } from "react";
 import Cta from "../common/Cta";
 
 const eventCategories = [
@@ -152,7 +150,7 @@ const upcomingEvents = [
 
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Events");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [visibleEvents, setVisibleEvents] = useState(8);
