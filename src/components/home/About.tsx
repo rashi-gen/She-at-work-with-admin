@@ -5,22 +5,22 @@ const values = [
   {
     icon: Heart,
     title: "Empowerment",
-    description: "Inspiring women to take bold steps in their entrepreneurial journey",
+    description: `We believe in uplifting women by providing a "storehouse of information"—from government schemes to funding avenues—that unlocks their potential to succeed.`,
   },
   {
     icon: Users,
     title: "Community",
-    description: "Building a supportive network of like-minded women leaders",
+    description: "We cultivate an ecosystem where women entrepreneurs connect to exchange best practices, share experiences, and widen their opportunities together.",
   },
   {
     icon: Target,
     title: "Impact",
-    description: "Creating meaningful change in the business landscape",
+    description: "We are committed to driving positive change, offering mentorship programs to support rural enterprises and amplify women's voices in the business landscape.",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "Championing creative solutions and forward-thinking ideas",
+    description: "We embrace forward-thinking approaches, keeping our community updated with the latest industry trends, digital skills, and creative business solutions.",
   },
 ];
 

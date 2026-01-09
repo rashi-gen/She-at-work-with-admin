@@ -22,7 +22,7 @@ export const Navbar = () => {
   return (
     <nav
       className={`
-        fixed top-0 inset-x-0 z-50 transition-all duration-500  bg-background border-b border-border
+        fixed top-0 inset-x-0 z-50 transition-all duration-500  bg-background border-b border-border 
       `}
     >
       <div className="mx-auto max-w-screen-xl px-2 lg:px-0 ">

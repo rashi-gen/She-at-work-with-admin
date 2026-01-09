@@ -3,9 +3,10 @@
 import { useEffect, useState } from "react";
 
 const stats = [
-  { value: "875+", label: "Stories" },
-  { value: "121+", label: "Contributors" },
-  { value: "50k+", label: "Community" },
+  { value: "975+", label: "Articles & Resources" },
+  { value: "121+", label: "Events & Webinars" },
+  { value: "50k+", label: "Community Reach" },
+    { value: "85+", label: "Countries Reached" },
 ];
 
 export const HeroStats = () => {
@@ -48,7 +49,7 @@ export const HeroStats = () => {
         </div>
 
         {/* ================= DESKTOP / TABLET ================= */}
-        <div className="hidden sm:grid grid-cols-3 gap-1 text-center">
+        <div className="hidden sm:grid grid-cols-4 gap-1 text-center">
           {stats.map((stat, index) => (
             <div key={index} className="flex flex-col items-center">
               <div className="text-3xl lg:text-5xl font-medium tracking-tight">

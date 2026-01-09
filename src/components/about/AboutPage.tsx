@@ -12,64 +12,60 @@ import {
 } from "lucide-react";
 
 const stats = [
-  { value: "975+", label: "Stories Published" },
-  { value: "121+", label: "Expert Contributors" },
-  { value: "50K+", label: "Community Members" },
-  { value: "85+", label: "Events Hosted" },
+  { value: "975+", label: "Articles & Resources" },
+  { value: "121+", label: "Events & Webinars" },
+  { value: "50k+", label: "Community Reach" },
+    { value: "85+", label: "Countries Reached" },
 ];
 
 const coreValues = [
   {
     icon: Sparkles,
     title: "Empowerment",
-    description:
-      "We believe in igniting women entrepreneurship through education, resources, and mentorship. We're here to help women find confidence in the ideas and the courage to take them forward.",
+    description: `We believe in uplifting women by providing a "storehouse of information"—from government schemes to funding avenues—that unlocks their potential to succeed.`,
   },
   {
     icon: Users,
     title: "Community",
-    description:
-      "We cultivate authentic connections where women can collaborate, share experiences, and grow together. Our platform fosters support, respect, and mutual success.",
+    description: "We cultivate an ecosystem where women entrepreneurs connect to exchange best practices, share experiences, and widen their opportunities together.",
   },
   {
     icon: Target,
     title: "Impact",
-    description:
-      "We are committed to driving meaningful change in the business world by amplifying women's voices, creating opportunities, and celebrating every win.",
+    description: "We are committed to driving positive change, offering mentorship programs to support rural enterprises and amplify women's voices in the business landscape.",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
-    description:
-      "We embrace new ideas and fresh approaches. By challenging traditional norms, we inspire creativity and innovation in everything we do.",
+    description: "We embrace forward-thinking approaches, keeping our community updated with the latest industry trends, digital skills, and creative business solutions.",
   },
 ];
 
 const teamMembers = [
   {
-    name: "Name",
-    role: "Founder & CEO",
+    name: "Ruby Sinha",
+    role: "Founder & President (BRICS CCI WE)",
     image: "/team1.jpg",
     linkedin: "#",
     twitter: "#",
   },
   {
-    name: "Name",
-    role: "Creative Director",
+    name: "Shree Lahiri",
+    role: "Content Head",
     image: "/team2.jpg",
     linkedin: "#",
     twitter: "#",
   },
   {
-    name: "Name",
-    role: "Head of Content",
+    name: "Poonam Sinha",
+    role: "Content Manager",
     image: "/team3.jpg",
     linkedin: "#",
     twitter: "#",
   },
   {
-    name: "Name",
-    role: "Community Manager",
+    name: "Himanshu Gupta",
+    role: "Digital Marketing Manager",
     image: "/team4.jpg",
     linkedin: "#",
     twitter: "#",
@@ -78,34 +74,34 @@ const teamMembers = [
 
 const journey = [
   {
-    year: "2018",
+    year: "2017",
     title: "The Beginning",
     description:
-      "She At Work was founded with a mission to create a safe space for women entrepreneurs, offering networking, mentoring, and strong digital support.",
+      "Launched in Jan 2017 as a comprehensive hub to educate and motivate women entrepreneurs globally.",
   },
   {
     year: "2020",
-    title: "Community Growth",
+    title: "Digital Acceleration",
     description:
-      "Reached 10,000 community members and launched our first national women entrepreneurship summit, connecting leaders nationwide.",
+      `Expanded digital outreach with webinars and "She@Work TV" to support entrepreneurs during the pandemic.`,
   },
   {
-    year: "2022",
-    title: "Platform Expansion",
+    year: "2023",
+    title: "Global Leadership",
     description:
-      "Introduced our podcast, webinar series, and mentorship programs, expanding our impact to women entrepreneurs globally.",
+      "Founder Ruby Sinha appointed as President of the BRICS CCI Women’s Vertical, strengthening international ties.",
   },
   {
-    year: "2024",
-    title: "Global Impact",
+    year: "2025",
+    title: "Future Forward",
     description:
-      "Celebrated over 50K members and expanded international partnerships, helping women thrive in business worldwide.",
+      `Launching "Ready, Set, Lead" initiatives to nurture the next generation of Gen Z and Millennial founders.`,
   },
 ];
 
 export default function AboutPage() {
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-24">
+    <main className="bg-background min-h-screen pt-24 sm:pt-24">
       {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
       <section className="relative w-full">
         {/* Fixed aspect ratio container - same as NewsPage */}
@@ -123,10 +119,10 @@ export default function AboutPage() {
                   Entrepreneurs
                 </span>
                 <br className="hidden sm:block" />
-                Since 2018
+                Since 2017
               </h1>
               <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-                We are a dynamic platform dedicated to amplifying the voices, achievements, and insights of women entrepreneurs across the globe.
+              A dynamic one-stop knowledge hub dedicated to amplifying the voices, achievements, and insights of women entrepreneurs globally.
               </p>
             </div>
           </div>
@@ -141,24 +137,12 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
             <p>
-              She At Work was born from a personal journey. Created to open a
-              space where women entrepreneurs could share their narratives,
-              current both—successes, lessons, and also the little wins that
-              make the journey worthwhile.
+           SheAtWork.com germinated with a singular objective: to support women who are looking to start an entrepreneurial venture that aligns with their abilities and skills. Launched in January 2017, our aim is to educate, train, support, and motivate women entrepreneurs globally. 
             </p>
             <p>
-              Founded in 2018, we&apos;ve recognized that the business landscape
-              is often dominated by male voices. We set out to shift this truth
-              by building a community, providing a network that celebrates
-              diverse voices and supports entrepreneurs through shared
-              experiences.
+             We provide a storehouse of information to increase awareness on all relevant areas of entrepreneurship—from innovative business ideas and startup funding avenues to legal support and mentor connections.
             </p>
-            <p>
-              Today, we continue to champion women&apos;s voices in business,
-              offering resources, insights, networking, mentorship, and
-              practical resources to support the next generation of women
-              entrepreneurs.
-            </p>
+          
           </div>
         </div>
       </section>
@@ -227,14 +211,10 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               <p>
-                To create a world where every woman entrepreneur feels empowered
-                to pursue her passion, build a successful business, and shape
-                the future on her own terms.
+                To create a one-stop knowledge hub for any woman aspiring to be an entrepreneur or aiming to move to the next level. We hope to help all women entrepreneurs expand their frontiers and enhance their skills to achieve their true potential.
               </p>
               <p>
-                We are committed to breaking down barriers, building meaningful
-                connections, and creating opportunities for women to learn,
-                grow, and thrive as entrepreneurs and leaders.
+               We strive to provide a friendly forum for growth through the right knowledge and professional networking. By giving visibility to women entrepreneurs and running mentoring programs, we generate peer support across both urban and rural sectors.
               </p>
             </div>
           </div>

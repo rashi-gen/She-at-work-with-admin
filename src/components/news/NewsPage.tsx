@@ -180,9 +180,9 @@ export default function NewsPage() {
   return (
     <main className="bg-background min-h-screen pt-20 sm:pt-24">
       {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
-      <section className="relative w-full ">
-        {/* Fixed aspect ratio container - same as your HeroSection */}
-        <div className="relative w-full aspect-[5/1] overflow-hidden">
+<section className="relative w-full">
+  {/* Remove aspect ratio and use min-height instead */}
+  <div className="relative w-full min-h-[50vh] sm:min-h-[40vh] md:min-h-[30vh] lg:aspect-[5/1] overflow-hidden">
           {/* Background gradient */}
           <div className="absolute inset-0 hero-gradient" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />

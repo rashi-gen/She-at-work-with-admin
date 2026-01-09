@@ -117,11 +117,11 @@ export const Footer = () => {
         {/* Contact Info */}
         <div className="flex flex-wrap gap-6 py-8 border-t border-white/10">
           <a
-            href="mailto:hello@sheatwork.com"
+            href="mailto:info@sheatwork.com"
             className="flex items-center gap-2 text-white/70 hover:text-white transition-colors"
           >
             <Mail className="h-4 w-4" />
-            hello@sheatwork.com
+            info@sheatwork.com
           </a>
           <span className="flex items-center gap-2 text-white/70">
             <MapPin className="h-4 w-4" />
