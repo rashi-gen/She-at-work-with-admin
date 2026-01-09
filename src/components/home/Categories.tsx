@@ -43,7 +43,7 @@ export const Categories = () => {
     <section className="py-10 bg-secondary">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-8">
           <h2 className="text-4xl font-bold text-foreground mb-4">
             Explore Our Content
           </h2>
@@ -53,17 +53,28 @@ export const Categories = () => {
           </p>
         </div>
 
-        {/* Categories Grid - 2x2 */}
-        <div
-          className="grid sm:grid-cols-2 gap-x-20 gap-y-5 max-w-3xl mx-auto"
-        >
+        {/* Horizontal scroll on mobile, 1 row on desktop */}
+        <div className="flex gap-8 overflow-x-auto md:overflow-visible scrollbar-hide">
           {categories.map((category) => (
             <Link
               key={category.name}
               href={category.href}
-              className="group relative p-8 rounded-3xl bg-white hover:shadow-lg transition-all duration-300"
+              className="
+                group
+                relative
+                p-8
+                rounded-3xl
+                bg-white
+                hover:shadow-lg
+                transition-all
+                duration-300
+                flex-shrink-0
+                w-[280px]
+                md:w-[260px]
+                lg:w-[280px]
+              "
             >
-              {/* Icon with beige circle background */}
+              {/* Icon */}
               <div className="inline-flex p-4 rounded-full bg-[#E5D4C9] mb-4">
                 <category.icon
                   className="h-7 w-7 text-foreground"
@@ -79,7 +90,7 @@ export const Categories = () => {
                 {category.description}
               </p>
 
-              {/* Count & Explore Link */}
+              {/* Count & Explore */}
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-bold text-foreground">
                   {category.count}
@@ -96,3 +107,4 @@ export const Categories = () => {
     </section>
   );
 };
+

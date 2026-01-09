@@ -13,7 +13,7 @@ const Cta = () => {
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-3xl mx-auto">
             Be part of a community that&apos;s shaping the future of women
-            entrepreneurship
+            entrepreneurs
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">

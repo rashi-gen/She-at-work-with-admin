@@ -46,9 +46,10 @@ export const Footer = () => {
                 She<span className="text-accent">At</span>Work
               </span>
             </Link>
-            <p className="text-white/70 mb-6 max-w-sm">
-              Shaping the future of women entrepreneurship. Inspiring stories, insights, and community for visionary women leaders.
+            <p className="text-white/70 max-w-sm">
+              Shaping the future of women entrepreneurship. Inspiring stories, insights, and community for 
             </p>
+            <p className="text-white/70 mb-6 max-w-sm">visionary women leaders.</p>
             <div className="flex gap-3">
               {socialLinks.map((social) => (
                 <a
@@ -125,7 +126,7 @@ export const Footer = () => {
           </a>
           <span className="flex items-center gap-2 text-white/70">
             <MapPin className="h-4 w-4" />
-            Mumbai, India
+            Noida, India
           </span>
         </div>
 
