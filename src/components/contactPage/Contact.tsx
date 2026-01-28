@@ -143,7 +143,7 @@ export default function ContactPage() {
                 {
                   icon: MapPin,
                   label: "Visit Us",
-                  value: "Noida, India",
+                  value: "Shree House , A Block , sector 2 ,  A-50 Floor 2 , Noida , Uttar Pradesh , 201301 , India",
                   link: "#",
                 },
               ].map(({ icon: Icon, label, value, link }) => (

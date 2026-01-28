@@ -1,10 +1,53 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { blogsData } from "@/data/Blogs";
 import { ArrowRight, Calendar, Clock, Filter, Menu, TrendingUp, X } from "lucide-react";
-import { useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+
+
+
+// Define types for your blog data
+interface BlogItem {
+  post_name: string;
+  ID: string;
+  post_title: string;
+  post_content: string;
+  post_date: string;
+  post_excerpt: string;
+  featured_image_url: string | null;
+  external_url: string | null;
+  section_name: string;
+  post_modified?: string;
+  post_author?: string;
+  post_date_gmt?: string;
+  post_content_filtered?: string;
+  post_parent?: string;
+  guid?: string;
+  menu_order?: string;
+  post_type?: string;
+  post_mime_type?: string;
+  comment_count?: string;
+  section_id?: string;
+}
+
+// Extract categories from content
+const getCategoryFromContent = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  if (contentLower.includes("leadership") || contentLower.includes("leader") || contentLower.includes("ceo") || contentLower.includes("management")) return "Leadership";
+  if (contentLower.includes("finance") || contentLower.includes("funding") || contentLower.includes("$") || contentLower.includes("investment") || contentLower.includes("budget") || contentLower.includes("financial")) return "Finance";
+  if (contentLower.includes("marketing") || contentLower.includes("brand") || contentLower.includes("social media") || contentLower.includes("promotion") || contentLower.includes("sales")) return "Marketing";
+  if (contentLower.includes("technology") || contentLower.includes("tech") || contentLower.includes("digital") || contentLower.includes("ai") || contentLower.includes("software") || contentLower.includes("app")) return "Technology";
+  if (contentLower.includes("wellness") || contentLower.includes("health") || contentLower.includes("self-care") || contentLower.includes("mental health") || contentLower.includes("balance")) return "Wellness";
+  if (contentLower.includes("growth") || contentLower.includes("scale") || contentLower.includes("expand") || contentLower.includes("development") || contentLower.includes("progress")) return "Growth";
+  if (contentLower.includes("strategy") || contentLower.includes("planning") || contentLower.includes("tactics") || contentLower.includes("business plan") || contentLower.includes("roadmap")) return "Strategy";
+  if (contentLower.includes("innovation") || contentLower.includes("innovate") || contentLower.includes("creative") || contentLower.includes("disrupt") || contentLower.includes("new ideas")) return "Innovation";
+  if (contentLower.includes("success") || contentLower.includes("story") || contentLower.includes("journey") || contentLower.includes("experience") || contentLower.includes("testimonial")) return "Success Stories";
+  return "General";
+};
 
 const blogCategories = [
   "All Blogs",
@@ -17,169 +60,166 @@ const blogCategories = [
   "Strategy",
   "Innovation",
   "Success Stories",
+  "General",
 ];
 
-const trendingPosts = [
-  {
-    id: 1,
-    title: "Mastering Work-Life Balance as an Entrepreneur",
-    date: "3 hrs ago",
-    category: "Wellness",
-  },
-  {
-    id: 2,
-    title: "Funding Strategies for Women-Led Startups",
-    date: "5 hrs ago",
-    category: "Finance",
-  },
-  {
-    id: 3,
-    title: "Building a Strong Personal Brand Online",
-    date: "Yesterday",
-    category: "Marketing",
-  },
-  {
-    id: 4,
-    title: "Tech Tools Every Entrepreneur Needs in 2025",
-    date: "2 days ago",
-    category: "Technology",
-  },
-];
-
-const featuredPost = {
-  id: 0,
-  category: "Leadership",
-  title: "The New Era of Women Leadership in Global Business",
-  excerpt: "Exploring how women leaders are redefining corporate culture, driving innovation, and shaping the future landscape of business.",
-  author: {
-    name: "Sarah Mitchell",
-    role: "CEO & Serial Entrepreneur",
-    avatar: "/avatar.jpg",
-  },
-  date: "Jan 15",
-  readTime: "8 min read",
+// Format date function
+const formatDate = (dateString: string): string => {
+  try {
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      return 'Date unavailable';
+    }
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  } catch (error) {
+    console.warn('Invalid date:', dateString, error);
+    return 'Date unavailable';
+  }
 };
 
-const blogPosts = [
-  {
-    id: 1,
-    category: "Finance",
-    title: "Smart Investment Strategies for Women Entrepreneurs",
-    excerpt: "Learn how to make your money work for you with smart investment choices tailored for women in business.",
-    date: "Jan 14",
-    readTime: "5 min read",
-  },
-  {
-    id: 2,
-    category: "Marketing",
-    title: "Social Media Marketing: A Complete Guide for Beginners",
-    excerpt: "Master the art of social media marketing with proven strategies to grow your business online.",
-    date: "Jan 13",
-    readTime: "7 min read",
-  },
-  {
-    id: 3,
-    category: "Success Stories",
-    title: "From Side Hustle to Million-Dollar Business",
-    excerpt: "An inspiring journey of how one woman turned her passion project into a thriving enterprise.",
-    date: "Jan 12",
-    readTime: "6 min read",
-  },
-  {
-    id: 4,
-    category: "Technology",
-    title: "AI Tools Transforming Small Business Operations",
-    excerpt: "Discover how artificial intelligence can streamline your business and boost productivity.",
-    date: "Jan 11",
-    readTime: "6 min read",
-  },
-  {
-    id: 5,
-    category: "Wellness",
-    title: "Mental Health Matters: Self-Care for Busy Entrepreneurs",
-    excerpt: "Practical advice to maintain emotional well-being while managing the demands of entrepreneurship.",
-    date: "Jan 10",
-    readTime: "5 min read",
-  },
-  {
-    id: 6,
-    category: "Growth",
-    title: "Scaling Your Business: When and How to Expand",
-    excerpt: "Strategic insights on recognizing the right time and approach to scale your business successfully.",
-    date: "Jan 9",
-    readTime: "8 min read",
-  },
-  {
-    id: 7,
-    category: "Strategy",
-    title: "Building a Resilient Business in Uncertain Times",
-    excerpt: "Learn how to develop business strategies that withstand market volatility and economic challenges.",
-    date: "Jan 8",
-    readTime: "7 min read",
-  },
-  {
-    id: 8,
-    category: "Innovation",
-    title: "Design Thinking for Problem Solving in Business",
-    excerpt: "Apply human-centered design principles to tackle business challenges with innovative solutions.",
-    date: "Jan 7",
-    readTime: "6 min read",
-  },
-  {
-    id: 9,
-    category: "Leadership",
-    title: "Inclusive Leadership: Building Diverse and Effective Teams",
-    excerpt: "Learn how to foster an inclusive environment that empowers all team members to thrive.",
-    date: "Jan 6",
-    readTime: "7 min read",
-  },
-  {
-    id: 10,
-    category: "Finance",
-    title: "Budgeting Strategies for First-Time Entrepreneurs",
-    excerpt: "Essential budgeting techniques to keep your startup financially healthy from day one.",
-    date: "Jan 5",
-    readTime: "5 min read",
-  },
-  {
-    id: 11,
-    category: "Marketing",
-    title: "Email Marketing Mastery: Convert Subscribers into Customers",
-    excerpt: "Proven email marketing strategies to build relationships and drive sales for your business.",
-    date: "Jan 4",
-    readTime: "6 min read",
-  },
-  {
-    id: 12,
-    category: "Success Stories",
-    title: "Breaking Barriers: How This Founder Built a Global Brand",
-    excerpt: "Inspiring story of overcoming challenges to create an internationally recognized business.",
-    date: "Jan 3",
-    readTime: "8 min read",
-  },
-];
+// Extract excerpt from content
+const extractExcerpt = (content: string, maxLength: number = 150): string => {
+  if (!content) return 'No excerpt available';
+  
+  try {
+    // Remove HTML tags
+    const plainText = content.replace(/<[^>]*>/g, '');
+    // Remove newlines and extra spaces
+    const cleanText = plainText.replace(/\s+/g, ' ').trim();
+    
+    if (cleanText.length <= maxLength) return cleanText;
+    return cleanText.substring(0, maxLength) + '...';
+  } catch (error) {
+    console.warn('Error extracting excerpt:', error);
+    return 'No excerpt available';
+  }
+};
+
+// Calculate read time
+const calculateReadTime = (text: string): string => {
+  if (!text) return '1 min read';
+  
+  const wordCount = text.split(/\s+/).length;
+  const minutes = Math.max(1, Math.ceil(wordCount / 200)); // 200 words per minute
+  return `${minutes} min read`;
+};
+
+// Items per page for pagination
+const ITEMS_PER_PAGE = 12;
 
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  // const [email, setEmail] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
-  const [visiblePosts, setVisiblePosts] = useState(8);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [processedBlogs, setProcessedBlogs] = useState<Array<{
+    id: string;
+    category: string;
+    title: string;
+    excerpt: string;
+    date: string;
+    readTime: string;
+    author: {
+      name: string;
+      role?: string;
+    };
+    image: string;
+    fullContent: string;
+    modifiedDate?: string;
+    slug: string;
+  }>>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Function to filter blog posts based on selected category
+  // Process blogs data on component mount
+  useEffect(() => {
+    try {
+      setIsLoading(true);
+      
+      const processed = blogsData.map((item: BlogItem) => {
+        const category = getCategoryFromContent(item.post_content);
+        const excerpt = item.post_excerpt && item.post_excerpt.trim() !== '' 
+          ? item.post_excerpt 
+          : extractExcerpt(item.post_content);
+        
+        const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Untitled';
+        const date = formatDate(item.post_date);
+        const readTime = calculateReadTime(excerpt);
+        
+        // Extract author from content or use default
+        let authorName = "She at Work";
+        const authorMatch = item.post_content.match(/by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i) || 
+                           item.post_content.match(/Written by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i);
+        if (authorMatch) {
+          authorName = authorMatch[1];
+        }
+        
+        const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
+          ? item.featured_image_url 
+          : '/placeholder-blog.jpg';
+        
+        return {
+          id: item.ID || Math.random().toString(),
+          category,
+          title,
+          excerpt,
+          date,
+          readTime,
+          author: {
+            name: authorName,
+            role: "Contributor"
+          },
+          image,
+          fullContent: item.post_content || '',
+          modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
+          slug: item.post_name || `blog-${item.ID}`
+        };
+      });
+      
+      // Sort by date (newest first)
+      processed.sort((a, b) => {
+        try {
+          const dateA = new Date(a.date === 'Date unavailable' ? '1970-01-01' : a.date);
+          const dateB = new Date(b.date === 'Date unavailable' ? '1970-01-01' : b.date);
+          return dateB.getTime() - dateA.getTime();
+        } catch (error) {
+          console.log(error)
+          return 0;
+        }
+      });
+      
+      setProcessedBlogs(processed);
+    } catch (error) {
+      console.error('Error processing blogs data:', error);
+      setProcessedBlogs([]);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Get featured blog (most recent)
+  const featuredBlog = processedBlogs.length > 0 ? processedBlogs[0] : null;
+
+  // Get trending posts (most recent 4 articles)
+  const trendingPosts = processedBlogs.slice(0, 4);
+
+  // Filter blog posts based on selected category
   const getFilteredPosts = () => {
     if (selectedCategory === "All Blogs") {
-      return blogPosts;
+      return processedBlogs;
     }
-    return blogPosts.filter(post => 
+    return processedBlogs.filter(post => 
       post.category.toLowerCase() === selectedCategory.toLowerCase()
     );
   };
 
-  // Function to check if featured post should be shown
+  // Check if featured post should be shown
   const shouldShowFeaturedPost = () => {
-    if (selectedCategory === "All Blogs") return true;
-    return featuredPost.category.toLowerCase() === selectedCategory.toLowerCase();
+    if (!featuredBlog || selectedCategory === "All Blogs") return true;
+    return featuredBlog.category.toLowerCase() === selectedCategory.toLowerCase();
   };
 
   const filteredPosts = getFilteredPosts();
@@ -197,26 +237,55 @@ export default function BlogsPage() {
 
   const filteredTrendingPosts = getFilteredTrendingPosts();
 
-  const loadMorePosts = () => {
-    setVisiblePosts(prev => prev + 4);
+  // Pagination calculations
+  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentPosts = filteredPosts.slice(startIndex, endIndex);
+
+  // Handle page change
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  if (isLoading) {
+    return (
+      <main className="bg-background min-h-screen">
+        <PageBanner
+          title="Inspiring Blogs"
+          description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
+          image="/blogs/Blogsbanner.png"
+        />
+        <div className="flex items-center justify-center py-20">
+          <div className="text-center">
+            <div className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+            <p className="text-muted-foreground">Loading blog articles...</p>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
-    <main className="bg-background min-h-screen ">
-      {/* ================= HERO WITH GRADIENT ================= */}
-<PageBanner
+    <main className="bg-background min-h-screen">
+      {/* ================= HERO BANNER ================= */}
+      <PageBanner
         title="Inspiring Blogs"
-        description="Insights , tips and actionable content from experts and entrepreneurs worldwide"
+        description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
         image="/blogs/Blogsbanner.png"
       >
         {/* Active filter indicator */}
-        {selectedCategory !== "All News" && (
+        {selectedCategory !== "All Blogs" && (
           <div className="mb-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
               <span>Filtering by:</span>
               <span className="font-semibold">{selectedCategory}</span>
               <button 
-                onClick={() => setSelectedCategory("All News")}
+                onClick={() => {
+                  setSelectedCategory("All Blogs");
+                  setCurrentPage(1);
+                }}
                 className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
               >
                 <X className="h-3 w-3" />
@@ -253,6 +322,7 @@ export default function BlogsPage() {
               onClick={() => {
                 setSelectedCategory(cat);
                 setMobileMenuOpen(false);
+                setCurrentPage(1);
               }}
               className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
                 selectedCategory === cat
@@ -270,7 +340,7 @@ export default function BlogsPage() {
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* LEFT - FEATURED POST */}
-          {showFeaturedPost && (
+          {showFeaturedPost && featuredBlog && (
             <div className="lg:col-span-2">
               <div className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10">
                 {/* FEATURED BADGE */}
@@ -281,47 +351,58 @@ export default function BlogsPage() {
                 </div>
 
                 {/* IMAGE */}
-                <div className="relative bg-gradient-to-br from-muted to-secondary h-48 sm:h-60 lg:h-72">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 text-4xl sm:text-5xl lg:text-6xl font-display">
-                    Featured
-                  </div>
+                <div 
+                  className="relative bg-gradient-to-br from-muted to-secondary h-48 sm:h-60 lg:h-72 bg-cover bg-center"
+                  style={{ 
+                    backgroundImage: featuredBlog.image !== '/placeholder-blog.jpg' 
+                      ? `url(${featuredBlog.image})` 
+                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                  }}
+                >
+                  {featuredBlog.image === '/placeholder-blog.jpg' && (
+                    <div className="absolute inset-0 flex items-center justify-center text-white/40 text-6xl font-display">
+                      {featuredBlog.title.charAt(0)}
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
 
                 {/* CONTENT */}
                 <div className="p-4 sm:p-6 lg:p-8">
                   <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3 sm:mb-4 uppercase">
-                    {featuredPost.category}
+                    {featuredBlog.category}
                   </span>
 
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors">
-                    {featuredPost.title}
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors line-clamp-2">
+                    {featuredBlog.title}
                   </h2>
 
-                  <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed">
-                    {featuredPost.excerpt}
+                  <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed line-clamp-3">
+                    {featuredBlog.excerpt}
                   </p>
 
                   {/* AUTHOR INFO */}
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg">
-                        SM
+                        {featuredBlog.author.name.charAt(0)}
                       </div>
                       <div>
                         <p className="font-semibold text-foreground text-sm sm:text-base">
-                          {featuredPost.author.name}
+                          {featuredBlog.author.name}
                         </p>
                         <p className="text-xs sm:text-sm text-muted-foreground">
-                          {featuredPost.author.role}
+                          {featuredBlog.author.role}
                         </p>
                       </div>
                     </div>
 
-                    <Button className="bg-primary hover:bg-primary/90 w-full sm:w-auto text-sm sm:text-base">
-                      Read Article{" "}
-                      <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                    </Button>
+                    <Link href={`/blogs/${featuredBlog.slug}`} className="w-full sm:w-auto">
+                      <Button className="bg-primary hover:bg-primary/90 w-full text-sm sm:text-base">
+                        Read Article{" "}
+                        <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -339,7 +420,10 @@ export default function BlogsPage() {
               </div>
               {selectedCategory !== "All Blogs" && (
                 <button 
-                  onClick={() => setSelectedCategory("All Blogs")}
+                  onClick={() => {
+                    setSelectedCategory("All Blogs");
+                    setCurrentPage(1);
+                  }}
                   className="text-xs text-primary hover:text-accent transition-colors"
                 >
                   Clear filter
@@ -348,13 +432,14 @@ export default function BlogsPage() {
             </div>
 
             {showFilter ? (
-              <div className="space-y-2 mb-4">
+              <div className="space-y-2 mb-4 max-h-60 overflow-y-auto pr-2">
                 {blogCategories.slice(1).map((cat) => (
                   <button
                     key={cat}
                     onClick={() => {
                       setSelectedCategory(cat);
                       setShowFilter(false);
+                      setCurrentPage(1);
                     }}
                     className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
                       selectedCategory === cat
@@ -370,11 +455,12 @@ export default function BlogsPage() {
               <div className="space-y-4 sm:space-y-5">
                 {filteredTrendingPosts.length > 0 ? (
                   filteredTrendingPosts.map((post) => (
-                    <div
-                      key={post.id}
-                      className="group cursor-pointer pb-4 sm:pb-5 border-b border-border last:border-0 last:pb-0"
+                    <Link 
+                      key={post.id} 
+                      href={`/blogs/${post.slug}`}
+                      className="block group cursor-pointer pb-4 sm:pb-5 border-b border-border last:border-0 last:pb-0"
                     >
-                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 sm:mb-2 leading-snug text-sm sm:text-base">
+                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 sm:mb-2 leading-snug text-sm sm:text-base line-clamp-2">
                         {post.title}
                       </h4>
                       <div className="flex items-center gap-2 text-xs text-muted-foreground">
@@ -384,7 +470,7 @@ export default function BlogsPage() {
                           {post.category}
                         </span>
                       </div>
-                    </div>
+                    </Link>
                   ))
                 ) : (
                   <div className="text-center py-4">
@@ -428,7 +514,10 @@ export default function BlogsPage() {
               <Button
                 variant="outline"
                 className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                onClick={() => setSelectedCategory("All Blogs")}
+                onClick={() => {
+                  setSelectedCategory("All Blogs");
+                  setCurrentPage(1);
+                }}
               >
                 <X className="h-3 w-3 sm:h-4 sm:w-4" />
                 Clear Filter
@@ -448,7 +537,10 @@ export default function BlogsPage() {
                 There are no blog posts in the &quot;{selectedCategory}&quot; category yet.
               </p>
               <Button
-                onClick={() => setSelectedCategory("All Blogs")}
+                onClick={() => {
+                  setSelectedCategory("All Blogs");
+                  setCurrentPage(1);
+                }}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
               >
                 View All Blogs
@@ -457,16 +549,25 @@ export default function BlogsPage() {
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                {filteredPosts.slice(0, visiblePosts).map((post) => (
+                {currentPosts.map((post) => (
                   <div
                     key={post.id}
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
                   >
                     {/* IMAGE */}
-                    <div className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56">
-                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/20 text-3xl sm:text-4xl font-display">
-                        {post.category.charAt(0)}
-                      </div>
+                    <div 
+                      className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56 bg-cover bg-center"
+                      style={{ 
+                        backgroundImage: post.image !== '/placeholder-blog.jpg' 
+                          ? `url(${post.image})` 
+                          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                      }}
+                    >
+                      {post.image === '/placeholder-blog.jpg' && (
+                        <div className="absolute inset-0 flex items-center justify-center text-white/40 text-5xl font-display">
+                          {post.title.charAt(0)}
+                        </div>
+                      )}
                     </div>
 
                     {/* CONTENT */}
@@ -484,38 +585,104 @@ export default function BlogsPage() {
                       </p>
 
                       <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
-                        <div className="flex items-center gap-1.5 sm:gap-2 text-xs text-muted-foreground">
-                          <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                          <span>{post.date}</span>
-                          <span>•</span>
-                          <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                          <span>{post.readTime}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                            <span>{post.date}</span>
+                          </div>
+                          <div className="hidden sm:block">•</div>
+                          <div className="flex items-center gap-1">
+                            <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                            <span>{post.readTime}</span>
+                          </div>
                         </div>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm"
-                        >
-                          Read{" "}
-                          <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                        </Button>
+                        <Link href={`/blogs/${post.slug}`} className="block">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm"
+                          >
+                            Read{" "}
+                            <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                          </Button>
+                        </Link>
                       </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* LOAD MORE - Only show if there are more posts to load */}
-              {selectedCategory === "All Blogs" && visiblePosts < filteredPosts.length && (
-                <div className="text-center mt-8 sm:mt-12">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold px-6 sm:px-8 text-sm sm:text-base"
-                    onClick={loadMorePosts}
-                  >
-                    Load More Articles
-                  </Button>
+              {/* PAGINATION */}
+              {totalPages > 1 && (
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
+                  <div className="text-sm text-muted-foreground">
+                    Showing {startIndex + 1}-{Math.min(endIndex, filteredPosts.length)} of {filteredPosts.length} articles
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="gap-1"
+                    >
+                      <ArrowRight className="h-3 w-3 rotate-180" />
+                      Previous
+                    </Button>
+                    
+                    <div className="flex items-center gap-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let pageNum;
+                        if (totalPages <= 5) {
+                          pageNum = i + 1;
+                        } else if (currentPage <= 3) {
+                          pageNum = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          pageNum = totalPages - 4 + i;
+                        } else {
+                          pageNum = currentPage - 2 + i;
+                        }
+                        
+                        return (
+                          <Button
+                            key={pageNum}
+                            variant={currentPage === pageNum ? "default" : "outline"}
+                            size="sm"
+                            className="w-10 h-10 p-0"
+                            onClick={() => handlePageChange(pageNum)}
+                          >
+                            {pageNum}
+                          </Button>
+                        );
+                      })}
+                      
+                      {totalPages > 5 && currentPage < totalPages - 2 && (
+                        <>
+                          <span className="px-2">...</span>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            className="w-10 h-10 p-0"
+                            onClick={() => handlePageChange(totalPages)}
+                          >
+                            {totalPages}
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                    
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="gap-1"
+                    >
+                      Next
+                      <ArrowRight className="h-3 w-3" />
+                    </Button>
+                  </div>
                 </div>
               )}
             </>
@@ -523,7 +690,7 @@ export default function BlogsPage() {
         </div>
       </section>
 
-<Cta/>
+      <Cta/>
     </main>
   );
 }

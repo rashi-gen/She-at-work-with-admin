@@ -18,7 +18,13 @@ export default auth(async (req) => {
   const isLoggedIn = !!auth;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  // 3. Check if route is public
+  const isPublicRoute = publicRoutes.some((route) => {
+    const matches = route instanceof RegExp 
+      ? route.test(nextUrl.pathname) 
+      : route === nextUrl.pathname;
+    return matches;
+  });
   const isPublicApi = publicApis.some((api) =>
     nextUrl.pathname.startsWith(api)
   );

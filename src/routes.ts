@@ -6,7 +6,10 @@ export const DEFAULT_LOGIN_REDIRECT: string = "/dashboard";
 export const apiAuthPrefix: string = "/api/auth";
 
 // Routes which are accessible to all.
-export const publicRoutes: string[] = ["/", "/auth/verify-email","/news","/about","/blogs","/contact","/entrechat","/events","/share-your-story"];
+// export const publicRoutes: string[] = ["/", "/auth/verify-email","/news","/about","/blogs","/contact","/entrechat","/events","/share-your-story"];
+
+// Routes which are accessible to all.
+export const publicRoutes: (string|RegExp)[] = ["/", "/auth/verify-email","/news","/about","/blogs","/contact","/entrechat","/events","/share-your-story" ,  /^\/blogs(\/.*)?$/,/^\/entrechat(\/.*)?$/ , /^\/news(\/.*)?$/,/^\/events(\/.*)?$/];
 
 // APIs which are accessible to all.
 export const publicApis: string[] = ["/api/shareyourstory","/api/contact-submissions"];
