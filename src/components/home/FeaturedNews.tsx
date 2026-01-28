@@ -131,6 +131,7 @@ export default function FeaturedStories() {
           const dateB = new Date(b.date === 'Date unavailable' ? '1970-01-01' : b.date);
           return dateB.getTime() - dateA.getTime();
         } catch (error) {
+          console.log(error)
           return 0;
         }
       });
