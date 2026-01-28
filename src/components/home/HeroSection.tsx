@@ -3,7 +3,7 @@
 import { useEffect, useState, createContext } from "react";
 import { Button } from "@/components/ui/button";
 
-const IMAGES = ["/banner1.png","/image.png"];
+const IMAGES = ["/home/Homebanner1.png", "/home/Homebanner2.png"];
 
 export const ImageVisibilityContext = createContext({
   isImageVisible: false,
@@ -26,26 +26,27 @@ export const HeroSection = () => {
       {/* Add pt-24 to account for navbar height (96px = 24 * 4px) */}
       <section className="relative min-h-screen lg:h-screen overflow-hidden pt-24">
         {/* Background Images - Start after navbar */}
-        {IMAGES.map((image, index) => (
-          <div
-            key={image}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              currentImageIndex === index ? "opacity-100 z-0" : "opacity-0 z-[-1]"
-            }`}
-            style={{ top: "96px" }} // Start images after navbar (6rem = 96px)
-          >
+        <div className="absolute inset-0" style={{ top: "96px" }}>
+          {IMAGES.map((image, index) => (
             <div
-              className="w-full h-full"
-              style={{
-                backgroundImage: `url(${image})`,
-                backgroundPosition: "top center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-                height: "calc(100vh - 96px)", // Subtract navbar height
-              }}
-            />
-          </div>
-        ))}
+              key={image}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                currentImageIndex === index ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url(${image})`,
+                  backgroundPosition: "top center",
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  height: "calc(100vh - 96px)", // Subtract navbar height
+                }}
+              />
+            </div>
+          ))}
+        </div>
 
         {/* Content - Adjusted for navbar */}
         <div className="relative z-10 min-h-screen flex items-center" style={{ minHeight: "calc(100vh - 96px)" }}>
@@ -75,7 +76,7 @@ export const HeroSection = () => {
               {/* Description */}
               <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg  text-white/90 leading-relaxed max-w-3xl">
                 A dynamic one-stop knowledge hub dedicated <br/>to amplifying the voices,
-                achievements, and insights of women entrepreneurs globally.
+                achievements, and insights <br/> of women entrepreneurs globally.
               </p>
 
               {/* Buttons */}
