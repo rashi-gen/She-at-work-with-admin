@@ -33,7 +33,7 @@ export default function ShareYourStory() {
     setError(null);
 
     try {
-      const res = await fetch("/api/shareyourstory", {
+      const res = await fetch("/api/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -2,6 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/db";
 import { ContactSubmissionsTable } from "@/db/schema";
+import { and, desc, eq } from "drizzle-orm";
 
 export async function POST(req: NextRequest) {
   try {
@@ -55,6 +56,41 @@ export async function POST(req: NextRequest) {
         success: false,
         message: "Internal server error",
       },
+      { status: 500 }
+    );
+  }
+}
+
+
+
+
+export async function GET(request: NextRequest) {
+  try {
+    const searchParams = request.nextUrl.searchParams;
+    const resolved = searchParams.get('resolved');
+    
+    const whereConditions = [];
+    
+    if (resolved !== null) {
+      whereConditions.push(eq(ContactSubmissionsTable.isResolved, resolved === 'true'));
+    }
+    
+    const submissions = await db
+      .select()
+      .from(ContactSubmissionsTable)
+      .where(whereConditions.length > 0 ? and(...whereConditions) : undefined)
+      .orderBy(desc(ContactSubmissionsTable.submittedAt));
+    
+    return NextResponse.json({
+      success: true,
+      data: submissions,
+      count: submissions.length
+    });
+    
+  } catch (error) {
+    console.error('Error fetching contact submissions:', error);
+    return NextResponse.json(
+      { success: false, error: 'Failed to fetch contact submissions' },
       { status: 500 }
     );
   }

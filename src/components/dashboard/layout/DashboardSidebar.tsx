@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import {
   BarChart3,
   ChevronRight,
+  FileCheck,
   Home,
   Settings,
   Shield,
@@ -80,13 +81,13 @@ export default function DashboardSidebar({ role }: DashboardSidebarProps) {
       roles: ["ADMIN"],
       group: "admin"
     },
-    // {
-    //   href: "/dashboard/admin/content",
-    //   label: "Content Moderation",
-    //   icon: <FileCheck className="h-5 w-5" />,
-    //   roles: ["ADMIN"],
-    //   group: "admin"
-    // },
+    {
+      href: "/dashboard/admin/content",
+      label: "Content Moderation",
+      icon: <FileCheck className="h-5 w-5" />,
+      roles: ["ADMIN"],
+      group: "admin"
+    },
     // {
     //   href: "/dashboard/admin/events",
     //   label: "Event Management",

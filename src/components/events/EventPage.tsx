@@ -188,7 +188,7 @@ export default function EventsPage() {
       
               <div className="relative w-full mx-auto text-center text-white px-4">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-                  Upcoming Events
+                  Events
                 </h1>
                 <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
                  Join workshops, webinars and networking opportunities designed to empower and inspire

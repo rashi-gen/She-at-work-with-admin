@@ -3,7 +3,7 @@
 import { useEffect, useState, createContext } from "react";
 import { Button } from "@/components/ui/button";
 
-const IMAGES = ["/banner1.png", "/banner2.png","hero-banner.jpg"];
+const IMAGES = ["/banner1.png","/image.png"];
 
 export const ImageVisibilityContext = createContext({
   isImageVisible: false,
@@ -51,10 +51,7 @@ export const HeroSection = () => {
         <div className="relative z-10 min-h-screen flex items-center" style={{ minHeight: "calc(100vh - 96px)" }}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6"> {/* Reduced top padding */}
-              {/* Badge */}
-              <div className="inline-flex border border-white/50 px-4 sm:px-5 py-2 text-xs sm:text-sm md:text-base text-white mb-4 sm:mb-5 md:mb-6">
-                Dummy Text
-              </div>
+         
 
               {/* Heading */}
               <h1 className="text-white leading-tight">
@@ -77,21 +74,21 @@ export const HeroSection = () => {
 
               {/* Description */}
               <p className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg  text-white/90 leading-relaxed max-w-3xl">
-                A dynamic one-stop knowledge hub dedicated to amplifying the voices,
+                A dynamic one-stop knowledge hub dedicated <br/>to amplifying the voices,
                 achievements, and insights of women entrepreneurs globally.
               </p>
 
               {/* Buttons */}
               <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5">
-                <Button className="bg-[#3B2E7E] hover:bg-[#33276A] text-white h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base md:text-lg w-full sm:w-auto">
+                <Button className="bg-[#3B2E7E] hover:bg-[#33276A] text-white h-10 sm:h-12  text-sm sm:text-base md:text-lg w-full sm:w-auto">
                   Explore Stories →
                 </Button>
 
                 <Button
                   variant="outline"
-                  className="border-white bg-white text-[#3B2E7E] hover:bg-white/90  hover:text-black h-10 sm:h-12 px-6 sm:px-8 text-sm sm:text-base md:text-lg w-full sm:w-auto"
+                  className="border-white bg-white text-[#3B2E7E] hover:bg-white/90  hover:text-black h-10 sm:h-12  text-sm sm:text-base md:text-lg w-full sm:w-auto"
                 >
-                  Join the Community
+                Know more →
                 </Button>
               </div>
 
