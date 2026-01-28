@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
+import { PageBanner } from "../PageBanner";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
@@ -110,28 +111,15 @@ export default function AboutPage() {
     return () => clearInterval(interval);
   }, []);
   return (
-    <main className="bg-background min-h-screen pt-24 sm:pt-24">
+    <main className="bg-background min-h-screen">
      
+   <PageBanner
+        title="Empowering Women Entrepreneurs Since 2017 "
+        description="A dynamic one-stop knowledge hub dedicated to amplifying the voices, achievements, and insights of women entrepreneurs globally."
+        image="/aboutus/Aboutusbanner.png"
+      />
+      
 
-      
-           <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12  overflow-hidden hero-gradient">
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-      
-              <div className="relative w-full mx-auto text-center text-white px-4">
-                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-                Empowering Women{" "}
-                <span className="text-transparent bg-clip-text bg-white">
-                  Entrepreneurs
-                </span>
-                <br className="hidden sm:block" />
-                Since 2017
-              </h1>
-               <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-              A dynamic one-stop knowledge hub dedicated to amplifying the voices, achievements, and insights of women entrepreneurs globally.
-              </p>
-      
-              </div>
-            </section>
 
       {/* ================= OUR STORY ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">

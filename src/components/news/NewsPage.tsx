@@ -8,12 +8,13 @@ import {
   Clock,
   ExternalLink,
   Filter,
-  Menu,
+  // Menu,
   TrendingUp,
   X
 } from "lucide-react";
 import { useState } from "react";
 import Cta from "../common/Cta";
+import { PageBanner } from "@/components/PageBanner";
 
 const newsCategories = [
   "All News",
@@ -150,7 +151,7 @@ const newsArticles = [
 
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
 
   // Function to filter news articles based on selected category
@@ -178,78 +179,15 @@ export default function NewsPage() {
   ).slice(0, 3);
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-24">
- 
-
-           <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 overflow-hidden hero-gradient">
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-      
-              <div className="relative w-full mx-auto text-center text-white px-4">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-                   Women in Business News
-                </h1>
-                <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
-               Stay informed with the latest news, insights, and success stories
-                from women entrepreneurs worldwide
-                </p>
-      
-                {/* Active filter indicator */}
-                {selectedCategory !== "All News" && (
-                  <div className="mb-4">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
-                      <span>Filtering by:</span>
-                      <span className="font-semibold">{selectedCategory}</span>
-                      <button 
-                        onClick={() => setSelectedCategory("All News")}
-                        className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </div>
-                  </div>
-                )}
-      
-                {/* MOBILE CATEGORY MENU TOGGLE */}
-                <div className="lg:hidden mb-4">
-                  <Button
-                    variant="outline"
-                    className="bg-white/20 text-white border-white/30 w-full"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  >
-                    {mobileMenuOpen ? (
-                      <X className="h-4 w-4" />
-                    ) : (
-                      <Menu className="h-4 w-4" />
-                    )}
-                    Categories
-                  </Button>
-                </div>
-      
-                {/* CATEGORY FILTERS */}
-                <div
-                  className={`${
-                    mobileMenuOpen ? "block" : "hidden lg:flex"
-                  } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
-                >
-                  {newsCategories.map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSelectedCategory(cat);
-                        setMobileMenuOpen(false);
-                      }}
-                      className={`px-3 m-2 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                        selectedCategory === cat
-                          ? "bg-white text-primary shadow-lg scale-105"
-                          : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </section>
+    <main className="bg-background min-h-screen">
+      {/* HERO BANNER */}
+      <PageBanner
+        title="Women in Business News"
+        description="Stay informed with the latest news, insights, and success stories from women entrepreneurs worldwide"
+        image="/news/Newsbanner.png"
+      />
+       
+  
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -429,14 +367,16 @@ export default function NewsPage() {
               </p>
             </div>
 
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 border-2 w-full sm:w-auto"
-              onClick={() => setSelectedCategory("All News")}
-            >
-              <X className="h-3 w-3 sm:h-4 sm:w-4" />
-              Clear Filter
-            </Button>
+            {selectedCategory !== "All News" && (
+              <Button
+                variant="outline"
+                className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                onClick={() => setSelectedCategory("All News")}
+              >
+                <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                Clear Filter
+              </Button>
+            )}
           </div>
 
           {filteredNews.length === 0 ? (
@@ -448,7 +388,7 @@ export default function NewsPage() {
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no news articles in the &qout;{selectedCategory}&quot; category yet.
+                There are no news articles in the &quot;{selectedCategory}&quot; category yet.
               </p>
               <Button
                 onClick={() => setSelectedCategory("All News")}
@@ -529,7 +469,7 @@ export default function NewsPage() {
         </div>
       </section>
 
-     <Cta/>
+      <Cta/>
     </main>
   );
 }

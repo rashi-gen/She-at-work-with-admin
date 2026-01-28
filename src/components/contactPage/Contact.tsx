@@ -18,6 +18,7 @@ import {
   Youtube,
 } from "lucide-react";
 import { useState } from "react";
+import { PageBanner } from "../PageBanner";
 
 const faqs = [
   {
@@ -102,18 +103,13 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-24">
-       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12 overflow-hidden hero-gradient">
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-      
-              <div className="relative w-full mx-auto text-center text-white px-4">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-                Get In Touch
-                </h1>
-                <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
-                 Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey.                </p>
-              </div>
-            </section>
+    <main className="bg-background min-h-screen">
+         <PageBanner
+              title="Get In Touch"
+              description=" Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey."
+              image="/contactus/Contactusbanner.png"
+            />
+  
 
       {/* ================= CONTACT + FORM ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">

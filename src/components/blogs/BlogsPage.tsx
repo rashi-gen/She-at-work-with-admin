@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Calendar, Clock, Filter, Menu, TrendingUp, X } from "lucide-react";
 import { useState } from "react";
 import Cta from "../common/Cta";
+import { PageBanner } from "../PageBanner";
 
 const blogCategories = [
   "All Blogs",
@@ -201,76 +202,69 @@ export default function BlogsPage() {
   };
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-14">
+    <main className="bg-background min-h-screen ">
       {/* ================= HERO WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-12 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-
-        <div className="relative w-full mx-auto text-center text-white px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-3 sm:mb-4">
-            Inspiring Blogs
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto">
-            Insights, tips and actionable content from experts and entrepreneurs worldwide
-          </p>
-
-          {/* Active filter indicator */}
-          {selectedCategory !== "All Blogs" && (
-            <div className="mb-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
-                <span>Filtering by:</span>
-                <span className="font-semibold">{selectedCategory}</span>
-                <button 
-                  onClick={() => setSelectedCategory("All Blogs")}
-                  className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              </div>
-            </div>
-          )}
-
-          {/* MOBILE CATEGORY MENU TOGGLE */}
-          <div className="lg:hidden mb-4">
-            <Button
-              variant="outline"
-              className="bg-white/20 text-white border-white/30 w-full"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="h-4 w-4" />
-              ) : (
-                <Menu className="h-4 w-4" />
-              )}
-              Categories
-            </Button>
-          </div>
-
-          {/* CATEGORY FILTERS */}
-          <div
-            className={`${
-              mobileMenuOpen ? "block" : "hidden lg:flex"
-            } flex-col lg:flex-row flex-wrap justify-center gap-2 sm:gap-3 px-4 lg:px-0`}
-          >
-            {blogCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setMobileMenuOpen(false);
-                }}
-                className={`px-3 m-2 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  selectedCategory === cat
-                    ? "bg-white text-primary shadow-lg scale-105"
-                    : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-                }`}
+<PageBanner
+        title="Inspiring Blogs"
+        description="Insights , tips and actionable content from experts and entrepreneurs worldwide"
+        image="/blogs/Blogsbanner.png"
+      >
+        {/* Active filter indicator */}
+        {selectedCategory !== "All News" && (
+          <div className="mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
+              <span>Filtering by:</span>
+              <span className="font-semibold">{selectedCategory}</span>
+              <button 
+                onClick={() => setSelectedCategory("All News")}
+                className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
               >
-                {cat}
+                <X className="h-3 w-3" />
               </button>
-            ))}
+            </div>
           </div>
+        )}
+
+        {/* MOBILE CATEGORY MENU TOGGLE */}
+        <div className="lg:hidden mb-4">
+          <Button
+            variant="outline"
+            className="bg-white/20 text-white border-white/30 w-full hover:bg-white/30"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? (
+              <X className="h-4 w-4 mr-2" />
+            ) : (
+              <Menu className="h-4 w-4 mr-2" />
+            )}
+            Categories
+          </Button>
         </div>
-      </section>
+
+        {/* CATEGORY FILTERS */}
+        <div
+          className={`${
+            mobileMenuOpen ? "block" : "hidden lg:flex"
+          } flex-col lg:flex-row flex-wrap gap-2 sm:gap-3`}
+        >
+          {blogCategories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setSelectedCategory(cat);
+                setMobileMenuOpen(false);
+              }}
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
+                selectedCategory === cat
+                  ? "bg-white text-primary shadow-lg scale-105"
+                  : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </PageBanner>
 
       {/* ================= FEATURED POST + TRENDING ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-secondary/30">
