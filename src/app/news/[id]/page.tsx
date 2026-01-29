@@ -3,7 +3,7 @@
 
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Mail, Newspaper } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Mail, Newspaper, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { newsData } from "@/data/news";
@@ -108,11 +108,73 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
   }
 };
 
+// Process content to remove business source and enhance Read More links
+const processContent = (content: string, externalUrl: string | null): string => {
+  let processed = content;
+  
+  // Remove "businessworld.in" or similar source lines at the beginning
+  processed = processed.replace(/<!-- wp:paragraph -->\s*<p>[\w.-]+\.(com|in|org|net|io)<\/p>\s*<!-- \/wp:paragraph -->\s*/i, '');
+  processed = processed.replace(/<p>[\w.-]+\.(com|in|org|net|io)<\/p>\s*/i, '');
+  
+  // Find and replace "Read more" links with styled span
+  if (externalUrl) {
+    // Escape special characters in URL for JavaScript
+    const escapedUrl = externalUrl.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    
+    // Replace "Read more" links with clickable span that opens external URL
+    const readMoreRegex = /<a[^>]*>Read more<\/a>/gi;
+    processed = processed.replace(readMoreRegex, () => {
+      return `
+        <span 
+          onclick="window.open('${escapedUrl}', '_blank', 'noopener,noreferrer')"
+          class="inline-flex items-center gap-1 text-primary hover:text-accent font-semibold  read-more-text"
+          style="cursor: pointer; transition: color 0.2s ease;"
+          onmouseover="this.style.color='var(--color-accent)'"
+          onmouseout="this.style.color='var(--color-primary)'"
+        >
+          Read more
+          <svg class="h-3.5 w-3.5 hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+          </svg>
+        </span>
+      `;
+    });
+    
+    // If no "Read more" found, add it to the last paragraph
+    if (!processed.includes('read-more-text')) {
+      // Find last paragraph
+      const lastParagraphIndex = processed.lastIndexOf('</p>');
+      if (lastParagraphIndex !== -1) {
+        const beforeLastPara = processed.substring(0, lastParagraphIndex);
+        const afterLastPara = processed.substring(lastParagraphIndex);
+        
+        processed = `${beforeLastPara}
+          <span 
+            onclick="window.open('${escapedUrl}', '_blank', 'noopener,noreferrer')"
+            class="inline-flex items-center gap-1 text-primary hover:text-accent font-semibold ml-2 read-more-text"
+            style="cursor: pointer; transition: color 0.2s ease;"
+            onmouseover="this.style.color='var(--color-accent)'"
+            onmouseout="this.style.color='var(--color-primary)'"
+          >
+            Read more
+            <svg class="h-3.5 w-3.5 hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </span>
+        ${afterLastPara}`;
+      }
+    }
+  }
+  
+  return processed;
+};
+
 export default function NewsDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const [unwrappedParams, setUnwrappedParams] = useState<{ id: string } | null>(null);
   const [news, setNews] = useState<NewsItem | null>(null);
   const [relatedNews, setRelatedNews] = useState<NewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [processedContent, setProcessedContent] = useState<string>('');
 
   // Unwrap params (Next.js 15 compatibility)
   useEffect(() => {
@@ -135,7 +197,11 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
     if (foundNews) {
       setNews(foundNews);
       
-      // Get related news (same category, exclude current)
+      // Process content to remove source and enhance Read More links
+      const content = processContent(foundNews.post_content, foundNews.external_url);
+      setProcessedContent(content);
+      
+      // Get related news (same category, exclude current, limit to 3)
       const category = getCategoryFromContent(foundNews.post_content);
       const related = newsData
         .filter(item => 
@@ -239,7 +305,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
             </h1>
             
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+              <div className="flex flex-wrap items-center gap-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
                   <Calendar className="h-4 w-4" />
                   <span>{formatDate(news.post_date)}</span>
@@ -248,17 +314,28 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                   <Clock className="h-4 w-4" />
                   <span>{calculateReadTime(news.post_content)}</span>
                 </div>
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <Newspaper className="h-4 w-4" />
+                  <span className="text-sm">Source: {source}</span>
+                </div>
               </div>
               
-              <div className="flex items-center gap-2">
-                <Newspaper className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Source: {source}</span>
-              </div>
+              {/* Read More Button for External Links */}
+              {news.external_url && news.external_url.trim() !== '' && (
+                <Button 
+                  onClick={handleExternalLink}
+                  variant="outline"
+                  className="gap-2 group"
+                >
+                  Read Full Article
+                  <ExternalLink className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              )}
             </div>
           </header>
 
           {/* Featured Image */}
-          {news.featured_image_url && (
+          {news.featured_image_url && news.featured_image_url.trim() !== '' && (
             <div className="mb-8 rounded-2xl overflow-hidden shadow-xl">
               <img
                 src={news.featured_image_url}
@@ -269,7 +346,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
           )}
 
           {/* Share Buttons */}
-          <div className="flex items-center justify-between mb-8 p-4 bg-secondary/30 rounded-lg">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 p-4 bg-secondary/30 rounded-lg">
             <div className="flex items-center gap-2">
               <Share2 className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-medium">Share this article:</span>
@@ -279,7 +356,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                 variant="ghost"
                 size="sm"
                 onClick={() => handleShare('facebook')}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 hover:bg-blue-50 hover:text-blue-600"
               >
                 <Facebook className="h-4 w-4" />
               </Button>
@@ -287,7 +364,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                 variant="ghost"
                 size="sm"
                 onClick={() => handleShare('twitter')}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 hover:bg-sky-50 hover:text-sky-600"
               >
                 <Twitter className="h-4 w-4" />
               </Button>
@@ -295,7 +372,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                 variant="ghost"
                 size="sm"
                 onClick={() => handleShare('linkedin')}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 hover:bg-blue-50 hover:text-blue-700"
               >
                 <Linkedin className="h-4 w-4" />
               </Button>
@@ -303,7 +380,7 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                 variant="ghost"
                 size="sm"
                 onClick={() => handleShare('email')}
-                className="h-8 w-8 p-0"
+                className="h-8 w-8 p-0 hover:bg-red-50 hover:text-red-600"
               >
                 <Mail className="h-4 w-4" />
               </Button>
@@ -333,77 +410,73 @@ export default function NewsDetailPage({ params }: { params: Promise<{ id: strin
                       prose-blockquote:pl-4 prose-blockquote:italic
                       prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
                       mb-12"
-            dangerouslySetInnerHTML={{ __html: news.post_content }}
+            dangerouslySetInnerHTML={{ __html: processedContent }}
           />
-
-          {/* Original Source Link */}
-          {news.external_url && news.external_url.trim() !== '' && (
-            <div className="mt-12 p-6 bg-gradient-to-br from-accent/5 to-accent/10 rounded-xl border border-accent/20">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <h3 className="text-xl font-display font-bold text-foreground mb-2">
-                    Original Source
-                  </h3>
-                  <p className="text-foreground/80">
-                    This article was originally published on {source}. Click below to read the full article on their website.
-                  </p>
-                </div>
-                <Button 
-                  onClick={handleExternalLink}
-                  className="bg-accent text-white font-semibold hover:bg-accent/90"
-                >
-                  Visit Original Source
-                  <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
-                </Button>
-              </div>
-            </div>
-          )}
 
           {/* Related News */}
           {relatedNews.length > 0 && (
             <div className="mt-16 pt-8 border-t">
-              <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-                Related News
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-display font-bold text-foreground">
+                  Related News
+                </h2>
+                <Link href="/news" className="text-primary hover:text-accent text-sm font-medium flex items-center gap-1">
+                  View all <ArrowLeft className="h-3 w-3 rotate-180" />
+                </Link>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedNews.map((related) => {
                   const relatedCategory = getCategoryFromContent(related.post_content);
                   const relatedSource = getSourceFromUrl(related.external_url);
+                  const relatedExcerpt = extractExcerpt(related.post_content, 100);
                   
                   return (
-                    <Link 
+                    <div 
                       key={related.ID} 
-                      href={`/news/${related.post_name}`}
-                      className="group"
+                      className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border h-full flex flex-col"
                     >
-                      <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border h-full">
-                        <div className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
-                            style={{ backgroundImage: related.featured_image_url ? `url(${related.featured_image_url})` : undefined }}>
-                          {!related.featured_image_url && (
-                            <div className="h-full flex items-center justify-center text-white/40 text-4xl font-display">
-                              {related.post_title.charAt(0)}
-                            </div>
-                          )}
-                        </div>
-                        <div className="p-4">
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="inline-block px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
-                              {relatedCategory}
-                            </span>
-                            <span className="text-xs text-muted-foreground truncate max-w-[100px]">
-                              {relatedSource}
-                            </span>
+                      <div className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center flex-shrink-0"
+                          style={{ 
+                            backgroundImage: related.featured_image_url && related.featured_image_url.trim() !== '' 
+                              ? `url(${related.featured_image_url})` 
+                              : undefined 
+                          }}>
+                        {(!related.featured_image_url || related.featured_image_url.trim() === '') && (
+                          <div className="h-full w-full flex items-center justify-center text-white/40 text-4xl font-display">
+                            {related.post_title.charAt(0)}
                           </div>
-                          <h3 className="font-display font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            {related.post_title.replace(/&amp;/g, '&')}
-                          </h3>
+                        )}
+                      </div>
+                      <div className="p-4 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="inline-block px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
+                            {relatedCategory}
+                          </span>
+                          <span className="text-xs text-muted-foreground truncate max-w-[100px]">
+                            {relatedSource}
+                          </span>
+                        </div>
+                        <h3 className="font-display font-bold text-foreground mb-2 line-clamp-2">
+                          {related.post_title.replace(/&amp;/g, '&')}
+                        </h3>
+                        <p className="text-sm text-muted-foreground mb-3 line-clamp-2 flex-grow">
+                          {relatedExcerpt}
+                        </p>
+                        <div className="flex items-center justify-between pt-3 border-t border-border">
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3" />
                             <span>{formatDate(related.post_date)}</span>
                           </div>
+                          <Link 
+                            href={`/news/${related.post_name}`}
+                            className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:text-accent transition-colors"
+                          >
+                            Read
+                            <ExternalLink className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </Link>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   );
                 })}
               </div>

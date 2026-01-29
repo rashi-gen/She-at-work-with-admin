@@ -245,14 +245,20 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
           <div 
             className="prose prose-lg max-w-none 
                       prose-headings:font-display prose-headings:font-bold
-                      prose-p:text-foreground/80 prose-p:leading-relaxed
-                      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                      prose-p:text-foreground/80 prose-p:leading-relaxed prose-p:my-6
+                      prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
                       prose-strong:font-bold prose-strong:text-foreground
-                      prose-ul:list-disc prose-ul:pl-6
-                      prose-ol:list-decimal prose-ol:pl-6
-                      prose-li:my-2
+                      prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6
+                      prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6
+                      prose-li:my-2 prose-li:marker:text-foreground/60
                       prose-blockquote:border-l-4 prose-blockquote:border-primary 
-                      prose-blockquote:pl-4 prose-blockquote:italic
+                      prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-8
+                      prose-img:rounded-lg prose-img:my-8
+                      prose-hr:my-8
+                      prose-pre:my-8
+                      prose-table:my-8
+                      prose-figure:my-8
+                      prose-embed:my-8
                       mb-12"
             dangerouslySetInnerHTML={{ __html: blog.post_content }}
           />

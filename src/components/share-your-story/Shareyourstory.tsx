@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ArrowRight, FileText, Sparkles, Users, Target, Award } from "lucide-react";
+import { PageBanner } from "../PageBanner";
 
 export default function ShareYourStory() {
   const [loading, setLoading] = useState(false);
@@ -59,34 +60,13 @@ export default function ShareYourStory() {
   };
 
   return (
-    <main className="bg-background min-h-screen pt-20 sm:pt-24">
-      {/* ================= HERO SECTION WITH FIXED ASPECT RATIO ================= */}
-      <section className="relative w-full">
-        {/* Fixed aspect ratio container - SAME as About page */}
-        <div className="relative w-full aspect-[5/1] overflow-hidden">
-          {/* Background gradient */}
-          <div className="absolute inset-0 hero-gradient" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-          
-          {/* Content container */}
-          <div className="relative h-full w-full mx-auto flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center text-white">
-            <div className="max-w-6xl w-full">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-                Share Your{" "}
-                <span className="text-transparent bg-clip-text bg-white">
-                  Entrepreneurial Journey
-                </span>
-                <br className="hidden sm:block" />
-                Inspire Our Community
-              </h1>
-              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-                Your story has the power to inspire the next generation of women entrepreneurs. 
-                Join our community of 975+ published stories and make your voice heard.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+    <main className="bg-background min-h-screen">
+       <PageBanner
+              title="Share Your Entrepreneurial Journey Inspire Our Community"
+              description=" Your story has the power to inspire the next generation of women entrepreneurs. Join our community of 975+ published stories and make your voice heard."
+              image="/Shareyourstorybanner.png"
+            />
+
 
       {/* ================= MAIN CONTENT ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">

@@ -7,8 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-
-
+import Image from "next/image";
 
 // Define types for your blog data
 interface BlogItem {
@@ -337,34 +336,41 @@ export default function BlogsPage() {
       </PageBanner>
 
       {/* ================= FEATURED POST + TRENDING ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-secondary/30">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* LEFT - FEATURED POST */}
           {showFeaturedPost && featuredBlog && (
             <div className="lg:col-span-2">
-              <div className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10">
+              <Link 
+                href={`/blogs/${featuredBlog.slug}`}
+                className="block relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10"
+              >
                 {/* FEATURED BADGE */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
+                {/* <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
                   <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent text-white text-xs font-bold uppercase shadow-lg">
                     Featured
                   </span>
-                </div>
+                </div> */}
 
                 {/* IMAGE */}
-                <div 
-                  className="relative bg-gradient-to-br from-muted to-secondary h-48 sm:h-60 lg:h-72 bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: featuredBlog.image !== '/placeholder-blog.jpg' 
-                      ? `url(${featuredBlog.image})` 
-                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
-                >
-                  {featuredBlog.image === '/placeholder-blog.jpg' && (
-                    <div className="absolute inset-0 flex items-center justify-center text-white/40 text-6xl font-display">
-                      {featuredBlog.title.charAt(0)}
+                <div className="relative h-48 sm:h-60 lg:h-72 bg-gradient-to-br from-muted to-secondary">
+                  {featuredBlog.image !== '/placeholder-blog.jpg' ? (
+                    <Image
+                      src={featuredBlog.image}
+                      alt={featuredBlog.title}
+                      fill
+                      className="object-fit"
+                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
+                      priority
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                      <div className="text-white/40 text-6xl font-display">
+                        {featuredBlog.title.charAt(0)}
+                      </div>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" /> */}
                 </div>
 
                 {/* CONTENT */}
@@ -382,7 +388,7 @@ export default function BlogsPage() {
                   </p>
 
                   {/* AUTHOR INFO */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border mt-auto">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg">
                         {featuredBlog.author.name.charAt(0)}
@@ -397,15 +403,15 @@ export default function BlogsPage() {
                       </div>
                     </div>
 
-                    <Link href={`/blogs/${featuredBlog.slug}`} className="w-full sm:w-auto">
-                      <Button className="bg-primary hover:bg-primary/90 w-full text-sm sm:text-base">
-                        Read Article{" "}
-                        <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                      </Button>
-                    </Link>
+                    <div className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-all duration-200 w-full sm:w-auto justify-center sm:justify-start">
+                      <span className="group-hover:underline decoration-accent/30 decoration-2 underline-offset-3">
+                        Read Article
+                      </span>
+                      <ArrowRight className="h-3.5 w-3.5 ml-0.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           )}
 
@@ -497,7 +503,7 @@ export default function BlogsPage() {
       </section>
 
       {/* ================= LATEST ARTICLES GRID ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 ">
         <div className="max-w-screen-xl mx-auto">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
@@ -550,28 +556,32 @@ export default function BlogsPage() {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {currentPosts.map((post) => (
-                  <div
+                  <Link
                     key={post.id}
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+                    href={`/blogs/${post.slug}`}
+                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
                   >
                     {/* IMAGE */}
-                    <div 
-                      className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56 bg-cover bg-center"
-                      style={{ 
-                        backgroundImage: post.image !== '/placeholder-blog.jpg' 
-                          ? `url(${post.image})` 
-                          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                      }}
-                    >
-                      {post.image === '/placeholder-blog.jpg' && (
-                        <div className="absolute inset-0 flex items-center justify-center text-white/40 text-5xl font-display">
-                          {post.title.charAt(0)}
+                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                      {post.image !== '/placeholder-blog.jpg' ? (
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-fit"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                          <div className="text-white/40 text-5xl font-display">
+                            {post.title.charAt(0)}
+                          </div>
                         </div>
                       )}
                     </div>
 
                     {/* CONTENT */}
-                    <div className="p-4 sm:p-6">
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
                       <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
                         {post.category}
                       </span>
@@ -580,11 +590,11 @@ export default function BlogsPage() {
                         {post.title}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
                         {post.excerpt}
                       </p>
 
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
+                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
@@ -596,19 +606,15 @@ export default function BlogsPage() {
                             <span>{post.readTime}</span>
                           </div>
                         </div>
-                        <Link href={`/blogs/${post.slug}`} className="block">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm"
-                          >
-                            Read{" "}
-                            <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                          </Button>
-                        </Link>
+                        <div className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-all duration-200">
+                          <span className="group-hover:underline decoration-accent/30 decoration-2 underline-offset-3">
+                            Read
+                          </span>
+                          <ArrowRight className="h-3.5 w-3.5 ml-0.5 group-hover:translate-x-1 transition-transform" />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 

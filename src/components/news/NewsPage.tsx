@@ -16,7 +16,7 @@ import Cta from "../common/Cta";
 import { PageBanner } from "@/components/PageBanner";
 import { newsData } from "@/data/news";
 import Link from "next/link";
-import Image from "next/image"; // Import next/image
+import Image from "next/image";
 
 // Define types for your news data
 interface NewsItem {
@@ -47,29 +47,23 @@ const getSourceFromUrl = (url: string | null): string => {
   if (!url || url.trim() === '' || url === 'null') return 'She at Work';
   
   try {
-    // Check if it looks like a valid URL
     const urlPattern = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\- .\/?%&=]*)?$/i;
     
     if (!urlPattern.test(url)) {
       return 'She at Work';
     }
     
-    // Add https:// if the URL doesn't have a protocol
     const urlWithProtocol = url.startsWith('http') ? url : `https://${url}`;
     const parsedUrl = new URL(urlWithProtocol);
     const hostname = parsedUrl.hostname.replace('www.', '');
     
-    // Extract just the domain name (e.g., 'timesofindia.indiatimes.com' becomes 'Times of India')
     const domainParts = hostname.split('.');
     if (domainParts.length >= 2) {
-      // Get the main domain (second to last part)
       const mainDomain = domainParts[domainParts.length - 2];
-      
-      // Format it nicely (e.g., 'timesofindia' -> 'Times of India')
       const formattedName = mainDomain
-        .replace(/([A-Z])/g, ' $1') // Add space before capital letters
-        .replace(/^./, str => str.toUpperCase()) // Capitalize first letter
-        .replace(/[_-]/g, ' ') // Replace underscores and hyphens with spaces
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, str => str.toUpperCase())
+        .replace(/[_-]/g, ' ')
         .trim();
       
       return formattedName || hostname;
@@ -130,9 +124,7 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
   if (!content) return 'No excerpt available';
   
   try {
-    // Remove HTML tags
     const plainText = content.replace(/<[^>]*>/g, '');
-    // Remove newlines and extra spaces
     const cleanText = plainText.replace(/\s+/g, ' ').trim();
     
     if (cleanText.length <= maxLength) return cleanText;
@@ -148,7 +140,7 @@ const calculateReadTime = (text: string): string => {
   if (!text) return '1 min read';
   
   const wordCount = text.split(/\s+/).length;
-  const minutes = Math.max(1, Math.ceil(wordCount / 200)); // 200 words per minute
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
   return `${minutes} min read`;
 };
 
@@ -206,11 +198,10 @@ export default function NewsPage() {
           externalUrl: item.external_url && item.external_url.trim() !== '' ? item.external_url : null,
           fullContent: item.post_content || '',
           modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
-          slug: item.post_name || `event-${item.ID}`,
+          slug: item.post_name || `news-${item.ID}`,
         };
       });
       
-      // Sort by date (newest first), handle invalid dates
       processed.sort((a, b) => {
         try {
           const dateA = new Date(a.date === 'Date unavailable' ? '1970-01-01' : a.date);
@@ -268,11 +259,11 @@ export default function NewsPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle external link click
-  const handleExternalLink = (url: string | null, title: string) => {
+  // Handle external link click for featured news
+  const handleFeaturedExternalLink = (e: React.MouseEvent, url: string | null, title: string) => {
+    e.stopPropagation();
     if (url && url.trim() !== '') {
       try {
-        // Ensure URL has protocol
         const urlWithProtocol = url.startsWith('http') ? url : `https://${url}`;
         window.open(urlWithProtocol, '_blank', 'noopener,noreferrer');
       } catch (error) {
@@ -280,9 +271,8 @@ export default function NewsPage() {
         alert(`Could not open: ${title}`);
       }
     } else {
-      // If no external URL, you could show a modal with the full content
-      // For now, just show an alert
-      alert(`Opening: ${title}\n\nThis article doesn't have an external link.`);
+      // Redirect to internal page for featured news
+      window.location.href = `/news/${featuredNews?.slug}`;
     }
   };
 
@@ -319,7 +309,10 @@ export default function NewsPage() {
           {/* FEATURED - 2 COLUMNS */}
           {showFeaturedNews && featuredNews && (
             <div className="lg:col-span-2">
-              <div className="group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10">
+              <Link 
+                href={`/news/${featuredNews.slug}`}
+                className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10"
+              >
                 {/* FEATURED BADGE */}
                 <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
                   <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-accent to-accent/80 text-white text-xs font-bold uppercase shadow-lg">
@@ -328,13 +321,13 @@ export default function NewsPage() {
                 </div>
 
                 {/* IMAGE CONTAINER */}
-                <div className="relative h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-primary/20 to-accent/20">
+                <div className="relative h-48 sm:h-64 lg:h-80">
                   {featuredNews.image !== '/placeholder-news.jpg' ? (
                     <Image
                       src={featuredNews.image}
                       alt={featuredNews.title}
                       fill
-                      className="object-cover"
+                      className="object-fit"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                     />
@@ -345,7 +338,6 @@ export default function NewsPage() {
                       </div>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 </div>
 
                 {/* CONTENT */}
@@ -367,7 +359,7 @@ export default function NewsPage() {
                     {featuredNews.excerpt}
                   </p>
 
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border mt-auto">
                     <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -386,14 +378,14 @@ export default function NewsPage() {
 
                     <Button 
                       className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
-                      onClick={() => handleExternalLink(featuredNews.externalUrl, featuredNews.title)}
+                      onClick={(e) => handleFeaturedExternalLink(e, featuredNews.externalUrl, featuredNews.title)}
                     >
                       {featuredNews.externalUrl ? 'Read Full Story' : 'View Details'}
                       <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           )}
 
@@ -441,10 +433,10 @@ export default function NewsPage() {
               ) : (
                 <div className="space-y-3 sm:space-y-4">
                   {latestHeadlines.map((news, i) => (
-                    <div
+                    <Link 
                       key={i}
-                      className="group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0"
-                      onClick={() => handleExternalLink(news.externalUrl, news.title)}
+                      href={`/news/${news.slug}`}
+                      className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0"
                     >
                       <span className="inline-block px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold mb-1 sm:mb-2 uppercase">
                         {news.category}
@@ -456,7 +448,7 @@ export default function NewsPage() {
                         <Clock className="h-3 w-3" />
                         <span>{news.readTime}</span>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               )}
@@ -542,18 +534,19 @@ export default function NewsPage() {
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {currentNews.map((news) => (
-                  <div
+                  <Link
                     key={news.id}
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+                    href={`/news/${news.slug}`}
+                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
                   >
                     {/* IMAGE CONTAINER */}
-                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary">
+                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
                       {news.image !== '/placeholder-news.jpg' ? (
                         <Image
                           src={news.image}
                           alt={news.title}
                           fill
-                          className="object-cover"
+                          className="object-fit"
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />
                       ) : (
@@ -573,7 +566,7 @@ export default function NewsPage() {
                     </div>
 
                     {/* CONTENT */}
-                    <div className="p-4 sm:p-6">
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
                       <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-2 sm:mb-3 uppercase">
                         {news.category}
                       </span>
@@ -582,11 +575,11 @@ export default function NewsPage() {
                         {news.title}
                       </h3>
 
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
                         {news.excerpt}
                       </p>
 
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
+                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
                         <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
@@ -598,20 +591,13 @@ export default function NewsPage() {
                             <span>{news.readTime}</span>
                           </div>
                         </div>
-                        <Link href={`/news/${news.slug}`}>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm"
-                        
-                        >
-                          Read{" "}
-                          <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                        </Button>
-                        </Link>
+                      <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+  Read
+  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+</div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
