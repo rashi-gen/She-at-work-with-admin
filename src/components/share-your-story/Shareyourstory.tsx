@@ -153,7 +153,7 @@ export default function ShareYourStory() {
                   </svg>
                 </div>
                 <p className="text-xs sm:text-sm lg:text-base italic text-foreground mb-4 leading-relaxed">
-                  &aquot;Sharing my story on She At Work connected me with amazing mentors and opened doors I never imagined. Your story matters!&aquot;
+                  &quot;Sharing my story on She At Work connected me with amazing mentors and opened doors I never imagined. Your story matters!&quot;
                 </p>
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary to-accent" />
