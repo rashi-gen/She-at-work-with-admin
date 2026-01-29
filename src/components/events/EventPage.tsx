@@ -6,8 +6,8 @@ import {
   ArrowRight,
   Calendar,
   Clock,
-  DollarSign,
   Filter,
+  IndianRupee,
   MapPin,
   Menu,
   TrendingUp,
@@ -496,7 +496,7 @@ export default function EventsPage() {
                     </span>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3 text-foreground">
-                    <DollarSign className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                    <IndianRupee className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
                     <span className="font-semibold text-base sm:text-lg">
                       {featuredEvent.price}
                     </span>

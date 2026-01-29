@@ -9,7 +9,7 @@ const Cta = () => {
 
         <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold mb-3 sm:mb-4">
-            Contact with us
+            Connect with us
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-3xl mx-auto">
             Be part of a community that&apos;s shaping the future of women

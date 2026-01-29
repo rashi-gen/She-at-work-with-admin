@@ -281,7 +281,7 @@ export default function ShareYourStory() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all"
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="+91 XXXXX XXXXX"
                       />
                     </div>
 

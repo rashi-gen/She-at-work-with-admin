@@ -8,21 +8,17 @@ const footerLinks = {
     { name: "Blogs", href: "/blogs" },
     { name: "Entrechat", href: "/entrechat" },
     { name: "Events", href: "/events" },
+     { name: "Getting Started", href: "/gettingstarted" },
   ],
   company: [
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
-    { name: "Share Your Story", href: "/share" },
+    { name: "Share Your Story", href: "/share-your-story" },
     { name: "Advertise", href: "/advertise" },
     { name: "Partner With Us", href: "/partner" },
+      { name: "FAQs", href: "/contact" },
   ],
-  resources: [
-    { name: "Getting Started", href: "/getting-started" },
-    { name: "Entrepreneur Guide", href: "/guide" },
-    { name: "Success Stories", href: "/success-stories" },
-    { name: "Business Tips", href: "/tips" },
-    { name: "FAQs", href: "/faqs" },
-  ],
+ 
 };
 
 const socialLinks = [
@@ -38,7 +34,7 @@ export const Footer = () => {
   <footer className="bg-gradient-to-r from-[#2D1B4E] via-[#1E1428] to-[#1A1625] pt-16 pb-8 sm:px-20 px-5">
 
       <div className="container">
-        <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-block mb-4">
@@ -98,21 +94,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-display font-semibold text-lg mb-4 text-white">Resources</h3>
-            <ul className="space-y-3">
-              {footerLinks.resources.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-white/70 hover:text-white transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+     
         </div>
 
         {/* Contact Info */}

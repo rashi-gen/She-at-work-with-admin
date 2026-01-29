@@ -4,7 +4,7 @@
 import { Navbar } from "@/components/navbar/Navbar";
 import { Button } from "@/components/ui/button";
 import { eventsData } from "@/data/events";
-import { ArrowLeft, Calendar, DollarSign, Facebook, Linkedin, Mail, MapPin, Share2, Twitter, Users } from "lucide-react";
+import { ArrowLeft, Calendar, Facebook, IndianRupee, Linkedin, Mail, MapPin, Share2, Twitter, Users } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -267,7 +267,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
               </div>
               
               <div className="flex items-center gap-3">
-                <DollarSign className="h-5 w-5 text-accent flex-shrink-0" />
+                <IndianRupee className="h-5 w-5 text-accent flex-shrink-0" />
                 <div>
                   <p className="text-sm text-muted-foreground">Price</p>
                   <p className="font-medium text-foreground">{price}</p>

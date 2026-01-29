@@ -16,6 +16,7 @@ import Cta from "../common/Cta";
 import { PageBanner } from "@/components/PageBanner";
 import { newsData } from "@/data/news";
 import Link from "next/link";
+import Image from "next/image"; // Import next/image
 
 // Define types for your news data
 interface NewsItem {
@@ -38,7 +39,7 @@ interface NewsItem {
   post_mime_type?: string;
   comment_count?: string;
   section_id?: string;
-  post_name?:string;
+  post_name?: string;
 }
 
 // Helper function to safely extract domain from URL
@@ -205,7 +206,7 @@ export default function NewsPage() {
           externalUrl: item.external_url && item.external_url.trim() !== '' ? item.external_url : null,
           fullContent: item.post_content || '',
           modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
-           slug: item.post_name || `event-${item.ID}`,
+          slug: item.post_name || `event-${item.ID}`,
         };
       });
       
@@ -326,18 +327,22 @@ export default function NewsPage() {
                   </span>
                 </div>
 
-                {/* IMAGE */}
-                <div 
-                  className="relative bg-gradient-to-br from-primary/20 to-accent/20 h-48 sm:h-64 lg:h-80 bg-cover bg-center"
-                  style={{ 
-                    backgroundImage: featuredNews.image !== '/placeholder-news.jpg' 
-                      ? `url(${featuredNews.image})` 
-                      : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                  }}
-                >
-                  {featuredNews.image === '/placeholder-news.jpg' && (
-                    <div className="absolute inset-0 flex items-center justify-center text-white/40 text-6xl font-display">
-                      {featuredNews.title.charAt(0)}
+                {/* IMAGE CONTAINER */}
+                <div className="relative h-48 sm:h-64 lg:h-80 bg-gradient-to-br from-primary/20 to-accent/20">
+                  {featuredNews.image !== '/placeholder-news.jpg' ? (
+                    <Image
+                      src={featuredNews.image}
+                      alt={featuredNews.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      priority
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                      <div className="text-white/40 text-6xl font-display">
+                        {featuredNews.title.charAt(0)}
+                      </div>
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -541,20 +546,24 @@ export default function NewsPage() {
                     key={news.id}
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
                   >
-                    {/* IMAGE */}
-                    <div 
-                      className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56 bg-cover bg-center"
-                      style={{ 
-                        backgroundImage: news.image !== '/placeholder-news.jpg' 
-                          ? `url(${news.image})` 
-                          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                      }}
-                    >
-                      {news.image === '/placeholder-news.jpg' && (
-                        <div className="absolute inset-0 flex items-center justify-center text-white/40 text-5xl font-display">
-                          {news.title.charAt(0)}
+                    {/* IMAGE CONTAINER */}
+                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary">
+                      {news.image !== '/placeholder-news.jpg' ? (
+                        <Image
+                          src={news.image}
+                          alt={news.title}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                          <div className="text-white/40 text-5xl font-display">
+                            {news.title.charAt(0)}
+                          </div>
                         </div>
                       )}
+                      
                       {/* SOURCE BADGE */}
                       <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                         <span className="px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground truncate max-w-[120px]">
