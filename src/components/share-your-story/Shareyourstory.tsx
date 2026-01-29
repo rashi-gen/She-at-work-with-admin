@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { ArrowRight, FileText, Sparkles, Users, Target, Award } from "lucide-react";
 import { PageBanner } from "../PageBanner";
+import Link from "next/link";
 
 export default function ShareYourStory() {
   const [loading, setLoading] = useState(false);
@@ -379,6 +380,7 @@ export default function ShareYourStory() {
             >
               Share Your Story Now
             </Button>
+            <Link href="/entrechat">
             <Button
               variant="outline"
               className="h-10 sm:h-12 border-2 border-white text-primary hover:bg-white/10 font-semibold px-6 sm:px-8 text-sm sm:text-base"
@@ -386,6 +388,7 @@ export default function ShareYourStory() {
               Read Other Stories
               <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
             </Button>
+            </Link>
           </div>
         </div>
       </section>
