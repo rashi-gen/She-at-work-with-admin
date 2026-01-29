@@ -3,6 +3,7 @@
 import { useEffect, useState, createContext } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const IMAGES = ["/home/Homebanner1.png", "/home/Homebanner2.png"];
 
@@ -87,16 +88,20 @@ export const HeroSection = () => {
 
               {/* Buttons */}
               <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-5">
+                <Link href="/entrechat">
                 <Button className="bg-[#3B2E7E] hover:bg-[#33276A] text-white h-10 sm:h-12 text-sm sm:text-base md:text-lg w-full sm:w-auto">
                   Explore Stories →
                 </Button>
+                </Link>
 
+                <Link href="/about">
                 <Button
                   variant="outline"
                   className="border-white bg-white text-[#3B2E7E] hover:bg-white/90 hover:text-black h-10 sm:h-12 text-sm sm:text-base md:text-lg w-full sm:w-auto"
                 >
                   Know more →
                 </Button>
+                </Link>
               </div>
 
             </div>

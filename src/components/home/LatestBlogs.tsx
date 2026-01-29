@@ -371,8 +371,8 @@ export const LatestBlogs = () => {
                       src={blog.image}
                       alt={blog.title}
                       fill
-                      className="object-contain transition-transform group-hover:scale-105 duration-500"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-fit transition-transform group-hover:scale-105 duration-500"
+                      // sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
                   </div>
 
