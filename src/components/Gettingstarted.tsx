@@ -36,7 +36,7 @@ export default function GettingStartedComponent() {
       {/* ================= HERO BANNER ================= */}
       <PageBanner
         title="Getting Started"
-        description="Join workshops, webinars and networking opportunities designed to empower and inspire women entrepreneurs across India"
+        description="Check out options in the country that can set you up as an independent entrepreneur…your journey starts now!"
         image="/Gettingstarted.png"
       />
 
