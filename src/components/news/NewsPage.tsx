@@ -321,14 +321,14 @@ export default function NewsPage() {
                 </div>
 
                 {/* IMAGE CONTAINER */}
-                <div className="relative h-48 sm:h-64 lg:h-80">
+                <div className="relative h-48 sm:h-64 lg:h-[450px]">
                   {featuredNews.image !== '/placeholder-news.jpg' ? (
                     <Image
                       src={featuredNews.image}
                       alt={featuredNews.title}
                       fill
-                      className="object-fit"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover object-top"
+                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                     />
                   ) : (
@@ -546,7 +546,7 @@ export default function NewsPage() {
                           src={news.image}
                           alt={news.title}
                           fill
-                          className="object-fit"
+                          className="object-cover"
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />
                       ) : (
@@ -558,11 +558,11 @@ export default function NewsPage() {
                       )}
                       
                       {/* SOURCE BADGE */}
-                      <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                      {/* <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                         <span className="px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground truncate max-w-[120px]">
                           {news.source}
                         </span>
-                      </div>
+                      </div> */}
                     </div>
 
                     {/* CONTENT */}
