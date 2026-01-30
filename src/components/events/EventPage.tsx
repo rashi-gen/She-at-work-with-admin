@@ -12,16 +12,16 @@ import {
   Menu,
   TrendingUp,
   Users,
-  X
+  X,
+  Mail
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-
-// Import your events data
 import { eventsData } from "@/data/events";
+import { openEventRegistrationEmail } from "@/hooks/Emailutils";
 
 // Define types for your events data
 interface EventItem {
@@ -47,6 +47,21 @@ interface EventItem {
   external_url?: string | null;
 }
 
+// Event categories
+const eventCategories = [
+  "All Events",
+  "Conferences",
+  "Workshops", 
+  "Webinars",
+  "Networking",
+  "Seminars",
+  "Forums",
+  "Launches",
+  "Awards",
+  "Festivals",
+  "Other Events"
+];
+
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
@@ -61,20 +76,6 @@ const getCategoryFromContent = (content: string): string => {
   if (contentLower.includes("festival") || contentLower.includes("celebration") || contentLower.includes("day") || contentLower.includes("international")) return "Festivals";
   return "Other Events";
 };
-
-const eventCategories = [
-  "All Events",
-  "Conferences",
-  "Workshops", 
-  "Webinars",
-  "Networking",
-  "Seminars",
-  "Forums",
-  "Launches",
-  "Awards",
-  "Festivals",
-  "Other Events"
-];
 
 // Format date function
 const formatDate = (dateString: string): string => {
@@ -112,213 +113,426 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
   }
 };
 
-// Extract location from content
+// Improved location extraction
 const extractLocation = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  
+  const knownLocations = [
+    { keyword: 'rio de janeiro', location: 'Rio de Janeiro, Brazil' },
+    { keyword: 'iit delhi', location: 'IIT Delhi, India' },
+    { keyword: 'india', location: 'India' },
+    { keyword: 'brazil', location: 'Brazil' },
+    { keyword: 'haryana', location: 'Haryana, India' },
+    { keyword: 'punjab', location: 'Punjab, India' },
+    { keyword: 'rajasthan', location: 'Rajasthan, India' },
+    { keyword: 'delhi', location: 'Delhi, India' },
+  ];
+  
+  for (const knownLoc of knownLocations) {
+    if (contentLower.includes(knownLoc.keyword)) {
+      return knownLoc.location;
+    }
+  }
+  
   const locationPatterns = [
-    /in\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/i,
-    /at\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/i,
-    /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+conference/i,
-    /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+event/i,
+    /in\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/gi,
+    /at\s+(?:the\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/gi,
+    /([A-Z][a-z]+\s+[A-Z][a-z]+),\s+[A-Z][a-z]+/g,
+    /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:Conference|Summit|Dialogue|Event)/gi,
   ];
   
   for (const pattern of locationPatterns) {
-    const match = content.match(pattern);
-    if (match && match[1]) {
-      const location = match[1].trim();
-      // Filter out common non-location words
-      if (!['The', 'This', 'Our', 'Global', 'Annual', 'International'].includes(location.split(' ')[0])) {
-        return location;
+    const matches = [...content.matchAll(pattern)];
+    for (const match of matches) {
+      if (match[1]) {
+        const location = match[1].trim();
+        const falsePositives = [
+          'The', 'This', 'Our', 'Global', 'Annual', 'International', 
+          'Flagship', 'Third', '3rd', 'Second', '2nd', 'First', 
+          'Finale', 'Grand', 'Youth', 'College', 'Programme'
+        ];
+        if (!falsePositives.some(fp => location.toLowerCase().startsWith(fp.toLowerCase()))) {
+          if (location.toLowerCase().includes('rio')) return 'Rio de Janeiro, Brazil';
+          if (location.toLowerCase().includes('delhi')) return 'Delhi, India';
+          return location;
+        }
       }
     }
   }
   
-  return 'Online / Location TBD';
+  if (contentLower.includes('online') || contentLower.includes('virtual') || 
+      contentLower.includes('zoom') || contentLower.includes('webinar') ||
+      contentLower.includes('digital')) {
+    return 'Online';
+  }
+  
+  if (contentLower.includes('apply') && contentLower.includes('link')) {
+    return 'Online / Application-based';
+  }
+  
+  return 'Location TBD';
 };
 
-// Extract date details from content
+// Improved date extraction
 const extractDateDetails = (content: string, postDate: string): { date: string, time?: string } => {
-  // Try to extract date ranges like "August 4 to 12, 2025"
-  const dateRangeMatch = content.match(/([A-Za-z]+\s+\d+\s+(?:to\s+)?\d*(?:\s*,\s*\d{4})?)/i);
-  if (dateRangeMatch) {
-    return { date: dateRangeMatch[1] };
+
+  
+  const datePatterns = [
+    /([A-Z][a-z]+(?:\s+\d+)?(?:\s+to\s+\d+)?(?:\s*,\s*\d{4})?)/gi,
+    /(\d+(?:\s+to\s+\d+)?\s+[A-Z][a-z]+\s+\d{4})/gi,
+    /(\d+(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s+\d{4})/gi,
+    /([A-Z][a-z]+\s+\d{4})/gi,
+    /apply\s+by\s+(\d+(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s+\d{4})/gi,
+  ];
+  
+  const cleanOrdinals = (dateStr: string): string => {
+    return dateStr.replace(/(\d+)(?:st|nd|rd|th)\b/gi, '$1');
+  };
+  
+  for (const pattern of datePatterns) {
+    const matches = [...content.matchAll(pattern)];
+    for (const match of matches) {
+      if (match[1]) {
+        let dateStr = match[1].trim();
+        if (/^[A-Z][a-z]+$/.test(dateStr)) continue;
+        
+        if (dateStr.includes('to')) {
+          const startDateMatch = dateStr.match(/([A-Z][a-z]+(?:\s+\d+)?)/);
+          if (startDateMatch && startDateMatch[1]) {
+            dateStr = startDateMatch[1] + (dateStr.match(/(\d{4})/)?.[0] || '');
+          }
+        }
+        
+        dateStr = cleanOrdinals(dateStr);
+        
+        if (!dateStr.match(/\d{4}/)) {
+          const year = postDate.substring(0, 4);
+          dateStr += `, ${year}`;
+        }
+        
+        return { date: dateStr };
+      }
+    }
   }
   
-  // Try to extract specific dates
-  const dateMatch = content.match(/([A-Za-z]+\s+\d+(?:\s*,\s*\d{4})?)/i);
-  if (dateMatch) {
-    return { date: dateMatch[1] };
+  try {
+    const date = new Date(postDate);
+    if (!isNaN(date.getTime())) {
+      return { 
+        date: date.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        }) 
+      };
+    }
+  } catch (error) {
+    console.log('Error parsing fallback date:', error);
   }
   
-  // Fallback to post date
-  return { date: formatDate(postDate) };
+  return { date: 'Date TBD' };
 };
 
-// Determine format from content
-const extractFormat = (content: string): string => {
-  const contentLower = content.toLowerCase();
-  if (contentLower.includes("online") || contentLower.includes("virtual") || contentLower.includes("zoom") || contentLower.includes("digital")) return "Virtual";
-  if (contentLower.includes("in-person") || contentLower.includes("physical") || contentLower.includes("venue")) return "In-person";
-  if (contentLower.includes("hybrid") || contentLower.includes("both online and in-person")) return "Hybrid";
-  return "To be announced";
-};
-
-// Extract price from content
+// Improved price extraction
 const extractPrice = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  
+  if (contentLower.includes('free') || 
+      contentLower.includes('complimentary') || 
+      contentLower.includes('no cost') ||
+      contentLower.includes('no charge') ||
+      contentLower.includes('fully funded') ||
+      contentLower.includes('fully sponsored') ||
+      contentLower.includes('merit certificates') ||
+      contentLower.includes('participation certificate')) {
+    return 'Free';
+  }
+  
   const pricePatterns = [
-    /\$(\d+(?:\.\d{2})?)/,
-    /₹(\d+(?:\.\d{2})?)/,
-    /(\d+)\s*(?:USD|dollars?)/i,
-    /(\d+)\s*(?:INR|rupees?)/i,
-    /free/i,
-    /complimentary/i,
-    /no cost/i
+    /₹\s*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /(\d+(?:,\d{3})*(?:\.\d{2})?)\s*(?:INR|rupees?)/gi,
+    /Rs\.?\s*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /₹\s*(\d+)/gi,
+    /Rs\.?\s*(\d+)/gi,
+    /\$\s*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /(\d+(?:,\d{3})*(?:\.\d{2})?)\s*(?:USD|dollars?)/gi,
+    /entry\s+fee[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /price[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /cost[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
+    /fee[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
   ];
   
   for (const pattern of pricePatterns) {
-    const match = content.match(pattern);
-    if (match) {
-      if (pattern.toString().includes('free') || pattern.toString().includes('complimentary') || pattern.toString().includes('no cost')) {
-        return 'Free';
+    const matches = [...content.matchAll(pattern)];
+    for (const match of matches) {
+      if (match[1]) {
+        const amount = match[1];
+        if (pattern.toString().includes('₹') || pattern.toString().includes('INR') || pattern.toString().includes('Rs')) {
+          return `₹${amount}`;
+        } else if (pattern.toString().includes('$') || pattern.toString().includes('USD')) {
+          return `$${amount}`;
+        }
+        return amount;
       }
-      if (pattern.toString().includes('₹')) {
-        return `₹${match[1]}`;
-      }
-      if (pattern.toString().includes('$')) {
-        return `$${match[1]}`;
-      }
-      return match[0];
     }
+  }
+  
+  const prizePattern = /prize\s+of\s+(?:Rs\.?\s*)?(\d+(?:,\d{3})*(?:\.\d{2})?)/gi;
+  const prizeMatch = prizePattern.exec(content);
+  if (prizeMatch && prizeMatch[1]) {
+    return `₹${prizeMatch[1]} (Prize)`;
+  }
+  
+  const lakhPattern = /(\d+)\s+lakh/gi;
+  const lakhMatch = lakhPattern.exec(content);
+  if (lakhMatch && lakhMatch[1]) {
+    const lakhs = parseInt(lakhMatch[1]);
+    const amount = lakhs * 100000;
+    return `₹${amount.toLocaleString()}`;
   }
   
   return 'Contact for details';
 };
 
-// Items per page for pagination
-const ITEMS_PER_PAGE = 13;
+// Improved format detection
+const extractFormat = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  
+  if ((contentLower.includes('online') || contentLower.includes('virtual') || 
+       contentLower.includes('zoom') || contentLower.includes('webinar') ||
+       contentLower.includes('digital conference')) && 
+      !contentLower.includes('in-person') && 
+      !contentLower.includes('physical venue')) {
+    return 'Virtual';
+  }
+  
+  if ((contentLower.includes('in-person') || contentLower.includes('physical') || 
+       contentLower.includes('venue') || contentLower.includes('attended') ||
+       contentLower.includes('hosted at') || contentLower.includes('held at') ||
+       contentLower.includes('gathering') || contentLower.includes('summit') ||
+       contentLower.includes('conference') || contentLower.includes('dialogue')) && 
+      !contentLower.includes('online') && 
+      !contentLower.includes('virtual')) {
+    return 'In-person';
+  }
+  
+  if ((contentLower.includes('hybrid') || 
+       (contentLower.includes('online') && contentLower.includes('in-person')) ||
+       (contentLower.includes('virtual') && contentLower.includes('physical')))) {
+    return 'Hybrid';
+  }
+  
+  if (contentLower.includes('summit') || contentLower.includes('conference') || 
+      contentLower.includes('annual plenary') || contentLower.includes('dialogue')) {
+    return 'In-person';
+  }
+  
+  if (contentLower.includes('webinar') || contentLower.includes('online session') || 
+      contentLower.includes('virtual workshop') || contentLower.includes('digital')) {
+    return 'Virtual';
+  }
+  
+  if (contentLower.includes('application') || contentLower.includes('apply') || 
+      contentLower.includes('programme') || contentLower.includes('program')) {
+    return 'Application-based';
+  }
+  
+  return 'Format TBD';
+};
+
+// Helper function to parse dates for month/day display
+const parseDateForDisplay = (dateString: string, fallbackDate?: string): { month: string, day: string } => {
+  try {
+    let dateToParse = dateString;
+    
+    if (dateString.includes('TBD') || dateString.includes('unavailable')) {
+      dateToParse = fallbackDate || new Date().toISOString();
+    }
+    
+    dateToParse = dateToParse
+      .replace(/(\d+)(?:st|nd|rd|th)\b/gi, '$1')
+      .replace(/\s+to\s+\d+/gi, '')
+      .replace(/apply by\s+/gi, '')
+      .replace(/,\s*(\d{4})/gi, '')
+      .trim();
+    
+    let parsedDate: Date;
+    
+    const monthNames = [
+      'january', 'february', 'march', 'april', 'may', 'june',
+      'july', 'august', 'september', 'october', 'november', 'december'
+    ];
+    
+    const monthMatch = monthNames.find(month => 
+      dateToParse.toLowerCase().includes(month)
+    );
+    
+    if (monthMatch) {
+      const monthIndex = monthNames.indexOf(monthMatch);
+      parsedDate = new Date();
+      parsedDate.setMonth(monthIndex);
+      parsedDate.setDate(15);
+    } else {
+      parsedDate = new Date(dateToParse);
+      if (isNaN(parsedDate.getTime())) {
+        parsedDate = new Date();
+      }
+    }
+    
+    return {
+      month: parsedDate.toLocaleDateString('en-US', { month: 'short' }),
+      day: parsedDate.getDate().toString(),
+    };
+  } catch (error) {
+    console.log('Error parsing date for display:', error);
+    return { month: 'TBD', day: '?' };
+  }
+};
+
+const ITEMS_PER_PAGE = 12;
+
+interface ProcessedEvent {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  date: string;
+  time?: string;
+  location: string;
+  format: string;
+  price: string;
+  image: string;
+  fullContent: string;
+  modifiedDate?: string;
+  slug: string;
+  featured: boolean;
+  month: string;
+  day: string;
+  postDate: string;
+}
 
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Events");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [processedEvents, setProcessedEvents] = useState<Array<{
-    id: string;
-    category: string;
-    title: string;
-    description: string;
-    date: string;
-    time?: string;
-    location: string;
-    format: string;
-    price: string;
-    image: string;
-    fullContent: string;
-    modifiedDate?: string;
-    slug: string;
-    featured: boolean;
-    month: string;
-    day: string;
-  }>>([]);
+  const [processedEvents, setProcessedEvents] = useState<ProcessedEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  // Process events data on component mount
   useEffect(() => {
-    try {
-      setIsLoading(true);
-      
-      const processed = eventsData.map((item: EventItem, index: number) => {
-        const category = getCategoryFromContent(item.post_content);
-        const description = item.post_excerpt && item.post_excerpt.trim() !== '' 
-          ? item.post_excerpt 
-          : extractExcerpt(item.post_content);
+    const processEvents = () => {
+      try {
+        setIsLoading(true);
         
-        const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Upcoming Event';
-        const location = extractLocation(item.post_content);
-        const format = extractFormat(item.post_content);
-        const price = extractPrice(item.post_content);
+        const processed = eventsData.map((item: EventItem, index: number) => {
+          const category = getCategoryFromContent(item.post_content);
+          const description = item.post_excerpt && item.post_excerpt.trim() !== '' 
+            ? item.post_excerpt 
+            : extractExcerpt(item.post_content);
+          
+          const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Upcoming Event';
+          const location = extractLocation(item.post_content);
+          const format = extractFormat(item.post_content);
+          const price = extractPrice(item.post_content);
+          
+          const { date, time } = extractDateDetails(item.post_content, item.post_date);
+          
+          const { month, day } = parseDateForDisplay(date, item.post_date);
+          
+          
+          const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
+            ? item.featured_image_url 
+            : '/placeholder-event.jpg';
+          
+          const featured = index === 0;
+          
+          return {
+            id: item.ID || Math.random().toString(),
+            category,
+            title,
+            description,
+            date,
+            time,
+            location,
+            format,
+            price,
+            image,
+            fullContent: item.post_content || '',
+            modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
+            slug: item.post_name || `event-${item.ID}`,
+            featured,
+            month,
+            day,
+            postDate: item.post_date
+          };
+        });
         
-        const { date, time } = extractDateDetails(item.post_content, item.post_date);
-        
-        const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
-          ? item.featured_image_url 
-          : '/placeholder-event.jpg';
-        
-        // Parse date for month and day display
-        let month = 'TBD';
-        let day = '?';
-        try {
-          const dateObj = new Date(item.post_date);
-          if (!isNaN(dateObj.getTime())) {
-            month = dateObj.toLocaleDateString('en-US', { month: 'short' });
-            day = dateObj.getDate().toString();
+        processed.sort((a, b) => {
+          try {
+            const parseForComparison = (dateStr: string): Date => {
+              if (dateStr.includes('TBD') || dateStr.includes('unavailable')) {
+                return new Date('2100-01-01');
+              }
+              
+              const yearMatch = dateStr.match(/(\d{4})/);
+              if (yearMatch) {
+                const year = parseInt(yearMatch[1]);
+                const monthMatch = dateStr.match(/[A-Z][a-z]+/);
+                if (monthMatch) {
+                  const monthStr = monthMatch[0].toLowerCase();
+                  const months = [
+                    'january', 'february', 'march', 'april', 'may', 'june',
+                    'july', 'august', 'september', 'october', 'november', 'december'
+                  ];
+                  const monthIndex = months.findIndex(m => monthStr.includes(m));
+                  if (monthIndex !== -1) {
+                    return new Date(year, monthIndex, 15);
+                  }
+                }
+              }
+              
+              return new Date(a.postDate) || new Date('2100-01-01');
+            };
+            
+            const dateA = parseForComparison(a.date);
+            const dateB = parseForComparison(b.date);
+            
+            return dateB.getTime() - dateA.getTime();
+          } catch (error) {
+            console.log(error)
+            return 0;
           }
-        } catch (error) {
-          console.log(error)
-          // Use fallback values
+        });
+        
+        if (processed.length > 0) {
+          processed.forEach((event, index) => {
+            event.featured = index === 0;
+          });
         }
         
-        // First event is featured
-        const featured = index === 0;
-        
-        return {
-          id: item.ID || Math.random().toString(),
-          category,
-          title,
-          description,
-          date,
-          time,
-          location,
-          format,
-          price,
-          image,
-          fullContent: item.post_content || '',
-          modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
-          slug: item.post_name || `event-${item.ID}`,
-          featured,
-          month,
-          day
-        };
-      });
-      
-      // Sort by date (newest first)
-      processed.sort((a, b) => {
-        try {
-          const dateA = new Date(a.date.includes('TBD') ? '2100-01-01' : a.date);
-          const dateB = new Date(b.date.includes('TBD') ? '2100-01-01' : b.date);
-          return dateB.getTime() - dateA.getTime();
-        } catch (error) {
-          console.log(error)
-          return 0;
-        }
-      });
-      
-      setProcessedEvents(processed);
-    } catch (error) {
-      console.error('Error processing events data:', error);
-      setProcessedEvents([]);
-    } finally {
-      setIsLoading(false);
-    }
+        setProcessedEvents(processed);
+      } catch (error) {
+        console.error('Error processing events data:', error);
+        setProcessedEvents([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    processEvents();
   }, []);
 
-  // Get featured event (most recent)
   const featuredEvent = processedEvents.length > 0 ? processedEvents.find(e => e.featured) : null;
-
-  // Get trending events (most recent 4)
   const trendingEvents = processedEvents.slice(0, 4);
 
-  // Filter events based on selected category
   const getFilteredEvents = () => {
-    if (selectedCategory === "All Events") {
-      return processedEvents;
-    }
+    if (selectedCategory === "All Events") return processedEvents;
     return processedEvents.filter(event => 
       event.category.toLowerCase() === selectedCategory.toLowerCase()
     );
   };
 
-  // Check if featured event should be shown
   const shouldShowFeaturedEvent = () => {
     if (!featuredEvent || selectedCategory === "All Events") return true;
     return featuredEvent.category.toLowerCase() === selectedCategory.toLowerCase();
@@ -327,11 +541,8 @@ export default function EventsPage() {
   const filteredEvents = getFilteredEvents();
   const showFeaturedEvent = shouldShowFeaturedEvent();
 
-  // Get filtered trending events
   const getFilteredTrendingEvents = () => {
-    if (selectedCategory === "All Events") {
-      return trendingEvents;
-    }
+    if (selectedCategory === "All Events") return trendingEvents;
     return trendingEvents.filter(event => 
       event.category.toLowerCase() === selectedCategory.toLowerCase()
     ).slice(0, 4);
@@ -339,21 +550,32 @@ export default function EventsPage() {
 
   const filteredTrendingEvents = getFilteredTrendingEvents();
 
-  // Pagination calculations
   const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentEvents = filteredEvents.slice(startIndex, endIndex);
 
-  // Handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle card click
   const handleCardClick = (slug: string) => {
     router.push(`/events/${slug}`);
+  };
+
+  const handleContactClick = (event: ProcessedEvent, e: React.MouseEvent) => {
+    e.stopPropagation();
+    
+    openEventRegistrationEmail({
+      title: event.title,
+      date: event.date,
+      time: event.time,
+      location: event.location,
+      format: event.format,
+      price: event.price,
+      category: event.category
+    });
   };
 
   if (isLoading) {
@@ -382,7 +604,6 @@ export default function EventsPage() {
         description="Join workshops, webinars and networking opportunities designed to empower and inspire"
         image="/events/Eventsbanner.png"
       >
-        {/* Active filter indicator */}
         {selectedCategory !== "All Events" && (
           <div className="mb-4">
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
@@ -401,7 +622,6 @@ export default function EventsPage() {
           </div>
         )}
 
-        {/* MOBILE CATEGORY MENU TOGGLE */}
         <div className="lg:hidden mb-4">
           <Button
             variant="outline"
@@ -417,7 +637,6 @@ export default function EventsPage() {
           </Button>
         </div>
 
-        {/* CATEGORY FILTERS */}
         <div
           className={`${
             mobileMenuOpen ? "block" : "hidden lg:flex"
@@ -447,24 +666,14 @@ export default function EventsPage() {
       {showFeaturedEvent && featuredEvent && (
         <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1">
           <div className="max-w-screen-xl mx-auto">
-           <div 
-  onClick={() => handleCardClick(featuredEvent.slug)}
-  className="grid lg:grid-cols-[65%_35%]  
-             bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl 
-             overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl 
-             border border-primary/10 cursor-pointer group 
-             hover:shadow-2xl transition-shadow duration-300"
->
-
-              {/* LEFT IMAGE */}
-              <div className="relative min-h-48 sm:min-h-64  overflow-hidden bg-gradient-to-br from-muted to-secondary">
+            <div className="grid lg:grid-cols-[65%_35%] bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 hover:shadow-2xl transition-shadow duration-300">
+              <div className="relative min-h-48 sm:min-h-64 overflow-hidden bg-gradient-to-br from-muted to-secondary">
                 {featuredEvent.image !== '/placeholder-event.jpg' ? (
                   <Image
                     src="/Evventssmallbanner.png"
                     alt={featuredEvent.title}
                     fill
-                    // sizes="(max-width: 768px) 100vw, (max-width: 1400px) 50vw, 50vw"
-                    className="object-fit group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
                     priority
                   />
                 ) : (
@@ -476,20 +685,14 @@ export default function EventsPage() {
                     </div>
                   </div>
                 )}
-                {/* <div className="absolute top-4 left-4 z-10">
-                  <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent text-white text-xs sm:text-sm font-semibold shadow-lg">
-                    Featured Event
-                  </span>
-                </div> */}
               </div>
 
-              {/* RIGHT CONTENT */}
-              <div className="p-4 sm:p-6 lg:p-8  flex flex-col justify-center">
+              <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
                 <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 w-fit">
                   {featuredEvent.category}
                 </span>
 
-                <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4">
                   {featuredEvent.title}
                 </h2>
 
@@ -524,10 +727,20 @@ export default function EventsPage() {
                   </div>
                 </div>
 
-                <div className="w-full">
-                  <Button className="w-full h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base">
+                <div className="grid grid-cols-2 gap-3 w-full">
+                  <Button 
+                    onClick={() => handleCardClick(featuredEvent.slug)}
+                    variant="outline"
+                    className="h-10 sm:h-12 border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all text-sm sm:text-base"
+                  >
                     View Details
-                    <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  </Button>
+                  <Button 
+                    onClick={(e) => handleContactClick(featuredEvent, e)}
+                    className="h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base"
+                  >
+                    <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    Contact
                   </Button>
                 </div>
               </div>
@@ -540,7 +753,6 @@ export default function EventsPage() {
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30 flex-1">
         <div className="max-w-screen-xl mx-auto">
           <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
-            {/* MAIN CONTENT - 3 COLUMNS */}
             <div className="lg:col-span-3">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
                 <div>
@@ -632,18 +844,19 @@ export default function EventsPage() {
                       .map((event) => (
                         <div
                           key={event.id}
-                          onClick={() => handleCardClick(event.slug)}
-                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
+                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
                         >
-                          {/* DATE BADGE + IMAGE */}
-                          <div className="relative h-40 sm:h-44  overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                          <div 
+                            onClick={() => handleCardClick(event.slug)}
+                            className="relative h-40 sm:h-44 overflow-hidden bg-gradient-to-br from-muted to-secondary cursor-pointer"
+                          >
                             {event.image !== '/placeholder-event.jpg' ? (
                               <Image
                                 src={event.image}
                                 alt={event.title}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                className="object-fit group-hover:scale-105 transition-transform duration-500"
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             ) : (
                               <div className="absolute inset-0 flex items-center justify-center">
@@ -654,7 +867,6 @@ export default function EventsPage() {
                                 </div>
                               </div>
                             )}
-                            {/* DATE BADGE */}
                             <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
                               <div className="text-xs text-muted-foreground font-medium uppercase">
                                 {event.month}
@@ -663,7 +875,6 @@ export default function EventsPage() {
                                 {event.day}
                               </div>
                             </div>
-                            {/* FORMAT BADGE */}
                             <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                               <span className="px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-foreground">
                                 {event.format.split(' ')[0]}
@@ -671,34 +882,41 @@ export default function EventsPage() {
                             </div>
                           </div>
 
-                          {/* CONTENT */}
                           <div className="p-4 sm:p-6">
-                            <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
-                              {event.category}
-                            </span>
+                            <div 
+                              onClick={() => handleCardClick(event.slug)}
+                              className="cursor-pointer"
+                            >
+                              <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
+                                {event.category}
+                              </span>
 
-                            <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                              {event.title}
-                            </h3>
+                              <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                                {event.title}
+                              </h3>
 
-                            <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-5">
-                              <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-                                <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-                                <span className="line-clamp-1">{event.date} {event.time && `• ${event.time}`}</span>
-                              </div>
-                              <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-muted-foreground">
-                                <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
-                                <span className="line-clamp-1">{event.location}</span>
-                              </div>
+                           
                             </div>
 
                             <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
-                              <span className="text-accent font-bold text-base sm:text-lg">
-                                {event.price}
-                              </span>
-                              <div className="text-primary hover:text-accent group-hover:translate-x-1 transition-all text-xs sm:text-sm p-0 h-auto">
-                                Details{" "}
-                                <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 inline" />
+                         
+                              <div className="flex gap-2">
+                                <Button
+                                  onClick={(e) => handleContactClick(event, e)}
+                                  size="sm"
+                                  variant="outline"
+                                  className="border-primary text-primary hover:bg-primary hover:text-white"
+                                >
+                                  <Mail className="mr-1 h-3 w-3" />
+                                  Contact
+                                </Button>
+                                <Button
+                                  onClick={() => handleCardClick(event.slug)}
+                                  size="sm"
+                                  className="bg-primary hover:bg-primary/90 text-white"
+                                >
+                                  View Details
+                                </Button>
                               </div>
                             </div>
                           </div>
@@ -706,7 +924,6 @@ export default function EventsPage() {
                       ))}
                   </div>
 
-                  {/* PAGINATION */}
                   {totalPages > 1 && (
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
                       <div className="text-sm text-muted-foreground">
@@ -783,9 +1000,8 @@ export default function EventsPage() {
               )}
             </div>
 
-            {/* SIDEBAR - 1 COLUMN */}
+            {/* SIDEBAR */}
             <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-              {/* TRENDING EVENTS */}
               <div className="bg-card rounded-xl p-5 shadow-lg border border-border">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-display font-bold text-foreground flex items-center gap-2">
@@ -829,7 +1045,6 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* EVENT CATEGORIES */}
               <div className="bg-gradient-to-br from-secondary/50 to-secondary rounded-xl p-5 border border-border">
                 <h3 className="text-base font-display font-bold text-foreground mb-3">
                   Event Categories
@@ -854,7 +1069,6 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* ACTIVE FILTER */}
               {selectedCategory !== "All Events" && (
                 <div className="bg-primary/5 rounded-xl p-5 border border-primary/20">
                   <div className="flex items-center justify-between mb-2">
@@ -884,7 +1098,6 @@ export default function EventsPage() {
                 </div>
               )}
 
-              {/* EVENT TIPS */}
               <div className="bg-card rounded-xl p-5 shadow-lg border border-border">
                 <h3 className="text-base font-display font-bold text-foreground mb-3">
                   Event Tips
@@ -909,9 +1122,7 @@ export default function EventsPage() {
         </div>
       </section>
 
-      
-        <Cta/>
-
+      <Cta />
     </main>
   );
 }

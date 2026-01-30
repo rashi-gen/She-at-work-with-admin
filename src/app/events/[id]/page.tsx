@@ -9,6 +9,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
 
+// Assuming you have this utility (same as used in EventsPage)
+import { openEventRegistrationEmail } from "@/hooks/Emailutils";
+
 interface EventItem {
   ID: string;
   post_title: string;
@@ -25,7 +28,7 @@ interface EventItem {
   external_url?: string | null;
 }
 
-// Helper functions
+// Helper functions (kept mostly the same, minor cleanup)
 const extractCategory = (content: string): string => {
   const contentLower = content.toLowerCase();
   if (contentLower.includes("summit") || contentLower.includes("conference")) return "Conferences";
@@ -62,14 +65,10 @@ const extractLocation = (content: string): string => {
 
 const extractDateDetails = (content: string, postDate: string): { date: string, time?: string } => {
   const dateRangeMatch = content.match(/([A-Za-z]+\s+\d+\s+(?:to\s+)?\d*(?:\s*,\s*\d{4})?)/i);
-  if (dateRangeMatch) {
-    return { date: dateRangeMatch[1] };
-  }
+  if (dateRangeMatch) return { date: dateRangeMatch[1] };
   
   const dateMatch = content.match(/([A-Za-z]+\s+\d+(?:\s*,\s*\d{4})?)/i);
-  if (dateMatch) {
-    return { date: dateMatch[1] };
-  }
+  if (dateMatch) return { date: dateMatch[1] };
   
   const date = new Date(postDate);
   return { 
@@ -106,12 +105,8 @@ const extractPrice = (content: string): string => {
       if (pattern.toString().includes('free') || pattern.toString().includes('complimentary') || pattern.toString().includes('no cost')) {
         return 'Free';
       }
-      if (pattern.toString().includes('₹')) {
-        return `₹${match[1]}`;
-      }
-      if (pattern.toString().includes('$')) {
-        return `$${match[1]}`;
-      }
+      if (pattern.toString().includes('₹')) return `₹${match[1]}`;
+      if (pattern.toString().includes('$')) return `$${match[1]}`;
       return match[0];
     }
   }
@@ -119,15 +114,12 @@ const extractPrice = (content: string): string => {
   return 'Contact for details';
 };
 
-
-
 export default function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const [unwrappedParams, setUnwrappedParams] = useState<{ id: string } | null>(null);
   const [event, setEvent] = useState<EventItem | null>(null);
   const [relatedEvents, setRelatedEvents] = useState<EventItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Unwrap params (Next.js 15 compatibility)
   useEffect(() => {
     async function unwrapParams() {
       const unwrapped = await params;
@@ -136,11 +128,9 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
     unwrapParams();
   }, [params]);
 
-  // Load event data when params are unwrapped
   useEffect(() => {
     if (!unwrappedParams) return;
 
-    // Find the event by slug/ID
     const foundEvent = eventsData.find(
       (item) => item.post_name === unwrappedParams.id || item.ID === unwrappedParams.id
     );
@@ -148,7 +138,6 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
     if (foundEvent) {
       setEvent(foundEvent);
       
-      // Get related events (same category, exclude current)
       const category = extractCategory(foundEvent.post_content);
       const related = eventsData
         .filter(item => 
@@ -201,6 +190,19 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
     }
   };
 
+  // Open email client with pre-filled event details
+  const handleContactClick = () => {
+    openEventRegistrationEmail({
+      title: event.post_title.replace(/&amp;/g, '&'),
+      date: extractDateDetails(event.post_content, event.post_date).date,
+      time: extractDateDetails(event.post_content, event.post_date).time,
+      location: extractLocation(event.post_content),
+      format: extractFormat(event.post_content),
+      price: extractPrice(event.post_content),
+      category: extractCategory(event.post_content)
+    });
+  };
+
   const category = extractCategory(event.post_content);
   const location = extractLocation(event.post_content);
   const { date, time } = extractDateDetails(event.post_content, event.post_date);
@@ -240,7 +242,6 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
               {event.post_title.replace(/&amp;/g, '&')}
             </h1>
             
-            {/* Event Details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 bg-secondary/30 rounded-xl mb-6">
               <div className="flex items-center gap-3">
                 <Calendar className="h-5 w-5 text-primary flex-shrink-0" />
@@ -294,36 +295,16 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
               <span className="text-sm font-medium">Share this event:</span>
             </div>
             <div className="flex items-center gap-2">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleShare('facebook')}
-                className="h-8 w-8 p-0"
-              >
+              <Button variant="ghost" size="sm" onClick={() => handleShare('facebook')} className="h-8 w-8 p-0">
                 <Facebook className="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleShare('twitter')}
-                className="h-8 w-8 p-0"
-              >
+              <Button variant="ghost" size="sm" onClick={() => handleShare('twitter')} className="h-8 w-8 p-0">
                 <Twitter className="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleShare('linkedin')}
-                className="h-8 w-8 p-0"
-              >
+              <Button variant="ghost" size="sm" onClick={() => handleShare('linkedin')} className="h-8 w-8 p-0">
                 <Linkedin className="h-4 w-4" />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleShare('email')}
-                className="h-8 w-8 p-0"
-              >
+              <Button variant="ghost" size="sm" onClick={() => handleShare('email')} className="h-8 w-8 p-0">
                 <Mail className="h-4 w-4" />
               </Button>
             </div>
@@ -346,7 +327,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
             dangerouslySetInnerHTML={{ __html: event.post_content }}
           />
 
-          {/* Registration/Contact CTA */}
+          {/* Contact CTA */}
           <div className="mt-12 p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border border-primary/20">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div>
@@ -354,29 +335,16 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                   Interested in this event?
                 </h3>
                 <p className="text-foreground/80">
-                  {price === 'Free' || price === 'Contact for details'
-                    ? 'Register now to secure your spot'
-                    : 'Register now to secure your spot at the best rate'}
+                  Get in touch with us to know more or to register your interest.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3">
-                {event.external_url ? (
-                  <a href={event.external_url} target="_blank" rel="noopener noreferrer">
-                    <Button className="bg-accent text-white font-semibold">
-                      Register Now
-                      <ArrowLeft className="ml-2 h-4 w-4 rotate-180" />
-                    </Button>
-                  </a>
-                ) : (
-                  <Button className="bg-accent text-white font-semibold">
-                    Contact for Registration
-                  </Button>
-                )}
-                <Button variant="outline">
-                  Add to Calendar
-                  <Calendar className="ml-2 h-4 w-4" />
-                </Button>
-              </div>
+              <Button 
+                onClick={handleContactClick}
+                className="bg-accent text-white font-semibold gap-2"
+              >
+                <Mail className="h-4 w-4" />
+                Contact via Email
+              </Button>
             </div>
           </div>
 
@@ -399,8 +367,10 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
                       className="group"
                     >
                       <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border h-full">
-                        <div className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
-                            style={{ backgroundImage: relatedEvent.featured_image_url ? `url(${relatedEvent.featured_image_url})` : undefined }}>
+                        <div 
+                          className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
+                          style={{ backgroundImage: relatedEvent.featured_image_url ? `url(${relatedEvent.featured_image_url})` : undefined }}
+                        >
                           {!relatedEvent.featured_image_url && (
                             <div className="h-full flex items-center justify-center text-white/40 text-4xl font-display">
                               {relatedEvent.post_title.charAt(0)}
