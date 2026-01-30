@@ -447,15 +447,20 @@ export default function EventsPage() {
       {showFeaturedEvent && featuredEvent && (
         <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1">
           <div className="max-w-screen-xl mx-auto">
-            <div 
-              onClick={() => handleCardClick(featuredEvent.slug)}
-              className="grid lg:grid-cols-2 gap-6 bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 cursor-pointer group hover:shadow-2xl transition-shadow duration-300"
-            >
+           <div 
+  onClick={() => handleCardClick(featuredEvent.slug)}
+  className="grid lg:grid-cols-[65%_35%]  
+             bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl 
+             overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl 
+             border border-primary/10 cursor-pointer group 
+             hover:shadow-2xl transition-shadow duration-300"
+>
+
               {/* LEFT IMAGE */}
-              <div className="relative min-h-48 sm:min-h-64 lg:min-h-80 overflow-hidden bg-gradient-to-br from-muted to-secondary">
+              <div className="relative min-h-48 sm:min-h-64  overflow-hidden bg-gradient-to-br from-muted to-secondary">
                 {featuredEvent.image !== '/placeholder-event.jpg' ? (
                   <Image
-                    src={featuredEvent.image}
+                    src="/Evventssmallbanner.png"
                     alt={featuredEvent.title}
                     fill
                     // sizes="(max-width: 768px) 100vw, (max-width: 1400px) 50vw, 50vw"
