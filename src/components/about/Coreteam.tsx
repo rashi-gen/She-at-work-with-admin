@@ -1,20 +1,21 @@
 "use client";
 
-import { Linkedin, Twitter, Award, Briefcase, Mail, Globe } from "lucide-react";
-import { PageBanner } from "@/components/PageBanner";
 import Cta from "@/components/common/Cta";
+import { Award, Briefcase, ChevronDown, ChevronUp, Globe, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 const coreTeam = [
   {
     name: "Ruby Sinha",
     role: "Founder & President",
-    description: "Ruby Sinha is the founder of sheatwork.com, a one-stop knowledge hub for women entrepreneurs. She is also the President of the Women's Wing of the BRICS Chamber of Commerce and Industry (BRICS-CCI WE). Founded in 2012, BRICS CCI is empanelled with NITI Aayog and recognized by the United Nations. The objective of BRICS CCI is to create an enabling support system especially for the MSME segment of businesses and young entrepreneurs from across all geographies.",
-    achievements: [
+    summary: "Founder of sheatwork.com and President of BRICS CCI Women's Vertical. An entrepreneur and journalist dedicated to empowering women in business.",
+    bullets: [
       "President of BRICS CCI Women's Vertical",
       "Jury member for Enactus World Cup",
       "Panel expert for National Institute of Electronics and Information Technology",
-      "Founder of award-winning brand communications firm, Kommune"
+      "Founder of award-winning brand communications firm, Kommune",
+      "Former journalist with Indian Express Group"
     ],
     image: "/core-team/RubySinha.png",
     linkedin: "#",
@@ -25,12 +26,13 @@ const coreTeam = [
   {
     name: "Shree Lahiri",
     role: "Content Head",
-    description: "Playing with words is her favourite pastime, and for her 'The pen is mightier than the sword', as she believes the power of the pen is all-pervasive. Her varied experience spans Image Management and Journalism. Currently, she is also Senior Editor with Reputation Today and Consulting Editor with The New Global Indian.",
-    experience: [
+    summary: "Seasoned professional with 20+ years in corporate communications and journalism. Believes in the transformative power of storytelling.",
+    bullets: [
       "Group Manager: Advertising at NIIT",
       "Features Editor at Mid-Day",
       "Deputy Editor at exchange4media",
-      "20+ years in corporate communications and journalism"
+      "Senior Editor with Reputation Today",
+      "Consulting Editor with The New Global Indian"
     ],
     image: "/core-team/ShreeLahiri.png",
     linkedin: "#",
@@ -40,12 +42,13 @@ const coreTeam = [
   {
     name: "Poonam Sinha",
     role: "Content Manager",
-    description: "There is no greater agony than bearing an untold story inside you.' Her thoughts are in resonance with this and this is what inspires her to write; distilling complex thoughts into simple language, easily understood by all.",
-    expertise: [
-      "Former educator and facilitator",
+    summary: "Former educator turned content specialist with expertise in simplifying complex concepts into engaging, accessible language.",
+    bullets: [
+      "Former educator and facilitator in Kolkata",
       "English language specialist",
       "Content writing and editing",
-      "Simplifying complex concepts"
+      "Freelance content writer and editor",
+      "Expert in distilling complex thoughts into simple language"
     ],
     image: "/core-team/PoonamSinha.png",
     linkedin: "#",
@@ -55,13 +58,13 @@ const coreTeam = [
   {
     name: "Himanshu Gupta",
     role: "Digital Marketing Manager",
-    description: "A digital marketing manager with over 8 years experience in campaign development, branding strategies, brand communications and ad management. Creating and implemented external and internal communications strategies for key company initiatives.",
-    skills: [
-      "Digital Marketing Strategy",
-      "Campaign Development",
-      "Brand Communications",
-      "Performance Analytics",
-      "Multi-channel Marketing"
+    summary: "Digital marketing expert with 8+ years experience in campaign development, branding strategies, and performance analytics.",
+    bullets: [
+      "Digital Marketing Strategy & Campaign Development",
+      "Brand Communications & Ad Management",
+      "Performance Analytics & Multi-channel Marketing",
+      "App promotion & customer acquisition",
+      "Tracking key internet marketing metrics"
     ],
     image: "/core-team/HimanshuGupta.png",
     linkedin: "#",
@@ -71,13 +74,13 @@ const coreTeam = [
   {
     name: "Shweta Sharma",
     role: "Manager - Outreach",
-    description: "Shweta is a seasoned Communications professional with years of experience across various sectors. She holds a Masters Degree in Marketing & Public Relations.",
-    expertise: [
-      "Strategic Communications",
-      "Public Relations",
-      "Marketing Strategy",
+    summary: "Seasoned Communications professional with expertise in strategic PR, marketing, and stakeholder engagement.",
+    bullets: [
+      "Strategic Communications & Public Relations",
+      "Marketing Strategy & Corporate Outreach",
       "Stakeholder Engagement",
-      "Corporate Outreach"
+      "Masters Degree in Marketing & Public Relations",
+      "Experience across various sectors"
     ],
     image: "/core-team/ShwetaSharma.png",
     linkedin: "#",
@@ -90,12 +93,13 @@ const advisoryBoard = [
   {
     name: "Bela Rajan",
     role: "Advisory Board Member",
-    description: "A leading woman entrepreneur, Bela Rajan was the Co-Founder and Director of Ketchum Sampark a leading communications firm. Bela, along with her husband also incubated the School of Communications and Reputation (SCoRE).",
-    achievements: [
+    summary: "Leading woman entrepreneur and Co-Founder of Ketchum Sampark, with extensive experience in communications and women's empowerment.",
+    bullets: [
       "Co-Founder & Director, Ketchum Sampark",
       "Director, August One Partners LLP",
       "Independent Director, Lloyds Steel",
-      "Former Chairperson, FICCI FLO Mumbai"
+      "Former Chairperson, FICCI FLO Mumbai",
+      "Active in philanthropic work for women and girl child"
     ],
     image: "/core-team/bela-rajan.png",
     linkedin: "#",
@@ -104,12 +108,13 @@ const advisoryBoard = [
   {
     name: "Sanjeeva Shivesh",
     role: "Advisory Board Member",
-    description: "A former civil service officer, strategy consultant and private equity fund manager, Sanjeeva Shivesh is a serial entrepreneur and angel investor. He is a CoFounder of ThinkStartup, The Entrepreneurship School, Predict Technologies, Xclerator Venture Partners and Shatadree ThinkTank. His passion lies in Entrepreneurship, Innovation, Economics, Public Policy and Constitutional developments. ",
-    expertise: [
+    summary: "Serial entrepreneur, angel investor, and former civil service officer passionate about entrepreneurship and innovation.",
+    bullets: [
       "Co-Founder of ThinkStartup, The Entrepreneurship School",
-      "Former civil service officer",
+      "Former civil service officer and strategy consultant",
       "Angel investor and mentor",
-      "Faculty at multiple universities including IIT Delhi, IIM"
+      "Faculty at IIT Delhi, IIM, and other universities",
+      "B.Tech from IIT Delhi, MBA from Cranfield School of Management"
     ],
     image: "/core-team/sanjeeva-shivesh.png",
     linkedin: "#",
@@ -118,33 +123,39 @@ const advisoryBoard = [
 ];
 
 export default function CoreTeamPage() {
+  const [expandedMember, setExpandedMember] = useState<string | null>(null);
+
+  const toggleExpand = (name: string) => {
+    setExpandedMember(expandedMember === name ? null : name);
+  };
+
   return (
     <main className="bg-background min-h-screen">
       {/* HERO BANNER */}
-      <PageBanner
-        title="Our Core Team"
-        description="Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation."
-       image="/aboutus/Aboutusbanner.png"
-      />
+  
 
-      {/* INTRODUCTION */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-6">
-            The Driving Force Behind Our Mission
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Our team combines diverse expertise with a shared passion for empowering women entrepreneurs. 
-            From strategic leadership to content creation and digital innovation, each member plays a 
-            crucial role in building a supportive ecosystem for women in business.
-          </p>
-        </div>
-      </section>
+            <section className="relative px-4 sm:px-6 lg:px-8  pt-28 pb-2 overflow-hidden hero-gradient">
+              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      
+              <div className="relative w-full mx-auto text-center text-white px-4">
+                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+               Our Core Team
+                
+              </h1>
+               <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+              Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation.
+              </p>
+      
+              </div>
+            </section>
+
+
+     
 
       {/* CORE TEAM */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/10">
         <div className="max-w-screen-xl mx-auto">
-         
+        
 
           <div className="space-y-8">
             {coreTeam.map((member, index) => (
@@ -155,15 +166,16 @@ export default function CoreTeamPage() {
                 }`}
               >
                 <div className="lg:flex">
-                  {/* Image section */}
-                  <div className="lg:w-1/4 relative h-56 lg:h-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+                  {/* Image section - Fixed height */}
+                  <div className="lg:w-1/4 relative h-64 lg:h-auto min-h-[256px]">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
                     <Image
                       src={member.image}
                       alt={member.name}
                       fill
-                      className="object-contain group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 1024px) 100vw, 25vw"
+                      priority={member.featured}
                     />
                     {member.featured && (
                       <div className="absolute top-4 left-4">
@@ -176,16 +188,19 @@ export default function CoreTeamPage() {
                   </div>
 
                   {/* Content section */}
-                  <div className="lg:w-2/3 p-6 sm:p-8">
+                  <div className="lg:w-3/4 p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
-                      <div>
+                      <div className="flex-1">
                         <h3 className="text-2xl font-display font-bold text-foreground mb-1">
                           {member.name}
                         </h3>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mb-4">
                           <Briefcase className="h-3 w-3" />
                           {member.role}
                         </div>
+                        <p className="text-foreground mb-4 leading-relaxed">
+                          {member.summary}
+                        </p>
                       </div>
                       
                       {/* Social links */}
@@ -214,11 +229,36 @@ export default function CoreTeamPage() {
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground mb-6 leading-relaxed">
-                      {member.description}
-                    </p>
-
-                 
+                    {/* Expandable bullet points */}
+                    <div className="border-t border-border pt-6">
+                      <button
+                        onClick={() => toggleExpand(member.name)}
+                        className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors mb-4"
+                      >
+                        {expandedMember === member.name ? (
+                          <>
+                            <ChevronUp className="h-4 w-4" />
+                            Show Less Details
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="h-4 w-4" />
+                            View Key Achievements & Expertise
+                          </>
+                        )}
+                      </button>
+                      
+                      {expandedMember === member.name && (
+                        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 animate-fadeIn">
+                          {member.bullets.map((bullet, idx) => (
+                            <div key={idx} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                              <span className="text-muted-foreground">{bullet}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -249,45 +289,57 @@ export default function CoreTeamPage() {
                 key={index}
                 className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-border"
               >
-                <div className="p-6 sm:p-8">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0">
-                      <Image
-                        src={advisor.image}
-                        alt={advisor.name}
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-display font-bold text-foreground mb-1">
-                        {advisor.name}
-                      </h3>
-                      <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium">
-                        {advisor.role}
+                <div className="flex flex-col h-full">
+                  <div className="p-6 sm:p-8  flex-1">
+                    <div className="flex items-start gap-6 mb-6">
+                      {/* Fixed height image */}
+                      <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                        <Image
+                          src={advisor.image}
+                          alt={advisor.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                       </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-display font-bold text-foreground mb-1">
+                          {advisor.name}
+                        </h3>
+                        <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-3">
+                          {advisor.role}
+                        </div>
+                        <p className="text-foreground">
+                          {advisor.summary}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Bullet points - always visible for advisors */}
+                    <div className="space-y-2 mt-4">
+                      {advisor.bullets.slice(0, 4).map((bullet, idx) => (
+                        <div key={idx} className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                          <span className="text-muted-foreground text-sm">{bullet}</span>
+                        </div>
+                      ))}
                     </div>
                   </div>
 
-                  <p className="text-muted-foreground mb-6">
-                    {advisor.description}
-                  </p>
-
-               
-
-                  <div className="flex gap-2 mt-6 pt-6 border-t border-border">
-                    <a
-                      href={advisor.linkedin}
-                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Linkedin className="h-5 w-5" />
-                    </a>
-                    <a
-                      href={advisor.twitter}
-                      className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Twitter className="h-5 w-5" />
-                    </a>
+                  <div className="p-6 pt-0 ">
+                    <div className="flex gap-2">
+                      <a
+                        href={advisor.linkedin}
+                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                      >
+                        <Linkedin className="h-5 w-5" />
+                      </a>
+                      <a
+                        href={advisor.twitter}
+                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                      >
+                        <Twitter className="h-5 w-5" />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -296,7 +348,22 @@ export default function CoreTeamPage() {
         </div>
       </section>
 
-  
+      {/* Add custom animation */}
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.3s ease-out;
+        }
+      `}</style>
 
       <Cta />
     </main>
