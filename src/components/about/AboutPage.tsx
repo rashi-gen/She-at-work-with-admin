@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+import Image from "next/image";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
@@ -243,12 +244,25 @@ export default function AboutPage() {
           </div>
 
           {/* RIGHT IMAGE/PLACEHOLDER */}
-          <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30" />
-            <div className="relative bg-gradient-to-br from-primary/20 to-accent/20 h-48 sm:h-64 lg:h-80 xl:h-96 flex items-center justify-center text-muted-foreground/30 text-4xl sm:text-5xl lg:text-6xl font-display">
-              Mission
-            </div>
-          </div>
+             <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group">
+      {/* Gradient background that shows while image loads */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+      
+      {/* Background fallback */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+      
+      {/* Image Container */}
+      <div className="relative w-full h-48 sm:h-64 lg:h-80">
+        <Image
+          src="/mission.png" // Update with your actual image path
+          alt="Our Mission - Empowering women entrepreneurs through knowledge sharing and networking"
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+          priority={false}
+        />
+      </div>
+    </div>
         </div>
       </section>
 

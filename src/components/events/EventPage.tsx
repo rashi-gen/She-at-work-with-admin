@@ -18,6 +18,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 // Import your events data
 import { eventsData } from "@/data/events";
@@ -193,7 +195,7 @@ const extractPrice = (content: string): string => {
 };
 
 // Items per page for pagination
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 13;
 
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Events");
@@ -219,6 +221,7 @@ export default function EventsPage() {
     day: string;
   }>>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   // Process events data on component mount
   useEffect(() => {
@@ -349,6 +352,11 @@ export default function EventsPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Handle card click
+  const handleCardClick = (slug: string) => {
+    router.push(`/events/${slug}`);
+  };
+
   if (isLoading) {
     return (
       <main className="bg-background min-h-screen">
@@ -368,7 +376,7 @@ export default function EventsPage() {
   }
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen flex flex-col">
       {/* ================= HERO BANNER ================= */}
       <PageBanner
         title="Events"
@@ -438,37 +446,46 @@ export default function EventsPage() {
 
       {/* ================= FEATURED EVENT ================= */}
       {showFeaturedEvent && featuredEvent && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1">
           <div className="max-w-screen-xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10">
+            <div 
+              onClick={() => handleCardClick(featuredEvent.slug)}
+              className="grid lg:grid-cols-2 gap-6 bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 cursor-pointer group hover:shadow-2xl transition-shadow duration-300"
+            >
               {/* LEFT IMAGE */}
-              <div 
-                className="relative bg-gradient-to-br from-muted to-secondary min-h-48 sm:min-h-64 lg:min-h-80 bg-cover bg-center"
-                style={{ 
-                  backgroundImage: featuredEvent.image !== '/placeholder-event.jpg' 
-                    ? `url(${featuredEvent.image})` 
-                    : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                }}
-              >
-                {featuredEvent.image === '/placeholder-event.jpg' && (
-                  <div className="absolute inset-0 flex items-center justify-center text-white/40 text-6xl font-display">
-                    {featuredEvent.title.charAt(0)}
+              <div className="relative min-h-48 sm:min-h-64 lg:min-h-80 overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                {featuredEvent.image !== '/placeholder-event.jpg' ? (
+                  <Image
+                    src={featuredEvent.image}
+                    alt={featuredEvent.title}
+                    fill
+                    // sizes="(max-width: 768px) 100vw, (max-width: 1400px) 50vw, 50vw"
+                    className="object-fit group-hover:scale-105 transition-transform duration-500"
+                    priority
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                      <span className="text-white/40 text-6xl font-display">
+                        {featuredEvent.title.charAt(0)}
+                      </span>
+                    </div>
                   </div>
                 )}
-                <div className="absolute top-4 left-4 z-10">
+                {/* <div className="absolute top-4 left-4 z-10">
                   <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-accent text-white text-xs sm:text-sm font-semibold shadow-lg">
                     Featured Event
                   </span>
-                </div>
+                </div> */}
               </div>
 
               {/* RIGHT CONTENT */}
-              <div className="p-4 sm:p-6 lg:p-8 xl:p-12 flex flex-col justify-center">
+              <div className="p-4 sm:p-6 lg:p-8  flex flex-col justify-center">
                 <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 w-fit">
                   {featuredEvent.category}
                 </span>
 
-                <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors">
                   {featuredEvent.title}
                 </h2>
 
@@ -503,12 +520,12 @@ export default function EventsPage() {
                   </div>
                 </div>
 
-                <Link href={`/events/${featuredEvent.slug}`} className="w-full">
+                <div className="w-full">
                   <Button className="w-full h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base">
                     View Details
                     <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                   </Button>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -516,7 +533,7 @@ export default function EventsPage() {
       )}
 
       {/* ================= ALL EVENTS GRID ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-secondary/30 flex-1">
         <div className="max-w-screen-xl mx-auto">
           <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
             {/* MAIN CONTENT - 3 COLUMNS */}
@@ -611,20 +628,26 @@ export default function EventsPage() {
                       .map((event) => (
                         <div
                           key={event.id}
-                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+                          onClick={() => handleCardClick(event.slug)}
+                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
                         >
                           {/* DATE BADGE + IMAGE */}
-                          <div 
-                            className="relative bg-gradient-to-br from-muted to-secondary h-40 sm:h-48 lg:h-56 bg-cover bg-center"
-                            style={{ 
-                              backgroundImage: event.image !== '/placeholder-event.jpg' 
-                                ? `url(${event.image})` 
-                                : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
-                            }}
-                          >
-                            {event.image === '/placeholder-event.jpg' && (
-                              <div className="absolute inset-0 flex items-center justify-center text-white/40 text-5xl font-display">
-                                {event.title.charAt(0)}
+                          <div className="relative h-40 sm:h-48  overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                            {event.image !== '/placeholder-event.jpg' ? (
+                              <Image
+                                src={event.image}
+                                alt={event.title}
+                                fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                className="object-fit group-hover:scale-105 transition-transform duration-500"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                                  <span className="text-white/40 text-5xl font-display">
+                                    {event.title.charAt(0)}
+                                  </span>
+                                </div>
                               </div>
                             )}
                             {/* DATE BADGE */}
@@ -669,15 +692,10 @@ export default function EventsPage() {
                               <span className="text-accent font-bold text-base sm:text-lg">
                                 {event.price}
                               </span>
-                              <Link href={`/events/${event.slug}`}>
-                                <Button
-                                  variant="ghost"
-                                  className="text-primary hover:text-accent hover:bg-transparent group-hover:translate-x-1 transition-all text-xs sm:text-sm p-0 h-auto"
-                                >
-                                  Details{" "}
-                                  <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4" />
-                                </Button>
-                              </Link>
+                              <div className="text-primary hover:text-accent group-hover:translate-x-1 transition-all text-xs sm:text-sm p-0 h-auto">
+                                Details{" "}
+                                <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 inline" />
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -775,10 +793,10 @@ export default function EventsPage() {
                 <div className="space-y-4">
                   {filteredTrendingEvents.length > 0 ? (
                     filteredTrendingEvents.map((event, index) => (
-                      <Link 
+                      <div 
                         key={event.id} 
-                        href={`/events/${event.slug}`}
-                        className="block group cursor-pointer pb-4 border-b border-border last:border-0 last:pb-0"
+                        onClick={() => handleCardClick(event.slug)}
+                        className="block group cursor-pointer pb-4 border-b border-border last:border-0 last:pb-0 hover:border-primary/30 transition-colors"
                       >
                         <div className="flex items-center gap-2 mb-1">
                           <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-bold">
@@ -795,7 +813,7 @@ export default function EventsPage() {
                           <Calendar className="h-3 w-3" />
                           <span>{event.month} {event.day}</span>
                         </div>
-                      </Link>
+                      </div>
                     ))
                   ) : (
                     <div className="text-center py-2">
@@ -887,7 +905,9 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <Cta/>
+      
+        <Cta/>
+
     </main>
   );
 }

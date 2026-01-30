@@ -540,7 +540,7 @@ export default function NewsPage() {
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
                   >
                     {/* IMAGE CONTAINER */}
-                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                    <div className="relative h-40 sm:h-48  bg-gradient-to-br from-muted to-secondary flex-shrink-0">
                       {news.image !== '/placeholder-news.jpg' ? (
                         <Image
                           src={news.image}

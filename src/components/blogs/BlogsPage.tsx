@@ -353,7 +353,7 @@ export default function BlogsPage() {
                 </div> */}
 
                 {/* IMAGE */}
-                <div className="relative h-48 sm:h-60 lg:h-72 bg-gradient-to-br from-muted to-secondary">
+                <div className="relative h-40 sm:h-48   bg-gradient-to-br from-muted to-secondary">
                   {featuredBlog.image !== '/placeholder-blog.jpg' ? (
                     <Image
                       src={featuredBlog.image}

@@ -211,7 +211,7 @@ export default function FeaturedStories() {
                 src={large.image}
                 alt={large.title}
                 fill
-                className="object-fit"
+                className="object-cover"
               />
 {/* 
               <span className="absolute top-4 left-4 bg-yellow-400 text-black text-xs font-semibold px-4 py-1.5 rounded-full">
@@ -277,7 +277,7 @@ export default function FeaturedStories() {
                 alt={large.title}
                 fill
                 priority
-                className="object-fit"
+                className="object-cover"
               />
               {/* <span className="absolute top-5 left-5 bg-yellow-400 text-black text-xs font-semibold px-4 py-1.5 rounded-full">
                 Featured
@@ -322,7 +322,7 @@ export default function FeaturedStories() {
                 src={small.image}
                 alt={small.title}
                 fill
-                className="object-fit"
+                className="object-cover"
               />
 
               <button
