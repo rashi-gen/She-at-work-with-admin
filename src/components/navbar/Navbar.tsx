@@ -19,7 +19,7 @@ const navLinks = [
 const aboutDropdownItems = [
   { name: "About Us", href: "/about" },
   { name: "Core Team", href: "/about/core-team" },
-  // { name: "Press Room", href: "/about/press-room" },
+  { name: "Press Room", href: "/about/press-room" },
 ];
 
 export const Navbar = () => {
