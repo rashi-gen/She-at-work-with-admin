@@ -353,7 +353,7 @@ export default function EntreChatPage() {
                 className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10 cursor-pointer"
               >
                 {/* IMAGE */}
-                <div className="relative h-48 sm:h-60 lg:h-72 overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                <div className="relative h-48 sm:h-60 lg:h-[450px] overflow-hidden bg-gradient-to-br from-muted to-secondary">
                   {featuredInterview.image !== '/placeholder-interview.jpg' ? (
                     <Image
                       src={featuredInterview.image}

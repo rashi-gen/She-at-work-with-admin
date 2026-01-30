@@ -353,7 +353,7 @@ export default function BlogsPage() {
                 </div> */}
 
                 {/* IMAGE */}
-                <div className="relative h-40 sm:h-48   bg-gradient-to-br from-muted to-secondary">
+                <div className="relative h-40 sm:h-64 lg:h-[450px]   bg-gradient-to-br from-muted to-secondary">
                   {featuredBlog.image !== '/placeholder-blog.jpg' ? (
                     <Image
                       src={featuredBlog.image}
@@ -562,13 +562,13 @@ export default function BlogsPage() {
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
                   >
                     {/* IMAGE */}
-                    <div className="relative h-40 sm:h-48 lg:h-56 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                    <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
                       {post.image !== '/placeholder-blog.jpg' ? (
                         <Image
                           src={post.image}
                           alt={post.title}
                           fill
-                          className="object-fit"
+                          className="object-cover"
                           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         />
                       ) : (

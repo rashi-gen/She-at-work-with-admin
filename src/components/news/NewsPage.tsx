@@ -551,7 +551,6 @@ export default function NewsPage() {
                         />
                       ) : (
                         <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                          
                           <div className="text-white/40 text-5xl font-display">
                             {news.title.charAt(0)}
                           </div>
