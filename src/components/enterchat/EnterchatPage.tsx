@@ -4,12 +4,11 @@
 import { Button } from "@/components/ui/button";
 import { entrechatData } from "@/data/Entrechat";
 import { ArrowRight, Calendar, Clock, Filter, Menu, TrendingUp, X } from "lucide-react";
-import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 // Define types for your entrechat data
 interface EntreChatItem {

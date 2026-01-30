@@ -14,12 +14,11 @@ import {
   Users,
   X
 } from "lucide-react";
-import Link from "next/link";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 // Import your events data
 import { eventsData } from "@/data/events";
