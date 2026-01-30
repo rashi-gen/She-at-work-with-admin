@@ -631,7 +631,7 @@ export default function EventsPage() {
                           className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
                         >
                           {/* DATE BADGE + IMAGE */}
-                          <div className="relative h-40 sm:h-48  overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                          <div className="relative h-40 sm:h-44  overflow-hidden bg-gradient-to-br from-muted to-secondary">
                             {event.image !== '/placeholder-event.jpg' ? (
                               <Image
                                 src={event.image}
