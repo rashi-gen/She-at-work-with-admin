@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Award,
   Lightbulb,
   Linkedin,
   Sparkles,
@@ -9,17 +8,17 @@ import {
   Twitter,
   Users
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-import Image from "next/image";
-import Link from "next/link";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
   { value: "121+", label: "Events & Webinars" },
   { value: "50k+", label: "Community Reach" },
-    { value: "85+", label: "Countries Reached" },
+  { value: "85+", label: "Countries Reached" },
 ];
 
 const coreValues = [
@@ -31,42 +30,24 @@ const coreValues = [
   {
     icon: Users,
     title: "Community",
-    description: "We cultivate an ecosystem where women entrepreneurs connect to exchange best practices, share experiences, and widen their opportunities together.",
+    description:
+      "We cultivate an ecosystem where women entrepreneurs connect to exchange best practices, share experiences, and widen their opportunities together.",
   },
   {
     icon: Target,
     title: "Impact",
-    description: "We are committed to driving positive change, offering mentorship programs to support rural enterprises and amplify women's voices in the business landscape.",
+    description:
+      "We are committed to driving positive change, offering mentorship programs to support rural enterprises and amplify women's voices in the business landscape.",
   },
   {
     icon: Lightbulb,
     title: "Innovation",
-    description: "We embrace forward-thinking approaches, keeping our community updated with the latest industry trends, digital skills, and creative business solutions.",
+    description:
+      "We embrace forward-thinking approaches, keeping our community updated with the latest industry trends, digital skills, and creative business solutions.",
   },
 ];
 
 
-
-const featuredTeam = [
-  {
-    name: "Ruby Sinha",
-    role: "Founder & President",
-    description: "Leading the vision of empowering women entrepreneurs globally",
-    image: "/core-team/RubySinha.png",
-    linkedin: "#",
-    twitter: "#",
-    featured: true
-  },
-  {
-    name: "Shree Lahiri",
-    role: "Content Head",
-    description: "Crafting compelling narratives that inspire and educate",
-    image: "/core-team/ShreeLahiri.png",
-    linkedin: "#",
-    twitter: "#",
-    featured: true
-  },
-];
 
 const journey = [
   {
@@ -78,8 +59,7 @@ const journey = [
   {
     year: "2020",
     title: "Digital Acceleration",
-    description:
-      `Expanded digital outreach with webinars and "She@Work TV" to support entrepreneurs during the pandemic.`,
+    description: `Expanded digital outreach with webinars and "She@Work TV" to support entrepreneurs during the pandemic.`,
   },
   {
     year: "2023",
@@ -90,13 +70,43 @@ const journey = [
   {
     year: "2025",
     title: "Future Forward",
-    description:
-      `Launching "Ready, Set, Lead" initiatives to nurture the next generation of Gen Z and Millennial founders.`,
+    description: `Launching "Ready, Set, Lead" initiatives to nurture the next generation of Gen Z and Millennial founders.`,
+  },
+];
+
+const teamMembers = [
+  {
+    name: "Ruby Sinha",
+    role: "Founder & President (BRICS CCI WE)",
+    image: "/core-team/RubySinha.png",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Shree Lahiri",
+    role: "Content Head",
+    image: "/core-team/ShreeLahiri.png",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Poonam Sinha",
+    role: "Content Manager",
+    image: "/core-team/PoonamSinha.png",
+    linkedin: "#",
+    twitter: "#",
+  },
+  {
+    name: "Himanshu Gupta",
+    role: "Digital Marketing Manager",
+    image: "/core-team/HimanshuGupta.png",
+    linkedin: "#",
+    twitter: "#",
   },
 ];
 
 export default function AboutPage() {
-    const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -107,14 +117,37 @@ export default function AboutPage() {
   }, []);
   return (
     <main className="bg-background min-h-screen">
-     
-   <PageBanner
+      <PageBanner
         title="Empowering Women Entrepreneurs Since 2017 "
         description="A dynamic one-stop knowledge hub dedicated to amplifying the voices, achievements, and insights of women entrepreneurs globally."
         image="/aboutus/Aboutusbanner.png"
       />
 
-       <section className="px-4 sm:px-6 lg:px-8 py-12 ">
+           {/* ================= OUR STORY ================= */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-screen-xl mx-auto text-center px-4">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
+            Our Story
+          </h2>
+          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+            <p>
+              SheAtWork.com germinated with a singular objective: to support
+              women who are looking to start an entrepreneurial venture that
+              aligns with their abilities and skills. Launched in January 2017,
+              our aim is to educate, train, support, and motivate women
+              entrepreneurs globally.
+            </p>
+            <p>
+              We provide a storehouse of information to increase awareness on
+              all relevant areas of entrepreneurship—from innovative business
+              ideas and startup funding avenues to legal support and mentor
+              connections.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 sm:px-6 lg:px-8 py-12 ">
         <div className="max-w-screen-xl mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12 lg:mb-16">
             <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
@@ -168,18 +201,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-{/* ================= STATS WITH GRADIENT ================= */}
-<section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
-  <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      {/* ================= STATS WITH GRADIENT ================= */}
+      <section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
-  <div className="relative max-w-screen-xl mx-auto px-5">
-    
-    {/* ================= MOBILE PPT SLIDE ================= */}
-    <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
-      {stats.map((stat, index) => (
-        <div
-          key={index}
-          className={`absolute flex flex-col items-center text-center text-white
+        <div className="relative max-w-screen-xl mx-auto px-5">
+          {/* ================= MOBILE PPT SLIDE ================= */}
+          <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className={`absolute flex flex-col items-center text-center text-white
             transition-all duration-500 ease-in-out
             ${
               index === activeIndex
@@ -187,33 +219,32 @@ export default function AboutPage() {
                 : "opacity-0 translate-x-6 pointer-events-none"
             }
           `}
-        >
-          <div className="text-4xl font-bold tracking-tight">
-            {stat.value}
+              >
+                <div className="text-4xl font-bold tracking-tight">
+                  {stat.value}
+                </div>
+                <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
-          <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
-            {stat.label}
-          </span>
-        </div>
-      ))}
-    </div>
 
-    {/* ================= DESKTOP / TABLET ================= */}
-    <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
-      {stats.map((stat, index) => (
-        <div key={index} className="flex flex-col items-center">
-          <div className="text-3xl lg:text-5xl font-medium tracking-tight">
-            {stat.value}
+          {/* ================= DESKTOP / TABLET ================= */}
+          <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
+            {stats.map((stat, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div className="text-3xl lg:text-5xl font-medium tracking-tight">
+                  {stat.value}
+                </div>
+                <span className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide">
+                  {stat.label}
+                </span>
+              </div>
+            ))}
           </div>
-          <span className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide">
-            {stat.label}
-          </span>
         </div>
-      ))}
-    </div>
-
-  </div>
-</section>
+      </section>
 
       {/* ================= CORE VALUES ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12  bg-secondary/30">
@@ -261,56 +292,47 @@ export default function AboutPage() {
             </h2>
             <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
               <p>
-                To create a one-stop knowledge hub for any woman aspiring to be an entrepreneur or aiming to move to the next level. We hope to help all women entrepreneurs expand their frontiers and enhance their skills to achieve their true potential.
+                To create a one-stop knowledge hub for any woman aspiring to be
+                an entrepreneur or aiming to move to the next level. We hope to
+                help all women entrepreneurs expand their frontiers and enhance
+                their skills to achieve their true potential.
               </p>
               <p>
-               We strive to provide a friendly forum for growth through the right knowledge and professional networking. By giving visibility to women entrepreneurs and running mentoring programs, we generate peer support across both urban and rural sectors.
+                We strive to provide a friendly forum for growth through the
+                right knowledge and professional networking. By giving
+                visibility to women entrepreneurs and running mentoring
+                programs, we generate peer support across both urban and rural
+                sectors.
               </p>
             </div>
           </div>
 
           {/* RIGHT IMAGE/PLACEHOLDER */}
-             <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group">
-      {/* Gradient background that shows while image loads */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
-      
-      {/* Background fallback */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-      
-      {/* Image Container */}
-      <div className="relative w-full h-48 sm:h-64 lg:h-80">
-        <Image
-          src="/mission.png" // Update with your actual image path
-          alt="Our Mission - Empowering women entrepreneurs through knowledge sharing and networking"
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          priority={false}
-        />
-      </div>
-    </div>
-        </div>
-      </section>
-           {/* ================= OUR STORY ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-screen-xl mx-auto text-center px-4">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
-            Our Story
-          </h2>
-          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-            <p>
-           SheAtWork.com germinated with a singular objective: to support women who are looking to start an entrepreneurial venture that aligns with their abilities and skills. Launched in January 2017, our aim is to educate, train, support, and motivate women entrepreneurs globally. 
-            </p>
-            <p>
-             We provide a storehouse of information to increase awareness on all relevant areas of entrepreneurship—from innovative business ideas and startup funding avenues to legal support and mentor connections.
-            </p>
-          
+          <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group">
+            {/* Gradient background that shows while image loads */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+
+            {/* Background fallback */}
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+
+            {/* Image Container */}
+            <div className="relative w-full h-48 sm:h-64 lg:h-80">
+              <Image
+                src="/mission.png" // Update with your actual image path
+                alt="Our Mission - Empowering women entrepreneurs through knowledge sharing and networking"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                priority={false}
+              />
+            </div>
           </div>
         </div>
       </section>
+ 
 
       {/* ================= MEET OUR TEAM ================= */}
-    <section className="px-4 sm:px-6 lg:px-8 py-12  bg-gradient-to-b from-background to-secondary/20">
+      <section className="px-4 sm:px-6 lg:px-8 py-12  bg-gradient-to-b from-background to-secondary/20">
         <div className="max-w-screen-xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
@@ -327,53 +349,64 @@ export default function AboutPage() {
               <Users className="h-4 w-4" />
             </Link>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {featuredTeam.map((member, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {teamMembers.map((member, i) => (
               <div
                 key={i}
-                className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-border"
+                className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
               >
-                <div className="md:flex">
-                  {/* Image section */}
-                  <div className="md:w-2/5 relative h-64 md:h-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+                {/* AVATAR */}
+                <div className="relative h-48 sm:h-56  flex items-center justify-center overflow-hidden bg-secondary/30">
+                  {/* Subtle Blur Background */}
+                  <div className="absolute inset-0">
                     <Image
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.name} background`}
                       fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover blur-md scale-105 opacity-30"
                       sizes="(max-width: 768px) 100vw, 40vw"
                     />
                   </div>
 
-                  {/* Content section */}
-                  <div className="md:w-3/5 p-6 sm:p-8">
-                    <h3 className="text-xl font-display font-bold text-foreground mb-1">
-                      {member.name}
-                    </h3>
-                    <div className="inline-flex items-center gap-1  py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">
-                      <Award className="h-3 w-3" />
-                      {member.role}
-                    </div>
-                    <p className="text-muted-foreground mb-4">
-                      {member.description}
-                    </p>
-                    
-                    <div className="flex gap-3">
-                      <a
-                        href={member.linkedin}
-                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                      >
-                        <Linkedin className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={member.twitter}
-                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                      >
-                        <Twitter className="h-5 w-5" />
-                      </a>
-                    </div>
+                  {/* Light overlay */}
+                  <div className="absolute inset-0 bg-white/20" />
+
+                  {/* Main Image */}
+                  <div className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl" />
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover rounded-2xl shadow-xl border-4 border-background group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
+                    />
+                  </div>
+                </div>
+
+                {/* INFO */}
+                <div className="p-4 sm:p-6 text-center">
+                  <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground mb-1">
+                    {member.name}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
+                    {member.role}
+                  </p>
+
+                  {/* SOCIAL LINKS */}
+                  <div className="flex justify-center gap-2">
+                    <a
+                      href={member.linkedin}
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                    >
+                      <Linkedin className="h-3 w-3 sm:h-4 sm:w-4" />
+                    </a>
+                    <a
+                      href={member.twitter}
+                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                    >
+                      <Twitter className="h-3 w-3 sm:h-4 sm:w-4" />
+                    </a>
                   </div>
                 </div>
               </div>
@@ -383,8 +416,8 @@ export default function AboutPage() {
       </section>
 
       {/* ================= OUR JOURNEY - TIMELINE ================= */}
-     
-<Cta/>
+
+      <Cta />
     </main>
   );
 }
