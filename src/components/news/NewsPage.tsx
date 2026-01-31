@@ -9,7 +9,7 @@ import {
   Clock,
   ExternalLink,
   Filter,
-  X
+  X,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import Cta from "../common/Cta";
@@ -44,48 +44,88 @@ interface NewsItem {
 
 // Helper function to safely extract domain from URL
 const getSourceFromUrl = (url: string | null): string => {
-  if (!url || url.trim() === '' || url === 'null') return 'She at Work';
-  
+  if (!url || url.trim() === "" || url === "null") return "She at Work";
+
   try {
-    const urlPattern = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\- .\/?%&=]*)?$/i;
-    
+    const urlPattern =
+      /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\- .\/?%&=]*)?$/i;
+
     if (!urlPattern.test(url)) {
-      return 'She at Work';
+      return "She at Work";
     }
-    
-    const urlWithProtocol = url.startsWith('http') ? url : `https://${url}`;
+
+    const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
     const parsedUrl = new URL(urlWithProtocol);
-    const hostname = parsedUrl.hostname.replace('www.', '');
-    
-    const domainParts = hostname.split('.');
+    const hostname = parsedUrl.hostname.replace("www.", "");
+
+    const domainParts = hostname.split(".");
     if (domainParts.length >= 2) {
       const mainDomain = domainParts[domainParts.length - 2];
       const formattedName = mainDomain
-        .replace(/([A-Z])/g, ' $1')
-        .replace(/^./, str => str.toUpperCase())
-        .replace(/[_-]/g, ' ')
+        .replace(/([A-Z])/g, " $1")
+        .replace(/^./, (str) => str.toUpperCase())
+        .replace(/[_-]/g, " ")
         .trim();
-      
+
       return formattedName || hostname;
     }
-    
+
     return hostname;
   } catch (error) {
-    console.warn('Invalid URL, using default source:', url, error);
-    return 'She at Work';
+    console.warn("Invalid URL, using default source:", url, error);
+    return "She at Work";
   }
 };
 
 // Map your categories from the data
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
-  if (contentLower.includes("funding") || content.includes("$") || contentLower.includes("investment") || contentLower.includes("raise")) return "Funding";
-  if (contentLower.includes("award") || contentLower.includes("recognizing") || contentLower.includes("honor")) return "Awards";
-  if (contentLower.includes("launch") || contentLower.includes("debut") || contentLower.includes("introduce")) return "Launches";
-  if (contentLower.includes("partner") || contentLower.includes("collaboration") || contentLower.includes("joint")) return "Partnerships";
-  if (contentLower.includes("success") || contentLower.includes("journey") || contentLower.includes("story") || contentLower.includes("empire")) return "Success Stories";
-  if (contentLower.includes("trend") || contentLower.includes("growth") || contentLower.includes("industry") || contentLower.includes("market")) return "Industry Trends";
-  if (contentLower.includes("policy") || contentLower.includes("government") || contentLower.includes("tax") || contentLower.includes("initiative")) return "Policy Updates";
+  if (
+    contentLower.includes("funding") ||
+    content.includes("$") ||
+    contentLower.includes("investment") ||
+    contentLower.includes("raise")
+  )
+    return "Funding";
+  if (
+    contentLower.includes("award") ||
+    contentLower.includes("recognizing") ||
+    contentLower.includes("honor")
+  )
+    return "Awards";
+  if (
+    contentLower.includes("launch") ||
+    contentLower.includes("debut") ||
+    contentLower.includes("introduce")
+  )
+    return "Launches";
+  if (
+    contentLower.includes("partner") ||
+    contentLower.includes("collaboration") ||
+    contentLower.includes("joint")
+  )
+    return "Partnerships";
+  if (
+    contentLower.includes("success") ||
+    contentLower.includes("journey") ||
+    contentLower.includes("story") ||
+    contentLower.includes("empire")
+  )
+    return "Success Stories";
+  if (
+    contentLower.includes("trend") ||
+    contentLower.includes("growth") ||
+    contentLower.includes("industry") ||
+    contentLower.includes("market")
+  )
+    return "Industry Trends";
+  if (
+    contentLower.includes("policy") ||
+    contentLower.includes("government") ||
+    contentLower.includes("tax") ||
+    contentLower.includes("initiative")
+  )
+    return "Policy Updates";
   return "General News";
 };
 
@@ -106,39 +146,39 @@ const formatDate = (dateString: string): string => {
   try {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      return 'Date unavailable';
+      return "Date unavailable";
     }
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   } catch (error) {
-    console.warn('Invalid date:', dateString, error);
-    return 'Date unavailable';
+    console.warn("Invalid date:", dateString, error);
+    return "Date unavailable";
   }
 };
 
 // Extract excerpt from content
 const extractExcerpt = (content: string, maxLength: number = 150): string => {
-  if (!content) return 'No excerpt available';
-  
+  if (!content) return "No excerpt available";
+
   try {
-    const plainText = content.replace(/<[^>]*>/g, '');
-    const cleanText = plainText.replace(/\s+/g, ' ').trim();
-    
+    const plainText = content.replace(/<[^>]*>/g, "");
+    const cleanText = plainText.replace(/\s+/g, " ").trim();
+
     if (cleanText.length <= maxLength) return cleanText;
-    return cleanText.substring(0, maxLength) + '...';
+    return cleanText.substring(0, maxLength) + "...";
   } catch (error) {
-    console.warn('Error extracting excerpt:', error);
-    return 'No excerpt available';
+    console.warn("Error extracting excerpt:", error);
+    return "No excerpt available";
   }
 };
 
 // Calculate read time
 const calculateReadTime = (text: string): string => {
-  if (!text) return '1 min read';
-  
+  if (!text) return "1 min read";
+
   const wordCount = text.split(/\s+/).length;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
   return `${minutes} min read`;
@@ -151,41 +191,47 @@ export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [processedNews, setProcessedNews] = useState<Array<{
-    slug: any;
-    id: string;
-    category: string;
-    title: string;
-    excerpt: string;
-    date: string;
-    readTime: string;
-    source: string;
-    image: string;
-    externalUrl: string | null;
-    fullContent: string;
-    modifiedDate?: string;
-  }>>([]);
+  const [processedNews, setProcessedNews] = useState<
+    Array<{
+      slug: any;
+      id: string;
+      category: string;
+      title: string;
+      excerpt: string;
+      date: string;
+      readTime: string;
+      source: string;
+      image: string;
+      externalUrl: string | null;
+      fullContent: string;
+      modifiedDate?: string;
+    }>
+  >([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Process news data on component mount
   useEffect(() => {
     try {
       setIsLoading(true);
-      
+
       const processed = newsData.map((item: NewsItem) => {
         const category = getCategoryFromContent(item.post_content);
-        const excerpt = item.post_excerpt && item.post_excerpt.trim() !== '' 
-          ? item.post_excerpt 
-          : extractExcerpt(item.post_content);
-        
-        const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Untitled';
+        const excerpt =
+          item.post_excerpt && item.post_excerpt.trim() !== ""
+            ? item.post_excerpt
+            : extractExcerpt(item.post_content);
+
+        const title = item.post_title
+          ? item.post_title.replace(/&amp;/g, "&")
+          : "Untitled";
         const date = formatDate(item.post_date);
         const readTime = calculateReadTime(excerpt);
         const source = getSourceFromUrl(item.external_url);
-        const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
-          ? item.featured_image_url 
-          : '/placeholder-news.jpg';
-        
+        const image =
+          item.featured_image_url && item.featured_image_url.trim() !== ""
+            ? item.featured_image_url
+            : "/placeholder-news.jpg";
+
         return {
           id: item.ID || Math.random().toString(),
           category,
@@ -195,27 +241,36 @@ export default function NewsPage() {
           readTime,
           source,
           image,
-          externalUrl: item.external_url && item.external_url.trim() !== '' ? item.external_url : null,
-          fullContent: item.post_content || '',
-          modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
+          externalUrl:
+            item.external_url && item.external_url.trim() !== ""
+              ? item.external_url
+              : null,
+          fullContent: item.post_content || "",
+          modifiedDate: item.post_modified
+            ? formatDate(item.post_modified)
+            : undefined,
           slug: item.post_name || `news-${item.ID}`,
         };
       });
-      
+
       processed.sort((a, b) => {
         try {
-          const dateA = new Date(a.date === 'Date unavailable' ? '1970-01-01' : a.date);
-          const dateB = new Date(b.date === 'Date unavailable' ? '1970-01-01' : b.date);
+          const dateA = new Date(
+            a.date === "Date unavailable" ? "1970-01-01" : a.date,
+          );
+          const dateB = new Date(
+            b.date === "Date unavailable" ? "1970-01-01" : b.date,
+          );
           return dateB.getTime() - dateA.getTime();
         } catch (error) {
-          console.log(error)
+          console.log(error);
           return 0;
         }
       });
-      
+
       setProcessedNews(processed);
     } catch (error) {
-      console.error('Error processing news data:', error);
+      console.error("Error processing news data:", error);
       setProcessedNews([]);
     } finally {
       setIsLoading(false);
@@ -230,15 +285,18 @@ export default function NewsPage() {
     if (selectedCategory === "All News") {
       return processedNews;
     }
-    return processedNews.filter(article => 
-      article.category.toLowerCase() === selectedCategory.toLowerCase()
+    return processedNews.filter(
+      (article) =>
+        article.category.toLowerCase() === selectedCategory.toLowerCase(),
     );
   };
 
   // Check if featured news should be shown
   const shouldShowFeaturedNews = () => {
     if (!featuredNews || selectedCategory === "All News") return true;
-    return featuredNews.category.toLowerCase() === selectedCategory.toLowerCase();
+    return (
+      featuredNews.category.toLowerCase() === selectedCategory.toLowerCase()
+    );
   };
 
   const filteredNews = getFilteredNews();
@@ -256,18 +314,22 @@ export default function NewsPage() {
   // Handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Handle external link click for featured news
-  const handleFeaturedExternalLink = (e: React.MouseEvent, url: string | null, title: string) => {
+  const handleFeaturedExternalLink = (
+    e: React.MouseEvent,
+    url: string | null,
+    title: string,
+  ) => {
     e.stopPropagation();
-    if (url && url.trim() !== '') {
+    if (url && url.trim() !== "") {
       try {
-        const urlWithProtocol = url.startsWith('http') ? url : `https://${url}`;
-        window.open(urlWithProtocol, '_blank', 'noopener,noreferrer');
+        const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
+        window.open(urlWithProtocol, "_blank", "noopener,noreferrer");
       } catch (error) {
-        console.error('Error opening URL:', error);
+        console.error("Error opening URL:", error);
         alert(`Could not open: ${title}`);
       }
     } else {
@@ -309,7 +371,7 @@ export default function NewsPage() {
           {/* FEATURED - 2 COLUMNS */}
           {showFeaturedNews && featuredNews && (
             <div className="lg:col-span-2">
-              <Link 
+              <Link
                 href={`/news/${featuredNews.slug}`}
                 className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10"
               >
@@ -322,7 +384,7 @@ export default function NewsPage() {
 
                 {/* IMAGE CONTAINER */}
                 <div className="relative h-48 sm:h-64 lg:h-[450px]">
-                  {featuredNews.image !== '/placeholder-news.jpg' ? (
+                  {featuredNews.image !== "/placeholder-news.jpg" ? (
                     <Image
                       src={featuredNews.image}
                       alt={featuredNews.title}
@@ -369,18 +431,27 @@ export default function NewsPage() {
                         <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                         {featuredNews.readTime}
                       </div>
-                      {featuredNews.modifiedDate && featuredNews.modifiedDate !== 'Date unavailable' && (
-                        <div className="text-xs text-muted-foreground/70">
-                          Updated: {featuredNews.modifiedDate}
-                        </div>
-                      )}
+                      {featuredNews.modifiedDate &&
+                        featuredNews.modifiedDate !== "Date unavailable" && (
+                          <div className="text-xs text-muted-foreground/70">
+                            Updated: {featuredNews.modifiedDate}
+                          </div>
+                        )}
                     </div>
 
-                    <Button 
+                    <Button
                       className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
-                      onClick={(e) => handleFeaturedExternalLink(e, featuredNews.externalUrl, featuredNews.title)}
+                      onClick={(e) =>
+                        handleFeaturedExternalLink(
+                          e,
+                          featuredNews.externalUrl,
+                          featuredNews.title,
+                        )
+                      }
                     >
-                      {featuredNews.externalUrl ? 'Read Full Story' : 'View Details'}
+                      {featuredNews.externalUrl
+                        ? "Read Full Story"
+                        : "View Details"}
                       <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
@@ -390,93 +461,191 @@ export default function NewsPage() {
           )}
 
           {/* SIDEBAR - LATEST HEADLINES */}
-          <div className={`space-y-4 sm:space-y-6 ${!showFeaturedNews ? 'lg:col-span-3' : ''}`}>
-            <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  Latest Headlines
-                </h3>
-                {selectedCategory !== "All News" && (
-                  <button 
-                    onClick={() => {
-                      setSelectedCategory("All News");
-                      setCurrentPage(1);
-                    }}
-                    className="text-xs text-primary hover:text-accent transition-colors"
-                  >
-                    Clear filter
-                  </button>
+     {/* SIDEBAR - LATEST HEADLINES WITH IMPROVED FILTER AND SCROLLBAR */}
+<div className={`space-y-4 sm:space-y-6 ${!showFeaturedNews ? "lg:col-span-3" : ""}`}>
+  <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
+    {/* HEADER WITH FILTER TOGGLE */}
+    <div className="flex items-center justify-between mb-4 sm:mb-6">
+      <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
+        <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+        {showFilter ? "Filter by Category" : "Latest Headlines"}
+      </h3>
+      <div className="flex items-center gap-2">
+        {selectedCategory !== "All News" && !showFilter && (
+          <button
+            onClick={() => {
+              setSelectedCategory("All News");
+              setCurrentPage(1);
+            }}
+            className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+          >
+            Clear
+          </button>
+        )}
+        <button
+          onClick={() => setShowFilter(!showFilter)}
+          className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
+          aria-label={showFilter ? "Show headlines" : "Show filters"}
+        >
+          <Filter className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`} />
+        </button>
+      </div>
+    </div>
+
+    {/* CONDITIONAL CONTENT */}
+    {showFilter ? (
+      // FILTER VIEW - Compact with custom scrollbar
+      <div className="mb-4">
+        <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
+          <div className="space-y-1">
+            {newsCategories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => {
+                  setSelectedCategory(cat);
+                  setShowFilter(false);
+                  setCurrentPage(1);
+                }}
+                className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
+                  selectedCategory === cat
+                    ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
+                    : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
+                }`}
+              >
+                <span className="truncate">{cat}</span>
+                {selectedCategory === cat ? (
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                      Active
+                    </span>
+                    <div className="h-2 w-2 rounded-full bg-primary" />
+                  </div>
+                ) : (
+                  <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
                 )}
-              </div>
-
-              {showFilter ? (
-                <div className="space-y-3 mb-4 max-h-60 overflow-y-auto pr-2">
-                  {newsCategories.slice(1).map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSelectedCategory(cat);
-                        setShowFilter(false);
-                        setCurrentPage(1);
-                      }}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                        selectedCategory === cat
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "hover:bg-secondary text-muted-foreground"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="space-y-3 sm:space-y-4">
-                  {latestHeadlines.map((news, i) => (
-                    <Link 
-                      key={i}
-                      href={`/news/${news.slug}`}
-                      className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0"
-                    >
-                      <span className="inline-block px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold mb-1 sm:mb-2 uppercase">
-                        {news.category}
-                      </span>
-                      <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1 sm:mb-2 leading-snug line-clamp-2">
-                        {news.title}
-                      </h4>
-                      <div className="flex items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
-                        <Clock className="h-3 w-3" />
-                        <span>{news.readTime}</span>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              <div className="space-y-2 mt-4">
-                <Button
-                  variant="ghost"
-                  className="w-full text-primary hover:bg-primary/10 text-sm flex items-center justify-between"
-                  onClick={() => setShowFilter(!showFilter)}
-                >
-                  {showFilter ? "Hide Filters" : "Filter by Category"}
-                  <Filter className="h-3 w-3 sm:h-4 sm:w-4" />
-                </Button>
-                
-                <Button
-                  variant="ghost"
-                  className="w-full text-primary hover:bg-primary/10 text-sm"
-                  onClick={() => {
-                    setSelectedCategory("All News");
-                    setCurrentPage(1);
-                  }}
-                >
-                  View All News{" "}
-                  <ChevronRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4" />
-                </Button>
-              </div>
-            </div>
+              </button>
+            ))}
           </div>
+        </div>
+        
+        {/* FILTER STATUS */}
+        {selectedCategory !== "All News" && (
+          <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">
+              Filtering: <span className="font-medium text-primary">{selectedCategory}</span>
+            </span>
+            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+              {filteredNews.length} {filteredNews.length === 1 ? 'article' : 'articles'}
+            </span>
+          </div>
+        )}
+      </div>
+    ) : (
+      // LATEST HEADLINES VIEW - Always visible
+      <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+        <div className="space-y-3 sm:space-y-4">
+          {latestHeadlines.map((news, i) => (
+            <Link
+              key={i}
+              href={`/news/${news.slug}`}
+              className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+            >
+              <div className="flex items-start gap-3">
+                {/* NUMBER BADGE */}
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
+                    {i + 1}
+                  </div>
+                </div>
+                
+                {/* CONTENT */}
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                    <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                      {news.category}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground truncate">
+                      {news.source}
+                    </span>
+                  </div>
+                  <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                    {news.title}
+                  </h4>
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      <span>{news.date}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      <span>{news.readTime}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* ARROW INDICATOR */}
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* QUICK ACTION BUTTONS - Always visible */}
+    <div className="space-y-2 mt-4 pt-4 border-t border-border">
+      {!showFilter ? (
+        <Button
+          variant="ghost"
+          className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
+          onClick={() => setShowFilter(true)}
+        >
+          <Filter className="h-3.5 w-3.5" />
+          Filter Articles
+          <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+        </Button>
+      ) : (
+        <Button
+          variant="ghost"
+          className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
+          onClick={() => setShowFilter(false)}
+        >
+          <ChevronRight className="h-3.5 w-3.5 rotate-180" />
+          Back to Headlines
+        </Button>
+      )}
+      
+      <Button
+        variant="ghost"
+        className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
+        onClick={() => {
+          setSelectedCategory("All News");
+          setCurrentPage(1);
+          setShowFilter(false);
+        }}
+      >
+        View All News
+        <ExternalLink className="h-3.5 w-3.5" />
+      </Button>
+      
+      {selectedCategory !== "All News" && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
+          onClick={() => {
+            setSelectedCategory("All News");
+            setCurrentPage(1);
+            setShowFilter(false);
+          }}
+        >
+          <X className="h-3.5 w-3.5 mr-1.5" />
+          Clear {selectedCategory} Filter
+        </Button>
+      )}
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
@@ -486,10 +655,13 @@ export default function NewsPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                {selectedCategory === "All News" ? "All News Articles" : `${selectedCategory} Articles`}
+                {selectedCategory === "All News"
+                  ? "All News Articles"
+                  : `${selectedCategory} Articles`}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                {filteredNews.length} {filteredNews.length === 1 ? 'article' : 'articles'} found
+                {filteredNews.length}{" "}
+                {filteredNews.length === 1 ? "article" : "articles"} found
                 {selectedCategory !== "All News" && ` in ${selectedCategory}`}
               </p>
             </div>
@@ -518,7 +690,8 @@ export default function NewsPage() {
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no news articles in the &quot;{selectedCategory}&quot; category yet.
+                There are no news articles in the &quot;{selectedCategory}&quot;
+                category yet.
               </p>
               <Button
                 onClick={() => {
@@ -541,7 +714,7 @@ export default function NewsPage() {
                   >
                     {/* IMAGE CONTAINER */}
                     <div className="relative h-40 sm:h-48  bg-gradient-to-br from-muted to-secondary flex-shrink-0">
-                      {news.image !== '/placeholder-news.jpg' ? (
+                      {news.image !== "/placeholder-news.jpg" ? (
                         <Image
                           src={news.image}
                           alt={news.title}
@@ -556,7 +729,7 @@ export default function NewsPage() {
                           </div>
                         </div>
                       )}
-                      
+
                       {/* SOURCE BADGE */}
                       {/* <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                         <span className="px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground truncate max-w-[120px]">
@@ -591,10 +764,10 @@ export default function NewsPage() {
                             <span>{news.readTime}</span>
                           </div>
                         </div>
-                      <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
-  Read
-  <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-</div>
+                        <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                          Read
+                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </div>
                       </div>
                     </div>
                   </Link>
@@ -605,9 +778,11 @@ export default function NewsPage() {
               {totalPages > 1 && (
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
                   <div className="text-sm text-muted-foreground">
-                    Showing {startIndex + 1}-{Math.min(endIndex, filteredNews.length)} of {filteredNews.length} articles
+                    Showing {startIndex + 1}-
+                    {Math.min(endIndex, filteredNews.length)} of{" "}
+                    {filteredNews.length} articles
                   </div>
-                  
+
                   <div className="flex items-center gap-2">
                     <Button
                       variant="outline"
@@ -619,33 +794,38 @@ export default function NewsPage() {
                       <ArrowRight className="h-3 w-3 rotate-180" />
                       Previous
                     </Button>
-                    
+
                     <div className="flex items-center gap-1">
-                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                        let pageNum;
-                        if (totalPages <= 5) {
-                          pageNum = i + 1;
-                        } else if (currentPage <= 3) {
-                          pageNum = i + 1;
-                        } else if (currentPage >= totalPages - 2) {
-                          pageNum = totalPages - 4 + i;
-                        } else {
-                          pageNum = currentPage - 2 + i;
-                        }
-                        
-                        return (
-                          <Button
-                            key={pageNum}
-                            variant={currentPage === pageNum ? "default" : "outline"}
-                            size="sm"
-                            className="w-10 h-10 p-0"
-                            onClick={() => handlePageChange(pageNum)}
-                          >
-                            {pageNum}
-                          </Button>
-                        );
-                      })}
-                      
+                      {Array.from(
+                        { length: Math.min(5, totalPages) },
+                        (_, i) => {
+                          let pageNum;
+                          if (totalPages <= 5) {
+                            pageNum = i + 1;
+                          } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                          } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = currentPage - 2 + i;
+                          }
+
+                          return (
+                            <Button
+                              key={pageNum}
+                              variant={
+                                currentPage === pageNum ? "default" : "outline"
+                              }
+                              size="sm"
+                              className="w-10 h-10 p-0"
+                              onClick={() => handlePageChange(pageNum)}
+                            >
+                              {pageNum}
+                            </Button>
+                          );
+                        },
+                      )}
+
                       {totalPages > 5 && currentPage < totalPages - 2 && (
                         <>
                           <span className="px-2">...</span>
@@ -660,7 +840,7 @@ export default function NewsPage() {
                         </>
                       )}
                     </div>
-                    
+
                     <Button
                       variant="outline"
                       size="sm"
@@ -679,7 +859,7 @@ export default function NewsPage() {
         </div>
       </section>
 
-      <Cta/>
+      <Cta />
     </main>
   );
 }
