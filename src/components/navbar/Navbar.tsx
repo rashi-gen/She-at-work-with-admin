@@ -70,14 +70,15 @@ export const Navbar = () => {
         <div className="flex items-center justify-between h-24">
           {/* LOGO */}
           <Link href="/" className="flex items-center">
-            <Image
-              src="/logo.png"
-              alt="She At Work"
-              width={140}
-              height={50}
-              priority
-              className="transition-all duration-500"
-            />
+         <Image
+  src="/logo.png"
+  alt="She At Work"
+  width={140}
+  height={50}
+  priority
+  quality={85} // Add compression
+  sizes="140px" // Exact size
+/>
           </Link>
 
           {/* DESKTOP NAV */}

@@ -40,14 +40,17 @@ export const HeroSection = () => {
                 currentImageIndex === index ? "opacity-100" : "opacity-0"
               }`}
             >
-              <Image
-                src={image}
-                alt="Hero background"
-                fill
-                priority={index === 0}
-                className="object-cover object-top"
-                sizes="100vw"
-              />
+<Image
+  src={image}
+  alt="Hero background"
+  fill
+  priority={index === 0}
+  fetchPriority={index === 0 ? "high" : "low"} // ✅ Add this
+  loading={index === 0 ? "eager" : "lazy"}
+  className="object-cover object-top"
+  sizes="100vw"
+  quality={80}
+/>
             </div>
           ))}
         </div>
