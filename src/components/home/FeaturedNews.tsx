@@ -207,15 +207,12 @@ export default function FeaturedStories() {
           <div className="bg-card rounded-3xl border border-border overflow-hidden">
             {/* Image */}
             <div className="relative h-56">
-             <Image
-  src={large.image}
-  alt={large.title}
-  fill
-  priority
-  className="object-cover"
-  quality={75}
-  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 50vw"
-/>
+              <Image
+                src={large.image}
+                alt={large.title}
+                fill
+                className="object-cover"
+              />
 {/* 
               <span className="absolute top-4 left-4 bg-yellow-400 text-black text-xs font-semibold px-4 py-1.5 rounded-full">
                 Featured

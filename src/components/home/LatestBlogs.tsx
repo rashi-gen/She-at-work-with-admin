@@ -367,15 +367,13 @@ export const LatestBlogs = () => {
                 >
                   {/* IMAGE - FIXED HEIGHT */}
                   <div className="h-44 w-full overflow-hidden relative">
-<Image
-  src={blog.image}
-  alt={blog.title}
-  fill
-  className="object-cover transition-transform group-hover:scale-105 duration-500"
-  quality={75}
-  loading="lazy" // Defer offscreen images
-  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-/>
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      className="object-fit transition-transform group-hover:scale-105 duration-500"
+                      // sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
                   </div>
 
                   <div className="flex flex-col flex-1 p-6">
