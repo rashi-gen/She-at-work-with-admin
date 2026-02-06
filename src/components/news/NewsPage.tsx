@@ -1,7 +1,10 @@
 /*eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { PageBanner } from "@/components/PageBanner";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { newsData } from "@/data/news";
 import {
   ArrowRight,
   Calendar,
@@ -12,14 +15,10 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { useState, useEffect, useMemo, useRef } from "react";
-import Cta from "../common/Cta";
-import { PageBanner } from "@/components/PageBanner";
-import { newsData } from "@/data/news";
-import Link from "next/link";
 import Image from "next/image";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Cta from "../common/Cta";
 
 // Define types for your news data
 interface NewsItem {
@@ -289,7 +288,7 @@ const SearchSuggestions = ({
                 </div>
                 <div>
                   <div className="font-medium text-sm text-foreground">
-                    View all results for "{searchQuery}"
+                    View all results for {searchQuery}
                   </div>
                   <div className="text-xs text-muted-foreground">
                     {suggestions.length} articles found
