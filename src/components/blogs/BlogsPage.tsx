@@ -1,9 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { blogsData } from "@/data/Blogs";
-import { ArrowRight, Calendar, ChevronRight, Clock, Filter, Search, X } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, Clock, Filter, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -38,7 +37,7 @@ interface BlogItem {
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
   if (contentLower.includes("leadership") || contentLower.includes("leader") || contentLower.includes("ceo") || contentLower.includes("management")) return "Leadership";
-  if (contentLower.includes("finance") || contentLower.includes("funding") || contentLower.includes("$") || contentLower.includes("investment") || contentLower.includes("budget") || contentLower.includes("financial")) return "Finance";
+  if (contentLower.includes("finance") || contentLower.includes("funding") || content.includes("$") || contentLower.includes("investment") || contentLower.includes("budget") || contentLower.includes("financial")) return "Finance";
   if (contentLower.includes("marketing") || contentLower.includes("brand") || contentLower.includes("social media") || contentLower.includes("promotion") || contentLower.includes("sales")) return "Marketing";
   if (contentLower.includes("technology") || contentLower.includes("tech") || contentLower.includes("digital") || contentLower.includes("ai") || contentLower.includes("software") || contentLower.includes("app")) return "Technology";
   if (contentLower.includes("wellness") || contentLower.includes("health") || contentLower.includes("self-care") || contentLower.includes("mental health") || contentLower.includes("balance")) return "Wellness";
@@ -113,10 +112,9 @@ const ITEMS_PER_PAGE = 12;
 
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
+  // const [showFilter, setShowFilter] = useState(false);
+  const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchQuery, setSearchQuery] = useState("");
   const [processedBlogs, setProcessedBlogs] = useState<Array<{
     id: string;
     category: string;
@@ -214,7 +212,7 @@ export default function BlogsPage() {
     return posts.slice(0, 4);
   }, [processedBlogs, featuredBlog]);
 
-  // Filter blog posts based on selected category and search query
+  // Filter blog posts based on selected category
   const getFilteredPosts = () => {
     let filtered = processedBlogs;
 
@@ -225,36 +223,12 @@ export default function BlogsPage() {
       );
     }
 
-    // Filter by search query
-    if (searchQuery.trim() !== "") {
-      const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(
-        (post) =>
-          post.title.toLowerCase().includes(query) ||
-          post.excerpt.toLowerCase().includes(query) ||
-          post.fullContent.toLowerCase().includes(query) ||
-          post.category.toLowerCase().includes(query) ||
-          post.author.name.toLowerCase().includes(query)
-      );
-    }
-
     return filtered;
   };
 
   // Check if featured post should be shown
   const shouldShowFeaturedPost = () => {
     if (!featuredBlog) return false;
-    
-    if (searchQuery.trim() !== "") {
-      const query = searchQuery.toLowerCase().trim();
-      const isFeaturedInSearchResults =
-        featuredBlog.title.toLowerCase().includes(query) ||
-        featuredBlog.excerpt.toLowerCase().includes(query) ||
-        featuredBlog.fullContent.toLowerCase().includes(query) ||
-        featuredBlog.category.toLowerCase().includes(query) ||
-        featuredBlog.author.name.toLowerCase().includes(query);
-      return isFeaturedInSearchResults;
-    }
     
     if (selectedCategory === "All Blogs") return true;
     return featuredBlog.category.toLowerCase() === selectedCategory.toLowerCase();
@@ -275,15 +249,16 @@ export default function BlogsPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle search input change
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to first page when searching
+  // Handle category selection
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+    setShowMobileFilter(false);
   };
 
-  // Clear search query
-  const clearSearch = () => {
-    setSearchQuery("");
+  // Clear all filters
+  const clearFilters = () => {
+    setSelectedCategory("All Blogs");
     setCurrentPage(1);
   };
 
@@ -390,191 +365,94 @@ export default function BlogsPage() {
             </div>
           )}
 
-          {/* RIGHT - TRENDING NOW (UPDATED TO MATCH NEWS PAGE) */}
-          <div className={`space-y-4 sm:space-y-6 ${!showFeaturedPost ? 'lg:col-span-3' : ''}`}>
-            <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-              {/* HEADER WITH FILTER TOGGLE */}
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  {showFilter ? "Filter by Category" : "Trending Now"}
-                </h3>
-                <div className="flex items-center gap-2">
-                  {selectedCategory !== "All Blogs" && !showFilter && (
-                    <button
-                      onClick={() => {
-                        setSelectedCategory("All Blogs");
-                        setCurrentPage(1);
-                      }}
-                      className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                    >
-                      Clear
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setShowFilter(!showFilter)}
-                    className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
-                    aria-label={showFilter ? "Show trending" : "Show filters"}
-                  >
-                    <Filter className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`} />
-                  </button>
+          {/* RIGHT - TRENDING NOW */}
+      <div className={`space-y-4 sm:space-y-6 ${!showFeaturedPost ? 'lg:col-span-3' : ''}`}>
+  <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
+    {/* HEADER */}
+    <div className="flex items-center justify-between mb-4 sm:mb-6">
+      <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
+        <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+        Trending Now
+      </h3>
+    </div>
+
+    {/* TRENDING POSTS VIEW - Always visible */}
+    <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+      <div className="space-y-3 sm:space-y-4">
+        {trendingPosts.map((post, i) => (
+          <Link
+            key={i}
+            href={`/blogs/${post.slug}`}
+            className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+          >
+            <div className="flex items-start gap-3">
+              {/* NUMBER BADGE */}
+              <div className="flex-shrink-0">
+                <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
+                  {i + 1}
                 </div>
               </div>
-
-              {/* CONDITIONAL CONTENT */}
-              {showFilter ? (
-                // FILTER VIEW - Compact with custom scrollbar
-                <div className="mb-4">
-                  <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
-                    <div className="space-y-1">
-                      {blogCategories.map((cat) => (
-                        <button
-                          key={cat}
-                          onClick={() => {
-                            setSelectedCategory(cat);
-                            setShowFilter(false);
-                            setCurrentPage(1);
-                          }}
-                          className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-                            selectedCategory === cat
-                              ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
-                              : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
-                          }`}
-                        >
-                          <span className="truncate">{cat}</span>
-                          {selectedCategory === cat ? (
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                                Active
-                              </span>
-                              <div className="h-2 w-2 rounded-full bg-primary" />
-                            </div>
-                          ) : (
-                            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  
-                  {/* FILTER STATUS */}
-                  {selectedCategory !== "All Blogs" && (
-                    <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        Filtering: <span className="font-medium text-primary">{selectedCategory}</span>
-                      </span>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                        {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
-                      </span>
-                    </div>
-                  )}
+              
+              {/* CONTENT */}
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                    {post.category}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground truncate">
+                    {post.author.name}
+                  </span>
                 </div>
-              ) : (
-                // TRENDING POSTS VIEW - Always visible
-                <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-                  <div className="space-y-3 sm:space-y-4">
-                    {trendingPosts.map((post, i) => (
-                      <Link
-                        key={i}
-                        href={`/blogs/${post.slug}`}
-                        className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
-                      >
-                        <div className="flex items-start gap-3">
-                          {/* NUMBER BADGE */}
-                          <div className="flex-shrink-0">
-                            <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
-                              {i + 1}
-                            </div>
-                          </div>
-                          
-                          {/* CONTENT */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                              <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                                {post.category}
-                              </span>
-                              <span className="text-[10px] text-muted-foreground truncate">
-                                {post.author.name}
-                              </span>
-                            </div>
-                            <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
-                              {post.title}
-                            </h4>
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                <span>{post.date}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                <span>{post.readTime}</span>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          {/* ARROW INDICATOR */}
-                          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
-                        </div>
-                      </Link>
-                    ))}
+                <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                  {post.title}
+                </h4>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    <span>{post.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-3 w-3" />
+                    <span>{post.readTime}</span>
                   </div>
                 </div>
-              )}
-
-              {/* QUICK ACTION BUTTONS - Always visible */}
-              <div className="space-y-2 mt-4 pt-4 border-t border-border">
-                {!showFilter ? (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(true)}
-                  >
-                    <Filter className="h-3.5 w-3.5" />
-                    Filter Articles
-                    <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(false)}
-                  >
-                    <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                    Back to Trending
-                  </Button>
-                )}
-                
-                <Button
-                  variant="ghost"
-                  className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
-                  onClick={() => {
-                    setSelectedCategory("All Blogs");
-                    setCurrentPage(1);
-                    setShowFilter(false);
-                  }}
-                >
-                  View All Blogs
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Button>
-                
-                {selectedCategory !== "All Blogs" && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
-                    onClick={() => {
-                      setSelectedCategory("All Blogs");
-                      setCurrentPage(1);
-                      setShowFilter(false);
-                    }}
-                  >
-                    <X className="h-3.5 w-3.5 mr-1.5" />
-                    Clear {selectedCategory} Filter
-                  </Button>
-                )}
               </div>
+              
+              {/* ARROW INDICATOR */}
+              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
             </div>
-          </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+
+    {/* QUICK ACTION BUTTONS */}
+    <div className="space-y-2 mt-4 pt-4 border-t border-border">
+      <Button
+        variant="ghost"
+        className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
+        onClick={() => {
+          clearFilters();
+        }}
+      >
+        View All Blogs
+        <ArrowRight className="h-3.5 w-3.5" />
+      </Button>
+      
+      {selectedCategory !== "All Blogs" && (
+        <Button
+          variant="outline"
+          size="sm"
+          className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
+          onClick={clearFilters}
+        >
+          <X className="h-3.5 w-3.5 mr-1.5" />
+          Clear {selectedCategory} Filter
+        </Button>
+      )}
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
@@ -585,53 +463,73 @@ export default function BlogsPage() {
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
                 {selectedCategory === "All Blogs" ? "Latest Articles" : `${selectedCategory} Articles`}
-                {searchQuery && (
-                  <span className="text-lg sm:text-xl text-primary">
-                    {" "}
-                    - Search results for {searchQuery}
-                  </span>
-                )}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
                 {selectedCategory !== "All Blogs" && ` in ${selectedCategory}`}
-                {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
 
+            {/* DROPDOWN FILTER - Replaces search bar */}
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
-              {/* SEARCH BAR */}
               <div className="relative w-full sm:w-64">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
-                <Input
-                  type="search"
-                  placeholder="Search blogs..."
-                  className="pl-10 pr-10 w-full"
-                  value={searchQuery}
-                  onChange={handleSearchChange}
-                />
-                {searchQuery && (
+                <div className="relative">
                   <button
-                    onClick={clearSearch}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                    onClick={() => setShowMobileFilter(!showMobileFilter)}
+                    className="flex items-center justify-between w-full px-4 py-3 text-sm border border-border bg-white rounded-lg hover:bg-secondary/50 transition-colors"
                   >
-                    <X className="h-4 w-4" />
+                    <div className="flex items-center gap-3">
+                      <Filter className="h-4 w-4 text-muted-foreground" />
+                      <span className={selectedCategory === "All Blogs" ? "text-muted-foreground" : "text-foreground font-medium"}>
+                        {selectedCategory === "All Blogs" ? "Filter by Category" : selectedCategory}
+                      </span>
+                    </div>
+                    <ChevronRight className={`h-4 w-4 text-muted-foreground transition-transform ${showMobileFilter ? "rotate-90" : ""}`} />
                   </button>
-                )}
+                  
+                  {/* MOBILE FILTER DROPDOWN */}
+                  {showMobileFilter && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-lg shadow-lg z-50 max-h-[300px] overflow-y-auto">
+                      <div className="p-2">
+                        <div className="flex items-center justify-between px-3 py-2 border-b border-border">
+                          <h4 className="text-sm font-medium text-foreground">Categories</h4>
+                          <button
+                            onClick={() => setShowMobileFilter(false)}
+                            className="text-xs text-muted-foreground hover:text-foreground"
+                          >
+                            Close
+                          </button>
+                        </div>
+                        {blogCategories.map((cat) => (
+                          <button
+                            key={cat}
+                            onClick={() => handleCategorySelect(cat)}
+                            className={`w-full text-left px-3 py-2.5 rounded-md transition-colors flex items-center justify-between ${
+                              selectedCategory === cat
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "hover:bg-secondary/50 text-muted-foreground"
+                            }`}
+                          >
+                            <span>{cat}</span>
+                            {selectedCategory === cat && (
+                              <div className="h-2 w-2 rounded-full bg-primary" />
+                            )}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              {(selectedCategory !== "All Blogs" || searchQuery) && (
+              {selectedCategory !== "All Blogs" && (
                 <Button
                   variant="outline"
                   className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={() => {
-                    setSelectedCategory("All Blogs");
-                    setSearchQuery("");
-                    setCurrentPage(1);
-                  }}
+                  onClick={clearFilters}
                 >
                   <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Clear All
+                  Clear Filter
                 </Button>
               )}
             </div>
@@ -640,26 +538,16 @@ export default function BlogsPage() {
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Search className="h-8 w-8 text-muted-foreground" />
+                <Filter className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                {searchQuery
-                  ? `No articles found matching "${searchQuery}"${
-                      selectedCategory !== "All Blogs"
-                        ? ` in the "${selectedCategory}" category`
-                        : ""
-                    }`
-                  : `There are no blog posts in the "${selectedCategory}" category yet.`}
+                There are no blog posts in the {selectedCategory} category yet.
               </p>
               <Button
-                onClick={() => {
-                  setSelectedCategory("All Blogs");
-                  setSearchQuery("");
-                  setCurrentPage(1);
-                }}
+                onClick={clearFilters}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
               >
                 View All Blogs
