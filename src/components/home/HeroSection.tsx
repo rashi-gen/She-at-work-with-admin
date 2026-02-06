@@ -60,17 +60,17 @@ export const HeroSection = () => {
             <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
 
               {/* Trust Badge (Moved from headline hierarchy) */}
-              <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs sm:text-sm font-medium">
+              <div className="inline-flex items-center px-3 py-1 mb-4 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm sm:text-lg font-medium">
                 Since 2017 • Trusted Global Community
               </div>
 
               {/* Primary Headline (Action Driven) */}
               <h1 className="text-white leading-tight">
-                <span className="block text-3xl sm:text-5xl font-light">
+                <span className="block text-3xl sm:text-7xl font-light">
                   Turn Your Ambition
                 </span>
 
-                <span className="block text-4xl sm:text-6xl font-bold sm:font-extrabold mt-1 sm:mt-2">
+                <span className="block text-4xl sm:text-7xl font-bold sm:font-semibold mt-1 sm:mt-2">
                   Into Action
                 </span>
               </h1>
@@ -79,7 +79,7 @@ export const HeroSection = () => {
               <p className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl">
                 A dynamic one-stop knowledge hub dedicated to amplifying the
                 voices, achievements, and insights of women entrepreneurs
-                globally — helping ideas grow into impactful journeys.
+                globally - helping ideas grow into impactful journeys.
               </p>
 
               {/* Buttons */}
