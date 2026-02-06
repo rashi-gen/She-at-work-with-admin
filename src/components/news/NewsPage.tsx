@@ -12,13 +12,14 @@ import {
   Search,
   X,
 } from "lucide-react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "@/components/PageBanner";
 import { newsData } from "@/data/news";
 import Link from "next/link";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 
 // Define types for your news data
 interface NewsItem {
@@ -189,6 +190,121 @@ const calculateReadTime = (text: string): string => {
 // Items per page for pagination
 const ITEMS_PER_PAGE = 12;
 
+// Search Suggestions Component
+interface SearchSuggestionProps {
+  suggestions: Array<{
+    id: string;
+    title: string;
+    category: string;
+    source: string;
+    date: string;
+    slug: string;
+    relevance: number;
+  }>;
+  onSelect: (title: string) => void;
+  searchQuery: string;
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+const SearchSuggestions = ({ 
+  suggestions, 
+  onSelect, 
+  searchQuery, 
+  isVisible,
+  onClose
+}: SearchSuggestionProps) => {
+  if (!isVisible || suggestions.length === 0) return null;
+
+  return (
+    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[400px] overflow-y-auto">
+      <div className="p-2">
+        <div className="flex items-center justify-between px-3 py-2">
+          <div className="text-xs font-semibold text-muted-foreground">
+            Suggestions ({suggestions.length})
+          </div>
+          <button
+            onClick={onClose}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            Close
+          </button>
+        </div>
+        
+        {suggestions.map((suggestion) => (
+          <button
+            key={suggestion.id}
+            onClick={() => onSelect(suggestion.title)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors group"
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <Search className="h-4 w-4 text-muted-foreground mt-0.5" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase">
+                    {suggestion.category}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground truncate">
+                    {suggestion.source}
+                  </span>
+                </div>
+                
+                <h4 className="font-medium text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
+                  {/* Highlight matching text */}
+                  {suggestion.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, index) => 
+                    part.toLowerCase() === searchQuery.toLowerCase() ? (
+                      <span key={index} className="text-primary font-semibold bg-primary/10 px-0.5 rounded">
+                        {part}
+                      </span>
+                    ) : (
+                      <span key={index}>{part}</span>
+                    )
+                  )}
+                </h4>
+                
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>{suggestion.date}</span>
+                </div>
+              </div>
+              
+              <ChevronRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0" />
+            </div>
+          </button>
+        ))}
+        
+        {/* Show all results option */}
+        <div className="border-t border-border mt-2 pt-2">
+          <button
+            onClick={() => onSelect(searchQuery)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Search className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <div className="font-medium text-sm text-foreground">
+                    View all results for "{searchQuery}"
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {suggestions.length} articles found
+                  </div>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-primary" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [showFilter, setShowFilter] = useState(false);
@@ -211,6 +327,19 @@ export default function NewsPage() {
     }>
   >([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState<
+    Array<{
+      id: string;
+      title: string;
+      category: string;
+      source: string;
+      date: string;
+      slug: string;
+      relevance: number;
+    }>
+  >([]);
+  const searchRef = useRef<HTMLDivElement>(null);
 
   // Process news data on component mount
   useEffect(() => {
@@ -349,6 +478,61 @@ export default function NewsPage() {
     return headlines.slice(0, 3);
   }, [processedNews, showFeaturedNews, featuredNews]);
 
+  // Handle clicks outside search suggestions
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Generate search suggestions based on query
+  useEffect(() => {
+    if (searchQuery.trim().length >= 2) {
+      const query = searchQuery.toLowerCase().trim();
+      
+      const suggestions = processedNews
+        .map((article) => {
+          let relevance = 0;
+          
+          // Calculate relevance score
+          if (article.title.toLowerCase().includes(query)) relevance += 10;
+          if (article.excerpt.toLowerCase().includes(query)) relevance += 5;
+          if (article.fullContent.toLowerCase().includes(query)) relevance += 3;
+          if (article.category.toLowerCase().includes(query)) relevance += 8;
+          if (article.source.toLowerCase().includes(query)) relevance += 2;
+          
+          // Bonus for exact match at start of title
+          if (article.title.toLowerCase().startsWith(query)) relevance += 5;
+          
+          return {
+            id: article.id,
+            title: article.title,
+            category: article.category,
+            source: article.source,
+            date: article.date,
+            slug: article.slug,
+            relevance
+          };
+        })
+        .filter(item => item.relevance > 0) // Only include relevant suggestions
+        .sort((a, b) => b.relevance - a.relevance) // Sort by relevance
+        .slice(0, 8); // Limit to 8 suggestions
+      
+      setSearchSuggestions(suggestions);
+      setShowSuggestions(suggestions.length > 0);
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [searchQuery, processedNews]);
+
   // Handle page change
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -378,13 +562,42 @@ export default function NewsPage() {
 
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-    setCurrentPage(1); // Reset to first page when searching
+    const value = e.target.value;
+    setSearchQuery(value);
+    setCurrentPage(1);
+    
+    if (value.length >= 2) {
+      setShowSuggestions(true);
+    } else {
+      setShowSuggestions(false);
+    }
+  };
+
+  // Handle search suggestion selection
+  const handleSuggestionSelect = (title: string) => {
+    setSearchQuery(title);
+    setShowSuggestions(false);
+    setCurrentPage(1);
+    
+    // Focus on the search input after selection
+    const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.focus();
+    }
   };
 
   // Clear search query
   const clearSearch = () => {
     setSearchQuery("");
+    setSearchSuggestions([]);
+    setShowSuggestions(false);
+    setCurrentPage(1);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowSuggestions(false);
     setCurrentPage(1);
   };
 
@@ -757,25 +970,42 @@ export default function NewsPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
-              {/* SEARCH BAR */}
-          <div className="relative w-full sm:w-64">
-  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
-  <Input
-    type="search"
-    placeholder="Search news..."
-    className="pl-10 pr-10 w-full bg-white"
-    value={searchQuery}
-    onChange={handleSearchChange}
-  />
-  {searchQuery && (
-    <button
-      onClick={clearSearch}
-      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
-    >
-      <X className="h-4 w-4 text-black" />
-    </button>
-  )}
-</div>
+              {/* SEARCH BAR WITH SUGGESTIONS */}
+              <div className="relative w-full sm:w-64" ref={searchRef}>
+                <form onSubmit={handleSearchSubmit}>
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+                  <Input
+                    type="search"
+                    placeholder="Search news..."
+                    className="pl-10 pr-10 w-full bg-white"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => {
+                      if (searchQuery.length >= 2 && searchSuggestions.length > 0) {
+                        setShowSuggestions(true);
+                      }
+                    }}
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={clearSearch}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
+                    >
+                      <X className="h-4 w-4 text-black" />
+                    </button>
+                  )}
+                </form>
+                
+                {/* SEARCH SUGGESTIONS DROPDOWN */}
+                <SearchSuggestions
+                  suggestions={searchSuggestions}
+                  onSelect={handleSuggestionSelect}
+                  searchQuery={searchQuery}
+                  isVisible={showSuggestions}
+                  onClose={() => setShowSuggestions(false)}
+                />
+              </div>
 
               {(selectedCategory !== "All News" || searchQuery) && (
                 <Button
@@ -784,6 +1014,8 @@ export default function NewsPage() {
                   onClick={() => {
                     setSelectedCategory("All News");
                     setSearchQuery("");
+                    setSearchSuggestions([]);
+                    setShowSuggestions(false);
                     setCurrentPage(1);
                   }}
                 >
@@ -815,6 +1047,8 @@ export default function NewsPage() {
                 onClick={() => {
                   setSelectedCategory("All News");
                   setSearchQuery("");
+                  setSearchSuggestions([]);
+                  setShowSuggestions(false);
                   setCurrentPage(1);
                 }}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
