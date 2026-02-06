@@ -79,7 +79,7 @@ export const HeroSection = () => {
               <p className="mt-5 sm:mt-6 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl">
                 A dynamic one-stop knowledge hub dedicated to amplifying the
                 voices, achievements, and insights of women entrepreneurs
-                globally - helping ideas grow into impactful journeys.
+                globally - <br/> helping ideas grow into impactful journeys.
               </p>
 
               {/* Buttons */}
