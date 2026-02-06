@@ -394,7 +394,7 @@ export default function NewsPage() {
         <PageBanner
           title="Women in Business News"
           description="Stay informed with the latest news, insights, and success stories from women entrepreneurs worldwide"
-          image="/FinalNewsbanner.png"
+          image="/finalNewsbanner.png"
         />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
@@ -414,7 +414,7 @@ export default function NewsPage() {
           <div
             className="w-full h-full"
             style={{
-              backgroundImage: `url(/FinalNewsbanner.png)`,
+              backgroundImage: `url(/finalNewsbanner.png)`,
               backgroundPosition: "center center",
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
