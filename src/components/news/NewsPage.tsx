@@ -895,15 +895,7 @@ export default function NewsPage() {
               {/* QUICK ACTION BUTTONS - Always visible */}
               <div className="space-y-2 mt-4 pt-4 border-t border-border">
                 {!showFilter ? (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(true)}
-                  >
-                    <Filter className="h-3.5 w-3.5" />
-                    Filter Articles
-                    <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </Button>
+                <></>
                 ) : (
                   <Button
                     variant="ghost"
