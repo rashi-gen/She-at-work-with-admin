@@ -107,7 +107,7 @@ export default function ContactPage() {
          <PageBanner
               title="Get In Touch"
               description=" Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey."
-              image="/contactus/Contactusbanner.png"
+              image="/FinalContactusbanner.png"
             />
   
 

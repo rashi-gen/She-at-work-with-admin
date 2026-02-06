@@ -584,7 +584,7 @@ export default function EventsPage() {
         <PageBanner
           title="Events"
           description="Join workshops, webinars and networking opportunities designed to empower and inspire"
-          image="/events/Eventsbanner.png"
+          image="/FinalEventsbanner.png"
         />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
@@ -602,7 +602,7 @@ export default function EventsPage() {
       <PageBanner
         title="Events"
         description="Join workshops, webinars and networking opportunities designed to empower and inspire"
-        image="/events/Eventsbanner.png"
+        image="/FinalEventsbanner.png"
       >
         {selectedCategory !== "All Events" && (
           <div className="mb-4">

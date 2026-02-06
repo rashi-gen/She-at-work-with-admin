@@ -65,7 +65,7 @@ export default function ShareYourStory() {
        <PageBanner
               title="Share Your Entrepreneurial Journey Inspire Our Community"
               description=" Your story has the power to inspire the next generation of women entrepreneurs. Join our community of 975+ published stories and make your voice heard."
-              image="/Shareyourstorybanner.png"
+              image="/finalshareyourstorybanner.png"
             />
 
 

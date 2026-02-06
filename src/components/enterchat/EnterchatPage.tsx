@@ -279,7 +279,7 @@ export default function EntreChatPage() {
       <PageBanner
         title="EntreChat Community"
         description="Exclusive interviews with inspiring women entrepreneurs sharing their journeys, insights, and advice"
-        image="/entrechat/Entrechatbanner.png"
+        image="/FinalEntrechatbanner.png"
       >
         {/* Active filter indicator */}
         {selectedCategory !== "All Interviews" && (

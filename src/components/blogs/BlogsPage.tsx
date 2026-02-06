@@ -2,12 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { blogsData } from "@/data/Blogs";
-import { ArrowRight, Calendar, ChevronRight, Clock, Filter, Menu, X } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, Clock, Filter, Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+import { Input } from "@/components/ui/input";
 
 // Define types for your blog data
 interface BlogItem {
@@ -115,6 +116,7 @@ export default function BlogsPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
   const [processedBlogs, setProcessedBlogs] = useState<Array<{
     id: string;
     category: string;
@@ -203,38 +205,63 @@ export default function BlogsPage() {
   const featuredBlog = processedBlogs.length > 0 ? processedBlogs[0] : null;
 
   // Get trending posts (most recent 4 articles)
-  const trendingPosts = processedBlogs.slice(0, 4);
-
-  // Filter blog posts based on selected category
-  const getFilteredPosts = () => {
-    if (selectedCategory === "All Blogs") {
-      return processedBlogs;
+  const trendingPosts = useMemo(() => {
+    let posts = processedBlogs;
+    // If featured blog is shown, exclude it from trending
+    if (featuredBlog) {
+      posts = posts.filter(blog => blog.id !== featuredBlog.id);
     }
-    return processedBlogs.filter(post => 
-      post.category.toLowerCase() === selectedCategory.toLowerCase()
-    );
+    return posts.slice(0, 4);
+  }, [processedBlogs, featuredBlog]);
+
+  // Filter blog posts based on selected category and search query
+  const getFilteredPosts = () => {
+    let filtered = processedBlogs;
+
+    // Filter by category
+    if (selectedCategory !== "All Blogs") {
+      filtered = filtered.filter(post => 
+        post.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Filter by search query
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (post) =>
+          post.title.toLowerCase().includes(query) ||
+          post.excerpt.toLowerCase().includes(query) ||
+          post.fullContent.toLowerCase().includes(query) ||
+          post.category.toLowerCase().includes(query) ||
+          post.author.name.toLowerCase().includes(query)
+      );
+    }
+
+    return filtered;
   };
 
   // Check if featured post should be shown
   const shouldShowFeaturedPost = () => {
-    if (!featuredBlog || selectedCategory === "All Blogs") return true;
+    if (!featuredBlog) return false;
+    
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      const isFeaturedInSearchResults =
+        featuredBlog.title.toLowerCase().includes(query) ||
+        featuredBlog.excerpt.toLowerCase().includes(query) ||
+        featuredBlog.fullContent.toLowerCase().includes(query) ||
+        featuredBlog.category.toLowerCase().includes(query) ||
+        featuredBlog.author.name.toLowerCase().includes(query);
+      return isFeaturedInSearchResults;
+    }
+    
+    if (selectedCategory === "All Blogs") return true;
     return featuredBlog.category.toLowerCase() === selectedCategory.toLowerCase();
   };
 
   const filteredPosts = getFilteredPosts();
   const showFeaturedPost = shouldShowFeaturedPost();
-
-  // Get filtered trending posts
-  // const getFilteredTrendingPosts = () => {
-  //   if (selectedCategory === "All Blogs") {
-  //     return trendingPosts;
-  //   }
-  //   return trendingPosts.filter(post => 
-  //     post.category.toLowerCase() === selectedCategory.toLowerCase()
-  //   ).slice(0, 4);
-  // };
-
-  // const filteredTrendingPosts = getFilteredTrendingPosts();
 
   // Pagination calculations
   const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
@@ -246,6 +273,18 @@ export default function BlogsPage() {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset to first page when searching
+  };
+
+  // Clear search query
+  const clearSearch = () => {
+    setSearchQuery("");
+    setCurrentPage(1);
   };
 
   if (isLoading) {
@@ -272,7 +311,7 @@ export default function BlogsPage() {
       <PageBanner
         title="Inspiring Blogs"
         description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
-        image="/blogs/Blogsbanner.png"
+        image="/finalBlogsbanner.png"
       >
         {/* Active filter indicator */}
         {selectedCategory !== "All Blogs" && (
@@ -360,7 +399,6 @@ export default function BlogsPage() {
                       alt={featuredBlog.title}
                       fill
                       className="object-cover"
-                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
                       priority
                     />
                   ) : (
@@ -370,7 +408,6 @@ export default function BlogsPage() {
                       </div>
                     </div>
                   )}
-                  {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" /> */}
                 </div>
 
                 {/* CONTENT */}
@@ -606,42 +643,79 @@ export default function BlogsPage() {
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
                 {selectedCategory === "All Blogs" ? "Latest Articles" : `${selectedCategory} Articles`}
+                {searchQuery && (
+                  <span className="text-lg sm:text-xl text-primary">
+                    {" "}
+                    - Search results for {searchQuery}
+                  </span>
+                )}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
                 {selectedCategory !== "All Blogs" && ` in ${selectedCategory}`}
+                {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
 
-            {selectedCategory !== "All Blogs" && (
-              <Button
-                variant="outline"
-                className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                onClick={() => {
-                  setSelectedCategory("All Blogs");
-                  setCurrentPage(1);
-                }}
-              >
-                <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                Clear Filter
-              </Button>
-            )}
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
+              {/* SEARCH BAR */}
+              <div className="relative w-full sm:w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+                <Input
+                  type="search"
+                  placeholder="Search blogs..."
+                  className="pl-10 pr-10 w-full"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={clearSearch}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                )}
+              </div>
+
+              {(selectedCategory !== "All Blogs" || searchQuery) && (
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                  onClick={() => {
+                    setSelectedCategory("All Blogs");
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                  }}
+                >
+                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                  Clear All
+                </Button>
+              )}
+            </div>
           </div>
 
           {filteredPosts.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Filter className="h-8 w-8 text-muted-foreground" />
+                <Search className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no blog posts in the &quot;{selectedCategory}&quot; category yet.
+                {searchQuery
+                  ? `No articles found matching "${searchQuery}"${
+                      selectedCategory !== "All Blogs"
+                        ? ` in the "${selectedCategory}" category`
+                        : ""
+                    }`
+                  : `There are no blog posts in the "${selectedCategory}" category yet.`}
               </p>
               <Button
                 onClick={() => {
                   setSelectedCategory("All Blogs");
+                  setSearchQuery("");
                   setCurrentPage(1);
                 }}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"

@@ -9,14 +9,16 @@ import {
   Clock,
   ExternalLink,
   Filter,
+  Search,
   X,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "@/components/PageBanner";
 import { newsData } from "@/data/news";
 import Link from "next/link";
 import Image from "next/image";
+import { Input } from "@/components/ui/input";
 
 // Define types for your news data
 interface NewsItem {
@@ -191,6 +193,7 @@ export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState("");
   const [processedNews, setProcessedNews] = useState<
     Array<{
       slug: any;
@@ -280,20 +283,48 @@ export default function NewsPage() {
   // Get featured news (most recent)
   const featuredNews = processedNews.length > 0 ? processedNews[0] : null;
 
-  // Filter news articles based on selected category
+  // Filter news articles based on selected category and search query
   const getFilteredNews = () => {
-    if (selectedCategory === "All News") {
-      return processedNews;
+    let filtered = processedNews;
+
+    // First filter by category
+    if (selectedCategory !== "All News") {
+      filtered = filtered.filter(
+        (article) =>
+          article.category.toLowerCase() === selectedCategory.toLowerCase(),
+      );
     }
-    return processedNews.filter(
-      (article) =>
-        article.category.toLowerCase() === selectedCategory.toLowerCase(),
-    );
+
+    // Then filter by search query if it exists
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (article) =>
+          article.title.toLowerCase().includes(query) ||
+          article.excerpt.toLowerCase().includes(query) ||
+          article.fullContent.toLowerCase().includes(query) ||
+          article.category.toLowerCase().includes(query) ||
+          article.source.toLowerCase().includes(query),
+      );
+    }
+
+    return filtered;
   };
 
   // Check if featured news should be shown
   const shouldShowFeaturedNews = () => {
-    if (!featuredNews || selectedCategory === "All News") return true;
+    if (!featuredNews) return false;
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      const isFeaturedInSearchResults =
+        featuredNews.title.toLowerCase().includes(query) ||
+        featuredNews.excerpt.toLowerCase().includes(query) ||
+        featuredNews.fullContent.toLowerCase().includes(query) ||
+        featuredNews.category.toLowerCase().includes(query) ||
+        featuredNews.source.toLowerCase().includes(query);
+      return isFeaturedInSearchResults;
+    }
+    if (selectedCategory === "All News") return true;
     return (
       featuredNews.category.toLowerCase() === selectedCategory.toLowerCase()
     );
@@ -308,8 +339,15 @@ export default function NewsPage() {
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentNews = filteredNews.slice(startIndex, endIndex);
 
-  // Get latest headlines (most recent 3 articles)
-  const latestHeadlines = processedNews.slice(0, 3);
+  // Get latest headlines (most recent 3 articles, excluding featured if it's shown)
+  const latestHeadlines = useMemo(() => {
+    let headlines = processedNews;
+    // If featured news is shown, exclude it from latest headlines
+    if (showFeaturedNews && featuredNews) {
+      headlines = headlines.filter((news) => news.id !== featuredNews.id);
+    }
+    return headlines.slice(0, 3);
+  }, [processedNews, showFeaturedNews, featuredNews]);
 
   // Handle page change
   const handlePageChange = (page: number) => {
@@ -338,6 +376,18 @@ export default function NewsPage() {
     }
   };
 
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+    setCurrentPage(1); // Reset to first page when searching
+  };
+
+  // Clear search query
+  const clearSearch = () => {
+    setSearchQuery("");
+    setCurrentPage(1);
+  };
+
   if (isLoading) {
     return (
       <main className="bg-background min-h-screen">
@@ -358,12 +408,39 @@ export default function NewsPage() {
 
   return (
     <main className="bg-background min-h-screen">
-      {/* HERO BANNER */}
-      <PageBanner
-        title="Women in Business News"
-        description="Stay informed with the latest news, insights, and success stories from women entrepreneurs worldwide"
-        image="/news/Newsbanner.png"
-      />
+      <section className={`relative h-[470px] overflow-hidden pt-24`}>
+        {/* Background Image */}
+        <div className="absolute inset-0" style={{ top: "96px" }}>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `url(/FinalNewsbanner.png)`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </div>
+
+        {/* Content - Left aligned */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
+              {/* Title */}
+              <h1 className="text-white leading-tight">
+                <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold sm:font-extrabold ">
+                  Women in Business News
+                </span>
+              </h1>
+
+              <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
+                Stay informed with the latest news, insights, and success
+                stories <br /> from women entrepreneurs worldwide
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
@@ -390,7 +467,6 @@ export default function NewsPage() {
                       alt={featuredNews.title}
                       fill
                       className="object-cover object-top"
-                      // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority
                     />
                   ) : (
@@ -461,191 +537,198 @@ export default function NewsPage() {
           )}
 
           {/* SIDEBAR - LATEST HEADLINES */}
-     {/* SIDEBAR - LATEST HEADLINES WITH IMPROVED FILTER AND SCROLLBAR */}
-<div className={`space-y-4 sm:space-y-6 ${!showFeaturedNews ? "lg:col-span-3" : ""}`}>
-  <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-    {/* HEADER WITH FILTER TOGGLE */}
-    <div className="flex items-center justify-between mb-4 sm:mb-6">
-      <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-        <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-        {showFilter ? "Filter by Category" : "Latest Headlines"}
-      </h3>
-      <div className="flex items-center gap-2">
-        {selectedCategory !== "All News" && !showFilter && (
-          <button
-            onClick={() => {
-              setSelectedCategory("All News");
-              setCurrentPage(1);
-            }}
-            className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+          <div
+            className={`space-y-4 sm:space-y-6 ${!showFeaturedNews ? "lg:col-span-3" : ""}`}
           >
-            Clear
-          </button>
-        )}
-        <button
-          onClick={() => setShowFilter(!showFilter)}
-          className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
-          aria-label={showFilter ? "Show headlines" : "Show filters"}
-        >
-          <Filter className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`} />
-        </button>
-      </div>
-    </div>
-
-    {/* CONDITIONAL CONTENT */}
-    {showFilter ? (
-      // FILTER VIEW - Compact with custom scrollbar
-      <div className="mb-4">
-        <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
-          <div className="space-y-1">
-            {newsCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => {
-                  setSelectedCategory(cat);
-                  setShowFilter(false);
-                  setCurrentPage(1);
-                }}
-                className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-                  selectedCategory === cat
-                    ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
-                    : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
-                }`}
-              >
-                <span className="truncate">{cat}</span>
-                {selectedCategory === cat ? (
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                      Active
-                    </span>
-                    <div className="h-2 w-2 rounded-full bg-primary" />
-                  </div>
-                ) : (
-                  <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-        
-        {/* FILTER STATUS */}
-        {selectedCategory !== "All News" && (
-          <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">
-              Filtering: <span className="font-medium text-primary">{selectedCategory}</span>
-            </span>
-            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-              {filteredNews.length} {filteredNews.length === 1 ? 'article' : 'articles'}
-            </span>
-          </div>
-        )}
-      </div>
-    ) : (
-      // LATEST HEADLINES VIEW - Always visible
-      <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-        <div className="space-y-3 sm:space-y-4">
-          {latestHeadlines.map((news, i) => (
-            <Link
-              key={i}
-              href={`/news/${news.slug}`}
-              className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
-            >
-              <div className="flex items-start gap-3">
-                {/* NUMBER BADGE */}
-                <div className="flex-shrink-0">
-                  <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
-                    {i + 1}
-                  </div>
+            <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
+              {/* HEADER WITH FILTER TOGGLE */}
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
+                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
+                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                  {showFilter ? "Filter by Category" : "Latest Headlines"}
+                </h3>
+                <div className="flex items-center gap-2">
+                  {selectedCategory !== "All News" && !showFilter && (
+                    <button
+                      onClick={() => {
+                        setSelectedCategory("All News");
+                        setCurrentPage(1);
+                      }}
+                      className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                    >
+                      Clear
+                    </button>
+                  )}
+                  <button
+                    onClick={() => setShowFilter(!showFilter)}
+                    className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
+                    aria-label={showFilter ? "Show headlines" : "Show filters"}
+                  >
+                    <Filter
+                      className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`}
+                    />
+                  </button>
                 </div>
-                
-                {/* CONTENT */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                    <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                      {news.category}
-                    </span>
-                    <span className="text-[10px] text-muted-foreground truncate">
-                      {news.source}
-                    </span>
-                  </div>
-                  <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
-                    {news.title}
-                  </h4>
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="h-3 w-3" />
-                      <span>{news.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      <span>{news.readTime}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* ARROW INDICATOR */}
-                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
               </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    )}
 
-    {/* QUICK ACTION BUTTONS - Always visible */}
-    <div className="space-y-2 mt-4 pt-4 border-t border-border">
-      {!showFilter ? (
-        <Button
-          variant="ghost"
-          className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
-          onClick={() => setShowFilter(true)}
-        >
-          <Filter className="h-3.5 w-3.5" />
-          Filter Articles
-          <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-        </Button>
-      ) : (
-        <Button
-          variant="ghost"
-          className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
-          onClick={() => setShowFilter(false)}
-        >
-          <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-          Back to Headlines
-        </Button>
-      )}
-      
-      <Button
-        variant="ghost"
-        className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
-        onClick={() => {
-          setSelectedCategory("All News");
-          setCurrentPage(1);
-          setShowFilter(false);
-        }}
-      >
-        View All News
-        <ExternalLink className="h-3.5 w-3.5" />
-      </Button>
-      
-      {selectedCategory !== "All News" && (
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
-          onClick={() => {
-            setSelectedCategory("All News");
-            setCurrentPage(1);
-            setShowFilter(false);
-          }}
-        >
-          <X className="h-3.5 w-3.5 mr-1.5" />
-          Clear {selectedCategory} Filter
-        </Button>
-      )}
-    </div>
-  </div>
-</div>
+              {/* CONDITIONAL CONTENT */}
+              {showFilter ? (
+                // FILTER VIEW - Compact with custom scrollbar
+                <div className="mb-4">
+                  <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
+                    <div className="space-y-1">
+                      {newsCategories.map((cat) => (
+                        <button
+                          key={cat}
+                          onClick={() => {
+                            setSelectedCategory(cat);
+                            setShowFilter(false);
+                            setCurrentPage(1);
+                          }}
+                          className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
+                            selectedCategory === cat
+                              ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
+                              : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
+                          }`}
+                        >
+                          <span className="truncate">{cat}</span>
+                          {selectedCategory === cat ? (
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                              <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                                Active
+                              </span>
+                              <div className="h-2 w-2 rounded-full bg-primary" />
+                            </div>
+                          ) : (
+                            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
+                          )}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* FILTER STATUS */}
+                  {selectedCategory !== "All News" && (
+                    <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
+                      <span className="text-sm text-muted-foreground">
+                        Filtering:{" "}
+                        <span className="font-medium text-primary">
+                          {selectedCategory}
+                        </span>
+                      </span>
+                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
+                        {filteredNews.length}{" "}
+                        {filteredNews.length === 1 ? "article" : "articles"}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                // LATEST HEADLINES VIEW - Always visible
+                <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                  <div className="space-y-3 sm:space-y-4">
+                    {latestHeadlines.map((news, i) => (
+                      <Link
+                        key={i}
+                        href={`/news/${news.slug}`}
+                        className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+                      >
+                        <div className="flex items-start gap-3">
+                          {/* NUMBER BADGE */}
+                          <div className="flex-shrink-0">
+                            <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
+                              {i + 1}
+                            </div>
+                          </div>
+
+                          {/* CONTENT */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                              <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                                {news.category}
+                              </span>
+                              <span className="text-[10px] text-muted-foreground truncate">
+                                {news.source}
+                              </span>
+                            </div>
+                            <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                              {news.title}
+                            </h4>
+                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                              <div className="flex items-center gap-1">
+                                <Calendar className="h-3 w-3" />
+                                <span>{news.date}</span>
+                              </div>
+                              <div className="flex items-center gap-1">
+                                <Clock className="h-3 w-3" />
+                                <span>{news.readTime}</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* ARROW INDICATOR */}
+                          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* QUICK ACTION BUTTONS - Always visible */}
+              <div className="space-y-2 mt-4 pt-4 border-t border-border">
+                {!showFilter ? (
+                  <Button
+                    variant="ghost"
+                    className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
+                    onClick={() => setShowFilter(true)}
+                  >
+                    <Filter className="h-3.5 w-3.5" />
+                    Filter Articles
+                    <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </Button>
+                ) : (
+                  <Button
+                    variant="ghost"
+                    className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
+                    onClick={() => setShowFilter(false)}
+                  >
+                    <ChevronRight className="h-3.5 w-3.5 rotate-180" />
+                    Back to Headlines
+                  </Button>
+                )}
+
+                <Button
+                  variant="ghost"
+                  className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
+                  onClick={() => {
+                    setSelectedCategory("All News");
+                    setCurrentPage(1);
+                    setShowFilter(false);
+                  }}
+                >
+                  View All News
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </Button>
+
+                {selectedCategory !== "All News" && (
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
+                    onClick={() => {
+                      setSelectedCategory("All News");
+                      setCurrentPage(1);
+                      setShowFilter(false);
+                    }}
+                  >
+                    <X className="h-3.5 w-3.5 mr-1.5" />
+                    Clear {selectedCategory} Filter
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -658,44 +741,80 @@ export default function NewsPage() {
                 {selectedCategory === "All News"
                   ? "All News Articles"
                   : `${selectedCategory} Articles`}
+                {searchQuery && (
+                  <span className="text-lg sm:text-xl text-primary">
+                    {" "}
+                    - Search results for {searchQuery}
+                  </span>
+                )}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {filteredNews.length}{" "}
                 {filteredNews.length === 1 ? "article" : "articles"} found
                 {selectedCategory !== "All News" && ` in ${selectedCategory}`}
+                {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
 
-            {selectedCategory !== "All News" && (
-              <Button
-                variant="outline"
-                className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                onClick={() => {
-                  setSelectedCategory("All News");
-                  setCurrentPage(1);
-                }}
-              >
-                <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                Clear Filter
-              </Button>
-            )}
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
+              {/* SEARCH BAR */}
+          <div className="relative w-full sm:w-64">
+  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+  <Input
+    type="search"
+    placeholder="Search news..."
+    className="pl-10 pr-10 w-full bg-white"
+    value={searchQuery}
+    onChange={handleSearchChange}
+  />
+  {searchQuery && (
+    <button
+      onClick={clearSearch}
+      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
+    >
+      <X className="h-4 w-4 text-black" />
+    </button>
+  )}
+</div>
+
+              {(selectedCategory !== "All News" || searchQuery) && (
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                  onClick={() => {
+                    setSelectedCategory("All News");
+                    setSearchQuery("");
+                    setCurrentPage(1);
+                  }}
+                >
+                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                  Clear All
+                </Button>
+              )}
+            </div>
           </div>
 
           {filteredNews.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Filter className="h-8 w-8 text-muted-foreground" />
+                <Search className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no news articles in the &quot;{selectedCategory}&quot;
-                category yet.
+                {searchQuery
+                  ? `No articles found matching "${searchQuery}"${
+                      selectedCategory !== "All News"
+                        ? ` in the "${selectedCategory}" category`
+                        : ""
+                    }`
+                  : `There are no news articles in the "${selectedCategory}" category yet.`}
               </p>
               <Button
                 onClick={() => {
                   setSelectedCategory("All News");
+                  setSearchQuery("");
                   setCurrentPage(1);
                 }}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
@@ -729,13 +848,6 @@ export default function NewsPage() {
                           </div>
                         </div>
                       )}
-
-                      {/* SOURCE BADGE */}
-                      {/* <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
-                        <span className="px-2 py-1 sm:px-3 sm:py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-semibold text-foreground truncate max-w-[120px]">
-                          {news.source}
-                        </span>
-                      </div> */}
                     </div>
 
                     {/* CONTENT */}

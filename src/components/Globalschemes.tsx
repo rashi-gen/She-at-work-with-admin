@@ -45,7 +45,7 @@ export default function GlobalschemeComponent() {
       <PageBanner
         title="Global Scheme"
         description="Check out options in the country that can set you up as an independent entrepreneur…your journey starts now!"
-        image="/Gettingstarted.png"
+        image="/finalGettingstartedbanner.png"
       />
 
       {/* ================= MAIN CONTENT ================= */}
