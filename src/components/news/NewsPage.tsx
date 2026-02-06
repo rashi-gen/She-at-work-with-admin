@@ -779,6 +779,8 @@ export default function NewsPage() {
                     <Filter
                       className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`}
                     />
+                    <span>Filter by catergory</span>
+
                   </button>
                 </div>
               </div>
