@@ -428,8 +428,8 @@ export default function NewsPage() {
             <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
               {/* Title */}
               <h1 className="text-white leading-tight">
-                <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold sm:font-extrabold ">
-                  Women in Business News
+                <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
+                  Women in<br/> Business News
                 </span>
               </h1>
 

@@ -598,69 +598,49 @@ export default function EventsPage() {
 
   return (
     <main className="bg-background min-h-screen flex flex-col">
-      {/* ================= HERO BANNER ================= */}
-      <PageBanner
-        title="Events"
-        description="Join workshops, webinars and networking opportunities designed to empower and inspire"
-        image="/FinalEventsbanner.png"
-      >
-        {selectedCategory !== "All Events" && (
-          <div className="mb-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
-              <span>Filtering by:</span>
-              <span className="font-semibold">{selectedCategory}</span>
-              <button 
-                onClick={() => {
-                  setSelectedCategory("All Events");
-                  setCurrentPage(1);
-                }}
-                className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-              >
-                <X className="h-3 w-3" />
-              </button>
+ 
+
+
+         <section className={`relative h-[470px] overflow-hidden pt-24`}>
+        {/* Background Image */}
+        <div className="absolute inset-0" style={{ top: "96px" }}>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `url(/FinalEventsbanner.png)`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+          {/* Overlay for better text readability */}
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" /> */}
+        </div>
+
+        {/* Content - Left aligned */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
+              {/* Title */}
+              <h1 className="text-white leading-tight">
+                <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
+                  Events
+                </span>
+              </h1>
+
+              {/* Description */}
+
+              <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
+              Join workshops, webinars and networking opportunities designed <br/> to empower and inspire"
+              </p>
+
+           
             </div>
           </div>
-        )}
-
-        <div className="lg:hidden mb-4">
-          <Button
-            variant="outline"
-            className="bg-white/20 text-white border-white/30 w-full hover:bg-white/30"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="h-4 w-4 mr-2" />
-            ) : (
-              <Menu className="h-4 w-4 mr-2" />
-            )}
-            Categories
-          </Button>
         </div>
+      </section>
+     
 
-        <div
-          className={`${
-            mobileMenuOpen ? "block" : "hidden lg:flex"
-          } flex-col lg:flex-row flex-wrap gap-2 sm:gap-3`}
-        >
-          {eventCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setSelectedCategory(cat);
-                setMobileMenuOpen(false);
-                setCurrentPage(1);
-              }}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                selectedCategory === cat
-                  ? "bg-white text-primary shadow-lg scale-105"
-                  : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </PageBanner>
 
       {/* ================= FEATURED EVENT ================= */}
       {showFeaturedEvent && featuredEvent && (
