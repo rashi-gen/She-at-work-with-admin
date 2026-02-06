@@ -2,26 +2,25 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { eventsData } from "@/data/events";
+import { openEventRegistrationEmail } from "@/hooks/Emailutils";
 import {
   ArrowRight,
   Calendar,
   Clock,
   Filter,
   IndianRupee,
+  Mail,
   MapPin,
-  Menu,
   TrendingUp,
   Users,
-  X,
-  Mail
+  X
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-import { eventsData } from "@/data/events";
-import { openEventRegistrationEmail } from "@/hooks/Emailutils";
 
 // Define types for your events data
 interface EventItem {
@@ -413,7 +412,7 @@ interface ProcessedEvent {
 
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Events");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [processedEvents, setProcessedEvents] = useState<ProcessedEvent[]>([]);
@@ -631,7 +630,7 @@ export default function EventsPage() {
               {/* Description */}
 
               <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-              Join workshops, webinars and networking opportunities designed <br/> to empower and inspire"
+              Join workshops, webinars and networking opportunities designed <br/> to empower and inspire
               </p>
 
            

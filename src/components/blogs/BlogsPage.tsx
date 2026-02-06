@@ -1,14 +1,14 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { blogsData } from "@/data/Blogs";
-import { ArrowRight, Calendar, ChevronRight, Clock, Filter, Menu, Search, X } from "lucide-react";
+import { ArrowRight, Calendar, ChevronRight, Clock, Filter, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
-import { Input } from "@/components/ui/input";
 
 // Define types for your blog data
 interface BlogItem {
@@ -113,7 +113,7 @@ const ITEMS_PER_PAGE = 12;
 
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
@@ -313,65 +313,7 @@ export default function BlogsPage() {
         description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
         image="/finalBlogsbanner.png"
       >
-        {/* Active filter indicator */}
-        {selectedCategory !== "All Blogs" && (
-          <div className="mb-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm">
-              <span>Filtering by:</span>
-              <span className="font-semibold">{selectedCategory}</span>
-              <button 
-                onClick={() => {
-                  setSelectedCategory("All Blogs");
-                  setCurrentPage(1);
-                }}
-                className="ml-2 p-1 hover:bg-white/20 rounded-full transition-colors"
-              >
-                <X className="h-3 w-3" />
-              </button>
-            </div>
-          </div>
-        )}
-
-        {/* MOBILE CATEGORY MENU TOGGLE */}
-        <div className="lg:hidden mb-4">
-          <Button
-            variant="outline"
-            className="bg-white/20 text-white border-white/30 w-full hover:bg-white/30"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          >
-            {mobileMenuOpen ? (
-              <X className="h-4 w-4 mr-2" />
-            ) : (
-              <Menu className="h-4 w-4 mr-2" />
-            )}
-            Categories
-          </Button>
-        </div>
-
-        {/* CATEGORY FILTERS */}
-        <div
-          className={`${
-            mobileMenuOpen ? "block" : "hidden lg:flex"
-          } flex-col lg:flex-row flex-wrap gap-2 sm:gap-3`}
-        >
-          {blogCategories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => {
-                setSelectedCategory(cat);
-                setMobileMenuOpen(false);
-                setCurrentPage(1);
-              }}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 ${
-                selectedCategory === cat
-                  ? "bg-white text-primary shadow-lg scale-105"
-                  : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+ 
       </PageBanner>
 
       {/* ================= FEATURED POST + TRENDING ================= */}

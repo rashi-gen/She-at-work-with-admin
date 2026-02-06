@@ -9,8 +9,7 @@ import {
   ChevronRight,
   Clock,
   Filter,
-  Menu,
-  X,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -184,7 +183,7 @@ const ITEMS_PER_PAGE = 12;
 
 export default function EntreChatPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Interviews");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [processedInterviews, setProcessedInterviews] = useState<
