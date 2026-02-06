@@ -772,16 +772,19 @@ export default function NewsPage() {
                     </button>
                   )}
                   <button
-                    onClick={() => setShowFilter(!showFilter)}
-                    className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
-                    aria-label={showFilter ? "Show headlines" : "Show filters"}
-                  >
-                    <Filter
-                      className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`}
-                    />
-                    <span>Filter by catergory</span>
+  onClick={() => setShowFilter(!showFilter)}
+  className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-secondary transition-colors"
+  aria-label={showFilter ? "Show headlines" : "Show filters"}
+>
+  <span>Filter Articles</span>
 
-                  </button>
+  <Filter
+    className={`h-4 w-4 ${
+      showFilter ? "text-primary" : "text-muted-foreground"
+    }`}
+  />
+</button>
+
                 </div>
               </div>
 
