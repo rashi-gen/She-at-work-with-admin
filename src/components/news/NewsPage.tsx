@@ -394,7 +394,7 @@ export default function NewsPage() {
         <PageBanner
           title="Women in Business News"
           description="Stay informed with the latest news, insights, and success stories from women entrepreneurs worldwide"
-          image="/news/Newsbanner.png"
+          image="/FinalNewsbanner.png"
         />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">

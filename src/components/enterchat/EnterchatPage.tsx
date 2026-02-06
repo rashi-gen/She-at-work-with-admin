@@ -261,7 +261,7 @@ export default function EntreChatPage() {
         <PageBanner
           title="EntreChat Community"
           description="Exclusive interviews with inspiring women entrepreneurs sharing their journeys, insights, and advice"
-          image="/entrechat/Entrechatbanner.png"
+          image="/FinalEntrechatbanner.png"
         />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">

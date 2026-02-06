@@ -293,7 +293,7 @@ export default function BlogsPage() {
         <PageBanner
           title="Inspiring Blogs"
           description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
-          image="/blogs/Blogsbanner.png"
+          image="/finalBlogsbanner.png"
         />
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
