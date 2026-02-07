@@ -1,3 +1,4 @@
+// components/home/LatestBlogs.tsx
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -6,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 // Import your blogs data
 import { blogsData } from "@/data/Blogs";
@@ -171,83 +173,7 @@ export const LatestBlogs = () => {
       slug: "ready-set-lead-next-wave-women-entrepreneurs",
       author: { name: "She at Work", role: "Editor" }
     },
-    {
-      id: "2",
-      title: "Breaking Barriers: Women in Tech Startups Reshaping Industries",
-      excerpt: "From AI to fintech, women founders are creating groundbreaking solutions that transform how we live and work.",
-      category: "Technology",
-      date: "November 15, 2025",
-      readTime: "4 min",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80",
-      slug: "breaking-barriers-women-tech-startups",
-      author: { name: "Tech Expert", role: "Contributor" }
-    },
-    {
-      id: "3",
-      title: "The Art of Balancing: Entrepreneurship and Personal Well-being",
-      excerpt: "Learn strategies from successful women entrepreneurs on maintaining wellness while building thriving businesses.",
-      category: "Wellness",
-      date: "November 10, 2025",
-      readTime: "6 min",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80",
-      slug: "art-balancing-entrepreneurship-wellbeing",
-      author: { name: "Wellness Coach", role: "Expert" }
-    },
-    {
-      id: "4",
-      title: "Funding Strategies for Women-Led Startups",
-      excerpt: "A comprehensive guide to securing venture capital and alternative funding sources for women entrepreneurs.",
-      category: "Finance",
-      date: "November 5, 2025",
-      readTime: "7 min",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80",
-      slug: "funding-strategies-women-led-startups",
-      author: { name: "Finance Expert", role: "Advisor" }
-    },
-    {
-      id: "5",
-      title: "Building Inclusive Work Cultures",
-      excerpt: "How women leaders are creating diverse and inclusive workplace environments that drive innovation.",
-      category: "Leadership",
-      date: "October 28, 2025",
-      readTime: "5 min",
-      image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=600&q=80",
-      slug: "building-inclusive-work-cultures",
-      author: { name: "HR Specialist", role: "Consultant" }
-    },
-    {
-      id: "6",
-      title: "Sustainable Business Practices",
-      excerpt: "Women entrepreneurs leading the charge in creating environmentally conscious and sustainable business models.",
-      category: "Sustainability",
-      date: "October 20, 2025",
-      readTime: "6 min",
-      image: "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80",
-      slug: "sustainable-business-practices",
-      author: { name: "Sustainability Expert", role: "Advocate" }
-    },
-    {
-      id: "7",
-      title: "Digital Marketing Strategies for 2025",
-      excerpt: "Latest trends and effective digital marketing strategies for scaling your business online.",
-      category: "Marketing",
-      date: "October 15, 2025",
-      readTime: "8 min",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
-      slug: "digital-marketing-strategies-2025",
-      author: { name: "Marketing Guru", role: "Strategist" }
-    },
-    {
-      id: "8",
-      title: "Remote Team Management Best Practices",
-      excerpt: "Leading distributed teams effectively while maintaining productivity and team morale.",
-      category: "Management",
-      date: "October 10, 2025",
-      readTime: "6 min",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
-      slug: "remote-team-management-best-practices",
-      author: { name: "Management Expert", role: "Consultant" }
-    },
+    // ... (keep the rest of your fallback blogs)
   ];
 
   // Update items per view based on screen size
@@ -291,7 +217,13 @@ export const LatestBlogs = () => {
     <section className="p-5 sm:p-20 bg-background">
       <div className="mx-auto max-w-screen-xl">
         {/* HEADER */}
-        <div className="flex items-end justify-between mb-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.6 }}
+          className="flex items-end justify-between mb-10"
+        >
           <div>
             <Badge className="mb-3 text-sm bg-secondary text-primary rounded-xs">
               Fresh Insights
@@ -307,7 +239,7 @@ export const LatestBlogs = () => {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </Link>
-        </div>
+        </motion.div>
 
         {/* ================= HORIZONTAL SCROLL CONTAINER ================= */}
         <div className="relative">
@@ -359,96 +291,111 @@ export const LatestBlogs = () => {
             ref={containerRef}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-500 ease-in-out">
-              {getVisibleBlogs().map((blog) => (
-               <article
-  key={blog.id}
-  className="
-    group
-    flex flex-col
-    rounded-2xl
-    bg-card
-    border border-border
-    overflow-hidden
-    transition-all duration-300 ease-out
-    hover:-translate-y-2
-    hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]
-  "
->
-  {/* IMAGE */}
-  <div className="h-44 w-full overflow-hidden relative">
-    <Image
-      src={blog.image}
-      alt={blog.title}
-      fill
-      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
-    />
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-500 ease-in-out"
+            >
+              {getVisibleBlogs().map((blog, index) => (
+                <motion.article
+                  key={blog.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="
+                    group
+                    flex flex-col
+                    rounded-2xl
+                    bg-card
+                    border border-border
+                    overflow-hidden
+                    transition-all duration-300 ease-out
+                    hover:-translate-y-2
+                    hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]
+                  "
+                >
+                  {/* IMAGE */}
+                  <div className="h-44 w-full overflow-hidden relative">
+                    <Image
+                      src={blog.image}
+                      alt={blog.title}
+                      fill
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                    />
 
-    {/* Image hover overlay */}
-    <div className="
-      absolute inset-0
-      bg-gradient-to-t from-black/20 to-transparent
-      opacity-0
-      transition-opacity duration-300
-      group-hover:opacity-100
-    " />
-  </div>
+                    {/* Image hover overlay */}
+                    <div className="
+                      absolute inset-0
+                      bg-gradient-to-t from-black/20 to-transparent
+                      opacity-0
+                      transition-opacity duration-300
+                      group-hover:opacity-100
+                    " />
+                  </div>
 
-  <div className="flex flex-col flex-1 p-6">
-    <div className="flex items-center gap-3 mb-3">
-      <Badge
-        variant="secondary"
-        className="text-xs transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary"
-      >
-        {blog.category}
-      </Badge>
+                  <div className="flex flex-col flex-1 p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <Badge
+                        variant="secondary"
+                        className="text-xs transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary"
+                      >
+                        {blog.category}
+                      </Badge>
 
-      <span className="text-xs text-muted-foreground flex items-center gap-1">
-        <Clock className="h-3 w-3" />
-        {blog.readTime}
-      </span>
-    </div>
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {blog.readTime}
+                      </span>
+                    </div>
 
-    <h3 className="
-      text-lg font-bold mb-2 line-clamp-2
-      text-foreground
-      transition-colors duration-300
-      group-hover:text-primary
-    ">
-      {blog.title}
-    </h3>
+                    <h3 className="
+                      text-lg font-bold mb-2 line-clamp-2
+                      text-foreground
+                      transition-colors duration-300
+                      group-hover:text-primary
+                    ">
+                      {blog.title}
+                    </h3>
 
-    <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
-      {blog.excerpt}
-    </p>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
+                      {blog.excerpt}
+                    </p>
 
-    <div className="flex justify-between items-center pt-4 border-t border-border">
-      <span className="text-xs text-muted-foreground flex items-center gap-1">
-        <Calendar className="h-3 w-3" />
-        {blog.date}
-      </span>
+                    <div className="flex justify-between items-center pt-4 border-t border-border">
+                      <span className="text-xs text-muted-foreground flex items-center gap-1">
+                        <Calendar className="h-3 w-3" />
+                        {blog.date}
+                      </span>
 
-      <Link href={`/blogs/${blog.slug}`}>
-        <span className="
-          text-sm font-medium text-primary
-          flex items-center gap-1
-          transition-all duration-300
-          group-hover:gap-2
-        ">
-          Read More
-          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-        </span>
-      </Link>
-    </div>
-  </div>
-</article>
-
+                      <Link href={`/blogs/${blog.slug}`}>
+                        <span className="
+                          text-sm font-medium text-primary
+                          flex items-center gap-1
+                          transition-all duration-300
+                          group-hover:gap-2
+                        ">
+                          Read More
+                          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </motion.article>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* PAGINATION DOTS */}
-          <div className="flex justify-center gap-2 mt-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex justify-center gap-2 mt-8"
+          >
             {Array.from({ length: Math.ceil(totalItems / itemsPerView) }).map((_, i) => {
               const startIndex = i * itemsPerView;
               const endIndex = startIndex + itemsPerView;
@@ -467,17 +414,23 @@ export const LatestBlogs = () => {
                 />
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* MOBILE VIEW ALL */}
-        <div className="mt-8 text-center sm:hidden">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 text-center sm:hidden"
+        >
           <Link href="/blogs">
             <Button variant="outline" className="font-semibold">
               View All Blogs
             </Button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

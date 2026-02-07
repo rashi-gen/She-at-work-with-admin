@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 
-const IMAGES = ["/home/Homebanner1.png", "/home/Homebanner2.png"];
+const IMAGES = ["/home/Homebanner1.png", "/revisedHomebanner2.png"];
 
 const HEADLINES = [
   {
@@ -72,7 +72,7 @@ export const HeroSection = () => {
           className="relative z-10 flex items-center"
           style={{ minHeight: "calc(100vh - 96px)" }}
         >
-          <div className="container mx-auto px-6">
+          <div className="container mx-auto px-20">
             <div className="max-w-3xl text-white">
               {/* Badge */}
               <motion.div

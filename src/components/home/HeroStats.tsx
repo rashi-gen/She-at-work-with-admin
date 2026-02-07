@@ -1,6 +1,8 @@
+// components/home/HeroStats.tsx
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useInView } from "framer-motion";
 
 const stats = [
   { value: 975, suffix: "+", label: "Articles & Resources" },
@@ -9,11 +11,24 @@ const stats = [
   { value: 85, suffix: "+", label: "Countries Reached" },
 ];
 
-const AnimatedNumber = ({ target, suffix, startAnimation }: { target: number; suffix: string; startAnimation: boolean }) => {
+const AnimatedNumber = ({ 
+  target, 
+  suffix, 
+  startAnimation,
+  reset 
+}: { 
+  target: number; 
+  suffix: string; 
+  startAnimation: boolean;
+  reset: boolean;
+}) => {
   const [count, setCount] = useState(100);
 
   useEffect(() => {
-    if (!startAnimation) return;
+    if (!startAnimation) {
+      setCount(100); // Reset to initial value
+      return;
+    }
 
     const start = 100;
     const duration = 1800;
@@ -31,7 +46,7 @@ const AnimatedNumber = ({ target, suffix, startAnimation }: { target: number; su
     };
 
     requestAnimationFrame(animate);
-  }, [startAnimation, target]);
+  }, [startAnimation, target, reset]);
 
   return (
     <span>
@@ -45,25 +60,21 @@ export const HeroStats = () => {
   const sectionRef = useRef(null);
   const [startAnimation, setStartAnimation] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [animationKey, setAnimationKey] = useState(0); // Key to force re-mount
+  const isInView = useInView(sectionRef, { 
+    amount: 0.4,
+    margin: "0px 0px -100px 0px" // Trigger when 100px before entering viewport
+  });
 
-  // Trigger animation when visible
+  // Trigger animation when visible - and reset when not visible
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setStartAnimation(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.4 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (isInView && !startAnimation) {
+      setStartAnimation(true);
+      setAnimationKey(prev => prev + 1); // Force re-mount of animated numbers
+    } else if (!isInView && startAnimation) {
+      setStartAnimation(false);
     }
-
-    return () => observer.disconnect();
-  }, []);
+  }, [isInView, startAnimation]);
 
   // Mobile slide logic
   useEffect(() => {
@@ -78,6 +89,7 @@ export const HeroStats = () => {
     <section
       ref={sectionRef}
       className="border-t border-border bg-background"
+      key={animationKey} // Add key to force re-render
     >
       <div className="mx-auto max-w-screen-xl px-5 py-10 sm:py-14">
 
@@ -100,6 +112,7 @@ export const HeroStats = () => {
                   target={stat.value}
                   suffix={stat.suffix}
                   startAnimation={startAnimation}
+                  reset={!isInView}
                 />
               </div>
 
@@ -119,6 +132,7 @@ export const HeroStats = () => {
                   target={stat.value}
                   suffix={stat.suffix}
                   startAnimation={startAnimation}
+                  reset={!isInView}
                 />
               </div>
 
