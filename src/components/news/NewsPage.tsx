@@ -3,6 +3,7 @@
 
 import { PageBanner } from "@/components/PageBanner";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { newsData } from "@/data/news";
 import {
@@ -12,11 +13,12 @@ import {
   Clock,
   ExternalLink,
   Filter,
+  Globe,
+  MapPin,
   Search,
   X,
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
 
@@ -42,6 +44,26 @@ interface NewsItem {
   comment_count?: string;
   section_id?: string;
   post_name?: string;
+}
+
+// Extended interface for processed news with location data
+interface ProcessedNewsItem {
+  slug: any;
+  id: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  rawDate: Date;
+  readTime: string;
+  source: string;
+  image: string;
+  externalUrl: string | null;
+  fullContent: string;
+  modifiedDate?: string;
+  modifiedRawDate?: Date;
+  state?: string;
+  country?: string;
 }
 
 // Helper function to safely extract domain from URL
@@ -79,7 +101,7 @@ const getSourceFromUrl = (url: string | null): string => {
   }
 };
 
-// Map your categories from the data
+// Map your categories from the content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
   if (
@@ -129,6 +151,61 @@ const getCategoryFromContent = (content: string): string => {
   )
     return "Policy Updates";
   return "General News";
+};
+
+// Mock location data - In real app, you would have this data from your database
+const mockLocationData: Record<string, { state?: string; country?: string }> = {
+  // This is a mock - you should replace with actual location data
+  // Format: "news-id": { state: "California", country: "USA" }
+};
+
+// Get location from mock data or extract from content as fallback
+const getLocationData = (id: string, content: string): { state?: string; country?: string } => {
+  // First try to get from mock data
+  if (mockLocationData[id]) {
+    return mockLocationData[id];
+  }
+  
+  // Fallback to extracting from content
+  const contentLower = content.toLowerCase();
+  let state: string | undefined;
+  let country: string | undefined;
+  
+  // Simple extraction logic - you should improve this based on your actual data
+  const statePatterns = [
+    { pattern: /\bcalifornia\b/i, value: "California" },
+    { pattern: /\bnew york\b/i, value: "New York" },
+    { pattern: /\btexas\b/i, value: "Texas" },
+    { pattern: /\bflorida\b/i, value: "Florida" },
+    { pattern: /\bontario\b/i, value: "Ontario" },
+    { pattern: /\blondon\b/i, value: "London" },
+  ];
+  
+  const countryPatterns = [
+    { pattern: /\bus(a)?\b/i, value: "USA" },
+    { pattern: /\bunited states\b/i, value: "USA" },
+    { pattern: /\bcanada\b/i, value: "Canada" },
+    { pattern: /\buk\b/i, value: "UK" },
+    { pattern: /\baustralia\b/i, value: "Australia" },
+    { pattern: /\bindia\b/i, value: "India" },
+    { pattern: /\bgermany\b/i, value: "Germany" },
+  ];
+  
+  for (const statePattern of statePatterns) {
+    if (statePattern.pattern.test(contentLower)) {
+      state = statePattern.value;
+      break;
+    }
+  }
+  
+  for (const countryPattern of countryPatterns) {
+    if (countryPattern.pattern.test(contentLower)) {
+      country = countryPattern.value;
+      break;
+    }
+  }
+  
+  return { state, country };
 };
 
 const newsCategories = [
@@ -304,27 +381,59 @@ const SearchSuggestions = ({
   );
 };
 
+// Iframe Modal Component
+const ExternalLinkModal = ({ 
+  isOpen, 
+  onClose, 
+  url,
+  title 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  url: string;
+  title: string;
+}) => {
+  return (
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-4xl h-[80vh]">
+        <DialogHeader>
+          <DialogTitle className="flex items-center justify-between">
+            <span className="truncate">{title}</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onClose}
+              className="h-8 w-8"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </DialogTitle>
+        </DialogHeader>
+        <div className="flex-1 overflow-hidden">
+          {url ? (
+            <iframe
+              src={url}
+              title={title}
+              className="w-full h-full border-0"
+              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+              allowFullScreen
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full">
+              <p className="text-muted-foreground">No external link available</p>
+            </div>
+          )}
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
 export default function NewsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All News");
-  const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [processedNews, setProcessedNews] = useState<
-    Array<{
-      slug: any;
-      id: string;
-      category: string;
-      title: string;
-      excerpt: string;
-      date: string;
-      readTime: string;
-      source: string;
-      image: string;
-      externalUrl: string | null;
-      fullContent: string;
-      modifiedDate?: string;
-    }>
-  >([]);
+  const [processedNews, setProcessedNews] = useState<ProcessedNewsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchSuggestions, setSearchSuggestions] = useState<
@@ -339,6 +448,31 @@ export default function NewsPage() {
     }>
   >([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<{ from: string; to: string }>({ from: "", to: "" });
+  const [selectedState, setSelectedState] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedExternalLink, setSelectedExternalLink] = useState<{ url: string; title: string } | null>(null);
+  
+  // Extract unique states and countries from processed news
+  const uniqueStates = useMemo(() => {
+    const states = processedNews
+      .map(news => news.state)
+      .filter((state): state is string => !!state)
+      .filter((state, index, self) => self.indexOf(state) === index)
+      .sort();
+    return ["All States", ...states];
+  }, [processedNews]);
+
+  const uniqueCountries = useMemo(() => {
+    const countries = processedNews
+      .map(news => news.country)
+      .filter((country): country is string => !!country)
+      .filter((country, index, self) => self.indexOf(country) === index)
+      .sort();
+    return ["All Countries", ...countries];
+  }, [processedNews]);
 
   // Process news data on component mount
   useEffect(() => {
@@ -355,6 +489,7 @@ export default function NewsPage() {
         const title = item.post_title
           ? item.post_title.replace(/&amp;/g, "&")
           : "Untitled";
+        const rawDate = new Date(item.post_date);
         const date = formatDate(item.post_date);
         const readTime = calculateReadTime(excerpt);
         const source = getSourceFromUrl(item.external_url);
@@ -362,6 +497,8 @@ export default function NewsPage() {
           item.featured_image_url && item.featured_image_url.trim() !== ""
             ? item.featured_image_url
             : "/placeholder-news.jpg";
+        
+        const location = getLocationData(item.ID, item.post_content);
 
         return {
           id: item.ID || Math.random().toString(),
@@ -369,6 +506,7 @@ export default function NewsPage() {
           title,
           excerpt,
           date,
+          rawDate,
           readTime,
           source,
           image,
@@ -380,25 +518,16 @@ export default function NewsPage() {
           modifiedDate: item.post_modified
             ? formatDate(item.post_modified)
             : undefined,
+          modifiedRawDate: item.post_modified ? new Date(item.post_modified) : undefined,
           slug: item.post_name || `news-${item.ID}`,
+          state: location.state,
+          country: location.country,
         };
       });
 
-      processed.sort((a, b) => {
-        try {
-          const dateA = new Date(
-            a.date === "Date unavailable" ? "1970-01-01" : a.date,
-          );
-          const dateB = new Date(
-            b.date === "Date unavailable" ? "1970-01-01" : b.date,
-          );
-          return dateB.getTime() - dateA.getTime();
-        } catch (error) {
-          console.log(error);
-          return 0;
-        }
-      });
-
+      // Sort by date descending
+      processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
+      
       setProcessedNews(processed);
     } catch (error) {
       console.error("Error processing news data:", error);
@@ -411,19 +540,40 @@ export default function NewsPage() {
   // Get featured news (most recent)
   const featuredNews = processedNews.length > 0 ? processedNews[0] : null;
 
-  // Filter news articles based on selected category and search query
-  const getFilteredNews = () => {
-    let filtered = processedNews;
+  // Filter news articles based on all filter criteria - ONLY FOR ALL NEWS SECTION
+  const filteredNews = useMemo(() => {
+    let filtered = [...processedNews];
 
-    // First filter by category
+    // Filter by category
     if (selectedCategory !== "All News") {
       filtered = filtered.filter(
-        (article) =>
-          article.category.toLowerCase() === selectedCategory.toLowerCase(),
+        (article) => article.category === selectedCategory
       );
     }
 
-    // Then filter by search query if it exists
+    // Filter by date range
+    if (dateRange.from) {
+      const fromDate = new Date(dateRange.from);
+      fromDate.setHours(0, 0, 0, 0); // Start of the day
+      filtered = filtered.filter(article => article.rawDate >= fromDate);
+    }
+    if (dateRange.to) {
+      const toDate = new Date(dateRange.to);
+      toDate.setHours(23, 59, 59, 999); // End of the day
+      filtered = filtered.filter(article => article.rawDate <= toDate);
+    }
+
+    // Filter by state
+    if (selectedState && selectedState !== "All States") {
+      filtered = filtered.filter(article => article.state === selectedState);
+    }
+
+    // Filter by country
+    if (selectedCountry && selectedCountry !== "All Countries") {
+      filtered = filtered.filter(article => article.country === selectedCountry);
+    }
+
+    // Filter by search query
     if (searchQuery.trim() !== "") {
       const query = searchQuery.toLowerCase().trim();
       filtered = filtered.filter(
@@ -432,56 +582,92 @@ export default function NewsPage() {
           article.excerpt.toLowerCase().includes(query) ||
           article.fullContent.toLowerCase().includes(query) ||
           article.category.toLowerCase().includes(query) ||
-          article.source.toLowerCase().includes(query),
+          article.source.toLowerCase().includes(query) ||
+          (article.state && article.state.toLowerCase().includes(query)) ||
+          (article.country && article.country.toLowerCase().includes(query))
       );
     }
 
     return filtered;
-  };
+  }, [processedNews, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
 
-  // Check if featured news should be shown
-  const shouldShowFeaturedNews = () => {
+  // Check if featured news should be shown in All News section
+  const shouldShowFeaturedNewsInAllNews = useMemo(() => {
     if (!featuredNews) return false;
+    
+    // Check if featured news passes all current filters
+    let passesFilters = true;
+    
+    // Category filter
+    if (selectedCategory !== "All News" && featuredNews.category !== selectedCategory) {
+      passesFilters = false;
+    }
+    
+    // Date range filter
+    if (dateRange.from) {
+      const fromDate = new Date(dateRange.from);
+      fromDate.setHours(0, 0, 0, 0);
+      if (featuredNews.rawDate < fromDate) passesFilters = false;
+    }
+    if (dateRange.to) {
+      const toDate = new Date(dateRange.to);
+      toDate.setHours(23, 59, 59, 999);
+      if (featuredNews.rawDate > toDate) passesFilters = false;
+    }
+    
+    // State filter
+    if (selectedState && selectedState !== "All States" && featuredNews.state !== selectedState) {
+      passesFilters = false;
+    }
+    
+    // Country filter
+    if (selectedCountry && selectedCountry !== "All Countries" && featuredNews.country !== selectedCountry) {
+      passesFilters = false;
+    }
+    
+    // Search query filter
     if (searchQuery.trim() !== "") {
       const query = searchQuery.toLowerCase().trim();
-      const isFeaturedInSearchResults =
-        featuredNews.title.toLowerCase().includes(query) ||
-        featuredNews.excerpt.toLowerCase().includes(query) ||
-        featuredNews.fullContent.toLowerCase().includes(query) ||
-        featuredNews.category.toLowerCase().includes(query) ||
-        featuredNews.source.toLowerCase().includes(query);
-      return isFeaturedInSearchResults;
+      if (
+        !featuredNews.title.toLowerCase().includes(query) &&
+        !featuredNews.excerpt.toLowerCase().includes(query) &&
+        !featuredNews.fullContent.toLowerCase().includes(query) &&
+        !featuredNews.category.toLowerCase().includes(query) &&
+        !featuredNews.source.toLowerCase().includes(query) &&
+        !(featuredNews.state && featuredNews.state.toLowerCase().includes(query)) &&
+        !(featuredNews.country && featuredNews.country.toLowerCase().includes(query))
+      ) {
+        passesFilters = false;
+      }
     }
-    if (selectedCategory === "All News") return true;
-    return (
-      featuredNews.category.toLowerCase() === selectedCategory.toLowerCase()
-    );
-  };
+    
+    return passesFilters;
+  }, [featuredNews, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
 
-  const filteredNews = getFilteredNews();
-  const showFeaturedNews = shouldShowFeaturedNews();
+  const showFeaturedNewsInAllNews = shouldShowFeaturedNewsInAllNews;
 
-  // Pagination calculations
+  // Pagination calculations for All News section
   const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentNews = filteredNews.slice(startIndex, endIndex);
 
-  // Get latest headlines (most recent 3 articles, excluding featured if it's shown)
+  // Get latest headlines (most recent 4 articles, always shows most recent regardless of filters)
   const latestHeadlines = useMemo(() => {
-    let headlines = processedNews;
-    // If featured news is shown, exclude it from latest headlines
-    if (showFeaturedNews && featuredNews) {
-      headlines = headlines.filter((news) => news.id !== featuredNews.id);
-    }
-    return headlines.slice(0, 3);
-  }, [processedNews, showFeaturedNews, featuredNews]);
+    return processedNews.slice(0, 4);
+  }, [processedNews]);
 
-  // Handle clicks outside search suggestions
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+
+  // Handle clicks outside search suggestions and filter dropdown
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setShowSuggestions(false);
+        setIsFilterOpen(false);
       }
     };
 
@@ -506,6 +692,8 @@ export default function NewsPage() {
           if (article.fullContent.toLowerCase().includes(query)) relevance += 3;
           if (article.category.toLowerCase().includes(query)) relevance += 8;
           if (article.source.toLowerCase().includes(query)) relevance += 2;
+          if (article.state && article.state.toLowerCase().includes(query)) relevance += 6;
+          if (article.country && article.country.toLowerCase().includes(query)) relevance += 6;
           
           // Bonus for exact match at start of title
           if (article.title.toLowerCase().startsWith(query)) relevance += 5;
@@ -520,9 +708,9 @@ export default function NewsPage() {
             relevance
           };
         })
-        .filter(item => item.relevance > 0) // Only include relevant suggestions
-        .sort((a, b) => b.relevance - a.relevance) // Sort by relevance
-        .slice(0, 8); // Limit to 8 suggestions
+        .filter(item => item.relevance > 0)
+        .sort((a, b) => b.relevance - a.relevance)
+        .slice(0, 8);
       
       setSearchSuggestions(suggestions);
       setShowSuggestions(suggestions.length > 0);
@@ -544,11 +732,14 @@ export default function NewsPage() {
     url: string | null,
     title: string,
   ) => {
+    e.preventDefault();
     e.stopPropagation();
+    
     if (url && url.trim() !== "") {
       try {
         const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
-        window.open(urlWithProtocol, "_blank", "noopener,noreferrer");
+        setSelectedExternalLink({ url: urlWithProtocol, title });
+        setModalOpen(true);
       } catch (error) {
         console.error("Error opening URL:", error);
         alert(`Could not open: ${title}`);
@@ -559,45 +750,78 @@ export default function NewsPage() {
     }
   };
 
+  // Handle external link click for regular news items
+  const handleExternalLink = (
+    e: React.MouseEvent,
+    url: string | null,
+    title: string,
+    slug: string
+  ) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (url && url.trim() !== "") {
+      try {
+        const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
+        setSelectedExternalLink({ url: urlWithProtocol, title });
+        setModalOpen(true);
+      } catch (error) {
+        console.error("Error opening URL:", error);
+        // Fallback to internal page
+        window.location.href = `/news/${slug}`;
+      }
+    } else {
+      // Redirect to internal page
+      window.location.href = `/news/${slug}`;
+    }
+  };
+
   // Handle search input change
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setSearchQuery(value);
-    setCurrentPage(1);
-    
-    if (value.length >= 2) {
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
   };
 
   // Handle search suggestion selection
   const handleSuggestionSelect = (title: string) => {
     setSearchQuery(title);
     setShowSuggestions(false);
-    setCurrentPage(1);
     
-    // Focus on the search input after selection
     const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement;
     if (searchInput) {
       searchInput.focus();
     }
   };
 
-  // Clear search query
-  const clearSearch = () => {
+  // Clear all filters
+  const clearAllFilters = () => {
+    setSelectedCategory("All News");
+    setDateRange({ from: "", to: "" });
+    setSelectedState("");
+    setSelectedCountry("");
     setSearchQuery("");
     setSearchSuggestions([]);
     setShowSuggestions(false);
     setCurrentPage(1);
+    setIsFilterOpen(false);
   };
 
   // Handle search form submission
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setShowSuggestions(false);
-    setCurrentPage(1);
+  };
+
+  // Check if any filter is active
+  const isAnyFilterActive = () => {
+    return (
+      selectedCategory !== "All News" ||
+      dateRange.from !== "" ||
+      dateRange.to !== "" ||
+      (selectedState !== "" && selectedState !== "All States") ||
+      (selectedCountry !== "" && selectedCountry !== "All Countries") ||
+      searchQuery !== ""
+    );
   };
 
   if (isLoading) {
@@ -620,6 +844,17 @@ export default function NewsPage() {
 
   return (
     <main className="bg-background min-h-screen">
+      {/* External Link Modal */}
+      <ExternalLinkModal
+        isOpen={modalOpen}
+        onClose={() => {
+          setModalOpen(false);
+          setSelectedExternalLink(null);
+        }}
+        url={selectedExternalLink?.url || ""}
+        title={selectedExternalLink?.title || ""}
+      />
+
       <section className={`relative h-[470px] overflow-hidden pt-24`}>
         {/* Background Image */}
         <div className="absolute inset-0" style={{ top: "96px" }}>
@@ -655,14 +890,15 @@ export default function NewsPage() {
       </section>
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      <section className="px-4 sm:px-6 lg:px-8 py-8 ">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* FEATURED - 2 COLUMNS */}
-          {showFeaturedNews && featuredNews && (
+          {/* Featured news section - Always shows most recent news */}
+          {featuredNews && (
             <div className="lg:col-span-2">
-              <Link
-                href={`/news/${featuredNews.slug}`}
-                className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10"
+              <div
+                onClick={(e) => handleFeaturedExternalLink(e, featuredNews.externalUrl, featuredNews.title)}
+                className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10 cursor-pointer"
               >
                 {/* FEATURED BADGE */}
                 <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
@@ -672,13 +908,13 @@ export default function NewsPage() {
                 </div>
 
                 {/* IMAGE CONTAINER */}
-                <div className="relative h-48 sm:h-64 lg:h-[450px]">
+                <div className="relative h-48 sm:h-64 lg:h-[340px]">
                   {featuredNews.image !== "/placeholder-news.jpg" ? (
                     <Image
                       src={featuredNews.image}
                       alt={featuredNews.title}
                       fill
-                      className="object-cover object-top"
+                      className="object-cover "
                       priority
                     />
                   ) : (
@@ -691,9 +927,9 @@ export default function NewsPage() {
                 </div>
 
                 {/* CONTENT */}
-                <div className="p-4 sm:p-6 lg:p-8">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                    <span className="inline-block px-2 sm:px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase w-fit">
+                <div className="p-4 sm:px-6 sm:py-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 mb-2">
+                    <span className="inline-block px-2 sm:px-3  rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase w-fit">
                       {featuredNews.category}
                     </span>
                     <span className="text-xs sm:text-sm text-muted-foreground">
@@ -701,15 +937,12 @@ export default function NewsPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-display font-bold text-foreground mb-3 sm:mb-4 group-hover:text-primary transition-colors line-clamp-2">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredNews.title}
                   </h2>
 
-                  <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed line-clamp-3">
-                    {featuredNews.excerpt}
-                  </p>
 
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 sm:pt-6 border-t border-border mt-auto">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4  border-t border-border mt-auto">
                     <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -719,222 +952,132 @@ export default function NewsPage() {
                         <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
                         {featuredNews.readTime}
                       </div>
-                      {featuredNews.modifiedDate &&
-                        featuredNews.modifiedDate !== "Date unavailable" && (
-                          <div className="text-xs text-muted-foreground/70">
-                            Updated: {featuredNews.modifiedDate}
-                          </div>
-                        )}
+                      {featuredNews.state && (
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                          <span>{featuredNews.state}</span>
+                        </div>
+                      )}
                     </div>
 
                     <Button
                       className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
-                      onClick={(e) =>
-                        handleFeaturedExternalLink(
-                          e,
-                          featuredNews.externalUrl,
-                          featuredNews.title,
-                        )
-                      }
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        handleFeaturedExternalLink(e, featuredNews.externalUrl, featuredNews.title);
+                      }}
                     >
                       {featuredNews.externalUrl
                         ? "Read Full Story"
                         : "View Details"}
-                      <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+                      <ExternalLink className="ml-2 h-3 w-3  sm:w-4 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           )}
 
           {/* SIDEBAR - LATEST HEADLINES */}
           <div
-            className={`space-y-4 sm:space-y-6 ${!showFeaturedNews ? "lg:col-span-3" : ""}`}
+            className={`space-y-4 sm:space-y-6 ${!featuredNews ? "lg:col-span-3" : ""}`}
           >
             <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-              {/* HEADER WITH FILTER TOGGLE */}
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  {showFilter ? "Filter by Category" : "Latest Headlines"}
+              {/* HEADER */}
+              <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
+                  Latest Headlines
                 </h3>
-                <div className="flex items-center gap-2">
-                  {selectedCategory !== "All News" && !showFilter && (
-                    <button
-                      onClick={() => {
-                        setSelectedCategory("All News");
-                        setCurrentPage(1);
-                      }}
-                      className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                    >
-                      Clear
-                    </button>
-                  )}
-                  <button
-  onClick={() => setShowFilter(!showFilter)}
-  className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-secondary transition-colors"
-  aria-label={showFilter ? "Show headlines" : "Show filters"}
->
-  <span>Filter Articles</span>
-
-  <Filter
-    className={`h-4 w-4 ${
-      showFilter ? "text-primary" : "text-muted-foreground"
-    }`}
-  />
-</button>
-
-                </div>
               </div>
 
-              {/* CONDITIONAL CONTENT */}
-              {showFilter ? (
-                // FILTER VIEW - Compact with custom scrollbar
-                <div className="mb-4">
-                  <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
-                    <div className="space-y-1">
-                      {newsCategories.map((cat) => (
-                        <button
-                          key={cat}
-                          onClick={() => {
-                            setSelectedCategory(cat);
-                            setShowFilter(false);
-                            setCurrentPage(1);
-                          }}
-                          className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-                            selectedCategory === cat
-                              ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
-                              : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
-                          }`}
-                        >
-                          <span className="truncate">{cat}</span>
-                          {selectedCategory === cat ? (
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                                Active
-                              </span>
-                              <div className="h-2 w-2 rounded-full bg-primary" />
-                            </div>
-                          ) : (
-                            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* FILTER STATUS */}
-                  {selectedCategory !== "All News" && (
-                    <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        Filtering:{" "}
-                        <span className="font-medium text-primary">
-                          {selectedCategory}
-                        </span>
-                      </span>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                        {filteredNews.length}{" "}
-                        {filteredNews.length === 1 ? "article" : "articles"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                // LATEST HEADLINES VIEW - Always visible
-                <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-                  <div className="space-y-3 sm:space-y-4">
-                    {latestHeadlines.map((news, i) => (
-                      <Link
-                        key={i}
-                        href={`/news/${news.slug}`}
-                        className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
-                      >
-                        <div className="flex items-start gap-3">
-                          {/* NUMBER BADGE */}
-                          <div className="flex-shrink-0">
-                            <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
+              {/* LATEST HEADLINES VIEW WITH IMAGES */}
+              <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-3 sm:space-y-4">
+                  {latestHeadlines.map((news, i) => (
+                    <div
+                      key={i}
+                      onClick={(e) => handleExternalLink(e, news.externalUrl, news.title, news.slug)}
+                      className="block cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* IMAGE */}
+                        <div className="flex-shrink-0">
+                          <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                            {news.image !== "/placeholder-news.jpg" ? (
+                              <Image
+                                src={news.image}
+                                alt={news.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 48px, 56px"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
+                                <div className="text-primary/40 text-lg font-display">
+                                  {news.title.charAt(0)}
+                                </div>
+                              </div>
+                            )}
+                            {/* NUMBER OVERLAY */}
+                            <div className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent text-white text-xs font-bold">
                               {i + 1}
                             </div>
                           </div>
-
-                          {/* CONTENT */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                              <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                                {news.category}
-                              </span>
-                              <span className="text-[10px] text-muted-foreground truncate">
-                                {news.source}
-                              </span>
-                            </div>
-                            <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
-                              {news.title}
-                            </h4>
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                <span>{news.date}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                <span>{news.readTime}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* ARROW INDICATOR */}
-                          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
                         </div>
-                      </Link>
-                    ))}
-                  </div>
+
+                        {/* CONTENT */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                            <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                              {news.category}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground truncate">
+                              {news.source}
+                            </span>
+                          </div>
+                          <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                            {news.title}
+                          </h4>
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              <span>{news.date}</span>
+                            </div>
+                            {news.state && (
+                              <div className="flex items-center gap-1">
+                                <MapPin className="h-3 w-3" />
+                                <span className="truncate max-w-[60px]">{news.state}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* ARROW INDICATOR */}
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
 
-              {/* QUICK ACTION BUTTONS - Always visible */}
-              <div className="space-y-2 mt-4 pt-4 border-t border-border">
-                {!showFilter ? (
-                <></>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(false)}
-                  >
-                    <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                    Back to Headlines
-                  </Button>
-                )}
-
+              {/* QUICK ACTION BUTTON */}
+              <div className="mt-4 pt-4 border-t border-border">
                 <Button
                   variant="ghost"
                   className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
                   onClick={() => {
-                    setSelectedCategory("All News");
-                    setCurrentPage(1);
-                    setShowFilter(false);
+                    clearAllFilters();
+                    window.scrollTo({
+                      top: document.getElementById('all-news-section')?.offsetTop || 0,
+                      behavior: 'smooth'
+                    });
                   }}
                 >
                   View All News
                   <ExternalLink className="h-3.5 w-3.5" />
                 </Button>
-
-                {selectedCategory !== "All News" && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
-                    onClick={() => {
-                      setSelectedCategory("All News");
-                      setCurrentPage(1);
-                      setShowFilter(false);
-                    }}
-                  >
-                    <X className="h-3.5 w-3.5 mr-1.5" />
-                    Clear {selectedCategory} Filter
-                  </Button>
-                )}
               </div>
             </div>
           </div>
@@ -942,8 +1085,9 @@ export default function NewsPage() {
       </section>
 
       {/* ================= ALL NEWS GRID ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 ">
+      <section id="all-news-section" className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto">
+          {/* HEADER WITH SEARCH AND FILTER */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
@@ -966,7 +1110,6 @@ export default function NewsPage() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
-              {/* SEARCH BAR WITH SUGGESTIONS */}
               <div className="relative w-full sm:w-64" ref={searchRef}>
                 <form onSubmit={handleSearchSubmit}>
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
@@ -985,7 +1128,7 @@ export default function NewsPage() {
                   {searchQuery && (
                     <button
                       type="button"
-                      onClick={clearSearch}
+                      onClick={() => setSearchQuery("")}
                       className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
                     >
                       <X className="h-4 w-4 text-black" />
@@ -1002,18 +1145,219 @@ export default function NewsPage() {
                   onClose={() => setShowSuggestions(false)}
                 />
               </div>
+              
+              {/* FILTER DROPDOWN */}
+              <div className="relative w-full sm:w-auto" ref={searchRef}>
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto flex items-center gap-2"
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                >
+                  <Filter className="h-4 w-4" />
+                  
+                  {isAnyFilterActive() && (
+                    <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                      {isAnyFilterActive() ? "!" : ""}
+                    </span>
+                  )}
+                </Button>
 
-              {(selectedCategory !== "All News" || searchQuery) && (
+                {/* FILTER DROPDOWN MENU */}
+                {isFilterOpen && (
+                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto">
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-lg font-semibold text-foreground">
+                          Filter Articles
+                        </h4>
+                        {isAnyFilterActive() && (
+                          <button
+                            onClick={clearAllFilters}
+                            className="text-sm text-primary hover:text-primary/80"
+                          >
+                            Clear All
+                          </button>
+                        )}
+                      </div>
+                      
+                      {/* CATEGORY FILTER - DROPDOWN */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Filter className="h-4 w-4" />
+                          Category
+                        </h5>
+                        <select
+                          value={selectedCategory}
+                          onChange={(e) => setSelectedCategory(e.target.value)}
+                          className="w-full px-3 py-2 border border-border rounded-lg text-sm mb-3"
+                        >
+                          {newsCategories.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* DATE RANGE FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          Date Range
+                        </h5>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">From</label>
+                            <Input
+                              type="date"
+                              value={dateRange.from}
+                              onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">To</label>
+                            <Input
+                              type="date"
+                              value={dateRange.to}
+                              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                        {(dateRange.from || dateRange.to) && (
+                          <button
+                            onClick={() => setDateRange({ from: "", to: "" })}
+                            className="text-xs text-primary hover:text-primary/80 mt-2"
+                          >
+                            Clear date range
+                          </button>
+                        )}
+                      </div>
+
+                      {/* LOCATION FILTERS */}
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        {/* STATE FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            State/Region
+                          </h5>
+                          <select
+                            value={selectedState}
+                            onChange={(e) => setSelectedState(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueStates.map(state => (
+                              <option key={state} value={state}>{state}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* COUNTRY FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <Globe className="h-4 w-4" />
+                            Country
+                          </h5>
+                          <select
+                            value={selectedCountry}
+                            onChange={(e) => setSelectedCountry(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueCountries.map(country => (
+                              <option key={country} value={country}>{country}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* ACTIVE FILTERS SUMMARY */}
+                      {isAnyFilterActive() && (
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <h5 className="text-sm font-medium text-foreground mb-2">
+                            Active Filters
+                          </h5>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedCategory !== "All News" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                {selectedCategory}
+                                <button
+                                  onClick={() => setSelectedCategory("All News")}
+                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.from && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                From: {new Date(dateRange.from).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, from: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.to && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                To: {new Date(dateRange.to).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, to: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedState && selectedState !== "All States" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                {selectedState}
+                                <button
+                                  onClick={() => setSelectedState("")}
+                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedCountry && selectedCountry !== "All Countries" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                                {selectedCountry}
+                                <button
+                                  onClick={() => setSelectedCountry("")}
+                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {searchQuery && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                                Search: {searchQuery}
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+           
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {isAnyFilterActive() && (
                 <Button
                   variant="outline"
                   className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={() => {
-                    setSelectedCategory("All News");
-                    setSearchQuery("");
-                    setSearchSuggestions([]);
-                    setShowSuggestions(false);
-                    setCurrentPage(1);
-                  }}
+                  onClick={clearAllFilters}
                 >
                   <X className="h-3 w-3 sm:h-4 sm:w-4" />
                   Clear All
@@ -1040,13 +1384,7 @@ export default function NewsPage() {
                   : `There are no news articles in the "${selectedCategory}" category yet.`}
               </p>
               <Button
-                onClick={() => {
-                  setSelectedCategory("All News");
-                  setSearchQuery("");
-                  setSearchSuggestions([]);
-                  setShowSuggestions(false);
-                  setCurrentPage(1);
-                }}
+                onClick={clearAllFilters}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
               >
                 View All News
@@ -1054,66 +1392,81 @@ export default function NewsPage() {
             </div>
           ) : (
             <>
+         
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {currentNews.map((news) => (
-                  <Link
-                    key={news.id}
-                    href={`/news/${news.slug}`}
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
-                  >
-                    {/* IMAGE CONTAINER */}
-                    <div className="relative h-40 sm:h-48  bg-gradient-to-br from-muted to-secondary flex-shrink-0">
-                      {news.image !== "/placeholder-news.jpg" ? (
-                        <Image
-                          src={news.image}
-                          alt={news.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                          <div className="text-white/40 text-5xl font-display">
-                            {news.title.charAt(0)}
+                {currentNews.map((news) => {
+                  // Skip featured news if it's already shown at the top
+                  if (showFeaturedNewsInAllNews && featuredNews && news.id === featuredNews.id) {
+                    return null;
+                  }
+                  
+                  return (
+                    <div
+                      key={news.id}
+                      onClick={(e) => handleExternalLink(e, news.externalUrl, news.title, news.slug)}
+                      className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full cursor-pointer"
+                    >
+                      {/* IMAGE CONTAINER */}
+                      <div className="relative h-40 sm:h-48 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                        {news.image !== "/placeholder-news.jpg" ? (
+                          <Image
+                            src={news.image}
+                            alt={news.title}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                            <div className="text-white/40 text-5xl font-display">
+                              {news.title.charAt(0)}
+                            </div>
                           </div>
+                        )}
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between mb-2 sm:mb-3">
+                          <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
+                            {news.category}
+                          </span>
+                          <span className="text-xs text-muted-foreground">
+                            {news.source}
+                          </span>
                         </div>
-                      )}
-                    </div>
 
-                    {/* CONTENT */}
-                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                      <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-2 sm:mb-3 uppercase">
-                        {news.category}
-                      </span>
+                        <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                          {news.title}
+                        </h3>
 
-                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {news.title}
-                      </h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                          {news.excerpt}
+                        </p>
 
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
-                        {news.excerpt}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{news.date}</span>
+                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span>{news.date}</span>
+                            </div>
+                            {(news.state || news.country) && (
+                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                                <span>{news.state || news.country}</span>
+                              </div>
+                            )}
                           </div>
-                          <div className="hidden sm:block">•</div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{news.readTime}</span>
+                          <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                            Read
+                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </div>
-                        </div>
-                        <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
-                          Read
-                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
                     </div>
-                  </Link>
-                ))}
+                  );
+                })}
               </div>
 
               {/* PAGINATION */}
