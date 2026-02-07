@@ -19,7 +19,7 @@ export const ScrollReveal = ({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.6,
+  duration = 0.8,
   className = "",
   staggerChildren = 0,
   threshold = 0.2,

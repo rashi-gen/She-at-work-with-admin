@@ -85,24 +85,28 @@ export const HeroSection = () => {
               </motion.div>
 
               {/* Animated Heading */}
-              <AnimatePresence mode="wait">
-                <motion.h1
-                  key={headlineIndex}
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -40 }}
-                  transition={{ duration: 0.7 }}
-                  className="leading-tight"
-                >
-                  <span className="block text-3xl sm:text-7xl font-light">
-                    {HEADLINES[headlineIndex].line1}
-                  </span>
+              {/* Animated Heading */}
+<div className="relative mt-2 min-h-[140px] sm:min-h-[180px]">
+  <AnimatePresence mode="wait">
+    <motion.h1
+      key={headlineIndex}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -40 }}
+      transition={{ duration: 0.7 }}
+      className="absolute inset-0 leading-tight"
+    >
+      <span className="block text-3xl sm:text-7xl font-light">
+        {HEADLINES[headlineIndex].line1}
+      </span>
 
-                  <span className="block text-4xl sm:text-7xl font-semibold mt-2">
-                    {HEADLINES[headlineIndex].line2}
-                  </span>
-                </motion.h1>
-              </AnimatePresence>
+      <span className="block text-4xl sm:text-7xl font-semibold mt-2">
+        {HEADLINES[headlineIndex].line2}
+      </span>
+    </motion.h1>
+  </AnimatePresence>
+</div>
+
 
               {/* Paragraph */}
               <motion.p
