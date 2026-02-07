@@ -27,7 +27,7 @@ const values = [
 
 export const About = () => {
   return (
-    <section className="p-5 sm:p-20 p bg-secondary">
+    <section className="p-5 sm:p-20 sm:py-5 bg-secondary">
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
@@ -54,22 +54,44 @@ export const About = () => {
 
           {/* Values Grid */}
           <div className="grid sm:grid-cols-2 gap-4">
-            {values.map((value, index) => (
-              <div
-                key={value.title}
-                className="p-6 rounded-2xl bg-card border border-border/50 hover-lift"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="inline-flex p-3 rounded-xl bg-[#e0bba8]/20 text-[#e0bba8] mb-4">
-                  <value.icon className="h-6 w-6" />
-                </div>
-                <h3 className="text-xl font-display font-bold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                <p className="text-md text-muted-foreground max-w-lg">
-                  {value.description}
-                </p>
-              </div>
+            {values.map((value) => (
+         <div
+  key={value.title}
+  className="
+    group
+    p-6 rounded-2xl
+    bg-card
+    border border-border/50
+    transition-all duration-300 ease-out
+    hover:-translate-y-2
+    hover:shadow-xl
+    hover:border-[#3B2E7E]/30
+  "
+>
+  {/* Icon */}
+  <div
+    className="
+      inline-flex p-3 rounded-xl
+      bg-[#e0bba8]/20 text-[#e0bba8]
+      mb-4
+      transition-all duration-300
+      group-hover:scale-110
+      group-hover:rotate-3
+      group-hover:bg-[#3B2E7E]/10
+    "
+  >
+    <value.icon className="h-6 w-6 transition-transform duration-300 group-hover:scale-110" />
+  </div>
+
+  <h3 className="text-xl font-display font-bold text-foreground mb-2 transition-colors duration-300 group-hover:text-[#3B2E7E]">
+    {value.title}
+  </h3>
+
+  <p className="text-md text-muted-foreground max-w-lg transition-colors duration-300 group-hover:text-foreground/80">
+    {value.description}
+  </p>
+</div>
+
             ))}
           </div>
         </div>

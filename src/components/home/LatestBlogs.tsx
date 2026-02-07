@@ -361,55 +361,88 @@ export const LatestBlogs = () => {
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-all duration-500 ease-in-out">
               {getVisibleBlogs().map((blog) => (
-                <article
-                  key={blog.id}
-                  className="group flex flex-col rounded-2xl bg-card border border-border overflow-hidden hover:shadow-lg transition-all duration-300"
-                >
-                  {/* IMAGE - FIXED HEIGHT */}
-                  <div className="h-44 w-full overflow-hidden relative">
-                    <Image
-                      src={blog.image}
-                      alt={blog.title}
-                      fill
-                      className="object-fit transition-transform group-hover:scale-105 duration-500"
-                      // sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  </div>
+               <article
+  key={blog.id}
+  className="
+    group
+    flex flex-col
+    rounded-2xl
+    bg-card
+    border border-border
+    overflow-hidden
+    transition-all duration-300 ease-out
+    hover:-translate-y-2
+    hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)]
+  "
+>
+  {/* IMAGE */}
+  <div className="h-44 w-full overflow-hidden relative">
+    <Image
+      src={blog.image}
+      alt={blog.title}
+      fill
+      className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+    />
 
-                  <div className="flex flex-col flex-1 p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <Badge variant="secondary" className="text-xs">
-                        {blog.category}
-                      </Badge>
-                      <span className="text-xs text-muted-foreground flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {blog.readTime}
-                      </span>
-                    </div>
+    {/* Image hover overlay */}
+    <div className="
+      absolute inset-0
+      bg-gradient-to-t from-black/20 to-transparent
+      opacity-0
+      transition-opacity duration-300
+      group-hover:opacity-100
+    " />
+  </div>
 
-                    <h3 className="text-lg font-bold mb-2 line-clamp-2 text-foreground group-hover:text-primary transition-colors">
-                      {blog.title}
-                    </h3>
+  <div className="flex flex-col flex-1 p-6">
+    <div className="flex items-center gap-3 mb-3">
+      <Badge
+        variant="secondary"
+        className="text-xs transition-colors duration-300 group-hover:bg-primary/10 group-hover:text-primary"
+      >
+        {blog.category}
+      </Badge>
 
-                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
-                      {blog.excerpt}
-                    </p>
+      <span className="text-xs text-muted-foreground flex items-center gap-1">
+        <Clock className="h-3 w-3" />
+        {blog.readTime}
+      </span>
+    </div>
 
-                    <div className="flex justify-between items-center pt-4 border-t border-border">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {blog.date}
-                        </span>
-                      </div>
-                      <Link href={`/blogs/${blog.slug}`} className="block">
-                        <span className="text-sm font-medium text-primary flex items-center gap-1 hover:text-accent transition-colors">
-                          Read More <ArrowRight className="h-4 w-4" />
-                        </span>
-                      </Link>
-                    </div>
-                  </div>
-                </article>
+    <h3 className="
+      text-lg font-bold mb-2 line-clamp-2
+      text-foreground
+      transition-colors duration-300
+      group-hover:text-primary
+    ">
+      {blog.title}
+    </h3>
+
+    <p className="text-sm text-muted-foreground line-clamp-2 mb-4 flex-1">
+      {blog.excerpt}
+    </p>
+
+    <div className="flex justify-between items-center pt-4 border-t border-border">
+      <span className="text-xs text-muted-foreground flex items-center gap-1">
+        <Calendar className="h-3 w-3" />
+        {blog.date}
+      </span>
+
+      <Link href={`/blogs/${blog.slug}`}>
+        <span className="
+          text-sm font-medium text-primary
+          flex items-center gap-1
+          transition-all duration-300
+          group-hover:gap-2
+        ">
+          Read More
+          <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+        </span>
+      </Link>
+    </div>
+  </div>
+</article>
+
               ))}
             </div>
           </div>
