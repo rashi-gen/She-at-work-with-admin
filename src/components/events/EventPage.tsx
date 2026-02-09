@@ -780,11 +780,8 @@ export default function EventsPage() {
               {/* Description */}
 
               <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-                Stay updated on workshops, webinars, conferences, and networking
-                events designed to support women entrepreneurs at every stage.
-                Discover opportunities for learning, mentoring, funding access,
-                and meaningful connections that help you grow your business and
-                become part of a stronger women-led ecosystem.
+                Discover workshops, webinars, and networking events designed to support women entrepreneurs.
+Explore opportunities for learning, mentoring, and meaningful connections that help your business grow.
               </p>
             </div>
           </div>

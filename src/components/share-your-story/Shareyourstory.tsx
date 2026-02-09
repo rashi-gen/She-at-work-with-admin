@@ -1,12 +1,12 @@
 /*eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { ArrowRight, FileText, Sparkles, Users, Target, Award } from "lucide-react";
+import { ArrowRight, FileText, Sparkles, Users, Target, Award, RefreshCw } from "lucide-react";
 import { PageBanner } from "../PageBanner";
 import Link from "next/link";
 
@@ -14,6 +14,14 @@ export default function ShareYourStory() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+  const formContentRef = useRef<HTMLDivElement>(null);
+  const [hasScrolled, setHasScrolled] = useState(false);
+
+  // Captcha state
+  const [captcha, setCaptcha] = useState("");
+  const [userCaptcha, setUserCaptcha] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -23,22 +31,103 @@ export default function ShareYourStory() {
     story: "",
   });
 
+  // Generate random captcha
+  const generateCaptcha = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    let result = "";
+    for (let i = 0; i < 6; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    setCaptcha(result);
+    setUserCaptcha("");
+    setCaptchaError("");
+  };
+
+  // Auto-scroll to form on page load with animation
+  useEffect(() => {
+    // Generate initial captcha
+    generateCaptcha();
+
+    // Auto-scroll to form after page loads
+    const timer = setTimeout(() => {
+      if (formContainerRef.current && !hasScrolled) {
+        // Get the exact position of the form content (not just the container)
+        const formElement = formContentRef.current;
+        if (formElement) {
+          const elementTop = formElement.offsetTop;
+          const offset = 100; // Adjust this value to control how much of the form is visible
+          
+          // Scroll to the form with smooth animation
+          window.scrollTo({
+            top: elementTop - offset,
+            behavior: 'smooth'
+          });
+          
+          // Add animation class to form
+          formElement.classList.add('form-entrance');
+          
+          // Add animation class to specific form fields for sequential animation
+          const formInputs = formElement.querySelectorAll('.form-input');
+          formInputs.forEach((input, index) => {
+            (input as HTMLElement).style.animationDelay = `${index * 0.1}s`;
+            input.classList.add('animate-input');
+          });
+          
+          setHasScrolled(true);
+        }
+      }
+    }, 300); // Increased delay to ensure page is fully loaded
+
+    return () => clearTimeout(timer);
+  }, [hasScrolled]);
+
+  // Focus on first input field after scroll
+  useEffect(() => {
+    if (hasScrolled && formContainerRef.current) {
+      const firstInput = formContainerRef.current.querySelector('input[name="name"]') as HTMLInputElement;
+      if (firstInput) {
+        // Small delay to ensure scroll is complete
+        setTimeout(() => {
+          firstInput.focus();
+        }, 800);
+      }
+    }
+  }, [hasScrolled]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateCaptcha = () => {
+    if (userCaptcha !== captcha) {
+      setCaptchaError("Captcha doesn't match. Please try again.");
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate captcha
+    if (!validateCaptcha()) {
+      return;
+    }
+
     setLoading(true);
     setError(null);
+    setCaptchaError("");
 
     try {
       const res = await fetch("/api/stories", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          captchaVerified: true
+        }),
       });
 
       const data = await res.json();
@@ -53,8 +142,13 @@ export default function ShareYourStory() {
         title: "",
         story: "",
       });
+      setUserCaptcha("");
+      // Generate new captcha on successful submission
+      generateCaptcha();
     } catch (err: any) {
       setError(err.message || "Something went wrong");
+      // Also generate new captcha on error
+      generateCaptcha();
     } finally {
       setLoading(false);
     }
@@ -62,12 +156,11 @@ export default function ShareYourStory() {
 
   return (
     <main className="bg-background min-h-screen">
-       <PageBanner
-              title="Share Your Entrepreneurial Journey Inspire Our Community"
-              description=" Your story has the power to inspire the next generation of women entrepreneurs. Join our community of 975+ published stories and make your voice heard."
-              image="/finalshareyourstorybanner.png"
-            />
-
+      <PageBanner
+        title="Share Your Entrepreneurial Journey Inspire Our Community"
+        description=" Your story has the power to inspire the next generation of women entrepreneurs. Join our community of 975+ published stories and make your voice heard."
+        image="/finalshareyourstorybanner.png"
+      />
 
       {/* ================= MAIN CONTENT ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -172,10 +265,10 @@ export default function ShareYourStory() {
             </div>
             
             {/* ================= RIGHT COLUMN - FORM ================= */}
-            <div className="lg:col-span-2">
-              <div className="sticky top-24">
+            <div ref={formContainerRef} className="lg:col-span-2">
+              <div ref={formContentRef} className="sticky top-24 form-content">
                 {success && (
-                  <div className="mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 p-4 sm:p-6">
+                  <div className="mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 p-4 sm:p-6 animate-fade-in">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-green-100 flex items-center justify-center flex-shrink-0">
                         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -193,7 +286,7 @@ export default function ShareYourStory() {
                 )}
 
                 {error && (
-                  <div className="mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 p-4 sm:p-6">
+                  <div className="mb-6 rounded-xl sm:rounded-2xl bg-gradient-to-r from-red-50 to-rose-50 border-2 border-red-200 p-4 sm:p-6 animate-fade-in">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-red-100 flex items-center justify-center flex-shrink-0">
                         <svg className="w-5 h-5 sm:w-6 sm:h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +327,7 @@ export default function ShareYourStory() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all"
+                          className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all form-input"
                           placeholder="Your full name"
                         />
                       </div>
@@ -249,23 +342,72 @@ export default function ShareYourStory() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all"
+                          className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all form-input"
                           placeholder="you@example.com"
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2 sm:space-y-3">
-                      <Label className="text-sm font-semibold">Phone (Optional)</Label>
-                      <Input
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all"
-                        placeholder="+91 XXXXX XXXXX"
-                      />
-                    </div>
-
+                <div className="space-y-2 sm:space-y-3">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {/* Phone Field */}
+    <div>
+      <Label className="text-sm font-semibold">Phone (Optional)</Label>
+      <Input
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        className="h-10 sm:h-12 mt-1 rounded-lg border-2 border-border focus:border-primary transition-all form-inputw"
+        placeholder="+91 XXXXX XXXXX"
+      />
+    </div>
+    
+    {/* Captcha Field */}
+    <div>
+      <div className="flex items-center justify-between mb-1">
+        <Label className="text-sm font-semibold flex items-center gap-1">
+          Enter Captcha <span className="text-red-500">*</span>
+        </Label>
+      </div>
+      <div className="flex gap-3">
+        <div className="relative flex-1">
+          <Input
+            value={userCaptcha}
+            onChange={(e) => {
+              setUserCaptcha(e.target.value);
+              setCaptchaError("");
+            }}
+            required
+            className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all pr-20 form-input"
+            placeholder="Type the code"
+          />
+          <div className="absolute right-3 top-1/2 -translate-y-1/2">
+            <button
+              type="button"
+              onClick={generateCaptcha}
+              className="flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
+            >
+              <RefreshCw className="h-3 w-3" />
+              Refresh
+            </button>
+          </div>
+        </div>
+        
+        <div className="flex items-center justify-center w-32 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border-2 border-dashed border-primary/30 form-input">
+          <div className="text-lg font-mono font-bold tracking-wider text-primary select-none">
+            {captcha}
+          </div>
+        </div>
+      </div>
+      {captchaError && (
+        <p className="text-xs text-red-500 mt-1 animate-fade-in">{captchaError}</p>
+      )}
+    </div>
+  </div>
+  <p className="text-xs text-muted-foreground mt-1 sm:col-span-2">
+    Enter the characters shown above to verify you&apos;re human
+  </p>
+</div>
                     <div className="space-y-2 sm:space-y-3">
                       <Label className="text-sm font-semibold flex items-center gap-1">
                         Story Title <span className="text-red-500">*</span>
@@ -275,11 +417,11 @@ export default function ShareYourStory() {
                         value={formData.title}
                         onChange={handleChange}
                         required
-                        className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all"
+                        className="h-10 sm:h-12 rounded-lg border-2 border-border focus:border-primary transition-all form-input"
                         placeholder="Give your story a compelling title"
                       />
                       <p className="text-xs text-muted-foreground">
-                        Example: &aqout;From Side Hustle to Six Figures: My 3-Year Entrepreneurial Journey &aqout;
+                        Example: &quot;From Side Hustle to Six Figures: My 3-Year Entrepreneurial Journey&quot;
                       </p>
                     </div>
 
@@ -294,7 +436,7 @@ export default function ShareYourStory() {
                           onChange={handleChange}
                           rows={8}
                           required
-                          className="rounded-lg border-2 border-border focus:border-primary transition-all resize-none"
+                          className="rounded-lg border-2 border-border focus:border-primary transition-all resize-none form-input"
                           placeholder="Share your entrepreneurial journey... What inspired you to start? What challenges did you face? What lessons have you learned? What advice would you give to others?"
                         />
                         <div className="absolute bottom-3 right-3 text-xs text-muted-foreground">
@@ -329,7 +471,7 @@ export default function ShareYourStory() {
                           type="submit"
                           disabled={loading}
                           size="lg"
-                          className="h-10 sm:h-12 px-6 sm:px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg group"
+                          className="h-10 sm:h-12 px-6 sm:px-8 bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg group form-input"
                         >
                           {loading ? (
                             <>
@@ -358,7 +500,7 @@ export default function ShareYourStory() {
         </div>
       </section>
 
-      {/* ================= CTA SECTION - SAME as About page ================= */}
+      {/* ================= CTA SECTION ================= */}
       <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
 
@@ -367,7 +509,7 @@ export default function ShareYourStory() {
             Ready to Make an Impact?
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-3xl mx-auto">
-            Your story has the power to change someone &apos;s entrepreneurial journey. 
+            Your story has the power to change someone&apos;s entrepreneurial journey. 
             Share your experience and inspire our community today.
           </p>
 
@@ -375,23 +517,114 @@ export default function ShareYourStory() {
             <Button 
               className="h-10 sm:h-12 bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 text-sm sm:text-base"
               onClick={() => {
-                document.querySelector('form')?.scrollIntoView({ behavior: 'smooth' });
+                if (formContentRef.current) {
+                  const elementTop = formContentRef.current.offsetTop;
+                  const offset = 100;
+                  window.scrollTo({
+                    top: elementTop - offset,
+                    behavior: 'smooth'
+                  });
+                }
               }}
             >
               Share Your Story Now
             </Button>
             <Link href="/entrechat">
-            <Button
-              variant="outline"
-              className="h-10 sm:h-12 border-2 border-white text-primary hover:bg-white/10 font-semibold px-6 sm:px-8 text-sm sm:text-base"
-            >
-              Read Other Stories
-              <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-            </Button>
+              <Button
+                variant="outline"
+                className="h-10 sm:h-12 border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 text-sm sm:text-base"
+              >
+                Read Other Stories
+                <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+              </Button>
             </Link>
           </div>
         </div>
       </section>
+
+      <style jsx global>{`
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes inputEntrance {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        .form-content.form-entrance {
+          animation: slideUp 0.8s ease-out forwards;
+          animation-delay: 0.1s;
+          opacity: 0;
+          animation-fill-mode: forwards;
+        }
+
+        .form-input.animate-input {
+          animation: inputEntrance 0.6s ease-out forwards;
+          opacity: 0;
+          animation-fill-mode: forwards;
+        }
+
+        /* Highlight the form section when scrolled to */
+        .form-entrance::before {
+          content: '';
+          position: absolute;
+          top: -20px;
+          left: -20px;
+          right: -20px;
+          bottom: -20px;
+       
+          animation: pulseHighlight 2s ease-out;
+          pointer-events: none;
+          z-index: -1;
+        }
+
+        @keyframes pulseHighlight {
+          0% {
+            border-color: rgba(99, 102, 241, 0);
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.3);
+          }
+          50% {
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+          }
+          100% {
+            border-color: rgba(99, 102, 241, 0);
+            box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+          }
+        }
+
+        /* Smooth scrolling for the entire page */
+        html {
+          scroll-behavior: smooth;
+        }
+      `}</style>
     </main>
   );
 }

@@ -616,7 +616,8 @@ export default function BlogsPage() {
       {/* ================= HERO BANNER ================= */}
       <PageBanner
         title="Inspiring Blogs"
-        description="Explore honest perspectives, expert insights, and inspiring journeys from women building and scaling businesses. From funding and government initiatives to strategy, skills, and growth opportunities — our blogs bring practical knowledge to help you start, scale, and shape your own entrepreneurial journey."
+        description="Explore real insights, bold conversations, and practical guidance for women entrepreneurs.
+From funding and strategy to inspiring journeys, discover ideas that help you start, scale, and grow."
         image="/finalBlogsbanner.png"
       />
 

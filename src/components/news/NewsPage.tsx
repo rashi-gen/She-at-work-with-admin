@@ -828,7 +828,8 @@ export default function NewsPage() {
               </h1>
 
               <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl">
-               Stay updated with the latest news, trends, and success stories from women entrepreneurs in India and around the world. Explore key policy changes, emerging ventures, and industry insights that highlight innovation, growth, and opportunities across the women-led business ecosystem.
+               Latest news, trends, and stories from women entrepreneurs across India and beyond.
+Insights and policy updates driving innovation and growth in women-led enterprises.
               </p>
             </div>
           </div>

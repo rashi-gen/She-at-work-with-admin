@@ -1,3 +1,4 @@
+/*eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -233,70 +234,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ================= STATS WITH GRADIENT ================= */}
-      <ScrollFade delay={0.2}>
-        <section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
-          <div className="relative max-w-screen-xl mx-auto px-5">
-            {/* MOBILE PPT SLIDE */}
-            <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={index === activeIndex ? { 
-                    opacity: 1, 
-                    scale: 1,
-                    transition: { type: "spring", stiffness: 300 }
-                  } : { opacity: 0, scale: 0.8 }}
-                  className="absolute flex flex-col items-center text-center text-white"
-                >
-                  <div className="text-4xl font-bold tracking-tight">
-                    {stat.value}
-                  </div>
-                  <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
-                    {stat.label}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* DESKTOP / TABLET */}
-            <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 + 0.2, duration: 0.6 }}
-                  className="flex flex-col items-center"
-                >
-                  <motion.div 
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
-                    className="text-3xl lg:text-5xl font-medium tracking-tight"
-                  >
-                    {stat.value}
-                  </motion.div>
-                  <motion.span 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 + 0.4 }}
-                    className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide"
-                  >
-                    {stat.label}
-                  </motion.span>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </ScrollFade>
 
       {/* ================= CORE VALUES ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
@@ -462,13 +400,8 @@ export default function AboutPage() {
                     onClick={() => handleMemberClick(member.id)}
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border cursor-pointer relative"
                   >
-                    {/* Click overlay hint */}
-                    <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
-                      <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs font-medium text-primary shadow-lg">
-                        View Profile →
-                      </div>
-                    </div>
+         
+                   
 
                     {/* AVATAR */}
                     <motion.div 
