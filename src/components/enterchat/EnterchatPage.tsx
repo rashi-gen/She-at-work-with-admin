@@ -1,21 +1,25 @@
-// /components/entrechat/EntreChatPage.tsx
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { entrechatData } from "@/data/Entrechat";
 import {
   ArrowRight,
   Calendar,
   ChevronRight,
   Clock,
+  ExternalLink,
   Filter,
-  X
+  Globe,
+  MapPin,
+  Search,
+  X,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
-import { PageBanner } from "../PageBanner";
 
 // Define types for your entrechat data
 interface EntreChatItem {
@@ -40,6 +44,25 @@ interface EntreChatItem {
   post_name: string;
 }
 
+// Extended interface for processed entrechat
+interface ProcessedEntreChatItem {
+  slug: string;
+  id: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  rawDate: Date;
+  readTime: string;
+  interviewee: string;
+  image: string | null;
+  fullContent: string;
+  modifiedDate?: string;
+  modifiedRawDate?: Date;
+  state?: string;
+  country?: string;
+}
+
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
@@ -62,7 +85,7 @@ const getCategoryFromContent = (content: string): string => {
     contentLower.includes("finance") ||
     contentLower.includes("investment") ||
     contentLower.includes("capital") ||
-    contentLower.includes("$")
+    content.includes("$")
   )
     return "Funding & Finance";
   if (
@@ -110,6 +133,64 @@ const getCategoryFromContent = (content: string): string => {
   return "Entrepreneurship";
 };
 
+// Helper function to extract interviewee name from title
+const extractInterviewee = (title: string): string => {
+  const cleaned = title.replace(/Entrechat\s+(?:With|with)\s+/i, "").trim();
+  const finalName = cleaned.replace(/^(Ms\.|Mr\.)\s+/i, "").trim();
+  return finalName || "Interviewee";
+};
+
+// Mock location data
+const mockLocationData: Record<string, { state?: string; country?: string }> = {
+  // Add location data for your interviews here
+};
+
+// Get location from mock data or extract from content as fallback
+const getLocationData = (id: string, content: string): { state?: string; country?: string } => {
+  if (mockLocationData[id]) {
+    return mockLocationData[id];
+  }
+  
+  const contentLower = content.toLowerCase();
+  let state: string | undefined;
+  let country: string | undefined;
+  
+  const statePatterns = [
+    { pattern: /\bcalifornia\b/i, value: "California" },
+    { pattern: /\bnew york\b/i, value: "New York" },
+    { pattern: /\btexas\b/i, value: "Texas" },
+    { pattern: /\bflorida\b/i, value: "Florida" },
+    { pattern: /\bontario\b/i, value: "Ontario" },
+    { pattern: /\blondon\b/i, value: "London" },
+  ];
+  
+  const countryPatterns = [
+    { pattern: /\bus(a)?\b/i, value: "USA" },
+    { pattern: /\bunited states\b/i, value: "USA" },
+    { pattern: /\bcanada\b/i, value: "Canada" },
+    { pattern: /\buk\b/i, value: "UK" },
+    { pattern: /\baustralia\b/i, value: "Australia" },
+    { pattern: /\bindia\b/i, value: "India" },
+    { pattern: /\bgermany\b/i, value: "Germany" },
+  ];
+  
+  for (const statePattern of statePatterns) {
+    if (statePattern.pattern.test(contentLower)) {
+      state = statePattern.value;
+      break;
+    }
+  }
+  
+  for (const countryPattern of countryPatterns) {
+    if (countryPattern.pattern.test(contentLower)) {
+      country = countryPattern.value;
+      break;
+    }
+  }
+  
+  return { state, country };
+};
+
 const entrechatCategories = [
   "All Interviews",
   "Design & Architecture",
@@ -147,9 +228,7 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
   if (!content) return "No excerpt available";
 
   try {
-    // Remove HTML tags
     const plainText = content.replace(/<[^>]*>/g, "");
-    // Remove newlines and extra spaces
     const cleanText = plainText.replace(/\s+/g, " ").trim();
 
     if (cleanText.length <= maxLength) return cleanText;
@@ -158,15 +237,6 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
     console.warn("Error extracting excerpt:", error);
     return "No excerpt available";
   }
-};
-
-// Extract interviewee name from title
-const extractInterviewee = (title: string): string => {
-  // Remove "Entrechat With" or "Entrechat with" prefix
-  const cleaned = title.replace(/Entrechat\s+(?:With|with)\s+/i, "").trim();
-  // Remove any trailing "Ms." or "Mr."
-  const finalName = cleaned.replace(/^(Ms\.|Mr\.)\s+/i, "").trim();
-  return finalName || "Interviewee";
 };
 
 // Calculate read time
@@ -181,28 +251,143 @@ const calculateReadTime = (text: string): string => {
 // Items per page for pagination
 const ITEMS_PER_PAGE = 12;
 
+// Search Suggestions Component
+interface SearchSuggestionProps {
+  suggestions: Array<{
+    id: string;
+    title: string;
+    category: string;
+    interviewee: string;
+    date: string;
+    slug: string;
+    relevance: number;
+  }>;
+  onSelect: (title: string) => void;
+  searchQuery: string;
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+const SearchSuggestions = ({ 
+  suggestions, 
+  onSelect, 
+  searchQuery, 
+  isVisible,
+  onClose
+}: SearchSuggestionProps) => {
+  if (!isVisible || suggestions.length === 0) return null;
+
+  return (
+    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[400px] overflow-y-auto">
+      <div className="p-2">
+        <div className="flex items-center justify-between px-3 py-2">
+          <div className="text-xs font-semibold text-muted-foreground">
+            Suggestions ({suggestions.length})
+          </div>
+          <button
+            onClick={onClose}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            Close
+          </button>
+        </div>
+        
+        {suggestions.map((suggestion) => (
+          <button
+            key={suggestion.id}
+            onClick={() => onSelect(suggestion.title)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors group"
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <Search className="h-4 w-4 text-muted-foreground mt-0.5" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase">
+                    {suggestion.category}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    {suggestion.interviewee}
+                  </span>
+                </div>
+                
+                <h4 className="font-medium text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
+                  {suggestion.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, index) => 
+                    part.toLowerCase() === searchQuery.toLowerCase() ? (
+                      <span key={index} className="text-primary font-semibold bg-primary/10 px-0.5 rounded">
+                        {part}
+                      </span>
+                    ) : (
+                      <span key={index}>{part}</span>
+                    )
+                  )}
+                </h4>
+                
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>{suggestion.date}</span>
+                </div>
+              </div>
+              
+              <ChevronRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0" />
+            </div>
+          </button>
+        ))}
+        
+        <div className="border-t border-border mt-2 pt-2">
+          <button
+            onClick={() => onSelect(searchQuery)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Search className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <div className="font-medium text-sm text-foreground">
+                    View all results for {searchQuery}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {suggestions.length} interviews found
+                  </div>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-primary" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function EntreChatPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Interviews");
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [processedInterviews, setProcessedInterviews] = useState<
+  const [searchQuery, setSearchQuery] = useState("");
+  const [processedInterviews, setProcessedInterviews] = useState<ProcessedEntreChatItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState<
     Array<{
       id: string;
-      category: string;
       title: string;
-      excerpt: string;
-      date: string;
-      readTime: string;
+      category: string;
       interviewee: string;
-      image: string;
-      fullContent: string;
-      modifiedDate?: string;
+      date: string;
       slug: string;
-      authorInfo?: string;
+      relevance: number;
     }>
   >([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<{ from: string; to: string }>({ from: "", to: "" });
+  const [selectedState, setSelectedState] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
   const router = useRouter();
 
   // Process entrechat data on component mount
@@ -220,20 +405,19 @@ export default function EntreChatPage() {
         const title = item.post_title
           ? item.post_title.replace(/&amp;/g, "&")
           : "EntreChat Interview";
+        const rawDate = new Date(item.post_date);
         const date = formatDate(item.post_date);
-        const readTime = calculateReadTime(excerpt);
+        const readTime = calculateReadTime(item.post_content);
         const interviewee = extractInterviewee(title);
 
         const image =
           item.featured_image_url && item.featured_image_url.trim() !== ""
             ? item.featured_image_url
-            : "/placeholder-interview.jpg";
+            : null;
 
-        // Extract author info from content (first paragraph)
-        const authorInfo = extractExcerpt(
-          item.post_content.replace(/<[^>]*>/g, ""),
-          100,
-        );
+        const slug = item.post_name || `entrechat-${item.ID}`;
+        
+        const location = getLocationData(item.ID, item.post_content);
 
         return {
           id: item.ID || Math.random().toString(),
@@ -241,6 +425,7 @@ export default function EntreChatPage() {
           title,
           excerpt,
           date,
+          rawDate,
           readTime,
           interviewee,
           image,
@@ -248,26 +433,15 @@ export default function EntreChatPage() {
           modifiedDate: item.post_modified
             ? formatDate(item.post_modified)
             : undefined,
-          slug: item.post_name || `entrechat-${item.ID}`,
-          authorInfo,
+          modifiedRawDate: item.post_modified ? new Date(item.post_modified) : undefined,
+          slug,
+          state: location.state,
+          country: location.country,
         };
       });
 
-      // Sort by date (newest first)
-      processed.sort((a, b) => {
-        try {
-          const dateA = new Date(
-            a.date === "Date unavailable" ? "1970-01-01" : a.date,
-          );
-          const dateB = new Date(
-            b.date === "Date unavailable" ? "1970-01-01" : b.date,
-          );
-          return dateB.getTime() - dateA.getTime();
-        } catch (error) {
-          console.log(error);
-          return 0;
-        }
-      });
+      // Sort by date descending
+      processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
 
       setProcessedInterviews(processed);
     } catch (error) {
@@ -279,53 +453,198 @@ export default function EntreChatPage() {
   }, []);
 
   // Get featured interview (most recent)
-  const featuredInterview =
-    processedInterviews.length > 0 ? processedInterviews[0] : null;
+  const featuredInterview = processedInterviews.length > 0 ? processedInterviews[0] : null;
 
-  // Get trending interviews (most recent 4)
-  const trendingInterviews = processedInterviews.slice(0, 4);
+  // Filter interviews based on all filter criteria
+  const filteredInterviews = useMemo(() => {
+    let filtered = [...processedInterviews];
 
-  // Filter interviews based on selected category
-  const getFilteredInterviews = () => {
-    if (selectedCategory === "All Interviews") {
-      return processedInterviews;
+    // Filter by category
+    if (selectedCategory !== "All Interviews") {
+      filtered = filtered.filter(
+        (interview) => interview.category === selectedCategory
+      );
     }
-    return processedInterviews.filter(
-      (interview) =>
-        interview.category.toLowerCase() === selectedCategory.toLowerCase(),
-    );
-  };
 
-  // Check if featured interview should be shown
-  const shouldShowFeaturedInterview = () => {
-    if (!featuredInterview || selectedCategory === "All Interviews")
-      return true;
-    return (
-      featuredInterview.category.toLowerCase() ===
-      selectedCategory.toLowerCase()
-    );
-  };
+    // Filter by date range
+    if (dateRange.from) {
+      const fromDate = new Date(dateRange.from);
+      fromDate.setHours(0, 0, 0, 0);
+      filtered = filtered.filter(interview => interview.rawDate >= fromDate);
+    }
+    if (dateRange.to) {
+      const toDate = new Date(dateRange.to);
+      toDate.setHours(23, 59, 59, 999);
+      filtered = filtered.filter(interview => interview.rawDate <= toDate);
+    }
 
-  const filteredInterviews = getFilteredInterviews();
-  const showFeaturedInterview = shouldShowFeaturedInterview();
+    // Filter by state
+    if (selectedState && selectedState !== "All States") {
+      filtered = filtered.filter(interview => interview.state === selectedState);
+    }
 
-  // Get filtered trending interviews
-  // const getFilteredTrendingInterviews = () => {
-  //   if (selectedCategory === "All Interviews") {
-  //     return trendingInterviews;
-  //   }
-  //   return trendingInterviews.filter(interview =>
-  //     interview.category.toLowerCase() === selectedCategory.toLowerCase()
-  //   ).slice(0, 4);
-  // };
+    // Filter by country
+    if (selectedCountry && selectedCountry !== "All Countries") {
+      filtered = filtered.filter(interview => interview.country === selectedCountry);
+    }
 
-  // const filteredTrendingInterviews = getFilteredTrendingInterviews();
+    // Filter by search query
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (interview) =>
+          interview.title.toLowerCase().includes(query) ||
+          interview.excerpt.toLowerCase().includes(query) ||
+          interview.fullContent.toLowerCase().includes(query) ||
+          interview.category.toLowerCase().includes(query) ||
+          interview.interviewee.toLowerCase().includes(query) ||
+          (interview.state && interview.state.toLowerCase().includes(query)) ||
+          (interview.country && interview.country.toLowerCase().includes(query))
+      );
+    }
 
-  // Pagination calculations
+    return filtered;
+  }, [processedInterviews, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+
+  // Check if featured interview should be shown in All Interviews section
+  const shouldShowFeaturedInterviewInAllInterviews = useMemo(() => {
+    if (!featuredInterview) return false;
+    
+    let passesFilters = true;
+    
+    if (selectedCategory !== "All Interviews" && featuredInterview.category !== selectedCategory) {
+      passesFilters = false;
+    }
+    
+    if (dateRange.from) {
+      const fromDate = new Date(dateRange.from);
+      fromDate.setHours(0, 0, 0, 0);
+      if (featuredInterview.rawDate < fromDate) passesFilters = false;
+    }
+    if (dateRange.to) {
+      const toDate = new Date(dateRange.to);
+      toDate.setHours(23, 59, 59, 999);
+      if (featuredInterview.rawDate > toDate) passesFilters = false;
+    }
+    
+    if (selectedState && selectedState !== "All States" && featuredInterview.state !== selectedState) {
+      passesFilters = false;
+    }
+    
+    if (selectedCountry && selectedCountry !== "All Countries" && featuredInterview.country !== selectedCountry) {
+      passesFilters = false;
+    }
+    
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      if (
+        !featuredInterview.title.toLowerCase().includes(query) &&
+        !featuredInterview.excerpt.toLowerCase().includes(query) &&
+        !featuredInterview.fullContent.toLowerCase().includes(query) &&
+        !featuredInterview.category.toLowerCase().includes(query) &&
+        !featuredInterview.interviewee.toLowerCase().includes(query) &&
+        !(featuredInterview.state && featuredInterview.state.toLowerCase().includes(query)) &&
+        !(featuredInterview.country && featuredInterview.country.toLowerCase().includes(query))
+      ) {
+        passesFilters = false;
+      }
+    }
+    
+    return passesFilters;
+  }, [featuredInterview, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+
+  const showFeaturedInterviewInAllInterviews = shouldShowFeaturedInterviewInAllInterviews;
+
+  // Pagination calculations for All Interviews section
   const totalPages = Math.ceil(filteredInterviews.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentInterviews = filteredInterviews.slice(startIndex, endIndex);
+
+  // Get latest headlines (most recent 4 interviews)
+  const latestHeadlines = useMemo(() => {
+    return processedInterviews.slice(0, 4);
+  }, [processedInterviews]);
+
+  // Extract unique states and countries from processed interviews
+  const uniqueStates = useMemo(() => {
+    const states = processedInterviews
+      .map(interview => interview.state)
+      .filter((state): state is string => !!state)
+      .filter((state, index, self) => self.indexOf(state) === index)
+      .sort();
+    return ["All States", ...states];
+  }, [processedInterviews]);
+
+  const uniqueCountries = useMemo(() => {
+    const countries = processedInterviews
+      .map(interview => interview.country)
+      .filter((country): country is string => !!country)
+      .filter((country, index, self) => self.indexOf(country) === index)
+      .sort();
+    return ["All Countries", ...countries];
+  }, [processedInterviews]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+
+  // Handle clicks outside search suggestions and filter dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Generate search suggestions based on query
+  useEffect(() => {
+    if (searchQuery.trim().length >= 2) {
+      const query = searchQuery.toLowerCase().trim();
+      
+      const suggestions = processedInterviews
+        .map((interview) => {
+          let relevance = 0;
+          
+          if (interview.title.toLowerCase().includes(query)) relevance += 10;
+          if (interview.excerpt.toLowerCase().includes(query)) relevance += 5;
+          if (interview.fullContent.toLowerCase().includes(query)) relevance += 3;
+          if (interview.category.toLowerCase().includes(query)) relevance += 8;
+          if (interview.interviewee.toLowerCase().includes(query)) relevance += 2;
+          if (interview.state && interview.state.toLowerCase().includes(query)) relevance += 6;
+          if (interview.country && interview.country.toLowerCase().includes(query)) relevance += 6;
+          
+          if (interview.title.toLowerCase().startsWith(query)) relevance += 5;
+          
+          return {
+            id: interview.id,
+            title: interview.title,
+            category: interview.category,
+            interviewee: interview.interviewee,
+            date: interview.date,
+            slug: interview.slug,
+            relevance
+          };
+        })
+        .filter(item => item.relevance > 0)
+        .sort((a, b) => b.relevance - a.relevance)
+        .slice(0, 8);
+      
+      setSearchSuggestions(suggestions);
+      setShowSuggestions(suggestions.length > 0);
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [searchQuery, processedInterviews]);
 
   // Handle page change
   const handlePageChange = (page: number) => {
@@ -333,19 +652,75 @@ export default function EntreChatPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Handle card click
-  const handleCardClick = (slug: string) => {
+  // Handle interview click
+  const handleInterviewClick = (slug: string) => {
     router.push(`/entrechat/${slug}`);
+  };
+
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+  };
+
+  // Handle search suggestion selection
+  const handleSuggestionSelect = (title: string) => {
+    setSearchQuery(title);
+    setShowSuggestions(false);
+    
+    const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.focus();
+    }
+  };
+
+  // Clear all filters
+  const clearAllFilters = () => {
+    setSelectedCategory("All Interviews");
+    setDateRange({ from: "", to: "" });
+    setSelectedState("");
+    setSelectedCountry("");
+    setSearchQuery("");
+    setSearchSuggestions([]);
+    setShowSuggestions(false);
+    setCurrentPage(1);
+    setIsFilterOpen(false);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowSuggestions(false);
+  };
+
+  // Check if any filter is active
+  const isAnyFilterActive = () => {
+    return (
+      selectedCategory !== "All Interviews" ||
+      dateRange.from !== "" ||
+      dateRange.to !== "" ||
+      (selectedState !== "" && selectedState !== "All States") ||
+      (selectedCountry !== "" && selectedCountry !== "All Countries") ||
+      searchQuery !== ""
+    );
   };
 
   if (isLoading) {
     return (
       <main className="bg-background min-h-screen">
-        <PageBanner
-          title="EntreChat Community"
-          description="Exclusive interviews with inspiring women entrepreneurs sharing their journeys, insights, and advice"
-          image="/FinalEntrechatbanner.png"
-        />
+        <section className={`relative h-[470px] overflow-hidden pt-24`}>
+          <div className="absolute inset-0" style={{ top: "96px" }}>
+            <div
+              className="w-full h-full"
+              style={{
+                backgroundImage: `url(/FinalEntrechatbanner.png)`,
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
+          </div>
+        </section>
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
@@ -357,7 +732,7 @@ export default function EntreChatPage() {
   }
 
   return (
-    <main className="bg-background min-h-screen flex flex-col">
+    <main className="bg-background min-h-screen">
       <section className={`relative h-[470px] overflow-hidden pt-24`}>
         {/* Background Image */}
         <div className="absolute inset-0" style={{ top: "96px" }}>
@@ -370,8 +745,6 @@ export default function EntreChatPage() {
               backgroundRepeat: "no-repeat",
             }}
           />
-          {/* Overlay for better text readability */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" /> */}
         </div>
 
         {/* Content - Left aligned */}
@@ -385,32 +758,35 @@ export default function EntreChatPage() {
                 </span>
               </h1>
 
-              {/* Description */}
-
               <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
                 Exclusive interviews with inspiring women entrepreneurs sharing
                 their <br /> journeys, insights, and advice
               </p>
-
-           
             </div>
           </div>
         </div>
       </section>
 
-      {/* ================= FEATURED INTERVIEW + TRENDING ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 bg-secondary/30 flex-1">
+      {/* ================= FEATURED INTERVIEW + SIDEBAR ================= */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
           {/* LEFT - FEATURED INTERVIEW */}
-          {showFeaturedInterview && featuredInterview && (
+          {featuredInterview && (
             <div className="lg:col-span-2">
               <div
-                onClick={() => handleCardClick(featuredInterview.slug)}
+                onClick={() => handleInterviewClick(featuredInterview.slug)}
                 className="relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10 cursor-pointer"
               >
+                {/* FEATURED BADGE */}
+                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
+                  <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-primary to-accent text-white text-xs font-bold uppercase shadow-lg">
+                    Featured Interview
+                  </span>
+                </div>
+
                 {/* IMAGE */}
-                <div className="relative h-48 sm:h-60 lg:h-[450px] overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                  {featuredInterview.image !== "/placeholder-interview.jpg" ? (
+                <div className="relative h-48 sm:h-64 lg:h-[340px] overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                  {featuredInterview.image ? (
                     <Image
                       src={featuredInterview.image}
                       alt={featuredInterview.title}
@@ -431,235 +807,145 @@ export default function EntreChatPage() {
                 </div>
 
                 {/* CONTENT */}
-                <div className="p-4 sm:p-6 lg:p-6">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                <div className="p-4 ">
+                 
+
+                  <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredInterview.title}
                   </h2>
 
-                  <p className="text-sm sm:text-base text-muted-foreground mb-4  leading-relaxed line-clamp-3">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed line-clamp-3">
                     {featuredInterview.excerpt}
                   </p>
 
-                  {/* INTERVIEWEE INFO */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4  border-t border-border">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-lg">
-                        {featuredInterview.interviewee.charAt(0)}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-1 border-t border-border">
+                    <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                        {featuredInterview.date}
                       </div>
-                      <div>
-                        <p className="font-semibold text-foreground text-sm sm:text-base">
-                          {featuredInterview.interviewee}
-                        </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground">
-                          Featured Interview
-                        </p>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                        {featuredInterview.readTime}
                       </div>
+                      {featuredInterview.state && (
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                          <span>{featuredInterview.state}</span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="w-full sm:w-auto">
-                      <Button className="bg-primary hover:bg-primary/90 w-full text-sm sm:text-base">
-                        Read Interview{" "}
-                        <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      className="bg-primary hover:bg-primary/90 group text-sm  w-full sm:w-auto"
+                    >
+                      Read Interview
+                      <ExternalLink className="ml-2 h-3 w-3  group-hover:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
                 </div>
               </div>
             </div>
           )}
 
-          {/* RIGHT - TRENDING INTERVIEWS (UPDATED TO MATCH NEWS PAGE) */}
-          <div
-            className={`space-y-4 sm:space-y-6 ${!showFeaturedInterview ? "lg:col-span-3" : ""}`}
-          >
+          {/* RIGHT - TRENDING NOW */}
+          <div className={`space-y-4 sm:space-y-6 ${!featuredInterview ? "lg:col-span-3" : ""}`}>
             <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-              {/* HEADER WITH FILTER TOGGLE */}
-              <div className="flex items-center justify-between mb-4 sm:mb-6">
-                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-                  <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                  {showFilter ? "Filter by Category" : "Trending Interviews"}
+              {/* HEADER */}
+              <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
+                  Trending Now
                 </h3>
-                <div className="flex items-center gap-2">
-                  {selectedCategory !== "All Interviews" && !showFilter && (
-                    <button
-                      onClick={() => {
-                        setSelectedCategory("All Interviews");
-                        setCurrentPage(1);
-                      }}
-                      className="text-xs px-2 py-1 rounded-md bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
-                    >
-                      Clear
-                    </button>
-                  )}
-                  <button
-                    onClick={() => setShowFilter(!showFilter)}
-                    className="p-1.5 rounded-lg hover:bg-secondary transition-colors"
-                    aria-label={showFilter ? "Show trending" : "Show filters"}
-                  >
-                    <Filter
-                      className={`h-4 w-4 ${showFilter ? "text-primary" : "text-muted-foreground"}`}
-                    />
-                  </button>
-                </div>
               </div>
 
-              {/* CONDITIONAL CONTENT */}
-              {showFilter ? (
-                // FILTER VIEW - Compact with custom scrollbar
-                <div className="mb-4">
-                  <div className="max-h-[280px] overflow-y-auto pr-2 custom-scrollbar">
-                    <div className="space-y-1">
-                      {entrechatCategories.map((cat) => (
-                        <button
-                          key={cat}
-                          onClick={() => {
-                            setSelectedCategory(cat);
-                            setShowFilter(false);
-                            setCurrentPage(1);
-                          }}
-                          className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center justify-between group ${
-                            selectedCategory === cat
-                              ? "bg-primary/10 text-primary font-medium border-l-4 border-primary"
-                              : "hover:bg-secondary/50 text-muted-foreground border-l-4 border-transparent hover:border-primary/20"
-                          }`}
-                        >
-                          <span className="truncate">{cat}</span>
-                          {selectedCategory === cat ? (
-                            <div className="flex items-center gap-2 flex-shrink-0">
-                              <span className="text-xs text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                                Active
-                              </span>
-                              <div className="h-2 w-2 rounded-full bg-primary" />
-                            </div>
-                          ) : (
-                            <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/50 group-hover:text-primary/50 transition-colors flex-shrink-0" />
-                          )}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* FILTER STATUS */}
-                  {selectedCategory !== "All Interviews" && (
-                    <div className="mt-3 pt-3 border-t border-border flex items-center justify-between">
-                      <span className="text-sm text-muted-foreground">
-                        Filtering:{" "}
-                        <span className="font-medium text-primary">
-                          {selectedCategory}
-                        </span>
-                      </span>
-                      <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded-full">
-                        {filteredInterviews.length}{" "}
-                        {filteredInterviews.length === 1
-                          ? "interview"
-                          : "interviews"}
-                      </span>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                // TRENDING INTERVIEWS VIEW - Always visible
-                <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-                  <div className="space-y-3 sm:space-y-4">
-                    {trendingInterviews.map((interview, i) => (
-                      <div
-                        key={i}
-                        onClick={() => handleCardClick(interview.slug)}
-                        className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
-                      >
-                        <div className="flex items-start gap-3">
-                          {/* NUMBER BADGE */}
-                          <div className="flex-shrink-0">
-                            <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
+              {/* TRENDING NOW VIEW WITH IMAGES */}
+              <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-3 sm:space-y-4">
+                  {latestHeadlines.map((interview, i) => (
+                    <div
+                      key={i}
+                      onClick={() => handleInterviewClick(interview.slug)}
+                      className="block cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* IMAGE */}
+                        <div className="flex-shrink-0">
+                          <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                            {interview.image ? (
+                              <Image
+                                src={interview.image}
+                                alt={interview.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 48px, 56px"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
+                                <div className="text-primary/40 text-lg font-display">
+                                  {interview.interviewee.charAt(0)}
+                                </div>
+                              </div>
+                            )}
+                            {/* NUMBER OVERLAY */}
+                            <div className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent text-white text-xs font-bold">
                               {i + 1}
                             </div>
                           </div>
-
-                          {/* CONTENT */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                              <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                                {interview.category.split(" & ")[0]}
-                              </span>
-                              <span className="text-[10px] text-muted-foreground truncate">
-                                {interview.interviewee.split(" ")[0]}
-                              </span>
-                            </div>
-                            <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
-                              {interview.title}
-                            </h4>
-                            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                              <div className="flex items-center gap-1">
-                                <Calendar className="h-3 w-3" />
-                                <span>{interview.date}</span>
-                              </div>
-                              <div className="flex items-center gap-1">
-                                <Clock className="h-3 w-3" />
-                                <span>{interview.readTime}</span>
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* ARROW INDICATOR */}
-                          <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
                         </div>
+
+                        {/* CONTENT */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                            <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                              {interview.category.split(" & ")[0]}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
+                              <User className="h-3 w-3" />
+                              {interview.interviewee.split(' ')[0]}
+                            </span>
+                          </div>
+                          <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                            {interview.title}
+                          </h4>
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              <span>{interview.date}</span>
+                            </div>
+                            {interview.state && (
+                              <div className="flex items-center gap-1">
+                                <MapPin className="h-3 w-3" />
+                                <span className="truncate max-w-[60px]">{interview.state}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* ARROW INDICATOR */}
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              )}
+              </div>
 
-              {/* QUICK ACTION BUTTONS - Always visible */}
-              <div className="space-y-2 mt-4 pt-4 border-t border-border">
-                {!showFilter ? (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-primary hover:bg-primary/10 hover:text-primary text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(true)}
-                  >
-                    <Filter className="h-3.5 w-3.5" />
-                    Filter Interviews
-                    <ChevronRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </Button>
-                ) : (
-                  <Button
-                    variant="ghost"
-                    className="w-full text-muted-foreground hover:bg-secondary hover:text-foreground text-sm flex items-center justify-center gap-2 group"
-                    onClick={() => setShowFilter(false)}
-                  >
-                    <ChevronRight className="h-3.5 w-3.5 rotate-180" />
-                    Back to Trending
-                  </Button>
-                )}
-
+              {/* QUICK ACTION BUTTON */}
+              <div className="mt-4 pt-4 border-t border-border">
                 <Button
                   variant="ghost"
                   className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
                   onClick={() => {
-                    setSelectedCategory("All Interviews");
-                    setCurrentPage(1);
-                    setShowFilter(false);
+                    clearAllFilters();
+                    window.scrollTo({
+                      top: document.getElementById('all-interviews-section')?.offsetTop || 0,
+                      behavior: 'smooth'
+                    });
                   }}
                 >
                   View All Interviews
-                  <ArrowRight className="h-3.5 w-3.5" />
+                  <ExternalLink className="h-3.5 w-3.5" />
                 </Button>
-
-                {selectedCategory !== "All Interviews" && (
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
-                    onClick={() => {
-                      setSelectedCategory("All Interviews");
-                      setCurrentPage(1);
-                      setShowFilter(false);
-                    }}
-                  >
-                    <X className="h-3.5 w-3.5 mr-1.5" />
-                    Clear {selectedCategory} Filter
-                  </Button>
-                )}
               </div>
             </div>
           </div>
@@ -667,56 +953,304 @@ export default function EntreChatPage() {
       </section>
 
       {/* ================= ALL INTERVIEWS GRID ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 flex-1">
+      <section id="all-interviews-section" className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto">
+          {/* HEADER WITH SEARCH AND FILTER */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
                 {selectedCategory === "All Interviews"
                   ? "All Interviews"
                   : `${selectedCategory} Interviews`}
+                {searchQuery && (
+                  <span className="text-lg sm:text-xl text-primary">
+                    {" "}
+                    - Search results for {searchQuery}
+                  </span>
+                )}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
                 {filteredInterviews.length}{" "}
-                {filteredInterviews.length === 1 ? "interview" : "interviews"}{" "}
-                found
-                {selectedCategory !== "All Interviews" &&
-                  ` in ${selectedCategory}`}
+                {filteredInterviews.length === 1 ? "interview" : "interviews"} found
+                {selectedCategory !== "All Interviews" && ` in ${selectedCategory}`}
+                {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
 
-            {selectedCategory !== "All Interviews" && (
-              <Button
-                variant="outline"
-                className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                onClick={() => {
-                  setSelectedCategory("All Interviews");
-                  setCurrentPage(1);
-                }}
-              >
-                <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                Clear Filter
-              </Button>
-            )}
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
+              <div className="relative w-full sm:w-64" ref={searchRef}>
+                <form onSubmit={handleSearchSubmit}>
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+                  <Input
+                    type="search"
+                    placeholder="Search interviews..."
+                    className="pl-10 pr-10 w-full bg-white"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => {
+                      if (searchQuery.length >= 2 && searchSuggestions.length > 0) {
+                        setShowSuggestions(true);
+                      }
+                    }}
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
+                    >
+                      <X className="h-4 w-4 text-black" />
+                    </button>
+                  )}
+                </form>
+                
+                {/* SEARCH SUGGESTIONS DROPDOWN */}
+                <SearchSuggestions
+                  suggestions={searchSuggestions}
+                  onSelect={handleSuggestionSelect}
+                  searchQuery={searchQuery}
+                  isVisible={showSuggestions}
+                  onClose={() => setShowSuggestions(false)}
+                />
+              </div>
+              
+              {/* FILTER DROPDOWN */}
+              <div className="relative w-full sm:w-auto" ref={searchRef}>
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto flex items-center gap-2"
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                >
+                  <Filter className="h-4 w-4" />
+                  
+                  {isAnyFilterActive() && (
+                    <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                      {isAnyFilterActive() ? "!" : ""}
+                    </span>
+                  )}
+                </Button>
+
+                {/* FILTER DROPDOWN MENU */}
+                {isFilterOpen && (
+                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto">
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-lg font-semibold text-foreground">
+                          Filter Interviews
+                        </h4>
+                        {isAnyFilterActive() && (
+                          <button
+                            onClick={clearAllFilters}
+                            className="text-sm text-primary hover:text-primary/80"
+                          >
+                            Clear All
+                          </button>
+                        )}
+                      </div>
+                      
+                      {/* CATEGORY FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Filter className="h-4 w-4" />
+                          Category
+                        </h5>
+                        <select
+                          value={selectedCategory}
+                          onChange={(e) => setSelectedCategory(e.target.value)}
+                          className="w-full px-3 py-2 border border-border rounded-lg text-sm mb-3"
+                        >
+                          {entrechatCategories.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* DATE RANGE FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          Date Range
+                        </h5>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">From</label>
+                            <Input
+                              type="date"
+                              value={dateRange.from}
+                              onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">To</label>
+                            <Input
+                              type="date"
+                              value={dateRange.to}
+                              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                        {(dateRange.from || dateRange.to) && (
+                          <button
+                            onClick={() => setDateRange({ from: "", to: "" })}
+                            className="text-xs text-primary hover:text-primary/80 mt-2"
+                          >
+                            Clear date range
+                          </button>
+                        )}
+                      </div>
+
+                      {/* LOCATION FILTERS */}
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        {/* STATE FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            State/Region
+                          </h5>
+                          <select
+                            value={selectedState}
+                            onChange={(e) => setSelectedState(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueStates.map(state => (
+                              <option key={state} value={state}>{state}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* COUNTRY FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <Globe className="h-4 w-4" />
+                            Country
+                          </h5>
+                          <select
+                            value={selectedCountry}
+                            onChange={(e) => setSelectedCountry(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueCountries.map(country => (
+                              <option key={country} value={country}>{country}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* ACTIVE FILTERS SUMMARY */}
+                      {isAnyFilterActive() && (
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <h5 className="text-sm font-medium text-foreground mb-2">
+                            Active Filters
+                          </h5>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedCategory !== "All Interviews" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                {selectedCategory}
+                                <button
+                                  onClick={() => setSelectedCategory("All Interviews")}
+                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.from && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                From: {new Date(dateRange.from).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, from: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.to && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                To: {new Date(dateRange.to).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, to: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedState && selectedState !== "All States" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                {selectedState}
+                                <button
+                                  onClick={() => setSelectedState("")}
+                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedCountry && selectedCountry !== "All Countries" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                                {selectedCountry}
+                                <button
+                                  onClick={() => setSelectedCountry("")}
+                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {searchQuery && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                                Search: {searchQuery}
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {isAnyFilterActive() && (
+                <Button
+                  variant="outline"
+                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                  onClick={clearAllFilters}
+                >
+                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                  Clear All
+                </Button>
+              )}
+            </div>
           </div>
 
           {filteredInterviews.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Filter className="h-8 w-8 text-muted-foreground" />
+                <Search className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
                 No interviews found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no interviews in the &quot;{selectedCategory}&quot;
-                category yet.
+                {searchQuery
+                  ? `No interviews found matching "${searchQuery}"${
+                      selectedCategory !== "All Interviews"
+                        ? ` in the "${selectedCategory}" category`
+                        : ""
+                    }`
+                  : `There are no interviews in the "${selectedCategory}" category yet.`}
               </p>
               <Button
-                onClick={() => {
-                  setSelectedCategory("All Interviews");
-                  setCurrentPage(1);
-                }}
+                onClick={clearAllFilters}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
               >
                 View All Interviews
@@ -724,68 +1258,81 @@ export default function EntreChatPage() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                {currentInterviews.map((interview) => (
-                  <div
-                    key={interview.id}
-                    onClick={() => handleCardClick(interview.slug)}
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
-                  >
-                    {/* IMAGE */}
-                    <div className="relative h-40 sm:h-40 overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                      {interview.image !== "/placeholder-interview.jpg" ? (
-                        <Image
-                          src={interview.image}
-                          alt={interview.title}
-                          fill
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                            <span className="text-white/40 text-5xl font-display">
-                              {interview.interviewee.charAt(0)}
-                            </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                {currentInterviews.map((interview) => {
+                  if (showFeaturedInterviewInAllInterviews && featuredInterview && interview.id === featuredInterview.id) {
+                    return null;
+                  }
+                  
+                  return (
+                    <div
+                      key={interview.id}
+                      onClick={() => handleInterviewClick(interview.slug)}
+                      className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
+                    >
+                      {/* IMAGE CONTAINER */}
+                      <div className="relative h-40 sm:h-40 overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                        {interview.image ? (
+                          <Image
+                            src={interview.image}
+                            alt={interview.title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                              <span className="text-white/40 text-5xl font-display">
+                                {interview.interviewee.charAt(0)}
+                              </span>
+                            </div>
                           </div>
+                        )}
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between mb-2 sm:mb-3">
+                          <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
+                            Interview
+                          </span>
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <User className="h-3 w-3" />
+                            {interview.interviewee.split(' ')[0]}
+                          </span>
                         </div>
-                      )}
-                    </div>
 
-                    {/* CONTENT */}
-                    <div className="p-4 sm:p-6">
-                      <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold mb-2 sm:mb-3 uppercase">
-                        Interview
-                      </span>
+                        <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                          {interview.title}
+                        </h3>
 
-                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {interview.title}
-                      </h3>
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                          {interview.excerpt}
+                        </p>
 
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed">
-                        {interview.excerpt}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{interview.date}</span>
+                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span>{interview.date}</span>
+                            </div>
+                            {(interview.state || interview.country) && (
+                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                                <span>{interview.state || interview.country}</span>
+                              </div>
+                            )}
                           </div>
-                          <div className="hidden sm:block">•</div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{interview.readTime}</span>
+                          <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                            Read
+                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                           </div>
-                        </div>
-                        <div className="text-primary hover:text-accent group-hover:translate-x-1 transition-all p-0 h-auto text-xs sm:text-sm">
-                          Read{" "}
-                          <ArrowRight className="ml-1 h-3 w-3 sm:h-3.5 sm:w-3.5 inline" />
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               {/* PAGINATION */}

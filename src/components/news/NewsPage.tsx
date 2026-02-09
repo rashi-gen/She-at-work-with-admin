@@ -591,60 +591,7 @@ export default function NewsPage() {
     return filtered;
   }, [processedNews, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
 
-  // Check if featured news should be shown in All News section
-  const shouldShowFeaturedNewsInAllNews = useMemo(() => {
-    if (!featuredNews) return false;
-    
-    // Check if featured news passes all current filters
-    let passesFilters = true;
-    
-    // Category filter
-    if (selectedCategory !== "All News" && featuredNews.category !== selectedCategory) {
-      passesFilters = false;
-    }
-    
-    // Date range filter
-    if (dateRange.from) {
-      const fromDate = new Date(dateRange.from);
-      fromDate.setHours(0, 0, 0, 0);
-      if (featuredNews.rawDate < fromDate) passesFilters = false;
-    }
-    if (dateRange.to) {
-      const toDate = new Date(dateRange.to);
-      toDate.setHours(23, 59, 59, 999);
-      if (featuredNews.rawDate > toDate) passesFilters = false;
-    }
-    
-    // State filter
-    if (selectedState && selectedState !== "All States" && featuredNews.state !== selectedState) {
-      passesFilters = false;
-    }
-    
-    // Country filter
-    if (selectedCountry && selectedCountry !== "All Countries" && featuredNews.country !== selectedCountry) {
-      passesFilters = false;
-    }
-    
-    // Search query filter
-    if (searchQuery.trim() !== "") {
-      const query = searchQuery.toLowerCase().trim();
-      if (
-        !featuredNews.title.toLowerCase().includes(query) &&
-        !featuredNews.excerpt.toLowerCase().includes(query) &&
-        !featuredNews.fullContent.toLowerCase().includes(query) &&
-        !featuredNews.category.toLowerCase().includes(query) &&
-        !featuredNews.source.toLowerCase().includes(query) &&
-        !(featuredNews.state && featuredNews.state.toLowerCase().includes(query)) &&
-        !(featuredNews.country && featuredNews.country.toLowerCase().includes(query))
-      ) {
-        passesFilters = false;
-      }
-    }
-    
-    return passesFilters;
-  }, [featuredNews, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
 
-  const showFeaturedNewsInAllNews = shouldShowFeaturedNewsInAllNews;
 
   // Pagination calculations for All News section
   const totalPages = Math.ceil(filteredNews.length / ITEMS_PER_PAGE);
@@ -1397,9 +1344,7 @@ export default function NewsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
                 {currentNews.map((news) => {
                   // Skip featured news if it's already shown at the top
-                  if (showFeaturedNewsInAllNews && featuredNews && news.id === featuredNews.id) {
-                    return null;
-                  }
+               
                   
                   return (
                     <div

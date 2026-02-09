@@ -1,11 +1,24 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { blogsData } from "@/data/Blogs";
-import { ArrowRight, Calendar, ChevronRight, Clock, Filter, X } from "lucide-react";
+import {
+  ArrowRight,
+  Calendar,
+  ChevronRight,
+  Clock,
+  ExternalLink,
+  Filter,
+  Globe,
+  MapPin,
+  Search,
+  X,
+  User,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
 
@@ -33,6 +46,25 @@ interface BlogItem {
   section_id?: string;
 }
 
+// Extended interface for processed blogs
+interface ProcessedBlogItem {
+  slug: string;
+  id: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  rawDate: Date;
+  readTime: string;
+  author: string;
+  image: string | null;
+  fullContent: string;
+  modifiedDate?: string;
+  modifiedRawDate?: Date;
+  state?: string;
+  country?: string;
+}
+
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
@@ -46,6 +78,65 @@ const getCategoryFromContent = (content: string): string => {
   if (contentLower.includes("innovation") || contentLower.includes("innovate") || contentLower.includes("creative") || contentLower.includes("disrupt") || contentLower.includes("new ideas")) return "Innovation";
   if (contentLower.includes("success") || contentLower.includes("story") || contentLower.includes("journey") || contentLower.includes("experience") || contentLower.includes("testimonial")) return "Success Stories";
   return "General";
+};
+
+// Helper function to extract author from content
+const extractAuthor = (content: string): string => {
+  const authorMatch = content.match(/by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i) || 
+                     content.match(/Written by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i) ||
+                     content.match(/Author:\s*([A-Z][a-z]+\s+[A-Z][a-z]+)/i);
+  return authorMatch ? authorMatch[1] : "She at Work Team";
+};
+
+// Mock location data
+const mockLocationData: Record<string, { state?: string; country?: string }> = {
+  // Add location data for your blogs here
+};
+
+// Get location from mock data or extract from content as fallback
+const getLocationData = (id: string, content: string): { state?: string; country?: string } => {
+  if (mockLocationData[id]) {
+    return mockLocationData[id];
+  }
+  
+  const contentLower = content.toLowerCase();
+  let state: string | undefined;
+  let country: string | undefined;
+  
+  const statePatterns = [
+    { pattern: /\bcalifornia\b/i, value: "California" },
+    { pattern: /\bnew york\b/i, value: "New York" },
+    { pattern: /\btexas\b/i, value: "Texas" },
+    { pattern: /\bflorida\b/i, value: "Florida" },
+    { pattern: /\bontario\b/i, value: "Ontario" },
+    { pattern: /\blondon\b/i, value: "London" },
+  ];
+  
+  const countryPatterns = [
+    { pattern: /\bus(a)?\b/i, value: "USA" },
+    { pattern: /\bunited states\b/i, value: "USA" },
+    { pattern: /\bcanada\b/i, value: "Canada" },
+    { pattern: /\buk\b/i, value: "UK" },
+    { pattern: /\baustralia\b/i, value: "Australia" },
+    { pattern: /\bindia\b/i, value: "India" },
+    { pattern: /\bgermany\b/i, value: "Germany" },
+  ];
+  
+  for (const statePattern of statePatterns) {
+    if (statePattern.pattern.test(contentLower)) {
+      state = statePattern.value;
+      break;
+    }
+  }
+  
+  for (const countryPattern of countryPatterns) {
+    if (countryPattern.pattern.test(contentLower)) {
+      country = countryPattern.value;
+      break;
+    }
+  }
+  
+  return { state, country };
 };
 
 const blogCategories = [
@@ -85,9 +176,7 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
   if (!content) return 'No excerpt available';
   
   try {
-    // Remove HTML tags
     const plainText = content.replace(/<[^>]*>/g, '');
-    // Remove newlines and extra spaces
     const cleanText = plainText.replace(/\s+/g, ' ').trim();
     
     if (cleanText.length <= maxLength) return cleanText;
@@ -103,41 +192,156 @@ const calculateReadTime = (text: string): string => {
   if (!text) return '1 min read';
   
   const wordCount = text.split(/\s+/).length;
-  const minutes = Math.max(1, Math.ceil(wordCount / 200)); // 200 words per minute
+  const minutes = Math.max(1, Math.ceil(wordCount / 200));
   return `${minutes} min read`;
 };
 
 // Items per page for pagination
 const ITEMS_PER_PAGE = 12;
 
+// Search Suggestions Component
+interface SearchSuggestionProps {
+  suggestions: Array<{
+    id: string;
+    title: string;
+    category: string;
+    author: string;
+    date: string;
+    slug: string;
+    relevance: number;
+  }>;
+  onSelect: (title: string) => void;
+  searchQuery: string;
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+const SearchSuggestions = ({ 
+  suggestions, 
+  onSelect, 
+  searchQuery, 
+  isVisible,
+  onClose
+}: SearchSuggestionProps) => {
+  if (!isVisible || suggestions.length === 0) return null;
+
+  return (
+    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[400px] overflow-y-auto">
+      <div className="p-2">
+        <div className="flex items-center justify-between px-3 py-2">
+          <div className="text-xs font-semibold text-muted-foreground">
+            Suggestions ({suggestions.length})
+          </div>
+          <button
+            onClick={onClose}
+            className="text-xs text-muted-foreground hover:text-foreground"
+          >
+            Close
+          </button>
+        </div>
+        
+        {suggestions.map((suggestion) => (
+          <button
+            key={suggestion.id}
+            onClick={() => onSelect(suggestion.title)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors group"
+          >
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0">
+                <Search className="h-4 w-4 text-muted-foreground mt-0.5" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase">
+                    {suggestion.category}
+                  </span>
+                  <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
+                    <User className="h-3 w-3" />
+                    {suggestion.author}
+                  </span>
+                </div>
+                
+                <h4 className="font-medium text-sm text-foreground mb-1 group-hover:text-primary transition-colors">
+                  {suggestion.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, index) => 
+                    part.toLowerCase() === searchQuery.toLowerCase() ? (
+                      <span key={index} className="text-primary font-semibold bg-primary/10 px-0.5 rounded">
+                        {part}
+                      </span>
+                    ) : (
+                      <span key={index}>{part}</span>
+                    )
+                  )}
+                </h4>
+                
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3" />
+                  <span>{suggestion.date}</span>
+                </div>
+              </div>
+              
+              <ChevronRight className="h-4 w-4 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0" />
+            </div>
+          </button>
+        ))}
+        
+        <div className="border-t border-border mt-2 pt-2">
+          <button
+            onClick={() => onSelect(searchQuery)}
+            className="w-full text-left p-3 hover:bg-secondary/50 rounded-lg transition-colors"
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Search className="h-4 w-4 text-primary" />
+                </div>
+                <div>
+                  <div className="font-medium text-sm text-foreground">
+                    View all results for {searchQuery}
+                  </div>
+                  <div className="text-xs text-muted-foreground">
+                    {suggestions.length} articles found
+                  </div>
+                </div>
+              </div>
+              <ArrowRight className="h-4 w-4 text-primary" />
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function BlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Blogs");
-  // const [showFilter, setShowFilter] = useState(false);
-  const [showMobileFilter, setShowMobileFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [processedBlogs, setProcessedBlogs] = useState<Array<{
-    id: string;
-    category: string;
-    title: string;
-    excerpt: string;
-    date: string;
-    readTime: string;
-    author: {
-      name: string;
-      role?: string;
-    };
-    image: string;
-    fullContent: string;
-    modifiedDate?: string;
-    slug: string;
-  }>>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [processedBlogs, setProcessedBlogs] = useState<ProcessedBlogItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchSuggestions, setSearchSuggestions] = useState<
+    Array<{
+      id: string;
+      title: string;
+      category: string;
+      author: string;
+      date: string;
+      slug: string;
+      relevance: number;
+    }>
+  >([]);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [dateRange, setDateRange] = useState<{ from: string; to: string }>({ from: "", to: "" });
+  const [selectedState, setSelectedState] = useState<string>("");
+  const [selectedCountry, setSelectedCountry] = useState<string>("");
 
-  // Process blogs data on component mount
+  // Process blog data on component mount
   useEffect(() => {
     try {
       setIsLoading(true);
-      
+
       const processed = blogsData.map((item: BlogItem) => {
         const category = getCategoryFromContent(item.post_content);
         const excerpt = item.post_excerpt && item.post_excerpt.trim() !== '' 
@@ -145,54 +349,42 @@ export default function BlogsPage() {
           : extractExcerpt(item.post_content);
         
         const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Untitled';
+        const rawDate = new Date(item.post_date);
         const date = formatDate(item.post_date);
-        const readTime = calculateReadTime(excerpt);
-        
-        // Extract author from content or use default
-        let authorName = "She at Work";
-        const authorMatch = item.post_content.match(/by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i) || 
-                           item.post_content.match(/Written by\s+([A-Z][a-z]+\s+[A-Z][a-z]+)/i);
-        if (authorMatch) {
-          authorName = authorMatch[1];
-        }
-        
+        const readTime = calculateReadTime(item.post_content);
+        const author = extractAuthor(item.post_content);
         const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
           ? item.featured_image_url 
-          : '/placeholder-blog.jpg';
+          : null;
+        const slug = item.post_name || `blog-${item.ID}`;
         
+        const location = getLocationData(item.ID, item.post_content);
+
         return {
           id: item.ID || Math.random().toString(),
           category,
           title,
           excerpt,
           date,
+          rawDate,
           readTime,
-          author: {
-            name: authorName,
-            role: "Contributor"
-          },
+          author,
           image,
           fullContent: item.post_content || '',
           modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
-          slug: item.post_name || `blog-${item.ID}`
+          modifiedRawDate: item.post_modified ? new Date(item.post_modified) : undefined,
+          slug,
+          state: location.state,
+          country: location.country,
         };
       });
-      
-      // Sort by date (newest first)
-      processed.sort((a, b) => {
-        try {
-          const dateA = new Date(a.date === 'Date unavailable' ? '1970-01-01' : a.date);
-          const dateB = new Date(b.date === 'Date unavailable' ? '1970-01-01' : b.date);
-          return dateB.getTime() - dateA.getTime();
-        } catch (error) {
-          console.log(error)
-          return 0;
-        }
-      });
+
+      // Sort by date descending
+      processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
       
       setProcessedBlogs(processed);
     } catch (error) {
-      console.error('Error processing blogs data:', error);
+      console.error('Error processing blog data:', error);
       setProcessedBlogs([]);
     } finally {
       setIsLoading(false);
@@ -202,46 +394,150 @@ export default function BlogsPage() {
   // Get featured blog (most recent)
   const featuredBlog = processedBlogs.length > 0 ? processedBlogs[0] : null;
 
-  // Get trending posts (most recent 4 articles)
-  const trendingPosts = useMemo(() => {
-    let posts = processedBlogs;
-    // If featured blog is shown, exclude it from trending
-    if (featuredBlog) {
-      posts = posts.filter(blog => blog.id !== featuredBlog.id);
-    }
-    return posts.slice(0, 4);
-  }, [processedBlogs, featuredBlog]);
-
-  // Filter blog posts based on selected category
-  const getFilteredPosts = () => {
-    let filtered = processedBlogs;
+  // Filter blogs based on all filter criteria
+  const filteredBlogs = useMemo(() => {
+    let filtered = [...processedBlogs];
 
     // Filter by category
     if (selectedCategory !== "All Blogs") {
-      filtered = filtered.filter(post => 
-        post.category.toLowerCase() === selectedCategory.toLowerCase()
+      filtered = filtered.filter(
+        (article) => article.category === selectedCategory
+      );
+    }
+
+    // Filter by date range
+    if (dateRange.from) {
+      const fromDate = new Date(dateRange.from);
+      fromDate.setHours(0, 0, 0, 0);
+      filtered = filtered.filter(article => article.rawDate >= fromDate);
+    }
+    if (dateRange.to) {
+      const toDate = new Date(dateRange.to);
+      toDate.setHours(23, 59, 59, 999);
+      filtered = filtered.filter(article => article.rawDate <= toDate);
+    }
+
+    // Filter by state
+    if (selectedState && selectedState !== "All States") {
+      filtered = filtered.filter(article => article.state === selectedState);
+    }
+
+    // Filter by country
+    if (selectedCountry && selectedCountry !== "All Countries") {
+      filtered = filtered.filter(article => article.country === selectedCountry);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim() !== "") {
+      const query = searchQuery.toLowerCase().trim();
+      filtered = filtered.filter(
+        (article) =>
+          article.title.toLowerCase().includes(query) ||
+          article.excerpt.toLowerCase().includes(query) ||
+          article.fullContent.toLowerCase().includes(query) ||
+          article.category.toLowerCase().includes(query) ||
+          article.author.toLowerCase().includes(query) ||
+          (article.state && article.state.toLowerCase().includes(query)) ||
+          (article.country && article.country.toLowerCase().includes(query))
       );
     }
 
     return filtered;
-  };
+  }, [processedBlogs, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
 
-  // Check if featured post should be shown
-  const shouldShowFeaturedPost = () => {
-    if (!featuredBlog) return false;
-    
-    if (selectedCategory === "All Blogs") return true;
-    return featuredBlog.category.toLowerCase() === selectedCategory.toLowerCase();
-  };
 
-  const filteredPosts = getFilteredPosts();
-  const showFeaturedPost = shouldShowFeaturedPost();
+  // const showFeaturedBlogInAllBlogs = shouldShowFeaturedBlogInAllBlogs;
 
-  // Pagination calculations
-  const totalPages = Math.ceil(filteredPosts.length / ITEMS_PER_PAGE);
+  // Pagination calculations for All Blogs section
+  const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentPosts = filteredPosts.slice(startIndex, endIndex);
+  const currentBlogs = filteredBlogs.slice(startIndex, endIndex);
+
+  // Get latest headlines (most recent 4 articles)
+  const latestHeadlines = useMemo(() => {
+    return processedBlogs.slice(0, 4);
+  }, [processedBlogs]);
+
+  // Extract unique states and countries from processed blogs
+  const uniqueStates = useMemo(() => {
+    const states = processedBlogs
+      .map(blog => blog.state)
+      .filter((state): state is string => !!state)
+      .filter((state, index, self) => self.indexOf(state) === index)
+      .sort();
+    return ["All States", ...states];
+  }, [processedBlogs]);
+
+  const uniqueCountries = useMemo(() => {
+    const countries = processedBlogs
+      .map(blog => blog.country)
+      .filter((country): country is string => !!country)
+      .filter((country, index, self) => self.indexOf(country) === index)
+      .sort();
+    return ["All Countries", ...countries];
+  }, [processedBlogs]);
+
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+
+  // Handle clicks outside search suggestions and filter dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  // Generate search suggestions based on query
+  useEffect(() => {
+    if (searchQuery.trim().length >= 2) {
+      const query = searchQuery.toLowerCase().trim();
+      
+      const suggestions = processedBlogs
+        .map((blog) => {
+          let relevance = 0;
+          
+          if (blog.title.toLowerCase().includes(query)) relevance += 10;
+          if (blog.excerpt.toLowerCase().includes(query)) relevance += 5;
+          if (blog.fullContent.toLowerCase().includes(query)) relevance += 3;
+          if (blog.category.toLowerCase().includes(query)) relevance += 8;
+          if (blog.author.toLowerCase().includes(query)) relevance += 2;
+          if (blog.state && blog.state.toLowerCase().includes(query)) relevance += 6;
+          if (blog.country && blog.country.toLowerCase().includes(query)) relevance += 6;
+          
+          if (blog.title.toLowerCase().startsWith(query)) relevance += 5;
+          
+          return {
+            id: blog.id,
+            title: blog.title,
+            category: blog.category,
+            author: blog.author,
+            date: blog.date,
+            slug: blog.slug,
+            relevance
+          };
+        })
+        .filter(item => item.relevance > 0)
+        .sort((a, b) => b.relevance - a.relevance)
+        .slice(0, 8);
+      
+      setSearchSuggestions(suggestions);
+      setShowSuggestions(suggestions.length > 0);
+    } else {
+      setSearchSuggestions([]);
+      setShowSuggestions(false);
+    }
+  }, [searchQuery, processedBlogs]);
 
   // Handle page change
   const handlePageChange = (page: number) => {
@@ -249,17 +545,52 @@ export default function BlogsPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle category selection
-  const handleCategorySelect = (category: string) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-    setShowMobileFilter(false);
+  // Handle search input change
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+  };
+
+  // Handle search suggestion selection
+  const handleSuggestionSelect = (title: string) => {
+    setSearchQuery(title);
+    setShowSuggestions(false);
+    
+    const searchInput = document.querySelector('input[type="search"]') as HTMLInputElement;
+    if (searchInput) {
+      searchInput.focus();
+    }
   };
 
   // Clear all filters
-  const clearFilters = () => {
+  const clearAllFilters = () => {
     setSelectedCategory("All Blogs");
+    setDateRange({ from: "", to: "" });
+    setSelectedState("");
+    setSelectedCountry("");
+    setSearchQuery("");
+    setSearchSuggestions([]);
+    setShowSuggestions(false);
     setCurrentPage(1);
+    setIsFilterOpen(false);
+  };
+
+  // Handle search form submission
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowSuggestions(false);
+  };
+
+  // Check if any filter is active
+  const isAnyFilterActive = () => {
+    return (
+      selectedCategory !== "All Blogs" ||
+      dateRange.from !== "" ||
+      dateRange.to !== "" ||
+      (selectedState !== "" && selectedState !== "All States") ||
+      (selectedCountry !== "" && selectedCountry !== "All Countries") ||
+      searchQuery !== ""
+    );
   };
 
   if (isLoading) {
@@ -287,30 +618,28 @@ export default function BlogsPage() {
         title="Inspiring Blogs"
         description="Insights, tips and actionable content from experts and entrepreneurs worldwide"
         image="/finalBlogsbanner.png"
-      >
- 
-      </PageBanner>
+      />
 
-      {/* ================= FEATURED POST + TRENDING ================= */}
+      {/* ================= FEATURED BLOG + SIDEBAR ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
-          {/* LEFT - FEATURED POST */}
-          {showFeaturedPost && featuredBlog && (
+          {/* LEFT - FEATURED BLOG */}
+          {featuredBlog && (
             <div className="lg:col-span-2">
               <Link 
                 href={`/blogs/${featuredBlog.slug}`}
                 className="block relative group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl hover:shadow-2xl transition-all duration-500 border-2 border-primary/10"
               >
                 {/* FEATURED BADGE */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
+                <div className="absolute top-4 right-4 sm:top-4 sm:right-4 z-10">
                   <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-primary to-accent text-white text-xs font-bold uppercase shadow-lg">
                     Featured Story
                   </span>
                 </div>
 
                 {/* IMAGE */}
-                <div className="relative h-40 sm:h-64 lg:h-[400px] bg-gradient-to-br from-muted to-secondary">
-                  {featuredBlog.image !== '/placeholder-blog.jpg' ? (
+                <div className="relative h-40 sm:h-64 lg:h-[340px] bg-gradient-to-br from-muted to-secondary">
+                  {featuredBlog.image ? (
                     <Image
                       src={featuredBlog.image}
                       alt={featuredBlog.title}
@@ -328,37 +657,41 @@ export default function BlogsPage() {
                 </div>
 
                 {/* CONTENT */}
-                <div className="p-4 sm:p-6 lg:p-6">
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                <div className="p-4 sm:p-4">
+                
+
+                  <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredBlog.title}
                   </h2>
 
-                  <p className="text-sm sm:text-base text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed line-clamp-3">
                     {featuredBlog.excerpt}
                   </p>
 
-                  {/* AUTHOR INFO */}
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-border mt-auto">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base lg:text-md">
-                        {featuredBlog.author.name.charAt(0)}
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2 border-t border-border mt-auto">
+                    <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                        {featuredBlog.date}
                       </div>
-                      <div>
-                        <p className="font-semibold text-foreground text-sm sm:text-base">
-                          {featuredBlog.author.name}
-                        </p>
-                        <p className="text-xs sm:text-sm text-muted-foreground">
-                          {featuredBlog.author.role}
-                        </p>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                        {featuredBlog.readTime}
                       </div>
+                      {featuredBlog.state && (
+                        <div className="flex items-center gap-1">
+                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                          <span>{featuredBlog.state}</span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-all duration-200 w-full sm:w-auto justify-center sm:justify-start">
-                      <span className="group-hover:underline decoration-accent/30 decoration-2 underline-offset-3">
-                        Read Article
-                      </span>
-                      <ArrowRight className="h-3.5 w-3.5 ml-0.5 group-hover:translate-x-1 transition-transform" />
-                    </div>
+                    <Button
+                      className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
+                    >
+                      Read Full Article
+                      <ExternalLink className="ml-2 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
                 </div>
               </Link>
@@ -366,188 +699,408 @@ export default function BlogsPage() {
           )}
 
           {/* RIGHT - TRENDING NOW */}
-      <div className={`space-y-4 sm:space-y-6 ${!showFeaturedPost ? 'lg:col-span-3' : ''}`}>
-  <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-    {/* HEADER */}
-    <div className="flex items-center justify-between mb-4 sm:mb-6">
-      <h3 className="text-lg sm:text-xl font-display font-bold text-foreground flex items-center gap-2">
-        <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-        Trending Now
-      </h3>
-    </div>
+          <div className={`space-y-4 sm:space-y-6 ${!featuredBlog ? 'lg:col-span-3' : ''}`}>
+            <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
+              {/* HEADER */}
+              <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
+                  Trending Now
+                </h3>
+              </div>
 
-    {/* TRENDING POSTS VIEW - Always visible */}
-    <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-      <div className="space-y-3 sm:space-y-4">
-        {trendingPosts.map((post, i) => (
-          <Link
-            key={i}
-            href={`/blogs/${post.slug}`}
-            className="block group cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
-          >
-            <div className="flex items-start gap-3">
-              {/* NUMBER BADGE */}
-              <div className="flex-shrink-0">
-                <div className="flex items-center justify-center h-6 w-6 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 text-primary text-xs font-bold">
-                  {i + 1}
+              {/* TRENDING NOW VIEW WITH IMAGES */}
+              <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                <div className="space-y-3 sm:space-y-4">
+                  {latestHeadlines.map((blog, i) => (
+                    <Link
+                      key={i}
+                      href={`/blogs/${blog.slug}`}
+                      className="block cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+                    >
+                      <div className="flex items-start gap-3">
+                        {/* IMAGE */}
+                        <div className="flex-shrink-0">
+                          <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                            {blog.image ? (
+                              <Image
+                                src={blog.image}
+                                alt={blog.title}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 48px, 56px"
+                              />
+                            ) : (
+                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
+                                <div className="text-primary/40 text-lg font-display">
+                                  {blog.title.charAt(0)}
+                                </div>
+                              </div>
+                            )}
+                            {/* NUMBER OVERLAY */}
+                            <div className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent text-white text-xs font-bold">
+                              {i + 1}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* CONTENT */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                            <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                              {blog.category}
+                            </span>
+                            <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
+                              <User className="h-3 w-3" />
+                              {blog.author.split(' ')[0]}
+                            </span>
+                          </div>
+                          <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                            {blog.title}
+                          </h4>
+                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-3 w-3" />
+                              <span>{blog.date}</span>
+                            </div>
+                            {blog.state && (
+                              <div className="flex items-center gap-1">
+                                <MapPin className="h-3 w-3" />
+                                <span className="truncate max-w-[60px]">{blog.state}</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* ARROW INDICATOR */}
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
-              
-              {/* CONTENT */}
-              <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                  <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                    {post.category}
-                  </span>
-                  <span className="text-[10px] text-muted-foreground truncate">
-                    {post.author.name}
-                  </span>
-                </div>
-                <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
-                  {post.title}
-                </h4>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                  <div className="flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    <span>{post.date}</span>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    <span>{post.readTime}</span>
-                  </div>
-                </div>
+
+              {/* QUICK ACTION BUTTON */}
+              <div className="mt-4 pt-4 border-t border-border">
+                <Button
+                  variant="ghost"
+                  className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
+                  onClick={() => {
+                    clearAllFilters();
+                    window.scrollTo({
+                      top: document.getElementById('all-blogs-section')?.offsetTop || 0,
+                      behavior: 'smooth'
+                    });
+                  }}
+                >
+                  View All Blogs
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </Button>
               </div>
-              
-              {/* ARROW INDICATOR */}
-              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
             </div>
-          </Link>
-        ))}
-      </div>
-    </div>
-
-    {/* QUICK ACTION BUTTONS */}
-    <div className="space-y-2 mt-4 pt-4 border-t border-border">
-      <Button
-        variant="ghost"
-        className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
-        onClick={() => {
-          clearFilters();
-        }}
-      >
-        View All Blogs
-        <ArrowRight className="h-3.5 w-3.5" />
-      </Button>
-      
-      {selectedCategory !== "All Blogs" && (
-        <Button
-          variant="outline"
-          size="sm"
-          className="w-full text-sm border-primary/20 hover:border-primary hover:bg-primary/5 text-primary"
-          onClick={clearFilters}
-        >
-          <X className="h-3.5 w-3.5 mr-1.5" />
-          Clear {selectedCategory} Filter
-        </Button>
-      )}
-    </div>
-  </div>
-</div>
+          </div>
         </div>
       </section>
 
-      {/* ================= LATEST ARTICLES GRID ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12">
+      {/* ================= ALL BLOGS GRID ================= */}
+      <section id="all-blogs-section" className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto">
+          {/* HEADER WITH SEARCH AND FILTER */}
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                {selectedCategory === "All Blogs" ? "Latest Articles" : `${selectedCategory} Articles`}
+                {selectedCategory === "All Blogs"
+                  ? "All Blog Articles"
+                  : `${selectedCategory} Articles`}
+                {searchQuery && (
+                  <span className="text-lg sm:text-xl text-primary">
+                    {" "}
+                    - Search results for {searchQuery}
+                  </span>
+                )}
               </h2>
               <p className="text-sm sm:text-base text-muted-foreground">
-                {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'} found
+                {filteredBlogs.length}{" "}
+                {filteredBlogs.length === 1 ? "article" : "articles"} found
                 {selectedCategory !== "All Blogs" && ` in ${selectedCategory}`}
+                {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
 
-            {/* DROPDOWN FILTER - Replaces search bar */}
             <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
-              <div className="relative w-full sm:w-64">
-                <div className="relative">
-                  <button
-                    onClick={() => setShowMobileFilter(!showMobileFilter)}
-                    className="flex items-center justify-between w-full px-4 py-3 text-sm border border-border bg-white rounded-lg hover:bg-secondary/50 transition-colors"
-                  >
-                    <div className="flex items-center gap-3">
-                      <Filter className="h-4 w-4 text-muted-foreground" />
-                      <span className={selectedCategory === "All Blogs" ? "text-muted-foreground" : "text-foreground font-medium"}>
-                        {selectedCategory === "All Blogs" ? "Filter by Category" : selectedCategory}
-                      </span>
-                    </div>
-                    <ChevronRight className={`h-4 w-4 text-muted-foreground transition-transform ${showMobileFilter ? "rotate-90" : ""}`} />
-                  </button>
-                  
-                  {/* MOBILE FILTER DROPDOWN */}
-                  {showMobileFilter && (
-                    <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-border rounded-lg shadow-lg z-50 max-h-[300px] overflow-y-auto">
-                      <div className="p-2">
-                        <div className="flex items-center justify-between px-3 py-2 border-b border-border">
-                          <h4 className="text-sm font-medium text-foreground">Categories</h4>
-                          <button
-                            onClick={() => setShowMobileFilter(false)}
-                            className="text-xs text-muted-foreground hover:text-foreground"
-                          >
-                            Close
-                          </button>
-                        </div>
-                        {blogCategories.map((cat) => (
-                          <button
-                            key={cat}
-                            onClick={() => handleCategorySelect(cat)}
-                            className={`w-full text-left px-3 py-2.5 rounded-md transition-colors flex items-center justify-between ${
-                              selectedCategory === cat
-                                ? "bg-primary/10 text-primary font-medium"
-                                : "hover:bg-secondary/50 text-muted-foreground"
-                            }`}
-                          >
-                            <span>{cat}</span>
-                            {selectedCategory === cat && (
-                              <div className="h-2 w-2 rounded-full bg-primary" />
-                            )}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
+              <div className="relative w-full sm:w-64" ref={searchRef}>
+                <form onSubmit={handleSearchSubmit}>
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+                  <Input
+                    type="search"
+                    placeholder="Search blogs..."
+                    className="pl-10 pr-10 w-full bg-white"
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    onFocus={() => {
+                      if (searchQuery.length >= 2 && searchSuggestions.length > 0) {
+                        setShowSuggestions(true);
+                      }
+                    }}
+                  />
+                  {searchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
+                    >
+                      <X className="h-4 w-4 text-black" />
+                    </button>
                   )}
-                </div>
+                </form>
+                
+                {/* SEARCH SUGGESTIONS DROPDOWN */}
+                <SearchSuggestions
+                  suggestions={searchSuggestions}
+                  onSelect={handleSuggestionSelect}
+                  searchQuery={searchQuery}
+                  isVisible={showSuggestions}
+                  onClose={() => setShowSuggestions(false)}
+                />
+              </div>
+              
+              {/* FILTER DROPDOWN */}
+              <div className="relative w-full sm:w-auto" ref={searchRef}>
+                <Button
+                  variant="outline"
+                  className="w-full sm:w-auto flex items-center gap-2"
+                  onClick={() => setIsFilterOpen(!isFilterOpen)}
+                >
+                  <Filter className="h-4 w-4" />
+                  
+                  {isAnyFilterActive() && (
+                    <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                      {isAnyFilterActive() ? "!" : ""}
+                    </span>
+                  )}
+                </Button>
+
+                {/* FILTER DROPDOWN MENU */}
+                {isFilterOpen && (
+                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto">
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-4">
+                        <h4 className="text-lg font-semibold text-foreground">
+                          Filter Articles
+                        </h4>
+                        {isAnyFilterActive() && (
+                          <button
+                            onClick={clearAllFilters}
+                            className="text-sm text-primary hover:text-primary/80"
+                          >
+                            Clear All
+                          </button>
+                        )}
+                      </div>
+                      
+                      {/* CATEGORY FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Filter className="h-4 w-4" />
+                          Category
+                        </h5>
+                        <select
+                          value={selectedCategory}
+                          onChange={(e) => setSelectedCategory(e.target.value)}
+                          className="w-full px-3 py-2 border border-border rounded-lg text-sm mb-3"
+                        >
+                          {blogCategories.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* DATE RANGE FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
+                          Date Range
+                        </h5>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">From</label>
+                            <Input
+                              type="date"
+                              value={dateRange.from}
+                              onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                          <div>
+                            <label className="text-xs text-muted-foreground block mb-1">To</label>
+                            <Input
+                              type="date"
+                              value={dateRange.to}
+                              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
+                              className="w-full"
+                            />
+                          </div>
+                        </div>
+                        {(dateRange.from || dateRange.to) && (
+                          <button
+                            onClick={() => setDateRange({ from: "", to: "" })}
+                            className="text-xs text-primary hover:text-primary/80 mt-2"
+                          >
+                            Clear date range
+                          </button>
+                        )}
+                      </div>
+
+                      {/* LOCATION FILTERS */}
+                      <div className="grid grid-cols-2 gap-3 mb-4">
+                        {/* STATE FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            State/Region
+                          </h5>
+                          <select
+                            value={selectedState}
+                            onChange={(e) => setSelectedState(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueStates.map(state => (
+                              <option key={state} value={state}>{state}</option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {/* COUNTRY FILTER */}
+                        <div>
+                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
+                            <Globe className="h-4 w-4" />
+                            Country
+                          </h5>
+                          <select
+                            value={selectedCountry}
+                            onChange={(e) => setSelectedCountry(e.target.value)}
+                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
+                          >
+                            {uniqueCountries.map(country => (
+                              <option key={country} value={country}>{country}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* ACTIVE FILTERS SUMMARY */}
+                      {isAnyFilterActive() && (
+                        <div className="mt-4 pt-4 border-t border-border">
+                          <h5 className="text-sm font-medium text-foreground mb-2">
+                            Active Filters
+                          </h5>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedCategory !== "All Blogs" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                {selectedCategory}
+                                <button
+                                  onClick={() => setSelectedCategory("All Blogs")}
+                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.from && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                From: {new Date(dateRange.from).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, from: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {dateRange.to && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                To: {new Date(dateRange.to).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                                <button
+                                  onClick={() => setDateRange({ ...dateRange, to: "" })}
+                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedState && selectedState !== "All States" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                {selectedState}
+                                <button
+                                  onClick={() => setSelectedState("")}
+                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedCountry && selectedCountry !== "All Countries" && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                                {selectedCountry}
+                                <button
+                                  onClick={() => setSelectedCountry("")}
+                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {searchQuery && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                                Search: {searchQuery}
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
               </div>
 
-              {selectedCategory !== "All Blogs" && (
+              {isAnyFilterActive() && (
                 <Button
                   variant="outline"
                   className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={clearFilters}
+                  onClick={clearAllFilters}
                 >
                   <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Clear Filter
+                  Clear All
                 </Button>
               )}
             </div>
           </div>
 
-          {filteredPosts.length === 0 ? (
+          {filteredBlogs.length === 0 ? (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Filter className="h-8 w-8 text-muted-foreground" />
+                <Search className="h-8 w-8 text-muted-foreground" />
               </div>
               <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
                 No articles found
               </h3>
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                There are no blog posts in the {selectedCategory} category yet.
+                {searchQuery
+                  ? `No articles found matching "${searchQuery}"${
+                      selectedCategory !== "All Blogs"
+                        ? ` in the "${selectedCategory}" category`
+                        : ""
+                    }`
+                  : `There are no blog articles in the "${selectedCategory}" category yet.`}
               </p>
               <Button
-                onClick={clearFilters}
+                onClick={clearAllFilters}
                 className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
               >
                 View All Blogs
@@ -555,77 +1108,88 @@ export default function BlogsPage() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                {currentPosts.map((post) => (
-                  <Link
-                    key={post.id}
-                    href={`/blogs/${post.slug}`}
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
-                  >
-                    {/* IMAGE */}
-                    <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
-                      {post.image !== '/placeholder-blog.jpg' ? (
-                        <Image
-                          src={post.image}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                          <div className="text-white/40 text-5xl font-display">
-                            {post.title.charAt(0)}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                {currentBlogs.map((blog) => {
+                
+                  
+                  return (
+                    <Link
+                      key={blog.id}
+                      href={`/blogs/${blog.slug}`}
+                      className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
+                    >
+                      {/* IMAGE CONTAINER */}
+                      <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                        {blog.image ? (
+                          <Image
+                            src={blog.image}
+                            alt={blog.title}
+                            fill
+                            className="object-fit"
+                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                            <div className="text-white/40 text-5xl font-display">
+                              {blog.title.charAt(0)}
+                            </div>
                           </div>
-                        </div>
-                      )}
-                    </div>
+                        )}
+                      </div>
 
-                    {/* CONTENT */}
-                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                      <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
-                        {post.category}
-                      </span>
-
-                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {post.title}
-                      </h3>
-
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
-                        {post.excerpt}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
-                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-xs text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="hidden sm:block">•</div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-                        <div className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:text-accent transition-all duration-200">
-                          <span className="group-hover:underline decoration-accent/30 decoration-2 underline-offset-3">
-                            Read
+                      {/* CONTENT */}
+                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                        <div className="flex items-center justify-between mb-2 sm:mb-3">
+                          <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
+                            {blog.category}
                           </span>
-                          <ArrowRight className="h-3.5 w-3.5 ml-0.5 group-hover:translate-x-1 transition-transform" />
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <User className="h-3 w-3" />
+                            {blog.author.split(' ')[0]}
+                          </span>
+                        </div>
+
+                        <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                          {blog.title}
+                        </h3>
+
+                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                          {blog.excerpt}
+                        </p>
+
+                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                          <div className="flex flex-col gap-1">
+                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                              <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span>{blog.date}</span>
+                            </div>
+                            {(blog.state || blog.country) && (
+                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                                <span>{blog.state || blog.country}</span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                            Read
+                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* PAGINATION */}
               {totalPages > 1 && (
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
                   <div className="text-sm text-muted-foreground">
-                    Showing {startIndex + 1}-{Math.min(endIndex, filteredPosts.length)} of {filteredPosts.length} articles
+                    Showing {startIndex + 1}-
+                    {Math.min(endIndex, filteredBlogs.length)} of{" "}
+                    {filteredBlogs.length} articles
                   </div>
-                  
+
                   <div className="flex items-center gap-2">
                     <Button
                       variant="outline"
@@ -637,33 +1201,38 @@ export default function BlogsPage() {
                       <ArrowRight className="h-3 w-3 rotate-180" />
                       Previous
                     </Button>
-                    
+
                     <div className="flex items-center gap-1">
-                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                        let pageNum;
-                        if (totalPages <= 5) {
-                          pageNum = i + 1;
-                        } else if (currentPage <= 3) {
-                          pageNum = i + 1;
-                        } else if (currentPage >= totalPages - 2) {
-                          pageNum = totalPages - 4 + i;
-                        } else {
-                          pageNum = currentPage - 2 + i;
-                        }
-                        
-                        return (
-                          <Button
-                            key={pageNum}
-                            variant={currentPage === pageNum ? "default" : "outline"}
-                            size="sm"
-                            className="w-10 h-10 p-0"
-                            onClick={() => handlePageChange(pageNum)}
-                          >
-                            {pageNum}
-                          </Button>
-                        );
-                      })}
-                      
+                      {Array.from(
+                        { length: Math.min(5, totalPages) },
+                        (_, i) => {
+                          let pageNum;
+                          if (totalPages <= 5) {
+                            pageNum = i + 1;
+                          } else if (currentPage <= 3) {
+                            pageNum = i + 1;
+                          } else if (currentPage >= totalPages - 2) {
+                            pageNum = totalPages - 4 + i;
+                          } else {
+                            pageNum = currentPage - 2 + i;
+                          }
+
+                          return (
+                            <Button
+                              key={pageNum}
+                              variant={
+                                currentPage === pageNum ? "default" : "outline"
+                              }
+                              size="sm"
+                              className="w-10 h-10 p-0"
+                              onClick={() => handlePageChange(pageNum)}
+                            >
+                              {pageNum}
+                            </Button>
+                          );
+                        },
+                      )}
+
                       {totalPages > 5 && currentPage < totalPages - 2 && (
                         <>
                           <span className="px-2">...</span>
@@ -678,7 +1247,7 @@ export default function BlogsPage() {
                         </>
                       )}
                     </div>
-                    
+
                     <Button
                       variant="outline"
                       size="sm"
