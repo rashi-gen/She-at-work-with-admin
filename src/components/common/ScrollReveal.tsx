@@ -14,7 +14,7 @@ interface ScrollRevealProps {
   threshold?: number;
   once?: boolean;
 }
-//gf
+
 export const ScrollReveal = ({
   children,
   delay = 0,

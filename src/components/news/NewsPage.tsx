@@ -827,9 +827,8 @@ export default function NewsPage() {
                 </span>
               </h1>
 
-              <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-                Stay informed with the latest news, insights, and success
-                stories <br /> from women entrepreneurs worldwide
+              <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl">
+               Stay updated with the latest news, trends, and success stories from women entrepreneurs in India and around the world. Explore key policy changes, emerging ventures, and industry insights that highlight innovation, growth, and opportunities across the women-led business ecosystem.
               </p>
             </div>
           </div>

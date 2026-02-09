@@ -10,9 +10,12 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+import { ScrollFade, StaggerChildren, AnimatedText } from "../common/ScrollFade";
+import { motion } from "framer-motion";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
@@ -47,8 +50,6 @@ const coreValues = [
   },
 ];
 
-
-
 const journey = [
   {
     year: "2017",
@@ -65,7 +66,7 @@ const journey = [
     year: "2023",
     title: "Global Leadership",
     description:
-      "Founder Ruby Sinha appointed as President of the BRICS CCI Women’s Vertical, strengthening international ties.",
+      "Founder Ruby Sinha appointed as President of the BRICS CCI Women's Vertical, strengthening international ties.",
   },
   {
     year: "2025",
@@ -76,6 +77,7 @@ const journey = [
 
 const teamMembers = [
   {
+    id: "ruby-sinha",
     name: "Ruby Sinha",
     role: "Founder & President (BRICS CCI WE)",
     image: "/core-team/RubySinha.png",
@@ -83,6 +85,7 @@ const teamMembers = [
     twitter: "#",
   },
   {
+    id: "shree-lahiri",
     name: "Shree Lahiri",
     role: "Content Head",
     image: "/core-team/ShreeLahiri.png",
@@ -90,6 +93,7 @@ const teamMembers = [
     twitter: "#",
   },
   {
+    id: "poonam-sinha",
     name: "Poonam Sinha",
     role: "Content Manager",
     image: "/core-team/PoonamSinha.png",
@@ -97,6 +101,7 @@ const teamMembers = [
     twitter: "#",
   },
   {
+    id: "himanshu-gupta",
     name: "Himanshu Gupta",
     role: "Digital Marketing Manager",
     image: "/core-team/HimanshuGupta.png",
@@ -107,6 +112,7 @@ const teamMembers = [
 
 export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -115,6 +121,11 @@ export default function AboutPage() {
 
     return () => clearInterval(interval);
   }, []);
+
+  const handleMemberClick = (memberId: string) => {
+    router.push(`/about/core-team?member=${memberId}`);
+  };
+
   return (
     <main className="bg-background min-h-screen">
       <PageBanner
@@ -123,78 +134,99 @@ export default function AboutPage() {
         image="/finalAboutusbanner.png"
       />
 
-           {/* ================= OUR STORY ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-screen-xl mx-auto text-center px-4">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
-            Our Story
-          </h2>
-          <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-            <p>
-              SheAtWork.com germinated with a singular objective: to support
-              women who are looking to start an entrepreneurial venture that
-              aligns with their abilities and skills. Launched in January 2017,
-              our aim is to educate, train, support, and motivate women
-              entrepreneurs globally.
-            </p>
-            <p>
-              We provide a storehouse of information to increase awareness on
-              all relevant areas of entrepreneurship—from innovative business
-              ideas and startup funding avenues to legal support and mentor
-              connections.
-            </p>
+      {/* ================= OUR STORY ================= */}
+      <ScrollFade>
+        <section className="px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-screen-xl mx-auto text-center px-4">
+            <AnimatedText 
+              as="h2" 
+              className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6"
+            >
+              Our Story
+            </AnimatedText>
+            <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
+              <AnimatedText delay={0.1}>
+                SheAtWork.com germinated with a singular objective: to support
+                women who are looking to start an entrepreneurial venture that
+                aligns with their abilities and skills. Launched in January 2017,
+                our aim is to educate, train, support, and motivate women
+                entrepreneurs globally.
+              </AnimatedText>
+              <AnimatedText delay={0.2}>
+                We provide a storehouse of information to increase awareness on
+                all relevant areas of entrepreneurship—from innovative business
+                ideas and startup funding avenues to legal support and mentor
+                connections.
+              </AnimatedText>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollFade>
 
-      <section className="px-4 sm:px-6 lg:px-8 py-12 ">
+      {/* ================= OUR JOURNEY ================= */}
+      <section className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto px-4">
-          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
-              Our Journey
-            </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-              Milestones that shaped who we are today
-            </p>
-          </div>
+          <ScrollFade>
+            <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+              <AnimatedText 
+                as="h2" 
+                className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3"
+              >
+                Our Journey
+              </AnimatedText>
+              <AnimatedText delay={0.1} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+                Milestones that shaped who we are today
+              </AnimatedText>
+            </div>
+          </ScrollFade>
 
           {/* TIMELINE */}
           <div className="relative">
-            {/* CENTER LINE */}
             <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-primary via-accent to-primary hidden md:block" />
 
             <div className="space-y-8 sm:space-y-12">
               {journey.map((item, i) => (
-                <div
-                  key={i}
-                  className={`relative flex items-start md:items-center ${
+                <ScrollFade key={i} delay={i * 0.1}>
+                  <div className={`relative flex items-start md:items-center ${
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                  } flex-col gap-4 sm:gap-6 md:gap-8`}
-                >
-                  {/* CONTENT */}
-                  <div className="flex-1 w-full md:w-1/2">
-                    <div
-                      className={`bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow border-2 border-border ${
+                  } flex-col gap-4 sm:gap-6 md:gap-8`}>
+                    {/* CONTENT */}
+                    <div className="flex-1 w-full md:w-1/2">
+                      <div className={`bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-border hover:border-primary/50 ${
                         i % 2 === 0 ? "md:mr-8" : "md:ml-8"
-                      }`}
-                    >
-                      <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                        {item.description}
-                      </p>
+                      }`}>
+                        <AnimatedText 
+                          as="h3" 
+                          delay={0.1}
+                          className="text-lg sm:text-xl font-display font-bold text-foreground mb-2"
+                        >
+                          {item.title}
+                        </AnimatedText>
+                        <AnimatedText delay={0.2} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                          {item.description}
+                        </AnimatedText>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* CENTER DOT */}
-                  <div className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg z-10">
-                    {item.year}
-                  </div>
+                    {/* YEAR BUBBLE - Animate only the scale */}
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 260, 
+                        damping: 20,
+                        delay: i * 0.1 + 0.3
+                      }}
+                      className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg z-10"
+                    >
+                      {item.year}
+                    </motion.div>
 
-                  {/* SPACER */}
-                  <div className="flex-1 hidden md:block" />
-                </div>
+                    <div className="flex-1 hidden md:block" />
+                  </div>
+                </ScrollFade>
               ))}
             </div>
           </div>
@@ -202,222 +234,323 @@ export default function AboutPage() {
       </section>
 
       {/* ================= STATS WITH GRADIENT ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+      <ScrollFade delay={0.2}>
+        <section className="relative px-4 sm:px-6 lg:px-8 py-3 sm:py-12 overflow-hidden hero-gradient">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
 
-        <div className="relative max-w-screen-xl mx-auto px-5">
-          {/* ================= MOBILE PPT SLIDE ================= */}
-          <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
-            {stats.map((stat, index) => (
-              <div
-                key={index}
-                className={`absolute flex flex-col items-center text-center text-white
-            transition-all duration-500 ease-in-out
-            ${
-              index === activeIndex
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-6 pointer-events-none"
-            }
-          `}
-              >
-                <div className="text-4xl font-bold tracking-tight">
-                  {stat.value}
-                </div>
-                <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
-          </div>
+          <div className="relative max-w-screen-xl mx-auto px-5">
+            {/* MOBILE PPT SLIDE */}
+            <div className="sm:hidden flex justify-center items-center h-[120px] relative overflow-hidden">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={index === activeIndex ? { 
+                    opacity: 1, 
+                    scale: 1,
+                    transition: { type: "spring", stiffness: 300 }
+                  } : { opacity: 0, scale: 0.8 }}
+                  className="absolute flex flex-col items-center text-center text-white"
+                >
+                  <div className="text-4xl font-bold tracking-tight">
+                    {stat.value}
+                  </div>
+                  <span className="mt-2 text-sm font-semibold text-white/90 uppercase tracking-wide">
+                    {stat.label}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
 
-          {/* ================= DESKTOP / TABLET ================= */}
-          <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
-            {stats.map((stat, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="text-3xl lg:text-5xl font-medium tracking-tight">
-                  {stat.value}
-                </div>
-                <span className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide">
-                  {stat.label}
-                </span>
-              </div>
-            ))}
+            {/* DESKTOP / TABLET */}
+            <div className="hidden sm:grid grid-cols-4 gap-1 text-center text-white">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + 0.2, duration: 0.6 }}
+                  className="flex flex-col items-center"
+                >
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.3, type: "spring", stiffness: 200 }}
+                    className="text-3xl lg:text-5xl font-medium tracking-tight"
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <motion.span 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 + 0.4 }}
+                    className="mt-3 text-base font-medium text-white/90 uppercase tracking-wide"
+                  >
+                    {stat.label}
+                  </motion.span>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollFade>
 
       {/* ================= CORE VALUES ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12  bg-secondary/30">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto px-4">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
-              Our Core Values
-            </h2>
-            <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
-              The principles that guide everything we do
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-            {coreValues.map((value, i) => (
-              <div
-                key={i}
-                className="group relative bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border-2 border-border hover:border-primary/30"
+          <ScrollFade>
+            <div className="text-center mb-8 sm:mb-12">
+              <AnimatedText 
+                as="h2" 
+                className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3"
               >
-                <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform">
-                  <value.icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8" />
-                </div>
+                Our Core Values
+              </AnimatedText>
+              <AnimatedText delay={0.1} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+                The principles that guide everything we do
+              </AnimatedText>
+            </div>
+          </ScrollFade>
 
-                <div className="mt-8 sm:mt-10 lg:mt-12">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3">
-                    {value.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <StaggerChildren>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
+              {coreValues.map((value, i) => (
+                <motion.div
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  whileHover={{ y: -5 }}
+                  className="group relative bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-border hover:border-primary/30"
+                >
+                  <motion.div 
+                    initial={{ rotate: -180, scale: 0 }}
+                    whileInView={{ rotate: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      type: "spring",
+                      stiffness: 260,
+                      damping: 20,
+                      delay: i * 0.1
+                    }}
+                    className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform"
+                  >
+                    <value.icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8" />
+                  </motion.div>
+
+                  <div className="mt-8 sm:mt-10 lg:mt-12">
+                    <AnimatedText 
+                      as="h3" 
+                      delay={0.2}
+                      className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3"
+                    >
+                      {value.title}
+                    </AnimatedText>
+                    <AnimatedText delay={0.3} className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">
+                      {value.description}
+                    </AnimatedText>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </StaggerChildren>
         </div>
       </section>
 
       {/* ================= OUR MISSION ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 ">
-        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center px-4">
-          {/* LEFT TEXT */}
-          <div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6">
-              Our Mission
-            </h2>
-            <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
-              <p>
-                To create a one-stop knowledge hub for any woman aspiring to be
-                an entrepreneur or aiming to move to the next level. We hope to
-                help all women entrepreneurs expand their frontiers and enhance
-                their skills to achieve their true potential.
-              </p>
-              <p>
-                We strive to provide a friendly forum for growth through the
-                right knowledge and professional networking. By giving
-                visibility to women entrepreneurs and running mentoring
-                programs, we generate peer support across both urban and rural
-                sectors.
-              </p>
+      <ScrollFade>
+        <section className="px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center px-4">
+            {/* LEFT TEXT */}
+            <div>
+              <AnimatedText 
+                as="h2" 
+                className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6"
+              >
+                Our Mission
+              </AnimatedText>
+              <div className="space-y-3 sm:space-y-4">
+                <AnimatedText delay={0.1} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  To create a one-stop knowledge hub for any woman aspiring to be
+                  an entrepreneur or aiming to move to the next level. We hope to
+                  help all women entrepreneurs expand their frontiers and enhance
+                  their skills to achieve their true potential.
+                </AnimatedText>
+                <AnimatedText delay={0.2} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  We strive to provide a friendly forum for growth through the
+                  right knowledge and professional networking. By giving
+                  visibility to women entrepreneurs and running mentoring
+                  programs, we generate peer support across both urban and rural
+                  sectors.
+                </AnimatedText>
+              </div>
             </div>
+
+            {/* RIGHT IMAGE */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
+              <div className="relative w-full h-48 sm:h-64 lg:h-80">
+                <Image
+                  src="/mission.png"
+                  alt="Our Mission - Empowering women entrepreneurs through knowledge sharing and networking"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  priority={false}
+                />
+              </div>
+            </motion.div>
           </div>
-
-          {/* RIGHT IMAGE/PLACEHOLDER */}
-          <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group">
-            {/* Gradient background that shows while image loads */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary via-accent to-primary blur-2xl opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
-
-            {/* Background fallback */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20" />
-
-            {/* Image Container */}
-            <div className="relative w-full h-48 sm:h-64 lg:h-80">
-              <Image
-                src="/mission.png" // Update with your actual image path
-                alt="Our Mission - Empowering women entrepreneurs through knowledge sharing and networking"
-                fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                priority={false}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
- 
+        </section>
+      </ScrollFade>
 
       {/* ================= MEET OUR TEAM ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12  bg-gradient-to-b from-background to-secondary/20">
-        <div className="max-w-screen-xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
-              Meet Our Leaders
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
-              The visionary minds driving our mission forward
-            </p>
-            <Link
-              href="/about/core-team"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
-            >
-              View Full Team
-              <Users className="h-4 w-4" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-            {teamMembers.map((member, i) => (
-              <div
-                key={i}
-                className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+      <ScrollFade>
+        <section className="px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-background to-secondary/20">
+          <div className="max-w-screen-xl mx-auto">
+            <div className="text-center mb-12">
+              <AnimatedText 
+                as="h2" 
+                className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4"
               >
-                {/* AVATAR */}
-                <div className="relative h-48 sm:h-56  flex items-center justify-center overflow-hidden bg-secondary/30">
-                  {/* Subtle Blur Background */}
-                  <div className="absolute inset-0">
-                    <Image
-                      src={member.image}
-                      alt={`${member.name} background`}
-                      fill
-                      className="object-cover blur-md scale-105 opacity-30"
-                      sizes="(max-width: 768px) 100vw, 40vw"
-                    />
-                  </div>
+                Meet Our Leaders
+              </AnimatedText>
+              <AnimatedText delay={0.1} className="text-muted-foreground max-w-2xl mx-auto mb-8">
+                The visionary minds driving our mission forward
+              </AnimatedText>
+              <motion.div
+                initial={{ scale: 0.9 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", delay: 0.2 }}
+              >
+                <Link
+                  href="/about/core-team"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium hover:bg-primary/90 transition-colors"
+                >
+                  View Full Team
+                  <Users className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            </div>
 
-                  {/* Light overlay */}
-                  <div className="absolute inset-0 bg-white/20" />
+            <StaggerChildren>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                {teamMembers.map((member, i) => (
+                  <motion.div
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0, y: 30 },
+                      visible: { opacity: 1, y: 0 }
+                    }}
+                    whileHover={{ 
+                      y: -8, 
+                      transition: { type: "spring", stiffness: 300 },
+                      scale: 1.02
+                    }}
+                    onClick={() => handleMemberClick(member.id)}
+                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border cursor-pointer relative"
+                  >
+                    {/* Click overlay hint */}
+                    <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 via-transparent to-transparent" />
+                      <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm rounded-full px-3 py-1.5 text-xs font-medium text-primary shadow-lg">
+                        View Profile →
+                      </div>
+                    </div>
 
-                  {/* Main Image */}
-                  <div className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl" />
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover rounded-2xl shadow-xl border-4 border-background group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
-                    />
-                  </div>
-                </div>
-
-                {/* INFO */}
-                <div className="p-4 sm:p-6 text-center">
-                  <h3 className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground mb-1">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
-                    {member.role}
-                  </p>
-
-                  {/* SOCIAL LINKS */}
-                  <div className="flex justify-center gap-2">
-                    <a
-                      href={member.linkedin}
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                    {/* AVATAR */}
+                    <motion.div 
+                      initial={{ scale: 0.8 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="relative h-48 sm:h-56 flex items-center justify-center overflow-hidden bg-secondary/30"
                     >
-                      <Linkedin className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </a>
-                    <a
-                      href={member.twitter}
-                      className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Twitter className="h-3 w-3 sm:h-4 sm:w-4" />
-                    </a>
-                  </div>
-                </div>
+                      <div className="absolute inset-0">
+                        <Image
+                          src={member.image}
+                          alt={`${member.name} background`}
+                          fill
+                          className="object-cover blur-md scale-105 opacity-30"
+                          sizes="(max-width: 768px) 100vw, 40vw"
+                        />
+                      </div>
+
+                      <div className="absolute inset-0 bg-white/20" />
+
+                      <div className="relative z-10 w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl" />
+                        <Image
+                          src={member.image}
+                          alt={member.name}
+                          fill
+                          className="object-cover rounded-2xl shadow-xl border-4 border-background group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px"
+                        />
+                      </div>
+                    </motion.div>
+
+                    {/* INFO */}
+                    <div className="p-4 sm:p-6 text-center">
+                      <AnimatedText 
+                        as="h3" 
+                        delay={0.1}
+                        className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground mb-1"
+                      >
+                        {member.name}
+                      </AnimatedText>
+                      <AnimatedText delay={0.15} className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
+                        {member.role}
+                      </AnimatedText>
+                      <motion.div 
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 }}
+                        className="flex justify-center gap-2"
+                      >
+                        <a
+                          href={member.linkedin}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                        >
+                          <Linkedin className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                        <a
+                          href={member.twitter}
+                          onClick={(e) => e.stopPropagation()}
+                          className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                        >
+                          <Twitter className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            ))}
+            </StaggerChildren>
+            
+       
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollFade>
 
-      {/* ================= OUR JOURNEY - TIMELINE ================= */}
-
-      <Cta />
+      {/* CTA Section */}
+      <ScrollFade delay={0.2}>
+        <Cta />
+      </ScrollFade>
     </main>
   );
 }

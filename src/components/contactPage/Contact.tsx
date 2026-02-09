@@ -17,6 +17,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 import { useState } from "react";
 import { PageBanner } from "../PageBanner";
 
@@ -42,6 +43,43 @@ const faqs = [
     a: "Yes, we periodically launch mentorship initiatives connecting experienced leaders with emerging entrepreneurs.",
   },
 ];
+
+// Animation variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
+    },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 12,
+    },
+  },
+};
 
 export default function ContactPage() {
   const [open, setOpen] = useState<number | null>(null);
@@ -103,7 +141,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="bg-background min-h-screen overflow-x-hidden">
          <PageBanner
               title="Get In Touch"
               description=" Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey."
@@ -115,18 +153,30 @@ export default function ContactPage() {
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
           {/* LEFT INFO WITH ENHANCED STYLING */}
-          <div className="space-y-6 sm:space-y-8">
-            <div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeInUp}
+            className="space-y-6 sm:space-y-8"
+          >
+            <motion.div variants={fadeInUp}>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-display font-bold mb-3 sm:mb-4 text-foreground">
                 Let&apos;s Connect
               </h2>
-              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-md leading-relaxed">
+              <motion.p 
+                variants={fadeInUp}
+                className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-md leading-relaxed"
+              >
                 Whether you have questions about our platform, want to share
                 your story, or explore partnerships, we&apos;re here to help.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            <div className="space-y-4 sm:space-y-5">
+            <motion.div 
+              variants={staggerContainer}
+              className="space-y-4 sm:space-y-5"
+            >
               {[
                 {
                   icon: Mail,
@@ -147,14 +197,19 @@ export default function ContactPage() {
                   link: "#",
                 },
               ].map(({ icon: Icon, label, value, link }) => (
-                <a
+                <motion.a
                   key={label}
+                  variants={fadeInUp}
+                  whileHover={{ y: -5, scale: 1.02 }}
                   href={link}
-                  className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-secondary/50 hover:bg-secondary border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                  className="group flex items-start gap-3 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-secondary/50 hover:bg-secondary border border-border/50 hover:border-primary/30 transition-all duration-300 hover:shadow-lg"
                 >
-                  <span className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md group-hover:shadow-lg transition-shadow shrink-0">
+                  <motion.span 
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-primary to-accent text-white shadow-md group-hover:shadow-lg transition-shadow shrink-0"
+                  >
                     <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </span>
+                  </motion.span>
                   <div>
                     <p className="font-semibold text-foreground text-sm sm:text-base mb-0.5 sm:mb-1">
                       {label}
@@ -163,41 +218,96 @@ export default function ContactPage() {
                       {value}
                     </p>
                   </div>
-                </a>
+                </motion.a>
               ))}
-            </div>
+            </motion.div>
 
             {/* DECORATIVE ELEMENT */}
-            <div className="relative mt-6 sm:mt-12 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10">
-              <div className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-4 h-4 sm:w-6 sm:h-6 bg-primary rounded-full blur-sm" />
-              <div className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-4 h-4 sm:w-6 sm:h-6 bg-accent rounded-full blur-sm" />
+            <motion.div 
+              variants={fadeInUp}
+              whileHover={{ scale: 1.02 }}
+              className="relative mt-6 sm:mt-12 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary/5 to-accent/5 border border-primary/10"
+            >
+              {/* Animated floating dots */}
+              <motion.div 
+                animate={{
+                  y: [0, -10, 0],
+                  x: [0, 5, 0],
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -top-2 -left-2 sm:-top-3 sm:-left-3 w-4 h-4 sm:w-6 sm:h-6 bg-primary rounded-full blur-sm"
+              />
+              <motion.div 
+                animate={{
+                  y: [0, 10, 0],
+                  x: [0, -5, 0],
+                }}
+                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+                className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 w-4 h-4 sm:w-6 sm:h-6 bg-accent rounded-full blur-sm"
+              />
               <p className="text-xs sm:text-sm text-muted-foreground italic">
                 &quot;Join a community of visionary women leaders shaping the
                 future of entrepreneurship.&quot;
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT FORM WITH ROYAL STYLING */}
-          <div className="relative">
-            <div className="absolute -inset-0.5 sm:-inset-1 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-2xl opacity-50" />
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={scaleIn}
+            className="relative"
+          >
+            {/* Animated gradient background */}
+            <motion.div 
+              animate={{
+                background: [
+                  "radial-gradient(circle at 0% 50%, rgba(var(--primary), 0.3) 0%, transparent 50%)",
+                  "radial-gradient(circle at 100% 50%, rgba(var(--accent), 0.3) 0%, transparent 50%)",
+                  "radial-gradient(circle at 0% 50%, rgba(var(--primary), 0.3) 0%, transparent 50%)",
+                ]
+              }}
+              transition={{ duration: 8, repeat: Infinity }}
+              className="absolute -inset-0.5 sm:-inset-1 rounded-xl sm:rounded-2xl lg:rounded-3xl blur-2xl opacity-50"
+            />
+            
             <div className="relative bg-card border-2 border-primary/20 rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 md:p-10 shadow-lg sm:shadow-2xl">
-              <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
-                <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-primary to-accent rounded-full" />
+              <motion.div 
+                variants={fadeInUp}
+                className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6"
+              >
+                <motion.div 
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "48px" }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                  className="h-1 bg-gradient-to-r from-primary to-accent rounded-full"
+                />
                 <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground">
                   Send Us a Message
                 </h3>
-              </div>
+              </motion.div>
 
               {/* Success Message */}
               {success && (
-                <div className="mb-6 rounded-xl bg-green-50 border-2 border-green-200 p-4">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="mb-6 rounded-xl bg-green-50 border-2 border-green-200 p-4"
+                >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                    <motion.div 
+                      initial={{ rotate: -180, scale: 0 }}
+                      animate={{ rotate: 0, scale: 1 }}
+                      transition={{ type: "spring" }}
+                      className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center"
+                    >
                       <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
                       </svg>
-                    </div>
+                    </motion.div>
                     <div>
                       <h3 className="font-bold text-green-800 text-base">Message Sent Successfully!</h3>
                       <p className="text-green-700 text-sm">
@@ -205,143 +315,192 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )}
 
               {/* Error Message */}
               {error && (
-                <div className="mb-6 rounded-xl bg-red-50 border-2 border-red-200 p-4">
+                <motion.div 
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 rounded-xl bg-red-50 border-2 border-red-200 p-4"
+                >
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                    <motion.div 
+                      initial={{ rotate: 0 }}
+                      animate={{ rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 0.5 }}
+                      className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center"
+                    >
                       <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.698-.833-2.464 0L4.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                       </svg>
-                    </div>
+                    </motion.div>
                     <div>
                       <h3 className="font-bold text-red-800 text-base">Submission Failed</h3>
                       <p className="text-red-700 text-sm">{error}</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4 lg:space-y-5">
-                <div>
-                  <Input
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Full Name *"
-                    className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
-                    required
-                  />
-                </div>
-                <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email Address *"
-                    className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
-                    required
-                  />
-                </div>
-                <div>
-                  <Input
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Phone Number (Optional)"
-                    className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
-                  />
-                </div>
-                <div>
-                  <Input
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="Subject (Optional)"
-                    className="h-10 sm:h-12 border-2 focus:border-primary transition-colors text-sm sm:text-base"
-                  />
-                </div>
-                <div>
+              <motion.form 
+                variants={staggerContainer}
+                onSubmit={handleSubmit} 
+                className="space-y-3 sm:space-y-4 lg:space-y-5"
+              >
+                {[
+                  { name: "name", placeholder: "Full Name *", type: "text", required: true },
+                  { name: "email", placeholder: "Email Address *", type: "email", required: true },
+                  { name: "phone", placeholder: "Phone Number (Optional)", type: "tel", required: false },
+                  { name: "subject", placeholder: "Subject (Optional)", type: "text", required: false },
+                ].map((field) => (
+                  <motion.div key={field.name} variants={fadeInUp}>
+                    <Input
+                      name={field.name}
+                      value={formData[field.name as keyof typeof formData]}
+                      onChange={handleChange}
+                      placeholder={field.placeholder}
+                      type={field.type as any}
+                      className="h-10 sm:h-12 border-2 focus:border-primary transition-all duration-300 text-sm sm:text-base"
+                      required={field.required}
+                    />
+                  </motion.div>
+                ))}
+                
+                <motion.div variants={fadeInUp}>
                   <Textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
                     placeholder="Your Message *"
-                    className="border-2 focus:border-primary transition-colors resize-none text-sm sm:text-base min-h-32"
+                    className="border-2 focus:border-primary transition-all duration-300 resize-none text-sm sm:text-base min-h-32"
                     required
                   />
-                </div>
+                </motion.div>
 
-                <Button
-                  type="submit"
-                  disabled={loading}
-                  className="
-                    w-full h-10 sm:h-12
-                    bg-gradient-to-r from-primary to-accent
-                    text-white
-                    font-semibold
-                    shadow-lg
-                    hover:from-primary/90 hover:to-accent/90
-                    hover:shadow-xl
-                    transition-all
-                    text-sm sm:text-base
-                    disabled:opacity-50 disabled:cursor-not-allowed
-                  "
-                >
-                  {loading ? (
-                    <>
-                      <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
-                    </>
-                  )}
-                </Button>
-                
-                <p className="text-xs text-center text-muted-foreground mt-2">
-                  * Required fields. We respect your privacy and will never share your information.
-                </p>
-              </form>
+                <motion.div variants={fadeInUp}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button
+                      type="submit"
+                      disabled={loading}
+                      className="
+                        w-full h-10 sm:h-12
+                        bg-gradient-to-r from-primary to-accent
+                        text-white
+                        font-semibold
+                        shadow-lg
+                        hover:from-primary/90 hover:to-accent/90
+                        hover:shadow-xl
+                        transition-all
+                        text-sm sm:text-base
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        relative overflow-hidden
+                      "
+                    >
+                      {/* Animated background effect */}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                        animate={{
+                          x: ["-100%", "100%"],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatDelay: 1,
+                        }}
+                      />
+                      
+                      {loading ? (
+                        <div className="flex items-center justify-center gap-2 relative z-10">
+                          <motion.div 
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="h-4 w-4 rounded-full border-2 border-white border-t-transparent"
+                          />
+                          Sending...
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center gap-2 relative z-10">
+                          Send Message
+                          <motion.div
+                            animate={{ x: [0, 5, 0] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          >
+                            <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 lg:h-5 lg:w-5" />
+                          </motion.div>
+                        </div>
+                      )}
+                    </Button>
+                  </motion.div>
+                  
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-xs text-center text-muted-foreground mt-2"
+                  >
+                    * Required fields. We respect your privacy and will never share your information.
+                  </motion.p>
+                </motion.div>
+              </motion.form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ================= GRADIENT DIVIDER ================= */}
-      <section className="h-16 sm:h-20 lg:h-32 hero-gradient" />
+      <motion.section 
+        initial={{ height: 0 }}
+        whileInView={{ height: "80px" }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2 }}
+        className="hero-gradient"
+      />
 
       {/* ================= FAQ WITH ROYAL STYLING ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
-        <div className="max-w-screen-xl mx-auto text-center mb-8 sm:mb-12">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeInUp}
+          className="max-w-screen-xl mx-auto text-center mb-8 sm:mb-12"
+        >
           <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3">
             Frequently Asked Questions
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
             Find quick answers to common questions
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-3 sm:space-y-4">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          className="max-w-4xl mx-auto space-y-3 sm:space-y-4"
+        >
           {faqs.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div
+              <motion.div
                 key={i}
+                variants={fadeInUp}
+                whileHover={{ y: -3 }}
                 className={`group border-2 rounded-lg sm:rounded-xl lg:rounded-2xl bg-card overflow-hidden transition-all duration-300 ${
                   isOpen
                     ? "border-primary shadow-lg shadow-primary/10"
                     : "border-border hover:border-primary/50 hover:shadow-md"
                 }`}
               >
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="w-full flex justify-between items-center p-3 sm:p-4 lg:p-6 text-left"
                 >
@@ -354,10 +513,11 @@ export default function ContactPage() {
                   >
                     {item.q}
                   </span>
-                  <div
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
                     className={`shrink-0 w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isOpen
-                        ? "bg-gradient-to-br from-primary to-accent text-white rotate-180"
+                        ? "bg-gradient-to-br from-primary to-accent text-white"
                         : "bg-secondary text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
                     }`}
                   >
@@ -366,40 +526,77 @@ export default function ContactPage() {
                     ) : (
                       <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                     )}
-                  </div>
-                </button>
+                  </motion.div>
+                </motion.button>
 
-                <div
-                  className={`grid transition-all duration-300 ease-in-out ${
-                    isOpen
-                      ? "grid-rows-[1fr] opacity-100"
-                      : "grid-rows-[0fr] opacity-0"
-                  }`}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isOpen ? "auto" : 0,
+                    opacity: isOpen ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="overflow-hidden"
                 >
-                  <div className="overflow-hidden">
-                    <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed border-t border-border/50 pt-3 sm:pt-4">
-                      {item.a}
-                    </div>
+                  <div className="px-3 sm:px-4 lg:px-6 pb-3 sm:pb-4 lg:pb-6 text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed border-t border-border/50 pt-3 sm:pt-4">
+                    {item.a}
                   </div>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* ================= SOCIAL WITH ENHANCED STYLING ================= */}
-      <section className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient">
+      <motion.section 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient"
+      >
+        {/* Animated gradient background */}
+        <motion.div 
+          animate={{
+            background: [
+              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%)",
+            ]
+          }}
+          transition={{ duration: 10, repeat: Infinity }}
+          className="absolute inset-0"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-transparent" />
         
         <div className="relative max-w-screen-xl mx-auto text-center text-white px-4">
-          <h3 className="text-lg sm:text-xl lg:text-2xl font-display font-bold mb-2 sm:mb-3">
+          <motion.h3 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-lg sm:text-xl lg:text-2xl font-display font-bold mb-2 sm:mb-3"
+          >
             Follow Us on Social Media
-          </h3>
-          <p className="text-white/90 text-sm sm:text-base mb-6 sm:mb-8 max-w-3xl mx-auto">
+          </motion.h3>
+          <motion.p 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-white/90 text-sm sm:text-base mb-6 sm:mb-8 max-w-3xl mx-auto"
+          >
             Stay connected and inspired
-          </p>
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4">
+          </motion.p>
+          
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4"
+          >
             {[
               { Icon: Facebook, color: "hover:bg-[#1877F2]" ,href:"https://www.facebook.com/sheatwork" },
               { Icon: Twitter, color: "hover:bg-[#1DA1F2]",href:"https://x.com/sheatwork_com" },
@@ -408,26 +605,55 @@ export default function ContactPage() {
                 color:
                   "hover:bg-gradient-to-tr hover:from-[#F58529] hover:via-[#DD2A7B] hover:to-[#8134AF]", href:"https://www.instagram.com/she_at_work"
               },
-
-              
               { Icon: Linkedin, color: "hover:bg-[#0A66C2]",href:"https://www.linkedin.com/company/SheatWork" },
               { Icon: Youtube, color: "hover:bg-[#FF0000]",href:"https://www.youtube.com/@sheatwork" },
-            ].map(({ Icon, color ,href }, i) => (
-              <a
+            ].map(({ Icon, color, href }, i) => (
+              <motion.a
+                key={i}
+                variants={scaleIn}
+                whileHover={{ 
+                  y: -8, 
+                  scale: 1.1,
+                  transition: { type: "spring", stiffness: 300 }
+                }}
+                whileTap={{ scale: 0.9 }}
                 href={href}
                 target="_blank"
-                key={i}
+                rel="noopener noreferrer"
                 className={`group w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 rounded-lg sm:rounded-xl lg:rounded-2xl flex items-center justify-center
                 bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white
                 ${color} hover:text-white hover:border-transparent
-                transition-all duration-300 hover:scale-105 sm:hover:scale-110 hover:shadow-lg hover:-translate-y-0.5 sm:hover:-translate-y-1`}
+                transition-all duration-300 hover:shadow-lg`}
               >
-                <Icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
-              </a>
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <Icon className="h-4 w-4 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
+                </motion.div>
+              </motion.a>
             ))}
-          </div>
+          </motion.div>
+
+          {/* Floating decorative elements */}
+          <motion.div 
+            animate={{
+              y: [0, -20, 0],
+              x: [0, 10, 0],
+            }}
+            transition={{ duration: 5, repeat: Infinity }}
+            className="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-white/5 blur-xl"
+          />
+          <motion.div 
+            animate={{
+              y: [0, 20, 0],
+              x: [0, -10, 0],
+            }}
+            transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
+            className="absolute bottom-1/4 right-1/4 w-20 h-20 rounded-full bg-white/5 blur-xl"
+          />
         </div>
-      </section>
+      </motion.section>
     </main>
   );
 }

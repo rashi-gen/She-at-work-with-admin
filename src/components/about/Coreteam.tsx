@@ -3,10 +3,12 @@
 import Cta from "@/components/common/Cta";
 import { Award, Briefcase, ChevronDown, ChevronUp, Globe, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 const coreTeam = [
   {
+    id: "ruby-sinha",
     name: "Ruby Sinha",
     role: "Founder & President",
     summary: "Founder of sheatwork.com and President of BRICS CCI Women's Vertical. An entrepreneur and journalist dedicated to empowering women in business.",
@@ -24,6 +26,7 @@ const coreTeam = [
     featured: true
   },
   {
+    id: "shree-lahiri",
     name: "Shree Lahiri",
     role: "Content Head",
     summary: "Seasoned professional with 20+ years in corporate communications and journalism. Believes in the transformative power of storytelling.",
@@ -40,6 +43,7 @@ const coreTeam = [
     email: "#"
   },
   {
+    id: "poonam-sinha",
     name: "Poonam Sinha",
     role: "Content Manager",
     summary: "Former educator turned content specialist with expertise in simplifying complex concepts into engaging, accessible language.",
@@ -56,6 +60,7 @@ const coreTeam = [
     email: "#"
   },
   {
+    id: "himanshu-gupta",
     name: "Himanshu Gupta",
     role: "Digital Marketing Manager",
     summary: "Digital marketing expert with 8+ years experience in campaign development, branding strategies, and performance analytics.",
@@ -72,6 +77,7 @@ const coreTeam = [
     email: "#"
   },
   {
+    id: "shweta-sharma",
     name: "Shweta Sharma",
     role: "Manager - Outreach",
     summary: "Seasoned Communications professional with expertise in strategic PR, marketing, and stakeholder engagement.",
@@ -91,6 +97,7 @@ const coreTeam = [
 
 const advisoryBoard = [
   {
+    id: "bela-rajan",
     name: "Bela Rajan",
     role: "Advisory Board Member",
     summary: "Leading woman entrepreneur and Co-Founder of Ketchum Sampark, with extensive experience in communications and women's empowerment.",
@@ -106,6 +113,7 @@ const advisoryBoard = [
     twitter: "#"
   },
   {
+    id: "sanjeeva-shivesh",
     name: "Sanjeeva Shivesh",
     role: "Advisory Board Member",
     summary: "Serial entrepreneur, angel investor, and former civil service officer passionate about entrepreneurship and innovation.",
@@ -124,6 +132,54 @@ const advisoryBoard = [
 
 export default function CoreTeamPage() {
   const [expandedMember, setExpandedMember] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const memberId = searchParams.get("member");
+  const memberRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  // Function to handle scrolling to member
+  const scrollToMember = (id: string) => {
+    const element = memberRefs.current[id];
+    if (element) {
+      // Add a highlight animation
+      element.style.transition = "all 0.3s ease";
+      element.style.backgroundColor = "rgba(var(--primary), 0.05)";
+      element.style.borderColor = "rgba(var(--primary), 0.5)";
+      
+      // Scroll to element
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      
+      // Remove highlight after animation
+      setTimeout(() => {
+        if (element) {
+          element.style.backgroundColor = "";
+          element.style.borderColor = "";
+        }
+      }, 2000);
+
+      // Auto-expand the member
+      setExpandedMember(id);
+    }
+  };
+
+  // Handle URL parameter on component mount
+  useEffect(() => {
+    if (memberId) {
+      // Wait a bit for the page to load
+      const timer = setTimeout(() => {
+        scrollToMember(memberId);
+        
+        // Update URL to remove the parameter after scrolling
+        const url = new URL(window.location.href);
+        url.searchParams.delete("member");
+        window.history.replaceState({}, document.title, url.toString());
+      }, 500);
+
+      return () => clearTimeout(timer);
+    }
+  }, [memberId]);
 
   const toggleExpand = (name: string) => {
     setExpandedMember(expandedMember === name ? null : name);
@@ -132,35 +188,26 @@ export default function CoreTeamPage() {
   return (
     <main className="bg-background min-h-screen">
       {/* HERO BANNER */}
-  
-
-            <section className="relative px-4 sm:px-6 lg:px-8  pt-28 pb-2 overflow-hidden hero-gradient">
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
-      
-              <div className="relative w-full mx-auto text-center text-white px-4">
-                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-               Our Core Team
-                
-              </h1>
-               <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-              Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation.
-              </p>
-      
-              </div>
-            </section>
-
-
-     
+      <section className="relative px-4 sm:px-6 lg:px-8 pt-28 pb-2 overflow-hidden hero-gradient">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
+        <div className="relative w-full mx-auto text-center text-white px-4">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+            Our Core Team
+          </h1>
+          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+            Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation.
+          </p>
+        </div>
+      </section>
 
       {/* CORE TEAM */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/10">
         <div className="max-w-screen-xl mx-auto">
-        
-
           <div className="space-y-8">
             {coreTeam.map((member, index) => (
               <div
                 key={index}
+                ref={(el) => { memberRefs.current[member.id] = el; }}
                 className={`group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border ${
                   member.featured ? 'border-primary/30' : ''
                 }`}
@@ -232,10 +279,10 @@ export default function CoreTeamPage() {
                     {/* Expandable bullet points */}
                     <div className="border-t border-border pt-6">
                       <button
-                        onClick={() => toggleExpand(member.name)}
+                        onClick={() => toggleExpand(member.id)}
                         className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors mb-4"
                       >
-                        {expandedMember === member.name ? (
+                        {expandedMember === member.id ? (
                           <>
                             <ChevronUp className="h-4 w-4" />
                             Show Less Details
@@ -248,7 +295,7 @@ export default function CoreTeamPage() {
                         )}
                       </button>
                       
-                      {expandedMember === member.name && (
+                      {expandedMember === member.id && (
                         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 animate-fadeIn">
                           {member.bullets.map((bullet, idx) => (
                             <div key={idx} className="flex items-start gap-2">
@@ -287,10 +334,11 @@ export default function CoreTeamPage() {
             {advisoryBoard.map((advisor, index) => (
               <div
                 key={index}
+                ref={(el) => { memberRefs.current[advisor.id] = el; }}
                 className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-border"
               >
                 <div className="flex flex-col h-full">
-                  <div className="p-6 sm:p-8  flex-1">
+                  <div className="p-6 sm:p-8 flex-1">
                     <div className="flex items-start gap-6 mb-6">
                       {/* Fixed height image */}
                       <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
@@ -325,7 +373,7 @@ export default function CoreTeamPage() {
                     </div>
                   </div>
 
-                  <div className="p-6 pt-0 ">
+                  <div className="p-6 pt-0">
                     <div className="flex gap-2">
                       <a
                         href={advisor.linkedin}
@@ -362,6 +410,21 @@ export default function CoreTeamPage() {
         }
         .animate-fadeIn {
           animation: fadeIn 0.3s ease-out;
+        }
+        
+        @keyframes highlightPulse {
+          0%, 100% {
+            background-color: transparent;
+            border-color: var(--border);
+          }
+          50% {
+            background-color: rgba(var(--primary), 0.05);
+            border-color: rgba(var(--primary), 0.5);
+          }
+        }
+        
+        .highlight-member {
+          animation: highlightPulse 2s ease-in-out;
         }
       `}</style>
 

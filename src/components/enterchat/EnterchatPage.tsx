@@ -759,8 +759,7 @@ export default function EntreChatPage() {
               </h1>
 
               <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-                Exclusive interviews with inspiring women entrepreneurs sharing
-                their <br /> journeys, insights, and advice
+               Entrechat brings you honest, one-on-one conversations with inspiring women entrepreneurs sharing their journeys, challenges, and growth strategies. Discover real experiences, practical lessons, and motivating stories from women who chose to build, persist, and lead — offering insights to inspire your own entrepreneurial path.
               </p>
             </div>
           </div>

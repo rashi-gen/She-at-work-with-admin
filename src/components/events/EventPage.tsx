@@ -14,7 +14,7 @@ import {
   MapPin,
   TrendingUp,
   Users,
-  X
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -50,7 +50,7 @@ interface EventItem {
 const eventCategories = [
   "All Events",
   "Conferences",
-  "Workshops", 
+  "Workshops",
   "Webinars",
   "Networking",
   "Seminars",
@@ -58,21 +58,75 @@ const eventCategories = [
   "Launches",
   "Awards",
   "Festivals",
-  "Other Events"
+  "Other Events",
 ];
 
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
-  if (contentLower.includes("summit") || contentLower.includes("conference") || contentLower.includes("annual") || contentLower.includes("global")) return "Conferences";
-  if (contentLower.includes("workshop") || contentLower.includes("masterclass") || contentLower.includes("training") || contentLower.includes("session")) return "Workshops";
-  if (contentLower.includes("webinar") || contentLower.includes("online") || contentLower.includes("virtual") || contentLower.includes("zoom")) return "Webinars";
-  if (contentLower.includes("networking") || contentLower.includes("meetup") || contentLower.includes("gathering") || contentLower.includes("meeting")) return "Networking";
-  if (contentLower.includes("seminar") || contentLower.includes("talk") || contentLower.includes("lecture") || contentLower.includes("presentation")) return "Seminars";
-  if (contentLower.includes("dialogue") || contentLower.includes("forum") || contentLower.includes("discussion") || contentLower.includes("panel")) return "Forums";
-  if (contentLower.includes("launch") || contentLower.includes("inauguration") || contentLower.includes("unveil") || contentLower.includes("initiative")) return "Launches";
-  if (contentLower.includes("award") || contentLower.includes("ceremony") || contentLower.includes("felicitation") || contentLower.includes("recognition")) return "Awards";
-  if (contentLower.includes("festival") || contentLower.includes("celebration") || contentLower.includes("day") || contentLower.includes("international")) return "Festivals";
+  if (
+    contentLower.includes("summit") ||
+    contentLower.includes("conference") ||
+    contentLower.includes("annual") ||
+    contentLower.includes("global")
+  )
+    return "Conferences";
+  if (
+    contentLower.includes("workshop") ||
+    contentLower.includes("masterclass") ||
+    contentLower.includes("training") ||
+    contentLower.includes("session")
+  )
+    return "Workshops";
+  if (
+    contentLower.includes("webinar") ||
+    contentLower.includes("online") ||
+    contentLower.includes("virtual") ||
+    contentLower.includes("zoom")
+  )
+    return "Webinars";
+  if (
+    contentLower.includes("networking") ||
+    contentLower.includes("meetup") ||
+    contentLower.includes("gathering") ||
+    contentLower.includes("meeting")
+  )
+    return "Networking";
+  if (
+    contentLower.includes("seminar") ||
+    contentLower.includes("talk") ||
+    contentLower.includes("lecture") ||
+    contentLower.includes("presentation")
+  )
+    return "Seminars";
+  if (
+    contentLower.includes("dialogue") ||
+    contentLower.includes("forum") ||
+    contentLower.includes("discussion") ||
+    contentLower.includes("panel")
+  )
+    return "Forums";
+  if (
+    contentLower.includes("launch") ||
+    contentLower.includes("inauguration") ||
+    contentLower.includes("unveil") ||
+    contentLower.includes("initiative")
+  )
+    return "Launches";
+  if (
+    contentLower.includes("award") ||
+    contentLower.includes("ceremony") ||
+    contentLower.includes("felicitation") ||
+    contentLower.includes("recognition")
+  )
+    return "Awards";
+  if (
+    contentLower.includes("festival") ||
+    contentLower.includes("celebration") ||
+    contentLower.includes("day") ||
+    contentLower.includes("international")
+  )
+    return "Festivals";
   return "Other Events";
 };
 
@@ -81,101 +135,125 @@ const formatDate = (dateString: string): string => {
   try {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) {
-      return 'Date unavailable';
+      return "Date unavailable";
     }
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   } catch (error) {
-    console.warn('Invalid date:', dateString, error);
-    return 'Date unavailable';
+    console.warn("Invalid date:", dateString, error);
+    return "Date unavailable";
   }
 };
 
 // Extract excerpt from content
 const extractExcerpt = (content: string, maxLength: number = 150): string => {
-  if (!content) return 'No description available';
-  
+  if (!content) return "No description available";
+
   try {
     // Remove HTML tags
-    const plainText = content.replace(/<[^>]*>/g, '');
+    const plainText = content.replace(/<[^>]*>/g, "");
     // Remove newlines and extra spaces
-    const cleanText = plainText.replace(/\s+/g, ' ').trim();
-    
+    const cleanText = plainText.replace(/\s+/g, " ").trim();
+
     if (cleanText.length <= maxLength) return cleanText;
-    return cleanText.substring(0, maxLength) + '...';
+    return cleanText.substring(0, maxLength) + "...";
   } catch (error) {
-    console.warn('Error extracting excerpt:', error);
-    return 'No description available';
+    console.warn("Error extracting excerpt:", error);
+    return "No description available";
   }
 };
 
 // Improved location extraction
 const extractLocation = (content: string): string => {
   const contentLower = content.toLowerCase();
-  
+
   const knownLocations = [
-    { keyword: 'rio de janeiro', location: 'Rio de Janeiro, Brazil' },
-    { keyword: 'iit delhi', location: 'IIT Delhi, India' },
-    { keyword: 'india', location: 'India' },
-    { keyword: 'brazil', location: 'Brazil' },
-    { keyword: 'haryana', location: 'Haryana, India' },
-    { keyword: 'punjab', location: 'Punjab, India' },
-    { keyword: 'rajasthan', location: 'Rajasthan, India' },
-    { keyword: 'delhi', location: 'Delhi, India' },
+    { keyword: "rio de janeiro", location: "Rio de Janeiro, Brazil" },
+    { keyword: "iit delhi", location: "IIT Delhi, India" },
+    { keyword: "india", location: "India" },
+    { keyword: "brazil", location: "Brazil" },
+    { keyword: "haryana", location: "Haryana, India" },
+    { keyword: "punjab", location: "Punjab, India" },
+    { keyword: "rajasthan", location: "Rajasthan, India" },
+    { keyword: "delhi", location: "Delhi, India" },
   ];
-  
+
   for (const knownLoc of knownLocations) {
     if (contentLower.includes(knownLoc.keyword)) {
       return knownLoc.location;
     }
   }
-  
+
   const locationPatterns = [
     /in\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/gi,
     /at\s+(?:the\s+)?([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)/gi,
     /([A-Z][a-z]+\s+[A-Z][a-z]+),\s+[A-Z][a-z]+/g,
     /([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\s+(?:Conference|Summit|Dialogue|Event)/gi,
   ];
-  
+
   for (const pattern of locationPatterns) {
     const matches = [...content.matchAll(pattern)];
     for (const match of matches) {
       if (match[1]) {
         const location = match[1].trim();
         const falsePositives = [
-          'The', 'This', 'Our', 'Global', 'Annual', 'International', 
-          'Flagship', 'Third', '3rd', 'Second', '2nd', 'First', 
-          'Finale', 'Grand', 'Youth', 'College', 'Programme'
+          "The",
+          "This",
+          "Our",
+          "Global",
+          "Annual",
+          "International",
+          "Flagship",
+          "Third",
+          "3rd",
+          "Second",
+          "2nd",
+          "First",
+          "Finale",
+          "Grand",
+          "Youth",
+          "College",
+          "Programme",
         ];
-        if (!falsePositives.some(fp => location.toLowerCase().startsWith(fp.toLowerCase()))) {
-          if (location.toLowerCase().includes('rio')) return 'Rio de Janeiro, Brazil';
-          if (location.toLowerCase().includes('delhi')) return 'Delhi, India';
+        if (
+          !falsePositives.some((fp) =>
+            location.toLowerCase().startsWith(fp.toLowerCase()),
+          )
+        ) {
+          if (location.toLowerCase().includes("rio"))
+            return "Rio de Janeiro, Brazil";
+          if (location.toLowerCase().includes("delhi")) return "Delhi, India";
           return location;
         }
       }
     }
   }
-  
-  if (contentLower.includes('online') || contentLower.includes('virtual') || 
-      contentLower.includes('zoom') || contentLower.includes('webinar') ||
-      contentLower.includes('digital')) {
-    return 'Online';
+
+  if (
+    contentLower.includes("online") ||
+    contentLower.includes("virtual") ||
+    contentLower.includes("zoom") ||
+    contentLower.includes("webinar") ||
+    contentLower.includes("digital")
+  ) {
+    return "Online";
   }
-  
-  if (contentLower.includes('apply') && contentLower.includes('link')) {
-    return 'Online / Application-based';
+
+  if (contentLower.includes("apply") && contentLower.includes("link")) {
+    return "Online / Application-based";
   }
-  
-  return 'Location TBD';
+
+  return "Location TBD";
 };
 
 // Improved date extraction
-const extractDateDetails = (content: string, postDate: string): { date: string, time?: string } => {
-
-  
+const extractDateDetails = (
+  content: string,
+  postDate: string,
+): { date: string; time?: string } => {
   const datePatterns = [
     /([A-Z][a-z]+(?:\s+\d+)?(?:\s+to\s+\d+)?(?:\s*,\s*\d{4})?)/gi,
     /(\d+(?:\s+to\s+\d+)?\s+[A-Z][a-z]+\s+\d{4})/gi,
@@ -183,70 +261,72 @@ const extractDateDetails = (content: string, postDate: string): { date: string, 
     /([A-Z][a-z]+\s+\d{4})/gi,
     /apply\s+by\s+(\d+(?:st|nd|rd|th)?\s+[A-Z][a-z]+\s+\d{4})/gi,
   ];
-  
+
   const cleanOrdinals = (dateStr: string): string => {
-    return dateStr.replace(/(\d+)(?:st|nd|rd|th)\b/gi, '$1');
+    return dateStr.replace(/(\d+)(?:st|nd|rd|th)\b/gi, "$1");
   };
-  
+
   for (const pattern of datePatterns) {
     const matches = [...content.matchAll(pattern)];
     for (const match of matches) {
       if (match[1]) {
         let dateStr = match[1].trim();
         if (/^[A-Z][a-z]+$/.test(dateStr)) continue;
-        
-        if (dateStr.includes('to')) {
+
+        if (dateStr.includes("to")) {
           const startDateMatch = dateStr.match(/([A-Z][a-z]+(?:\s+\d+)?)/);
           if (startDateMatch && startDateMatch[1]) {
-            dateStr = startDateMatch[1] + (dateStr.match(/(\d{4})/)?.[0] || '');
+            dateStr = startDateMatch[1] + (dateStr.match(/(\d{4})/)?.[0] || "");
           }
         }
-        
+
         dateStr = cleanOrdinals(dateStr);
-        
+
         if (!dateStr.match(/\d{4}/)) {
           const year = postDate.substring(0, 4);
           dateStr += `, ${year}`;
         }
-        
+
         return { date: dateStr };
       }
     }
   }
-  
+
   try {
     const date = new Date(postDate);
     if (!isNaN(date.getTime())) {
-      return { 
-        date: date.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        }) 
+      return {
+        date: date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }),
       };
     }
   } catch (error) {
-    console.log('Error parsing fallback date:', error);
+    console.log("Error parsing fallback date:", error);
   }
-  
-  return { date: 'Date TBD' };
+
+  return { date: "Date TBD" };
 };
 
 // Improved price extraction
 const extractPrice = (content: string): string => {
   const contentLower = content.toLowerCase();
-  
-  if (contentLower.includes('free') || 
-      contentLower.includes('complimentary') || 
-      contentLower.includes('no cost') ||
-      contentLower.includes('no charge') ||
-      contentLower.includes('fully funded') ||
-      contentLower.includes('fully sponsored') ||
-      contentLower.includes('merit certificates') ||
-      contentLower.includes('participation certificate')) {
-    return 'Free';
+
+  if (
+    contentLower.includes("free") ||
+    contentLower.includes("complimentary") ||
+    contentLower.includes("no cost") ||
+    contentLower.includes("no charge") ||
+    contentLower.includes("fully funded") ||
+    contentLower.includes("fully sponsored") ||
+    contentLower.includes("merit certificates") ||
+    contentLower.includes("participation certificate")
+  ) {
+    return "Free";
   }
-  
+
   const pricePatterns = [
     /₹\s*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
     /(\d+(?:,\d{3})*(?:\.\d{2})?)\s*(?:INR|rupees?)/gi,
@@ -260,28 +340,36 @@ const extractPrice = (content: string): string => {
     /cost[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
     /fee[:\s]*(\d+(?:,\d{3})*(?:\.\d{2})?)/gi,
   ];
-  
+
   for (const pattern of pricePatterns) {
     const matches = [...content.matchAll(pattern)];
     for (const match of matches) {
       if (match[1]) {
         const amount = match[1];
-        if (pattern.toString().includes('₹') || pattern.toString().includes('INR') || pattern.toString().includes('Rs')) {
+        if (
+          pattern.toString().includes("₹") ||
+          pattern.toString().includes("INR") ||
+          pattern.toString().includes("Rs")
+        ) {
           return `₹${amount}`;
-        } else if (pattern.toString().includes('$') || pattern.toString().includes('USD')) {
+        } else if (
+          pattern.toString().includes("$") ||
+          pattern.toString().includes("USD")
+        ) {
           return `$${amount}`;
         }
         return amount;
       }
     }
   }
-  
-  const prizePattern = /prize\s+of\s+(?:Rs\.?\s*)?(\d+(?:,\d{3})*(?:\.\d{2})?)/gi;
+
+  const prizePattern =
+    /prize\s+of\s+(?:Rs\.?\s*)?(\d+(?:,\d{3})*(?:\.\d{2})?)/gi;
   const prizeMatch = prizePattern.exec(content);
   if (prizeMatch && prizeMatch[1]) {
     return `₹${prizeMatch[1]} (Prize)`;
   }
-  
+
   const lakhPattern = /(\d+)\s+lakh/gi;
   const lakhMatch = lakhPattern.exec(content);
   if (lakhMatch && lakhMatch[1]) {
@@ -289,83 +377,121 @@ const extractPrice = (content: string): string => {
     const amount = lakhs * 100000;
     return `₹${amount.toLocaleString()}`;
   }
-  
-  return 'Contact for details';
+
+  return "Contact for details";
 };
 
 // Improved format detection
 const extractFormat = (content: string): string => {
   const contentLower = content.toLowerCase();
-  
-  if ((contentLower.includes('online') || contentLower.includes('virtual') || 
-       contentLower.includes('zoom') || contentLower.includes('webinar') ||
-       contentLower.includes('digital conference')) && 
-      !contentLower.includes('in-person') && 
-      !contentLower.includes('physical venue')) {
-    return 'Virtual';
+
+  if (
+    (contentLower.includes("online") ||
+      contentLower.includes("virtual") ||
+      contentLower.includes("zoom") ||
+      contentLower.includes("webinar") ||
+      contentLower.includes("digital conference")) &&
+    !contentLower.includes("in-person") &&
+    !contentLower.includes("physical venue")
+  ) {
+    return "Virtual";
   }
-  
-  if ((contentLower.includes('in-person') || contentLower.includes('physical') || 
-       contentLower.includes('venue') || contentLower.includes('attended') ||
-       contentLower.includes('hosted at') || contentLower.includes('held at') ||
-       contentLower.includes('gathering') || contentLower.includes('summit') ||
-       contentLower.includes('conference') || contentLower.includes('dialogue')) && 
-      !contentLower.includes('online') && 
-      !contentLower.includes('virtual')) {
-    return 'In-person';
+
+  if (
+    (contentLower.includes("in-person") ||
+      contentLower.includes("physical") ||
+      contentLower.includes("venue") ||
+      contentLower.includes("attended") ||
+      contentLower.includes("hosted at") ||
+      contentLower.includes("held at") ||
+      contentLower.includes("gathering") ||
+      contentLower.includes("summit") ||
+      contentLower.includes("conference") ||
+      contentLower.includes("dialogue")) &&
+    !contentLower.includes("online") &&
+    !contentLower.includes("virtual")
+  ) {
+    return "In-person";
   }
-  
-  if ((contentLower.includes('hybrid') || 
-       (contentLower.includes('online') && contentLower.includes('in-person')) ||
-       (contentLower.includes('virtual') && contentLower.includes('physical')))) {
-    return 'Hybrid';
+
+  if (
+    contentLower.includes("hybrid") ||
+    (contentLower.includes("online") && contentLower.includes("in-person")) ||
+    (contentLower.includes("virtual") && contentLower.includes("physical"))
+  ) {
+    return "Hybrid";
   }
-  
-  if (contentLower.includes('summit') || contentLower.includes('conference') || 
-      contentLower.includes('annual plenary') || contentLower.includes('dialogue')) {
-    return 'In-person';
+
+  if (
+    contentLower.includes("summit") ||
+    contentLower.includes("conference") ||
+    contentLower.includes("annual plenary") ||
+    contentLower.includes("dialogue")
+  ) {
+    return "In-person";
   }
-  
-  if (contentLower.includes('webinar') || contentLower.includes('online session') || 
-      contentLower.includes('virtual workshop') || contentLower.includes('digital')) {
-    return 'Virtual';
+
+  if (
+    contentLower.includes("webinar") ||
+    contentLower.includes("online session") ||
+    contentLower.includes("virtual workshop") ||
+    contentLower.includes("digital")
+  ) {
+    return "Virtual";
   }
-  
-  if (contentLower.includes('application') || contentLower.includes('apply') || 
-      contentLower.includes('programme') || contentLower.includes('program')) {
-    return 'Application-based';
+
+  if (
+    contentLower.includes("application") ||
+    contentLower.includes("apply") ||
+    contentLower.includes("programme") ||
+    contentLower.includes("program")
+  ) {
+    return "Application-based";
   }
-  
-  return 'Format TBD';
+
+  return "Format TBD";
 };
 
 // Helper function to parse dates for month/day display
-const parseDateForDisplay = (dateString: string, fallbackDate?: string): { month: string, day: string } => {
+const parseDateForDisplay = (
+  dateString: string,
+  fallbackDate?: string,
+): { month: string; day: string } => {
   try {
     let dateToParse = dateString;
-    
-    if (dateString.includes('TBD') || dateString.includes('unavailable')) {
+
+    if (dateString.includes("TBD") || dateString.includes("unavailable")) {
       dateToParse = fallbackDate || new Date().toISOString();
     }
-    
+
     dateToParse = dateToParse
-      .replace(/(\d+)(?:st|nd|rd|th)\b/gi, '$1')
-      .replace(/\s+to\s+\d+/gi, '')
-      .replace(/apply by\s+/gi, '')
-      .replace(/,\s*(\d{4})/gi, '')
+      .replace(/(\d+)(?:st|nd|rd|th)\b/gi, "$1")
+      .replace(/\s+to\s+\d+/gi, "")
+      .replace(/apply by\s+/gi, "")
+      .replace(/,\s*(\d{4})/gi, "")
       .trim();
-    
+
     let parsedDate: Date;
-    
+
     const monthNames = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
+      "january",
+      "february",
+      "march",
+      "april",
+      "may",
+      "june",
+      "july",
+      "august",
+      "september",
+      "october",
+      "november",
+      "december",
     ];
-    
-    const monthMatch = monthNames.find(month => 
-      dateToParse.toLowerCase().includes(month)
+
+    const monthMatch = monthNames.find((month) =>
+      dateToParse.toLowerCase().includes(month),
     );
-    
+
     if (monthMatch) {
       const monthIndex = monthNames.indexOf(monthMatch);
       parsedDate = new Date();
@@ -377,14 +503,14 @@ const parseDateForDisplay = (dateString: string, fallbackDate?: string): { month
         parsedDate = new Date();
       }
     }
-    
+
     return {
-      month: parsedDate.toLocaleDateString('en-US', { month: 'short' }),
+      month: parsedDate.toLocaleDateString("en-US", { month: "short" }),
       day: parsedDate.getDate().toString(),
     };
   } catch (error) {
-    console.log('Error parsing date for display:', error);
-    return { month: 'TBD', day: '?' };
+    console.log("Error parsing date for display:", error);
+    return { month: "TBD", day: "?" };
   }
 };
 
@@ -423,29 +549,35 @@ export default function EventsPage() {
     const processEvents = () => {
       try {
         setIsLoading(true);
-        
+
         const processed = eventsData.map((item: EventItem, index: number) => {
           const category = getCategoryFromContent(item.post_content);
-          const description = item.post_excerpt && item.post_excerpt.trim() !== '' 
-            ? item.post_excerpt 
-            : extractExcerpt(item.post_content);
-          
-          const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Upcoming Event';
+          const description =
+            item.post_excerpt && item.post_excerpt.trim() !== ""
+              ? item.post_excerpt
+              : extractExcerpt(item.post_content);
+
+          const title = item.post_title
+            ? item.post_title.replace(/&amp;/g, "&")
+            : "Upcoming Event";
           const location = extractLocation(item.post_content);
           const format = extractFormat(item.post_content);
           const price = extractPrice(item.post_content);
-          
-          const { date, time } = extractDateDetails(item.post_content, item.post_date);
-          
+
+          const { date, time } = extractDateDetails(
+            item.post_content,
+            item.post_date,
+          );
+
           const { month, day } = parseDateForDisplay(date, item.post_date);
-          
-          
-          const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
-            ? item.featured_image_url 
-            : '/placeholder-event.jpg';
-          
+
+          const image =
+            item.featured_image_url && item.featured_image_url.trim() !== ""
+              ? item.featured_image_url
+              : "/placeholder-event.jpg";
+
           const featured = index === 0;
-          
+
           return {
             id: item.ID || Math.random().toString(),
             category,
@@ -457,23 +589,25 @@ export default function EventsPage() {
             format,
             price,
             image,
-            fullContent: item.post_content || '',
-            modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
+            fullContent: item.post_content || "",
+            modifiedDate: item.post_modified
+              ? formatDate(item.post_modified)
+              : undefined,
             slug: item.post_name || `event-${item.ID}`,
             featured,
             month,
             day,
-            postDate: item.post_date
+            postDate: item.post_date,
           };
         });
-        
+
         processed.sort((a, b) => {
           try {
             const parseForComparison = (dateStr: string): Date => {
-              if (dateStr.includes('TBD') || dateStr.includes('unavailable')) {
-                return new Date('2100-01-01');
+              if (dateStr.includes("TBD") || dateStr.includes("unavailable")) {
+                return new Date("2100-01-01");
               }
-              
+
               const yearMatch = dateStr.match(/(\d{4})/);
               if (yearMatch) {
                 const year = parseInt(yearMatch[1]);
@@ -481,38 +615,50 @@ export default function EventsPage() {
                 if (monthMatch) {
                   const monthStr = monthMatch[0].toLowerCase();
                   const months = [
-                    'january', 'february', 'march', 'april', 'may', 'june',
-                    'july', 'august', 'september', 'october', 'november', 'december'
+                    "january",
+                    "february",
+                    "march",
+                    "april",
+                    "may",
+                    "june",
+                    "july",
+                    "august",
+                    "september",
+                    "october",
+                    "november",
+                    "december",
                   ];
-                  const monthIndex = months.findIndex(m => monthStr.includes(m));
+                  const monthIndex = months.findIndex((m) =>
+                    monthStr.includes(m),
+                  );
                   if (monthIndex !== -1) {
                     return new Date(year, monthIndex, 15);
                   }
                 }
               }
-              
-              return new Date(a.postDate) || new Date('2100-01-01');
+
+              return new Date(a.postDate) || new Date("2100-01-01");
             };
-            
+
             const dateA = parseForComparison(a.date);
             const dateB = parseForComparison(b.date);
-            
+
             return dateB.getTime() - dateA.getTime();
           } catch (error) {
-            console.log(error)
+            console.log(error);
             return 0;
           }
         });
-        
+
         if (processed.length > 0) {
           processed.forEach((event, index) => {
             event.featured = index === 0;
           });
         }
-        
+
         setProcessedEvents(processed);
       } catch (error) {
-        console.error('Error processing events data:', error);
+        console.error("Error processing events data:", error);
         setProcessedEvents([]);
       } finally {
         setIsLoading(false);
@@ -522,19 +668,23 @@ export default function EventsPage() {
     processEvents();
   }, []);
 
-  const featuredEvent = processedEvents.length > 0 ? processedEvents.find(e => e.featured) : null;
+  const featuredEvent =
+    processedEvents.length > 0 ? processedEvents.find((e) => e.featured) : null;
   const trendingEvents = processedEvents.slice(0, 4);
 
   const getFilteredEvents = () => {
     if (selectedCategory === "All Events") return processedEvents;
-    return processedEvents.filter(event => 
-      event.category.toLowerCase() === selectedCategory.toLowerCase()
+    return processedEvents.filter(
+      (event) =>
+        event.category.toLowerCase() === selectedCategory.toLowerCase(),
     );
   };
 
   const shouldShowFeaturedEvent = () => {
     if (!featuredEvent || selectedCategory === "All Events") return true;
-    return featuredEvent.category.toLowerCase() === selectedCategory.toLowerCase();
+    return (
+      featuredEvent.category.toLowerCase() === selectedCategory.toLowerCase()
+    );
   };
 
   const filteredEvents = getFilteredEvents();
@@ -542,9 +692,12 @@ export default function EventsPage() {
 
   const getFilteredTrendingEvents = () => {
     if (selectedCategory === "All Events") return trendingEvents;
-    return trendingEvents.filter(event => 
-      event.category.toLowerCase() === selectedCategory.toLowerCase()
-    ).slice(0, 4);
+    return trendingEvents
+      .filter(
+        (event) =>
+          event.category.toLowerCase() === selectedCategory.toLowerCase(),
+      )
+      .slice(0, 4);
   };
 
   const filteredTrendingEvents = getFilteredTrendingEvents();
@@ -556,7 +709,7 @@ export default function EventsPage() {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleCardClick = (slug: string) => {
@@ -565,7 +718,7 @@ export default function EventsPage() {
 
   const handleContactClick = (event: ProcessedEvent, e: React.MouseEvent) => {
     e.stopPropagation();
-    
+
     openEventRegistrationEmail({
       title: event.title,
       date: event.date,
@@ -573,7 +726,7 @@ export default function EventsPage() {
       location: event.location,
       format: event.format,
       price: event.price,
-      category: event.category
+      category: event.category,
     });
   };
 
@@ -597,10 +750,7 @@ export default function EventsPage() {
 
   return (
     <main className="bg-background min-h-screen flex flex-col">
- 
-
-
-         <section className={`relative h-[470px] overflow-hidden pt-24`}>
+      <section className={`relative h-[470px] overflow-hidden pt-24`}>
         {/* Background Image */}
         <div className="absolute inset-0" style={{ top: "96px" }}>
           <div
@@ -630,16 +780,16 @@ export default function EventsPage() {
               {/* Description */}
 
               <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-              Join workshops, webinars and networking opportunities designed <br/> to empower and inspire
+                Stay updated on workshops, webinars, conferences, and networking
+                events designed to support women entrepreneurs at every stage.
+                Discover opportunities for learning, mentoring, funding access,
+                and meaningful connections that help you grow your business and
+                become part of a stronger women-led ecosystem.
               </p>
-
-           
             </div>
           </div>
         </div>
       </section>
-     
-
 
       {/* ================= FEATURED EVENT ================= */}
       {showFeaturedEvent && featuredEvent && (
@@ -647,7 +797,7 @@ export default function EventsPage() {
           <div className="max-w-screen-xl mx-auto">
             <div className="grid lg:grid-cols-[65%_35%] bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 hover:shadow-2xl transition-shadow duration-300">
               <div className="relative min-h-48 sm:min-h-64 overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                {featuredEvent.image !== '/placeholder-event.jpg' ? (
+                {featuredEvent.image !== "/placeholder-event.jpg" ? (
                   <Image
                     src="/Evventssmallbanner.png"
                     alt={featuredEvent.title}
@@ -683,7 +833,8 @@ export default function EventsPage() {
                   <div className="flex items-center gap-2 sm:gap-3 text-foreground">
                     <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                     <span className="font-medium text-sm sm:text-base">
-                      {featuredEvent.date} {featuredEvent.time && `• ${featuredEvent.time}`}
+                      {featuredEvent.date}{" "}
+                      {featuredEvent.time && `• ${featuredEvent.time}`}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 sm:gap-3 text-foreground">
@@ -707,14 +858,14 @@ export default function EventsPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 w-full">
-                  <Button 
+                  <Button
                     onClick={() => handleCardClick(featuredEvent.slug)}
                     variant="outline"
                     className="h-10 sm:h-12 border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all text-sm sm:text-base"
                   >
                     View Details
                   </Button>
-                  <Button 
+                  <Button
                     onClick={(e) => handleContactClick(featuredEvent, e)}
                     className="h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base"
                   >
@@ -736,11 +887,15 @@ export default function EventsPage() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
                 <div>
                   <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                    {selectedCategory === "All Events" ? "All Events" : selectedCategory}
+                    {selectedCategory === "All Events"
+                      ? "All Events"
+                      : selectedCategory}
                   </h2>
                   <p className="text-sm sm:text-base text-muted-foreground">
-                    {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'} found
-                    {selectedCategory !== "All Events" && ` in ${selectedCategory}`}
+                    {filteredEvents.length}{" "}
+                    {filteredEvents.length === 1 ? "event" : "events"} found
+                    {selectedCategory !== "All Events" &&
+                      ` in ${selectedCategory}`}
                   </p>
                 </div>
 
@@ -758,7 +913,7 @@ export default function EventsPage() {
                       Clear Filter
                     </Button>
                   )}
-                  
+
                   <Button
                     variant="outline"
                     className="flex items-center gap-2 border-2 w-full sm:w-auto"
@@ -803,7 +958,8 @@ export default function EventsPage() {
                     No events found
                   </h3>
                   <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                    There are no upcoming events in the &quot;{selectedCategory}&quot; category yet.
+                    There are no upcoming events in the &quot;{selectedCategory}
+                    &quot; category yet.
                   </p>
                   <Button
                     onClick={() => {
@@ -819,17 +975,17 @@ export default function EventsPage() {
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {currentEvents
-                      .filter(event => !event.featured)
+                      .filter((event) => !event.featured)
                       .map((event) => (
                         <div
                           key={event.id}
                           className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
                         >
-                          <div 
+                          <div
                             onClick={() => handleCardClick(event.slug)}
                             className="relative h-40 sm:h-44 overflow-hidden bg-gradient-to-br from-muted to-secondary cursor-pointer"
                           >
-                            {event.image !== '/placeholder-event.jpg' ? (
+                            {event.image !== "/placeholder-event.jpg" ? (
                               <Image
                                 src={event.image}
                                 alt={event.title}
@@ -856,13 +1012,13 @@ export default function EventsPage() {
                             </div>
                             <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
                               <span className="px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-foreground">
-                                {event.format.split(' ')[0]}
+                                {event.format.split(" ")[0]}
                               </span>
                             </div>
                           </div>
 
                           <div className="p-4 sm:p-6">
-                            <div 
+                            <div
                               onClick={() => handleCardClick(event.slug)}
                               className="cursor-pointer"
                             >
@@ -873,12 +1029,9 @@ export default function EventsPage() {
                               <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
                                 {event.title}
                               </h3>
-
-                           
                             </div>
 
                             <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
-                         
                               <div className="flex gap-2">
                                 <Button
                                   onClick={(e) => handleContactClick(event, e)}
@@ -906,9 +1059,11 @@ export default function EventsPage() {
                   {totalPages > 1 && (
                     <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
                       <div className="text-sm text-muted-foreground">
-                        Showing {startIndex + 1}-{Math.min(endIndex, filteredEvents.length)} of {filteredEvents.length} events
+                        Showing {startIndex + 1}-
+                        {Math.min(endIndex, filteredEvents.length)} of{" "}
+                        {filteredEvents.length} events
                       </div>
-                      
+
                       <div className="flex items-center gap-2">
                         <Button
                           variant="outline"
@@ -920,33 +1075,40 @@ export default function EventsPage() {
                           <ArrowRight className="h-3 w-3 rotate-180" />
                           Previous
                         </Button>
-                        
+
                         <div className="flex items-center gap-1">
-                          {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                            let pageNum;
-                            if (totalPages <= 5) {
-                              pageNum = i + 1;
-                            } else if (currentPage <= 3) {
-                              pageNum = i + 1;
-                            } else if (currentPage >= totalPages - 2) {
-                              pageNum = totalPages - 4 + i;
-                            } else {
-                              pageNum = currentPage - 2 + i;
-                            }
-                            
-                            return (
-                              <Button
-                                key={pageNum}
-                                variant={currentPage === pageNum ? "default" : "outline"}
-                                size="sm"
-                                className="w-10 h-10 p-0"
-                                onClick={() => handlePageChange(pageNum)}
-                              >
-                                {pageNum}
-                              </Button>
-                            );
-                          })}
-                          
+                          {Array.from(
+                            { length: Math.min(5, totalPages) },
+                            (_, i) => {
+                              let pageNum;
+                              if (totalPages <= 5) {
+                                pageNum = i + 1;
+                              } else if (currentPage <= 3) {
+                                pageNum = i + 1;
+                              } else if (currentPage >= totalPages - 2) {
+                                pageNum = totalPages - 4 + i;
+                              } else {
+                                pageNum = currentPage - 2 + i;
+                              }
+
+                              return (
+                                <Button
+                                  key={pageNum}
+                                  variant={
+                                    currentPage === pageNum
+                                      ? "default"
+                                      : "outline"
+                                  }
+                                  size="sm"
+                                  className="w-10 h-10 p-0"
+                                  onClick={() => handlePageChange(pageNum)}
+                                >
+                                  {pageNum}
+                                </Button>
+                              );
+                            },
+                          )}
+
                           {totalPages > 5 && currentPage < totalPages - 2 && (
                             <>
                               <span className="px-2">...</span>
@@ -961,7 +1123,7 @@ export default function EventsPage() {
                             </>
                           )}
                         </div>
-                        
+
                         <Button
                           variant="outline"
                           size="sm"
@@ -992,8 +1154,8 @@ export default function EventsPage() {
                 <div className="space-y-4">
                   {filteredTrendingEvents.length > 0 ? (
                     filteredTrendingEvents.map((event, index) => (
-                      <div 
-                        key={event.id} 
+                      <div
+                        key={event.id}
                         onClick={() => handleCardClick(event.slug)}
                         className="block group cursor-pointer pb-4 border-b border-border last:border-0 last:pb-0 hover:border-primary/30 transition-colors"
                       >
@@ -1002,7 +1164,7 @@ export default function EventsPage() {
                             {index + 1}
                           </span>
                           <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
-                            {event.category.split(' ')[0]}
+                            {event.category.split(" ")[0]}
                           </span>
                         </div>
                         <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug text-sm line-clamp-2">
@@ -1010,7 +1172,9 @@ export default function EventsPage() {
                         </h4>
                         <div className="flex items-center gap-2 text-xs text-muted-foreground">
                           <Calendar className="h-3 w-3" />
-                          <span>{event.month} {event.day}</span>
+                          <span>
+                            {event.month} {event.day}
+                          </span>
                         </div>
                       </div>
                     ))
@@ -1072,7 +1236,7 @@ export default function EventsPage() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-3 text-center">
                     {filteredEvents.length}{" "}
-                    {filteredEvents.length === 1 ? 'event' : 'events'} found
+                    {filteredEvents.length === 1 ? "event" : "events"} found
                   </p>
                 </div>
               )}
