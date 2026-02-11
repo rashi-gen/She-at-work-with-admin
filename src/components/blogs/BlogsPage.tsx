@@ -11,6 +11,7 @@ import {
   ExternalLink,
   Filter,
   Globe,
+  Loader2,
   MapPin,
   Search,
   X,
@@ -21,6 +22,10 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
+import { 
+  MultiSelectDropdown,
+  getCategoryIcon 
+} from "../common/MultiSelectDropdown";
 
 // Define types for your blog data
 interface BlogItem {
@@ -47,6 +52,7 @@ interface BlogItem {
 }
 
 // Extended interface for processed blogs
+// Extended interface for processed blogs
 interface ProcessedBlogItem {
   slug: string;
   id: string;
@@ -56,6 +62,8 @@ interface ProcessedBlogItem {
   date: string;
   rawDate: Date;
   readTime: string;
+  readingTimeCategory: string; // New: Categorizes as "Quick Reads" or "Deep Dives"
+  proficiencyLevel: string; // New: Categorizes as "Beginner" or "Advanced"
   author: string;
   image: string | null;
   fullContent: string;
@@ -68,16 +76,39 @@ interface ProcessedBlogItem {
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
   const contentLower = content.toLowerCase();
-  if (contentLower.includes("leadership") || contentLower.includes("leader") || contentLower.includes("ceo") || contentLower.includes("management")) return "Leadership";
-  if (contentLower.includes("finance") || contentLower.includes("funding") || content.includes("$") || contentLower.includes("investment") || contentLower.includes("budget") || contentLower.includes("financial")) return "Finance";
-  if (contentLower.includes("marketing") || contentLower.includes("brand") || contentLower.includes("social media") || contentLower.includes("promotion") || contentLower.includes("sales")) return "Marketing";
-  if (contentLower.includes("technology") || contentLower.includes("tech") || contentLower.includes("digital") || contentLower.includes("ai") || contentLower.includes("software") || contentLower.includes("app")) return "Technology";
-  if (contentLower.includes("wellness") || contentLower.includes("health") || contentLower.includes("self-care") || contentLower.includes("mental health") || contentLower.includes("balance")) return "Wellness";
-  if (contentLower.includes("growth") || contentLower.includes("scale") || contentLower.includes("expand") || contentLower.includes("development") || contentLower.includes("progress")) return "Growth";
-  if (contentLower.includes("strategy") || contentLower.includes("planning") || contentLower.includes("tactics") || contentLower.includes("business plan") || contentLower.includes("roadmap")) return "Strategy";
-  if (contentLower.includes("innovation") || contentLower.includes("innovate") || contentLower.includes("creative") || contentLower.includes("disrupt") || contentLower.includes("new ideas")) return "Innovation";
-  if (contentLower.includes("success") || contentLower.includes("story") || contentLower.includes("journey") || contentLower.includes("experience") || contentLower.includes("testimonial")) return "Success Stories";
+  if (contentLower.includes("digital") || contentLower.includes("marketing")) return "Digital Marketing";
+  if (contentLower.includes("leadership") || contentLower.includes("mindset")) return "Leadership & Mindset";
+  if (contentLower.includes("legal") || contentLower.includes("compliance")) return "Legal & Compliance";
+  if (contentLower.includes("finance") || contentLower.includes("financial") || contentLower.includes("management")) return "Financial Management";
+  if (contentLower.includes("e-commerce") || contentLower.includes("ecommerce")) return "E-commerce";
+  if (contentLower.includes("edtech") || contentLower.includes("education")) return "EdTech";
+  if (contentLower.includes("health") || contentLower.includes("wellness")) return "Health & Wellness";
+  if (contentLower.includes("growth") || contentLower.includes("scale")) return "Growth & Scaling";
+  if (contentLower.includes("innovation") || contentLower.includes("tech")) return "Technology & Innovation";
+  if (contentLower.includes("success") || contentLower.includes("story")) return "Success Stories";
+  if (contentLower.includes("strategy") || contentLower.includes("planning")) return "Business Strategy";
+  if (contentLower.includes("brand") || contentLower.includes("social")) return "Brand Building";
   return "General";
+};
+
+// Calculate reading time category
+const getReadingTimeCategory = (text: string): string => {
+  if (!text) return "Quick Reads";
+  const wordCount = text.split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / 200);
+  return minutes < 5 ? "Quick Reads (<5 mins)" : "Deep Dives (5+ mins)";
+};
+
+// Determine proficiency level
+const getProficiencyLevel = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  const beginnerKeywords = ["beginner", "starting", "basic", "fundamental", "intro", "guide"];
+  const advancedKeywords = ["advanced", "scaling", "expert", "master", "optimize", "scale"];
+  
+  const beginnerCount = beginnerKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  const advancedCount = advancedKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  
+  return advancedCount > beginnerCount ? "Advanced (Scaling Up)" : "Beginner (Starting Up)";
 };
 
 // Helper function to extract author from content
@@ -139,19 +170,37 @@ const getLocationData = (id: string, content: string): { state?: string; country
   return { state, country };
 };
 
+// Blog categories based on your requirements
 const blogCategories = [
   "All Blogs",
-  "Leadership",
-  "Finance",
-  "Marketing",
-  "Technology",
-  "Wellness",
-  "Growth",
-  "Strategy",
-  "Innovation",
+  "Digital Marketing",
+  "Leadership & Mindset",
+  "Legal & Compliance",
+  "Financial Management",
+  "E-commerce",
+  "EdTech",
+  "Health & Wellness",
+  "Growth & Scaling",
+  "Technology & Innovation",
   "Success Stories",
+  "Business Strategy",
+  "Brand Building",
   "General",
 ];
+
+// Reading time categories
+// const readingTimeCategories = [
+//   "All Reading Times",
+//   "Quick Reads (<5 mins)",
+//   "Deep Dives (5+ mins)"
+// ];
+
+// // Proficiency levels
+// const proficiencyLevels = [
+//   "All Levels",
+//   "Beginner (Starting Up)",
+//   "Advanced (Scaling Up)"
+// ];
 
 // Format date function
 const formatDate = (dateString: string): string => {
@@ -198,6 +247,15 @@ const calculateReadTime = (text: string): string => {
 
 // Items per page for pagination
 const ITEMS_PER_PAGE = 12;
+
+// Predefined date ranges
+const predefinedDateRanges = [
+  { value: "24h", label: "24 Hours" },
+  { value: "week", label: "Past Week" },
+  { value: "month", label: "Past Month" },
+  { value: "3months", label: "Past 3 Months" },
+  { value: "custom", label: "Custom Range" },
+];
 
 // Search Suggestions Component
 interface SearchSuggestionProps {
@@ -314,7 +372,7 @@ const SearchSuggestions = ({
 };
 
 export default function BlogsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All Blogs");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(["All Blogs"]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [processedBlogs, setProcessedBlogs] = useState<ProcessedBlogItem[]>([]);
@@ -334,74 +392,169 @@ export default function BlogsPage() {
   const searchRef = useRef<HTMLDivElement>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: string; to: string }>({ from: "", to: "" });
-  const [selectedState, setSelectedState] = useState<string>("");
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+  const [selectedStates, setSelectedStates] = useState<string[]>([]);
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  const [selectedReadingTimes, setSelectedReadingTimes] = useState<string[]>(["All Reading Times"]);
+  const [selectedProficiencyLevels, setSelectedProficiencyLevels] = useState<string[]>(["All Levels"]);
+  const [userLocation, setUserLocation] = useState<{
+    country?: string;
+    state?: string;
+    city?: string;
+    detected: boolean;
+  }>({ detected: false });
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+
+  // Function to detect user location (same as news page)
+  const detectUserLocation = async () => {
+    setIsDetectingLocation(true);
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+
+      setUserLocation({
+        country: data.country_name,
+        state: data.region,
+        city: data.city,
+        detected: true,
+      });
+
+      // Auto-set country filter if location detected
+      if (data.country_name && !selectedCountries.includes(data.country_name)) {
+        setSelectedCountries([data.country_name]);
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error detecting location:", error);
+      setUserLocation({ detected: false });
+      return null;
+    } finally {
+      setIsDetectingLocation(false);
+    }
+  };
 
   // Process blog data on component mount
   useEffect(() => {
-    try {
-      setIsLoading(true);
+    const processBlogData = () => {
+      try {
+        setIsLoading(true);
 
-      const processed = blogsData.map((item: BlogItem) => {
-        const category = getCategoryFromContent(item.post_content);
-        const excerpt = item.post_excerpt && item.post_excerpt.trim() !== '' 
-          ? item.post_excerpt 
-          : extractExcerpt(item.post_content);
+        const processed = blogsData.map((item: BlogItem) => {
+          const category = getCategoryFromContent(item.post_content);
+          const excerpt = item.post_excerpt && item.post_excerpt.trim() !== '' 
+            ? item.post_excerpt 
+            : extractExcerpt(item.post_content);
+          
+          const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Untitled';
+          const rawDate = new Date(item.post_date);
+          const date = formatDate(item.post_date);
+          const readTime = calculateReadTime(item.post_content);
+          const readingTimeCategory = getReadingTimeCategory(item.post_content);
+          const proficiencyLevel = getProficiencyLevel(item.post_content);
+          const author = extractAuthor(item.post_content);
+          const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
+            ? item.featured_image_url 
+            : null;
+          const slug = item.post_name || `blog-${item.ID}`;
+          
+          const location = getLocationData(item.ID, item.post_content);
+
+          return {
+            id: item.ID || Math.random().toString(),
+            category,
+            title,
+            excerpt,
+            date,
+            rawDate,
+            readTime,
+            readingTimeCategory,
+            proficiencyLevel,
+            author,
+            image,
+            fullContent: item.post_content || '',
+            modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
+            modifiedRawDate: item.post_modified ? new Date(item.post_modified) : undefined,
+            slug,
+            state: location.state,
+            country: location.country,
+          };
+        });
+
+        // Sort by date descending
+        processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
         
-        const title = item.post_title ? item.post_title.replace(/&amp;/g, '&') : 'Untitled';
-        const rawDate = new Date(item.post_date);
-        const date = formatDate(item.post_date);
-        const readTime = calculateReadTime(item.post_content);
-        const author = extractAuthor(item.post_content);
-        const image = item.featured_image_url && item.featured_image_url.trim() !== '' 
-          ? item.featured_image_url 
-          : null;
-        const slug = item.post_name || `blog-${item.ID}`;
-        
-        const location = getLocationData(item.ID, item.post_content);
+        setProcessedBlogs(processed);
+      } catch (error) {
+        console.error('Error processing blog data:', error);
+        setProcessedBlogs([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-        return {
-          id: item.ID || Math.random().toString(),
-          category,
-          title,
-          excerpt,
-          date,
-          rawDate,
-          readTime,
-          author,
-          image,
-          fullContent: item.post_content || '',
-          modifiedDate: item.post_modified ? formatDate(item.post_modified) : undefined,
-          modifiedRawDate: item.post_modified ? new Date(item.post_modified) : undefined,
-          slug,
-          state: location.state,
-          country: location.country,
-        };
-      });
-
-      // Sort by date descending
-      processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
-      
-      setProcessedBlogs(processed);
-    } catch (error) {
-      console.error('Error processing blog data:', error);
-      setProcessedBlogs([]);
-    } finally {
-      setIsLoading(false);
-    }
+    processBlogData();
+    
+    // Detect user location on mount
+    detectUserLocation();
   }, []);
 
-  // Get featured blog (most recent)
-  const featuredBlog = processedBlogs.length > 0 ? processedBlogs[0] : null;
+  // Apply date range filter
+  const applyDateRangeFilter = (range: string, customFrom?: string, customTo?: string) => {
+    const now = new Date();
+    const from = new Date();
+
+    switch (range) {
+      case "24h":
+        from.setDate(now.getDate() - 1);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "week":
+        from.setDate(now.getDate() - 7);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "month":
+        from.setMonth(now.getMonth() - 1);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "3months":
+        from.setMonth(now.getMonth() - 3);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "custom":
+        if (customFrom && customTo) {
+          setDateRange({
+            from: customFrom,
+            to: customTo,
+          });
+        }
+        break;
+      default:
+        setDateRange({ from: "", to: "" });
+    }
+    setSelectedDateRange(range);
+  };
 
   // Filter blogs based on all filter criteria
   const filteredBlogs = useMemo(() => {
     let filtered = [...processedBlogs];
 
-    // Filter by category
-    if (selectedCategory !== "All Blogs") {
-      filtered = filtered.filter(
-        (article) => article.category === selectedCategory
+    // Filter by categories
+    if (selectedCategories.length > 0 && !selectedCategories.includes("All Blogs")) {
+      filtered = filtered.filter((article) =>
+        selectedCategories.includes(article.category),
       );
     }
 
@@ -417,14 +570,33 @@ export default function BlogsPage() {
       filtered = filtered.filter(article => article.rawDate <= toDate);
     }
 
-    // Filter by state
-    if (selectedState && selectedState !== "All States") {
-      filtered = filtered.filter(article => article.state === selectedState);
+    // Filter by states
+    if (selectedStates.length > 0) {
+      filtered = filtered.filter(
+        (article) => article.state && selectedStates.includes(article.state),
+      );
     }
 
-    // Filter by country
-    if (selectedCountry && selectedCountry !== "All Countries") {
-      filtered = filtered.filter(article => article.country === selectedCountry);
+    // Filter by countries
+    if (selectedCountries.length > 0) {
+      filtered = filtered.filter(
+        (article) =>
+          article.country && selectedCountries.includes(article.country),
+      );
+    }
+
+    // Filter by reading time
+    if (selectedReadingTimes.length > 0 && !selectedReadingTimes.includes("All Reading Times")) {
+      filtered = filtered.filter((article) =>
+        selectedReadingTimes.includes(article.readingTimeCategory),
+      );
+    }
+
+    // Filter by proficiency level
+    if (selectedProficiencyLevels.length > 0 && !selectedProficiencyLevels.includes("All Levels")) {
+      filtered = filtered.filter((article) =>
+        selectedProficiencyLevels.includes(article.proficiencyLevel),
+      );
     }
 
     // Filter by search query
@@ -443,10 +615,19 @@ export default function BlogsPage() {
     }
 
     return filtered;
-  }, [processedBlogs, selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+  }, [
+    processedBlogs, 
+    selectedCategories, 
+    dateRange, 
+    selectedStates, 
+    selectedCountries, 
+    selectedReadingTimes, 
+    selectedProficiencyLevels, 
+    searchQuery
+  ]);
 
-
-  // const showFeaturedBlogInAllBlogs = shouldShowFeaturedBlogInAllBlogs;
+  // Get featured blog (most recent)
+  const featuredBlog = processedBlogs.length > 0 ? processedBlogs[0] : null;
 
   // Pagination calculations for All Blogs section
   const totalPages = Math.ceil(filteredBlogs.length / ITEMS_PER_PAGE);
@@ -459,15 +640,15 @@ export default function BlogsPage() {
     return processedBlogs.slice(0, 4);
   }, [processedBlogs]);
 
-  // Extract unique states and countries from processed blogs
-  const uniqueStates = useMemo(() => {
-    const states = processedBlogs
-      .map(blog => blog.state)
-      .filter((state): state is string => !!state)
-      .filter((state, index, self) => self.indexOf(state) === index)
-      .sort();
-    return ["All States", ...states];
-  }, [processedBlogs]);
+  // Extract unique states, countries, reading times, and proficiency levels
+  // const uniqueStates = useMemo(() => {
+  //   const states = processedBlogs
+  //     .map(blog => blog.state)
+  //     .filter((state): state is string => !!state)
+  //     .filter((state, index, self) => self.indexOf(state) === index)
+  //     .sort();
+  //   return states;
+  // }, [processedBlogs]);
 
   const uniqueCountries = useMemo(() => {
     const countries = processedBlogs
@@ -475,13 +656,39 @@ export default function BlogsPage() {
       .filter((country): country is string => !!country)
       .filter((country, index, self) => self.indexOf(country) === index)
       .sort();
-    return ["All Countries", ...countries];
+    return countries;
+  }, [processedBlogs]);
+
+  const uniqueReadingTimes = useMemo(() => {
+    const times = processedBlogs
+      .map(blog => blog.readingTimeCategory)
+      .filter((time): time is string => !!time)
+      .filter((time, index, self) => self.indexOf(time) === index)
+      .sort();
+    return times;
+  }, [processedBlogs]);
+
+  const uniqueProficiencyLevels = useMemo(() => {
+    const levels = processedBlogs
+      .map(blog => blog.proficiencyLevel)
+      .filter((level): level is string => !!level)
+      .filter((level, index, self) => self.indexOf(level) === index)
+      .sort();
+    return levels;
   }, [processedBlogs]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [selectedCategory, dateRange, selectedState, selectedCountry, searchQuery]);
+  }, [
+    selectedCategories, 
+    dateRange, 
+    selectedStates, 
+    selectedCountries, 
+    selectedReadingTimes, 
+    selectedProficiencyLevels, 
+    searchQuery
+  ]);
 
   // Handle clicks outside search suggestions and filter dropdown
   useEffect(() => {
@@ -564,10 +771,13 @@ export default function BlogsPage() {
 
   // Clear all filters
   const clearAllFilters = () => {
-    setSelectedCategory("All Blogs");
+    setSelectedCategories(["All Blogs"]);
     setDateRange({ from: "", to: "" });
-    setSelectedState("");
-    setSelectedCountry("");
+    setSelectedDateRange("");
+    setSelectedStates([]);
+    setSelectedCountries([]);
+    setSelectedReadingTimes(["All Reading Times"]);
+    setSelectedProficiencyLevels(["All Levels"]);
     setSearchQuery("");
     setSearchSuggestions([]);
     setShowSuggestions(false);
@@ -584,11 +794,13 @@ export default function BlogsPage() {
   // Check if any filter is active
   const isAnyFilterActive = () => {
     return (
-      selectedCategory !== "All Blogs" ||
+      (selectedCategories.length > 0 && !(selectedCategories.length === 1 && selectedCategories[0] === "All Blogs")) ||
       dateRange.from !== "" ||
       dateRange.to !== "" ||
-      (selectedState !== "" && selectedState !== "All States") ||
-      (selectedCountry !== "" && selectedCountry !== "All Countries") ||
+      selectedStates.length > 0 ||
+      selectedCountries.length > 0 ||
+      (selectedReadingTimes.length > 0 && !(selectedReadingTimes.length === 1 && selectedReadingTimes[0] === "All Reading Times")) ||
+      (selectedProficiencyLevels.length > 0 && !(selectedProficiencyLevels.length === 1 && selectedProficiencyLevels[0] === "All Levels")) ||
       searchQuery !== ""
     );
   };
@@ -659,7 +871,16 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
 
                 {/* CONTENT */}
                 <div className="p-4 sm:p-4">
-                
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="inline-flex items-center gap-1 px-2 sm:px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
+                      {getCategoryIcon(featuredBlog.category)}
+                      {featuredBlog.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground flex items-center gap-1">
+                      <User className="h-3 w-3" />
+                      {featuredBlog.author.split(' ')[0]}
+                    </span>
+                  </div>
 
                   <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredBlog.title}
@@ -748,8 +969,9 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                         {/* CONTENT */}
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                            <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                              {blog.category}
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                              {getCategoryIcon(blog.category)}
+                              <span className="truncate">{blog.category.split(' ')[0]}</span>
                             </span>
                             <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
                               <User className="h-3 w-3" />
@@ -810,9 +1032,9 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                {selectedCategory === "All Blogs"
+                {selectedCategories.includes("All Blogs") || selectedCategories.length === 0
                   ? "All Blog Articles"
-                  : `${selectedCategory} Articles`}
+                  : `${selectedCategories.length} ${selectedCategories.length === 1 ? "Category" : "Categories"} Selected`}
                 {searchQuery && (
                   <span className="text-lg sm:text-xl text-primary">
                     {" "}
@@ -823,7 +1045,9 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
               <p className="text-sm sm:text-base text-muted-foreground">
                 {filteredBlogs.length}{" "}
                 {filteredBlogs.length === 1 ? "article" : "articles"} found
-                {selectedCategory !== "All Blogs" && ` in ${selectedCategory}`}
+                {selectedCategories.length > 0 && !selectedCategories.includes("All Blogs") && 
+                  ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? 'category' : 'categories'}`
+                }
                 {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
@@ -876,15 +1100,15 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                   
                   {isAnyFilterActive() && (
                     <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      {isAnyFilterActive() ? "!" : ""}
+                      !
                     </span>
                   )}
                 </Button>
 
                 {/* FILTER DROPDOWN MENU */}
                 {isFilterOpen && (
-                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto">
-                    <div className="p-4">
+                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto p-4">
+                    <div className="mb-2">
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="text-lg font-semibold text-foreground">
                           Filter Articles
@@ -898,53 +1122,119 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                           </button>
                         )}
                       </div>
-                      
+
                       {/* CATEGORY FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                          <Filter className="h-4 w-4" />
-                          Category
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Category / Topic
                         </h5>
-                        <select
-                          value={selectedCategory}
-                          onChange={(e) => setSelectedCategory(e.target.value)}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-sm mb-3"
-                        >
-                          {blogCategories.map(cat => (
-                            <option key={cat} value={cat}>{cat}</option>
-                          ))}
-                        </select>
+                        <MultiSelectDropdown
+                          label="Categories"
+                          icon={<Filter className="h-4 w-4" />}
+                          options={blogCategories.filter(cat => cat !== "All Blogs")}
+                          selectedValues={selectedCategories.filter(cat => cat !== "All Blogs")}
+                          onChange={(values) => setSelectedCategories(values)}
+                          placeholder="Select categories"
+                          allOptionLabel="All Categories"
+                        />
+                      </div>
+
+                      {/* READING TIME FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Reading Time
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Reading Times"
+                          icon={<Clock className="h-4 w-4" />}
+                          options={uniqueReadingTimes}
+                          selectedValues={selectedReadingTimes.filter(time => time !== "All Reading Times")}
+                          onChange={(values) => setSelectedReadingTimes(values)}
+                          placeholder="Select reading times"
+                          allOptionLabel="All Reading Times"
+                        />
+                      </div>
+
+                      {/* PROFICIENCY LEVEL FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Proficiency Level
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Proficiency Levels"
+                          icon={<User className="h-4 w-4" />}
+                          options={uniqueProficiencyLevels}
+                          selectedValues={selectedProficiencyLevels.filter(level => level !== "All Levels")}
+                          onChange={(values) => setSelectedProficiencyLevels(values)}
+                          placeholder="Select proficiency levels"
+                          allOptionLabel="All Levels"
+                        />
                       </div>
 
                       {/* DATE RANGE FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
+                        <h5 className="text-sm font-medium text-foreground mb-2">
                           Date Range
                         </h5>
-                        <div className="grid grid-cols-2 gap-3">
-                          <div>
-                            <label className="text-xs text-muted-foreground block mb-1">From</label>
-                            <Input
-                              type="date"
-                              value={dateRange.from}
-                              onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })}
-                              className="w-full"
-                            />
-                          </div>
-                          <div>
-                            <label className="text-xs text-muted-foreground block mb-1">To</label>
-                            <Input
-                              type="date"
-                              value={dateRange.to}
-                              onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })}
-                              className="w-full"
-                            />
-                          </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                          {predefinedDateRanges.map((range) => (
+                            <button
+                              key={range.value}
+                              onClick={() => {
+                                setSelectedDateRange(range.value);
+                                if (range.value === "custom") {
+                                  // Show custom date inputs
+                                } else {
+                                  applyDateRangeFilter(range.value);
+                                }
+                              }}
+                              className={`px-3 py-2 text-xs rounded-lg border ${
+                                selectedDateRange === range.value
+                                  ? "bg-primary text-white border-primary"
+                                  : "bg-secondary/50 border-border hover:bg-secondary"
+                              }`}
+                            >
+                              {range.label}
+                            </button>
+                          ))}
                         </div>
+
+                        {/* CUSTOM DATE INPUTS */}
+                        {(selectedDateRange === "custom" || dateRange.from || dateRange.to) && (
+                          <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
+                            <div>
+                              <label className="text-xs text-muted-foreground block mb-1">From</label>
+                              <Input
+                                type="date"
+                                value={dateRange.from}
+                                onChange={(e) => {
+                                  setDateRange({ ...dateRange, from: e.target.value });
+                                  setSelectedDateRange("custom");
+                                }}
+                                className="w-full"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-xs text-muted-foreground block mb-1">To</label>
+                              <Input
+                                type="date"
+                                value={dateRange.to}
+                                onChange={(e) => {
+                                  setDateRange({ ...dateRange, to: e.target.value });
+                                  setSelectedDateRange("custom");
+                                }}
+                                className="w-full"
+                              />
+                            </div>
+                          </div>
+                        )}
+
                         {(dateRange.from || dateRange.to) && (
                           <button
-                            onClick={() => setDateRange({ from: "", to: "" })}
+                            onClick={() => {
+                              setDateRange({ from: "", to: "" });
+                              setSelectedDateRange("");
+                            }}
                             className="text-xs text-primary hover:text-primary/80 mt-2"
                           >
                             Clear date range
@@ -953,119 +1243,207 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                       </div>
 
                       {/* LOCATION FILTERS */}
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        {/* STATE FILTER */}
-                        <div>
-                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            State/Region
-                          </h5>
-                          <select
-                            value={selectedState}
-                            onChange={(e) => setSelectedState(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
-                          >
-                            {uniqueStates.map(state => (
-                              <option key={state} value={state}>{state}</option>
-                            ))}
-                          </select>
-                        </div>
-
+                      <div className="grid grid-cols-1 gap-3 mb-2">
                         {/* COUNTRY FILTER */}
                         <div>
-                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-                            <Globe className="h-4 w-4" />
+                          <h5 className="text-sm font-medium text-foreground mb-2">
                             Country
                           </h5>
-                          <select
-                            value={selectedCountry}
-                            onChange={(e) => setSelectedCountry(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
-                          >
-                            {uniqueCountries.map(country => (
-                              <option key={country} value={country}>{country}</option>
-                            ))}
-                          </select>
+                          <MultiSelectDropdown
+                            label="Countries"
+                            icon={<Globe className="h-4 w-4" />}
+                            options={uniqueCountries}
+                            selectedValues={selectedCountries}
+                            onChange={setSelectedCountries}
+                            placeholder="Select countries"
+                            allOptionLabel="All Countries"
+                          />
                         </div>
+
+                        {/* STATE FILTER */}
+                        {/* {uniqueStates.length > 0 && (
+                          <div>
+                            <h5 className="text-sm font-medium text-foreground mb-2">
+                              State/Region
+                            </h5>
+                            <MultiSelectDropdown
+                              label="States"
+                              icon={<MapPin className="h-4 w-4" />}
+                              options={uniqueStates}
+                              selectedValues={selectedStates}
+                              onChange={setSelectedStates}
+                              placeholder="Select states"
+                              allOptionLabel="All States"
+                            />
+                          </div>
+                        )} */}
                       </div>
 
-                      {/* ACTIVE FILTERS SUMMARY */}
-                      {isAnyFilterActive() && (
-                        <div className="mt-4 pt-4 border-t border-border">
-                          <h5 className="text-sm font-medium text-foreground mb-2">
-                            Active Filters
+                      {/* LOCATION DETECTION */}
+                      <div className="p-3 bg-secondary/30 rounded-lg pb-0 mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h5 className="text-sm font-medium text-foreground flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            Your Location
                           </h5>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedCategory !== "All Blogs" && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                                {selectedCategory}
-                                <button
-                                  onClick={() => setSelectedCategory("All Blogs")}
-                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
+                          <button
+                            onClick={detectUserLocation}
+                            disabled={isDetectingLocation}
+                            className="text-xs text-primary hover:text-primary/80"
+                          >
+                            {isDetectingLocation ? (
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                            ) : (
+                              "Refresh"
                             )}
-                            {dateRange.from && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                From: {new Date(dateRange.from).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                                <button
-                                  onClick={() => setDateRange({ ...dateRange, from: "" })}
-                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {dateRange.to && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                To: {new Date(dateRange.to).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                                <button
-                                  onClick={() => setDateRange({ ...dateRange, to: "" })}
-                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {selectedState && selectedState !== "All States" && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                                {selectedState}
-                                <button
-                                  onClick={() => setSelectedState("")}
-                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {selectedCountry && selectedCountry !== "All Countries" && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                                {selectedCountry}
-                                <button
-                                  onClick={() => setSelectedCountry("")}
-                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {searchQuery && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                                Search: {searchQuery}
-                                <button
-                                  onClick={() => setSearchQuery("")}
-                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                          </div>
+                          </button>
                         </div>
-                      )}
+                        {userLocation.detected ? (
+                          <div className="text-xs text-muted-foreground">
+                            Detected:{" "}
+                            <span className="font-medium text-foreground">
+                              {userLocation.city && `${userLocation.city}, `}
+                              {userLocation.state && `${userLocation.state}, `}
+                              {userLocation.country}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="text-xs text-muted-foreground">
+                            Location not detected. Click refresh to try again.
+                          </div>
+                        )}
+                      </div>
                     </div>
+
+                    {/* ACTIVE FILTERS SUMMARY */}
+                    {isAnyFilterActive() && (
+                      <div className="pt-4 ">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Active Filters
+                        </h5>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedCategories.length > 0 && !selectedCategories.includes("All Blogs") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                              <Filter className="h-3 w-3" />
+                              {selectedCategories.length} category
+                              {selectedCategories.length !== 1 ? "ies" : ""}
+                              <button
+                                onClick={() => setSelectedCategories(["All Blogs"])}
+                                className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedReadingTimes.length > 0 && !selectedReadingTimes.includes("All Reading Times") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                              <Clock className="h-3 w-3" />
+                              {selectedReadingTimes.length} reading time
+                              {selectedReadingTimes.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedReadingTimes(["All Reading Times"])}
+                                className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedProficiencyLevels.length > 0 && !selectedProficiencyLevels.includes("All Levels") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <User className="h-3 w-3" />
+                              {selectedProficiencyLevels.length} proficiency level
+                              {selectedProficiencyLevels.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedProficiencyLevels(["All Levels"])}
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {dateRange.from && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              From:{" "}
+                              {new Date(dateRange.from).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                },
+                              )}
+                              <button
+                                onClick={() =>
+                                  setDateRange({ ...dateRange, from: "" })
+                                }
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {dateRange.to && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              To:{" "}
+                              {new Date(dateRange.to).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                },
+                              )}
+                              <button
+                                onClick={() =>
+                                  setDateRange({ ...dateRange, to: "" })
+                                }
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedCountries.length > 0 && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                              <Globe className="h-3 w-3" />
+                              {selectedCountries.length} country
+                              {selectedCountries.length !== 1 ? "ies" : ""}
+                              <button
+                                onClick={() => setSelectedCountries([])}
+                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedStates.length > 0 && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                              <MapPin className="h-3 w-3" />
+                              {selectedStates.length} state
+                              {selectedStates.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedStates([])}
+                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {searchQuery && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                              <Search className="h-3 w-3" />
+                              Search: {searchQuery}
+                              <button
+                                onClick={() => setSearchQuery("")}
+                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -1094,11 +1472,11 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery
                   ? `No articles found matching "${searchQuery}"${
-                      selectedCategory !== "All Blogs"
-                        ? ` in the "${selectedCategory}" category`
+                      selectedCategories.length > 0 && !selectedCategories.includes("All Blogs")
+                        ? ` in the selected categories`
                         : ""
                     }`
-                  : `There are no blog articles in the "${selectedCategory}" category yet.`}
+                  : `There are no blog articles with the current filters.`}
               </p>
               <Button
                 onClick={clearAllFilters}
@@ -1110,76 +1488,73 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {currentBlogs.map((blog) => {
-                
-                  
-                  return (
-                    <Link
-                      key={blog.id}
-                      href={`/blogs/${blog.slug}`}
-                      className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
-                    >
-                      {/* IMAGE CONTAINER */}
-                      <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
-                        {blog.image ? (
-                          <Image
-                            src={blog.image}
-                            alt={blog.title}
-                            fill
-                            className="object-fit"
-                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                            <div className="text-white/40 text-5xl font-display">
-                              {blog.title.charAt(0)}
-                            </div>
+                {currentBlogs.map((blog) => (
+                  <Link
+                    key={blog.id}
+                    href={`/blogs/${blog.slug}`}
+                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
+                  >
+                    {/* IMAGE CONTAINER */}
+                    <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+                      {blog.image ? (
+                        <Image
+                          src={blog.image}
+                          alt={blog.title}
+                          fill
+                          className="object-fit"
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                          <div className="text-white/40 text-5xl font-display">
+                            {blog.title.charAt(0)}
                           </div>
-                        )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
+                          {getCategoryIcon(blog.category)}
+                          {blog.category.split(' & ')[0]}
+                        </span>
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <User className="h-3 w-3" />
+                          {blog.author.split(' ')[0]}
+                        </span>
                       </div>
 
-                      {/* CONTENT */}
-                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                        <div className="flex items-center justify-between mb-2 sm:mb-3">
-                          <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
-                            {blog.category}
-                          </span>
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <User className="h-3 w-3" />
-                            {blog.author.split(' ')[0]}
-                          </span>
-                        </div>
+                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                        {blog.title}
+                      </h3>
 
-                        <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                          {blog.title}
-                        </h3>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                        {blog.excerpt}
+                      </p>
 
-                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
-                          {blog.excerpt}
-                        </p>
-
-                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
-                          <div className="flex flex-col gap-1">
+                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                            <span>{blog.date}</span>
+                          </div>
+                          {(blog.state || blog.country) && (
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                              <span>{blog.date}</span>
+                              <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span>{blog.state || blog.country}</span>
                             </div>
-                            {(blog.state || blog.country) && (
-                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                                <span>{blog.state || blog.country}</span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
-                            Read
-                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                          </div>
+                          )}
+                        </div>
+                        <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                          Read
+                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
-                    </Link>
-                  );
-                })}
+                    </div>
+                  </Link>
+                ))}
               </div>
 
               {/* PAGINATION */}

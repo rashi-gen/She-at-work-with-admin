@@ -5,21 +5,30 @@ import { Input } from "@/components/ui/input";
 import { entrechatData } from "@/data/Entrechat";
 import {
   ArrowRight,
+  Building,
   Calendar,
   ChevronRight,
   Clock,
   ExternalLink,
+  FileText,
   Filter,
   Globe,
+  Loader2,
   MapPin,
   Search,
-  X,
+  TrendingUp,
   User,
+  Video,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
+import {
+  MultiSelectDropdown,
+  getCategoryIcon
+} from "../common/MultiSelectDropdown";
 
 // Define types for your entrechat data
 interface EntreChatItem {
@@ -61,6 +70,11 @@ interface ProcessedEntreChatItem {
   modifiedRawDate?: Date;
   state?: string;
   country?: string;
+  industrySector: string;
+  businessStage: string;
+  interviewFormat: string;
+  founderRegion: string;
+  successFactor: string;
 }
 
 // Extract categories from content
@@ -133,6 +147,77 @@ const getCategoryFromContent = (content: string): string => {
   return "Entrepreneurship";
 };
 
+// Extract industry sector from content
+const getIndustrySector = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  if (contentLower.includes("fashion") || contentLower.includes("lifestyle") || contentLower.includes("clothing") || contentLower.includes("apparel")) 
+    return "Fashion & Lifestyle";
+  if (contentLower.includes("food") || contentLower.includes("beverage") || contentLower.includes("restaurant") || contentLower.includes("culinary")) 
+    return "Food & Beverage";
+  if (contentLower.includes("social") || contentLower.includes("impact") || contentLower.includes("nonprofit") || contentLower.includes("ngo")) 
+    return "Social Impact";
+  if (contentLower.includes("tech") || contentLower.includes("software") || contentLower.includes("ai") || contentLower.includes("digital")) 
+    return "Technology";
+  return "General Business";
+};
+
+// Determine business stage
+const getBusinessStage = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  const earlyKeywords = ["early stage", "startup", "ideation", "launching", "just started"];
+  const growthKeywords = ["growth", "scaling", "expanding", "hiring", "funding round"];
+  const establishedKeywords = ["established", "enterprise", "corporate", "mature", "years in business"];
+  
+  const earlyCount = earlyKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  const growthCount = growthKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  const establishedCount = establishedKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  
+  if (establishedCount > growthCount && establishedCount > earlyCount) return "Established Enterprise";
+  if (growthCount > earlyCount) return "Growth/Scaling";
+  return "Early Stage/Ideation";
+};
+
+// Determine interview format
+const getInterviewFormat = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  if (contentLower.includes("video") || contentLower.includes("youtube") || contentLower.includes("watch")) 
+    return "Video Interview";
+  if (contentLower.includes("podcast") || contentLower.includes("audio") || contentLower.includes("listen")) 
+    return "Podcast/Audio";
+  return "Text Interview";
+};
+
+// Determine founder region
+const getFounderRegion = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  const asiaKeywords = ["india", "china", "japan", "singapore", "asia", "asian"];
+  const europeKeywords = ["europe", "uk", "london", "germany", "france", "european"];
+  const northAmericaKeywords = ["usa", "us", "america", "canada", "new york", "california", "silicon valley"];
+  
+  const asiaCount = asiaKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  const europeCount = europeKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  const northAmericaCount = northAmericaKeywords.filter(keyword => contentLower.includes(keyword)).length;
+  
+  if (northAmericaCount > europeCount && northAmericaCount > asiaCount) return "North America";
+  if (europeCount > asiaCount) return "Europe";
+  if (asiaCount > 0) return "Asia-Pacific";
+  return "Global";
+};
+
+// Determine success factor
+const getSuccessFactor = (content: string): string => {
+  const contentLower = content.toLowerCase();
+  if (contentLower.includes("bootstrapped") || contentLower.includes("self-funded") || contentLower.includes("no funding")) 
+    return "Bootstrapped";
+  if (contentLower.includes("vc") || contentLower.includes("venture capital") || contentLower.includes("funded")) 
+    return "VC Funded";
+  if (contentLower.includes("angel") || contentLower.includes("investor")) 
+    return "Angel Backed";
+  if (contentLower.includes("grant") || contentLower.includes("government")) 
+    return "Grant Supported";
+  return "Mixed Funding";
+};
+
 // Helper function to extract interviewee name from title
 const extractInterviewee = (title: string): string => {
   const cleaned = title.replace(/Entrechat\s+(?:With|with)\s+/i, "").trim();
@@ -194,6 +279,7 @@ const getLocationData = (
   return { state, country };
 };
 
+// Interview categories
 const entrechatCategories = [
   "All Interviews",
   "Design & Architecture",
@@ -206,6 +292,60 @@ const entrechatCategories = [
   "Work-Life Balance",
   "Legal & Compliance",
   "Entrepreneurship",
+];
+
+// Industry sectors
+// const industrySectors = [
+//   "All Industries",
+//   "Technology",
+//   "Fashion & Lifestyle",
+//   "Food & Beverage",
+//   "Social Impact",
+//   "General Business",
+// ];
+
+// Business stages
+// const businessStages = [
+//   "All Stages",
+//   "Early Stage/Ideation",
+//   "Growth/Scaling",
+//   "Established Enterprise",
+// ];
+
+// Interview formats
+// const interviewFormats = [
+//   "All Formats",
+//   "Video Interview",
+//   "Text Interview",
+//   "Podcast/Audio",
+// ];
+
+// // Founder regions
+// const founderRegions = [
+//   "All Regions",
+//   "Asia-Pacific",
+//   "Europe",
+//   "North America",
+//   "Global",
+// ];
+
+// Success factors
+// const successFactors = [
+//   "All Funding Types",
+//   "Bootstrapped",
+//   "VC Funded",
+//   "Angel Backed",
+//   "Grant Supported",
+//   "Mixed Funding",
+// ];
+
+// Predefined date ranges
+const predefinedDateRanges = [
+  { value: "24h", label: "24 Hours" },
+  { value: "week", label: "Past Week" },
+  { value: "month", label: "Past Month" },
+  { value: "3months", label: "Past 3 Months" },
+  { value: "custom", label: "Custom Range" },
 ];
 
 // Format date function
@@ -374,7 +514,7 @@ const SearchSuggestions = ({
 };
 
 export default function EntreChatPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All Interviews");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(["All Interviews"]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [processedInterviews, setProcessedInterviews] = useState<
@@ -399,86 +539,193 @@ export default function EntreChatPage() {
     from: "",
     to: "",
   });
-  const [selectedState, setSelectedState] = useState<string>("");
-  const [selectedCountry, setSelectedCountry] = useState<string>("");
+  const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+  const [selectedStates, setSelectedStates] = useState<string[]>([]);
+  const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
+  const [selectedIndustrySectors, setSelectedIndustrySectors] = useState<string[]>(["All Industries"]);
+  const [selectedBusinessStages, setSelectedBusinessStages] = useState<string[]>(["All Stages"]);
+  const [selectedInterviewFormats, setSelectedInterviewFormats] = useState<string[]>(["All Formats"]);
+  const [selectedFounderRegions, setSelectedFounderRegions] = useState<string[]>(["All Regions"]);
+  const [selectedSuccessFactors, setSelectedSuccessFactors] = useState<string[]>(["All Funding Types"]);
+  const [userLocation, setUserLocation] = useState<{
+    country?: string;
+    state?: string;
+    city?: string;
+    detected: boolean;
+  }>({ detected: false });
+  const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const router = useRouter();
+
+  // Function to detect user location
+  const detectUserLocation = async () => {
+    setIsDetectingLocation(true);
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+
+      setUserLocation({
+        country: data.country_name,
+        state: data.region,
+        city: data.city,
+        detected: true,
+      });
+
+      // Auto-set country filter if location detected
+      if (data.country_name && !selectedCountries.includes(data.country_name)) {
+        setSelectedCountries([data.country_name]);
+      }
+
+      return data;
+    } catch (error) {
+      console.error("Error detecting location:", error);
+      setUserLocation({ detected: false });
+      return null;
+    } finally {
+      setIsDetectingLocation(false);
+    }
+  };
 
   // Process entrechat data on component mount
   useEffect(() => {
-    try {
-      setIsLoading(true);
+    const processInterviews = () => {
+      try {
+        setIsLoading(true);
 
-      const processed = entrechatData.map((item: EntreChatItem) => {
-        const category = getCategoryFromContent(item.post_content);
-        const excerpt =
-          item.post_excerpt && item.post_excerpt.trim() !== ""
-            ? item.post_excerpt
-            : extractExcerpt(item.post_content);
+        const processed = entrechatData.map((item: EntreChatItem) => {
+          const category = getCategoryFromContent(item.post_content);
+          const excerpt =
+            item.post_excerpt && item.post_excerpt.trim() !== ""
+              ? item.post_excerpt
+              : extractExcerpt(item.post_content);
 
-        const title = item.post_title
-          ? item.post_title.replace(/&amp;/g, "&")
-          : "EntreChat Interview";
-        const rawDate = new Date(item.post_date);
-        const date = formatDate(item.post_date);
-        const readTime = calculateReadTime(item.post_content);
-        const interviewee = extractInterviewee(title);
+          const title = item.post_title
+            ? item.post_title.replace(/&amp;/g, "&")
+            : "EntreChat Interview";
+          const rawDate = new Date(item.post_date);
+          const date = formatDate(item.post_date);
+          const readTime = calculateReadTime(item.post_content);
+          const interviewee = extractInterviewee(title);
+          const industrySector = getIndustrySector(item.post_content);
+          const businessStage = getBusinessStage(item.post_content);
+          const interviewFormat = getInterviewFormat(item.post_content);
+          const founderRegion = getFounderRegion(item.post_content);
+          const successFactor = getSuccessFactor(item.post_content);
 
-        const image =
-          item.featured_image_url && item.featured_image_url.trim() !== ""
-            ? item.featured_image_url
-            : null;
+          const image =
+            item.featured_image_url && item.featured_image_url.trim() !== ""
+              ? item.featured_image_url
+              : null;
 
-        const slug = item.post_name || `entrechat-${item.ID}`;
+          const slug = item.post_name || `entrechat-${item.ID}`;
 
-        const location = getLocationData(item.ID, item.post_content);
+          const location = getLocationData(item.ID, item.post_content);
 
-        return {
-          id: item.ID || Math.random().toString(),
-          category,
-          title,
-          excerpt,
-          date,
-          rawDate,
-          readTime,
-          interviewee,
-          image,
-          fullContent: item.post_content || "",
-          modifiedDate: item.post_modified
-            ? formatDate(item.post_modified)
-            : undefined,
-          modifiedRawDate: item.post_modified
-            ? new Date(item.post_modified)
-            : undefined,
-          slug,
-          state: location.state,
-          country: location.country,
-        };
-      });
+          return {
+            id: item.ID || Math.random().toString(),
+            category,
+            title,
+            excerpt,
+            date,
+            rawDate,
+            readTime,
+            interviewee,
+            image,
+            fullContent: item.post_content || "",
+            modifiedDate: item.post_modified
+              ? formatDate(item.post_modified)
+              : undefined,
+            modifiedRawDate: item.post_modified
+              ? new Date(item.post_modified)
+              : undefined,
+            slug,
+            state: location.state,
+            country: location.country,
+            industrySector,
+            businessStage,
+            interviewFormat,
+            founderRegion,
+            successFactor,
+          };
+        });
 
-      // Sort by date descending
-      processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
+        // Sort by date descending
+        processed.sort((a, b) => b.rawDate.getTime() - a.rawDate.getTime());
 
-      setProcessedInterviews(processed);
-    } catch (error) {
-      console.error("Error processing entrechat data:", error);
-      setProcessedInterviews([]);
-    } finally {
-      setIsLoading(false);
-    }
+        setProcessedInterviews(processed);
+      } catch (error) {
+        console.error("Error processing entrechat data:", error);
+        setProcessedInterviews([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    processInterviews();
+    
+    // Detect user location on mount
+    detectUserLocation();
   }, []);
 
-  // Get featured interview (most recent)
-  const featuredInterview =
-    processedInterviews.length > 0 ? processedInterviews[0] : null;
+  // Apply date range filter
+  const applyDateRangeFilter = (
+    range: string,
+    customFrom?: string,
+    customTo?: string,
+  ) => {
+    const now = new Date();
+    const from = new Date();
+
+    switch (range) {
+      case "24h":
+        from.setDate(now.getDate() - 1);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "week":
+        from.setDate(now.getDate() - 7);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "month":
+        from.setMonth(now.getMonth() - 1);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "3months":
+        from.setMonth(now.getMonth() - 3);
+        setDateRange({
+          from: from.toISOString().split("T")[0],
+          to: now.toISOString().split("T")[0],
+        });
+        break;
+      case "custom":
+        if (customFrom && customTo) {
+          setDateRange({
+            from: customFrom,
+            to: customTo,
+          });
+        }
+        break;
+      default:
+        setDateRange({ from: "", to: "" });
+    }
+    setSelectedDateRange(range);
+  };
 
   // Filter interviews based on all filter criteria
   const filteredInterviews = useMemo(() => {
     let filtered = [...processedInterviews];
 
-    // Filter by category
-    if (selectedCategory !== "All Interviews") {
+    // Filter by categories
+    if (selectedCategories.length > 0 && !selectedCategories.includes("All Interviews")) {
       filtered = filtered.filter(
-        (interview) => interview.category === selectedCategory,
+        (interview) => selectedCategories.includes(interview.category),
       );
     }
 
@@ -494,17 +741,53 @@ export default function EntreChatPage() {
       filtered = filtered.filter((interview) => interview.rawDate <= toDate);
     }
 
-    // Filter by state
-    if (selectedState && selectedState !== "All States") {
+    // Filter by states
+    if (selectedStates.length > 0) {
       filtered = filtered.filter(
-        (interview) => interview.state === selectedState,
+        (interview) => interview.state && selectedStates.includes(interview.state),
       );
     }
 
-    // Filter by country
-    if (selectedCountry && selectedCountry !== "All Countries") {
+    // Filter by countries
+    if (selectedCountries.length > 0) {
       filtered = filtered.filter(
-        (interview) => interview.country === selectedCountry,
+        (interview) =>
+          interview.country && selectedCountries.includes(interview.country),
+      );
+    }
+
+    // Filter by industry sectors
+    if (selectedIndustrySectors.length > 0 && !selectedIndustrySectors.includes("All Industries")) {
+      filtered = filtered.filter((interview) =>
+        selectedIndustrySectors.includes(interview.industrySector),
+      );
+    }
+
+    // Filter by business stages
+    if (selectedBusinessStages.length > 0 && !selectedBusinessStages.includes("All Stages")) {
+      filtered = filtered.filter((interview) =>
+        selectedBusinessStages.includes(interview.businessStage),
+      );
+    }
+
+    // Filter by interview formats
+    if (selectedInterviewFormats.length > 0 && !selectedInterviewFormats.includes("All Formats")) {
+      filtered = filtered.filter((interview) =>
+        selectedInterviewFormats.includes(interview.interviewFormat),
+      );
+    }
+
+    // Filter by founder regions
+    if (selectedFounderRegions.length > 0 && !selectedFounderRegions.includes("All Regions")) {
+      filtered = filtered.filter((interview) =>
+        selectedFounderRegions.includes(interview.founderRegion),
+      );
+    }
+
+    // Filter by success factors
+    if (selectedSuccessFactors.length > 0 && !selectedSuccessFactors.includes("All Funding Types")) {
+      filtered = filtered.filter((interview) =>
+        selectedSuccessFactors.includes(interview.successFactor),
       );
     }
 
@@ -520,93 +803,33 @@ export default function EntreChatPage() {
           interview.interviewee.toLowerCase().includes(query) ||
           (interview.state && interview.state.toLowerCase().includes(query)) ||
           (interview.country &&
-            interview.country.toLowerCase().includes(query)),
+            interview.country.toLowerCase().includes(query)) ||
+          interview.industrySector.toLowerCase().includes(query) ||
+          interview.businessStage.toLowerCase().includes(query) ||
+          interview.interviewFormat.toLowerCase().includes(query) ||
+          interview.founderRegion.toLowerCase().includes(query) ||
+          interview.successFactor.toLowerCase().includes(query)
       );
     }
 
     return filtered;
   }, [
     processedInterviews,
-    selectedCategory,
+    selectedCategories,
     dateRange,
-    selectedState,
-    selectedCountry,
+    selectedStates,
+    selectedCountries,
+    selectedIndustrySectors,
+    selectedBusinessStages,
+    selectedInterviewFormats,
+    selectedFounderRegions,
+    selectedSuccessFactors,
     searchQuery,
   ]);
 
-  // Check if featured interview should be shown in All Interviews section
-  const shouldShowFeaturedInterviewInAllInterviews = useMemo(() => {
-    if (!featuredInterview) return false;
-
-    let passesFilters = true;
-
-    if (
-      selectedCategory !== "All Interviews" &&
-      featuredInterview.category !== selectedCategory
-    ) {
-      passesFilters = false;
-    }
-
-    if (dateRange.from) {
-      const fromDate = new Date(dateRange.from);
-      fromDate.setHours(0, 0, 0, 0);
-      if (featuredInterview.rawDate < fromDate) passesFilters = false;
-    }
-    if (dateRange.to) {
-      const toDate = new Date(dateRange.to);
-      toDate.setHours(23, 59, 59, 999);
-      if (featuredInterview.rawDate > toDate) passesFilters = false;
-    }
-
-    if (
-      selectedState &&
-      selectedState !== "All States" &&
-      featuredInterview.state !== selectedState
-    ) {
-      passesFilters = false;
-    }
-
-    if (
-      selectedCountry &&
-      selectedCountry !== "All Countries" &&
-      featuredInterview.country !== selectedCountry
-    ) {
-      passesFilters = false;
-    }
-
-    if (searchQuery.trim() !== "") {
-      const query = searchQuery.toLowerCase().trim();
-      if (
-        !featuredInterview.title.toLowerCase().includes(query) &&
-        !featuredInterview.excerpt.toLowerCase().includes(query) &&
-        !featuredInterview.fullContent.toLowerCase().includes(query) &&
-        !featuredInterview.category.toLowerCase().includes(query) &&
-        !featuredInterview.interviewee.toLowerCase().includes(query) &&
-        !(
-          featuredInterview.state &&
-          featuredInterview.state.toLowerCase().includes(query)
-        ) &&
-        !(
-          featuredInterview.country &&
-          featuredInterview.country.toLowerCase().includes(query)
-        )
-      ) {
-        passesFilters = false;
-      }
-    }
-
-    return passesFilters;
-  }, [
-    featuredInterview,
-    selectedCategory,
-    dateRange,
-    selectedState,
-    selectedCountry,
-    searchQuery,
-  ]);
-
-  const showFeaturedInterviewInAllInterviews =
-    shouldShowFeaturedInterviewInAllInterviews;
+  // Get featured interview (most recent)
+  const featuredInterview =
+    processedInterviews.length > 0 ? processedInterviews[0] : null;
 
   // Pagination calculations for All Interviews section
   const totalPages = Math.ceil(filteredInterviews.length / ITEMS_PER_PAGE);
@@ -619,14 +842,14 @@ export default function EntreChatPage() {
     return processedInterviews.slice(0, 4);
   }, [processedInterviews]);
 
-  // Extract unique states and countries from processed interviews
+  // Extract unique values for filters
   const uniqueStates = useMemo(() => {
     const states = processedInterviews
       .map((interview) => interview.state)
       .filter((state): state is string => !!state)
       .filter((state, index, self) => self.indexOf(state) === index)
       .sort();
-    return ["All States", ...states];
+    return states;
   }, [processedInterviews]);
 
   const uniqueCountries = useMemo(() => {
@@ -635,17 +858,67 @@ export default function EntreChatPage() {
       .filter((country): country is string => !!country)
       .filter((country, index, self) => self.indexOf(country) === index)
       .sort();
-    return ["All Countries", ...countries];
+    return countries;
+  }, [processedInterviews]);
+
+  const uniqueIndustrySectors = useMemo(() => {
+    const sectors = processedInterviews
+      .map((interview) => interview.industrySector)
+      .filter((sector): sector is string => !!sector)
+      .filter((sector, index, self) => self.indexOf(sector) === index)
+      .sort();
+    return sectors;
+  }, [processedInterviews]);
+
+  const uniqueBusinessStages = useMemo(() => {
+    const stages = processedInterviews
+      .map((interview) => interview.businessStage)
+      .filter((stage): stage is string => !!stage)
+      .filter((stage, index, self) => self.indexOf(stage) === index)
+      .sort();
+    return stages;
+  }, [processedInterviews]);
+
+  const uniqueInterviewFormats = useMemo(() => {
+    const formats = processedInterviews
+      .map((interview) => interview.interviewFormat)
+      .filter((format): format is string => !!format)
+      .filter((format, index, self) => self.indexOf(format) === index)
+      .sort();
+    return formats;
+  }, [processedInterviews]);
+
+  const uniqueFounderRegions = useMemo(() => {
+    const regions = processedInterviews
+      .map((interview) => interview.founderRegion)
+      .filter((region): region is string => !!region)
+      .filter((region, index, self) => self.indexOf(region) === index)
+      .sort();
+    return regions;
+  }, [processedInterviews]);
+
+  const uniqueSuccessFactors = useMemo(() => {
+    const factors = processedInterviews
+      .map((interview) => interview.successFactor)
+      .filter((factor): factor is string => !!factor)
+      .filter((factor, index, self) => self.indexOf(factor) === index)
+      .sort();
+    return factors;
   }, [processedInterviews]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
   }, [
-    selectedCategory,
+    selectedCategories,
     dateRange,
-    selectedState,
-    selectedCountry,
+    selectedStates,
+    selectedCountries,
+    selectedIndustrySectors,
+    selectedBusinessStages,
+    selectedInterviewFormats,
+    selectedFounderRegions,
+    selectedSuccessFactors,
     searchQuery,
   ]);
 
@@ -747,10 +1020,16 @@ export default function EntreChatPage() {
 
   // Clear all filters
   const clearAllFilters = () => {
-    setSelectedCategory("All Interviews");
+    setSelectedCategories(["All Interviews"]);
     setDateRange({ from: "", to: "" });
-    setSelectedState("");
-    setSelectedCountry("");
+    setSelectedDateRange("");
+    setSelectedStates([]);
+    setSelectedCountries([]);
+    setSelectedIndustrySectors(["All Industries"]);
+    setSelectedBusinessStages(["All Stages"]);
+    setSelectedInterviewFormats(["All Formats"]);
+    setSelectedFounderRegions(["All Regions"]);
+    setSelectedSuccessFactors(["All Funding Types"]);
     setSearchQuery("");
     setSearchSuggestions([]);
     setShowSuggestions(false);
@@ -767,11 +1046,16 @@ export default function EntreChatPage() {
   // Check if any filter is active
   const isAnyFilterActive = () => {
     return (
-      selectedCategory !== "All Interviews" ||
+      (selectedCategories.length > 0 && !(selectedCategories.length === 1 && selectedCategories[0] === "All Interviews")) ||
       dateRange.from !== "" ||
       dateRange.to !== "" ||
-      (selectedState !== "" && selectedState !== "All States") ||
-      (selectedCountry !== "" && selectedCountry !== "All Countries") ||
+      selectedStates.length > 0 ||
+      selectedCountries.length > 0 ||
+      (selectedIndustrySectors.length > 0 && !(selectedIndustrySectors.length === 1 && selectedIndustrySectors[0] === "All Industries")) ||
+      (selectedBusinessStages.length > 0 && !(selectedBusinessStages.length === 1 && selectedBusinessStages[0] === "All Stages")) ||
+      (selectedInterviewFormats.length > 0 && !(selectedInterviewFormats.length === 1 && selectedInterviewFormats[0] === "All Formats")) ||
+      (selectedFounderRegions.length > 0 && !(selectedFounderRegions.length === 1 && selectedFounderRegions[0] === "All Regions")) ||
+      (selectedSuccessFactors.length > 0 && !(selectedSuccessFactors.length === 1 && selectedSuccessFactors[0] === "All Funding Types")) ||
       searchQuery !== ""
     );
   };
@@ -834,6 +1118,35 @@ export default function EntreChatPage() {
                 real journeys and experiences. Discover challenges, strategies,
                 and lessons that inform, inspire, and empower your own path.
               </p>
+
+              {/* Location Detection Button */}
+              <div className="mt-6">
+                <Button
+                  variant="outline"
+                  className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
+                  onClick={detectUserLocation}
+                  disabled={isDetectingLocation}
+                >
+                  {isDetectingLocation ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Detecting Location...
+                    </>
+                  ) : userLocation.detected ? (
+                    <>
+                      <MapPin className="h-4 w-4 mr-2" />
+                      {userLocation.city && `${userLocation.city}, `}
+                      {userLocation.state && `${userLocation.state}, `}
+                      {userLocation.country}
+                    </>
+                  ) : (
+                    <>
+                      <MapPin className="h-4 w-4 mr-2" />
+                      Detect My Location for Local Interviews
+                    </>
+                  )}
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -880,6 +1193,8 @@ export default function EntreChatPage() {
 
                 {/* CONTENT */}
                 <div className="p-4 ">
+                
+
                   <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredInterview.title}
                   </h2>
@@ -887,6 +1202,8 @@ export default function EntreChatPage() {
                   <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed line-clamp-3">
                     {featuredInterview.excerpt}
                   </p>
+
+           
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-1 border-t border-border">
                     <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
@@ -967,8 +1284,9 @@ export default function EntreChatPage() {
                         {/* CONTENT */}
                         <div className="flex-1 min-w-0">
                           <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                            <span className="inline-block px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
-                              {interview.category.split(" & ")[0]}
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                              {getCategoryIcon(interview.category)}
+                              <span className="truncate">{interview.category.split(" & ")[0]}</span>
                             </span>
                             <span className="text-[10px] text-muted-foreground truncate flex items-center gap-1">
                               <User className="h-3 w-3" />
@@ -1036,9 +1354,9 @@ export default function EntreChatPage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
             <div>
               <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                {selectedCategory === "All Interviews"
+                {selectedCategories.includes("All Interviews") || selectedCategories.length === 0
                   ? "All Interviews"
-                  : `${selectedCategory} Interviews`}
+                  : `${selectedCategories.length} ${selectedCategories.length === 1 ? "Category" : "Categories"} Selected`}
                 {searchQuery && (
                   <span className="text-lg sm:text-xl text-primary">
                     {" "}
@@ -1050,8 +1368,9 @@ export default function EntreChatPage() {
                 {filteredInterviews.length}{" "}
                 {filteredInterviews.length === 1 ? "interview" : "interviews"}{" "}
                 found
-                {selectedCategory !== "All Interviews" &&
-                  ` in ${selectedCategory}`}
+                {selectedCategories.length > 0 && !selectedCategories.includes("All Interviews") && 
+                  ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? 'category' : 'categories'}`
+                }
                 {searchQuery && ` matching "${searchQuery}"`}
               </p>
             </div>
@@ -1107,15 +1426,15 @@ export default function EntreChatPage() {
 
                   {isAnyFilterActive() && (
                     <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      {isAnyFilterActive() ? "!" : ""}
+                      !
                     </span>
                   )}
                 </Button>
 
                 {/* FILTER DROPDOWN MENU */}
                 {isFilterOpen && (
-                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto">
-                    <div className="p-4">
+                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto p-4">
+                    <div className="mb-2">
                       <div className="flex items-center justify-between mb-4">
                         <h4 className="text-lg font-semibold text-foreground">
                           Filter Interviews
@@ -1132,66 +1451,170 @@ export default function EntreChatPage() {
 
                       {/* CATEGORY FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                          <Filter className="h-4 w-4" />
+                        <h5 className="text-sm font-medium text-foreground mb-2">
                           Category
                         </h5>
-                        <select
-                          value={selectedCategory}
-                          onChange={(e) => setSelectedCategory(e.target.value)}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-sm mb-3"
-                        >
-                          {entrechatCategories.map((cat) => (
-                            <option key={cat} value={cat}>
-                              {cat}
-                            </option>
-                          ))}
-                        </select>
+                        <MultiSelectDropdown
+                          label="Categories"
+                          icon={<Filter className="h-4 w-4" />}
+                          options={entrechatCategories.filter(cat => cat !== "All Interviews")}
+                          selectedValues={selectedCategories.filter(cat => cat !== "All Interviews")}
+                          onChange={(values) => setSelectedCategories(values)}
+                          placeholder="Select categories"
+                          allOptionLabel="All Categories"
+                        />
+                      </div>
+
+                      {/* INDUSTRY SECTOR FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Industry/Sector
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Industries"
+                          icon={<Building className="h-4 w-4" />}
+                          options={uniqueIndustrySectors}
+                          selectedValues={selectedIndustrySectors.filter(sector => sector !== "All Industries")}
+                          onChange={(values) => setSelectedIndustrySectors(values)}
+                          placeholder="Select industries"
+                          allOptionLabel="All Industries"
+                        />
+                      </div>
+
+                      {/* BUSINESS STAGE FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Business Stage
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Business Stages"
+                          icon={<TrendingUp className="h-4 w-4" />}
+                          options={uniqueBusinessStages}
+                          selectedValues={selectedBusinessStages.filter(stage => stage !== "All Stages")}
+                          onChange={(values) => setSelectedBusinessStages(values)}
+                          placeholder="Select business stages"
+                          allOptionLabel="All Stages"
+                        />
+                      </div>
+
+                      {/* INTERVIEW FORMAT FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Interview Format
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Formats"
+                          icon={<Video className="h-4 w-4" />}
+                          options={uniqueInterviewFormats}
+                          selectedValues={selectedInterviewFormats.filter(format => format !== "All Formats")}
+                          onChange={(values) => setSelectedInterviewFormats(values)}
+                          placeholder="Select formats"
+                          allOptionLabel="All Formats"
+                        />
+                      </div>
+
+                      {/* FOUNDER REGION FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Founder Region
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Regions"
+                          icon={<Globe className="h-4 w-4" />}
+                          options={uniqueFounderRegions}
+                          selectedValues={selectedFounderRegions.filter(region => region !== "All Regions")}
+                          onChange={(values) => setSelectedFounderRegions(values)}
+                          placeholder="Select regions"
+                          allOptionLabel="All Regions"
+                        />
+                      </div>
+
+                      {/* SUCCESS FACTOR FILTER */}
+                      <div className="mb-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Success Factor (Funding)
+                        </h5>
+                        <MultiSelectDropdown
+                          label="Funding Types"
+                          icon={<FileText className="h-4 w-4" />}
+                          options={uniqueSuccessFactors}
+                          selectedValues={selectedSuccessFactors.filter(factor => factor !== "All Funding Types")}
+                          onChange={(values) => setSelectedSuccessFactors(values)}
+                          placeholder="Select funding types"
+                          allOptionLabel="All Funding Types"
+                        />
                       </div>
 
                       {/* DATE RANGE FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
+                        <h5 className="text-sm font-medium text-foreground mb-2">
                           Date Range
                         </h5>
-                        <div className="grid grid-cols-2 gap-3">
-                          <div>
-                            <label className="text-xs text-muted-foreground block mb-1">
-                              From
-                            </label>
-                            <Input
-                              type="date"
-                              value={dateRange.from}
-                              onChange={(e) =>
-                                setDateRange({
-                                  ...dateRange,
-                                  from: e.target.value,
-                                })
-                              }
-                              className="w-full"
-                            />
-                          </div>
-                          <div>
-                            <label className="text-xs text-muted-foreground block mb-1">
-                              To
-                            </label>
-                            <Input
-                              type="date"
-                              value={dateRange.to}
-                              onChange={(e) =>
-                                setDateRange({
-                                  ...dateRange,
-                                  to: e.target.value,
-                                })
-                              }
-                              className="w-full"
-                            />
-                          </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                          {predefinedDateRanges.map((range) => (
+                            <button
+                              key={range.value}
+                              onClick={() => {
+                                setSelectedDateRange(range.value);
+                                if (range.value === "custom") {
+                                  // Show custom date inputs
+                                } else {
+                                  applyDateRangeFilter(range.value);
+                                }
+                              }}
+                              className={`px-3 py-2 text-xs rounded-lg border ${
+                                selectedDateRange === range.value
+                                  ? "bg-primary text-white border-primary"
+                                  : "bg-secondary/50 border-border hover:bg-secondary"
+                              }`}
+                            >
+                              {range.label}
+                            </button>
+                          ))}
                         </div>
+
+                        {/* CUSTOM DATE INPUTS */}
+                        {(selectedDateRange === "custom" || dateRange.from || dateRange.to) && (
+                          <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
+                            <div>
+                              <label className="text-xs text-muted-foreground block mb-1">From</label>
+                              <Input
+                                type="date"
+                                value={dateRange.from}
+                                onChange={(e) => {
+                                  setDateRange({
+                                    ...dateRange,
+                                    from: e.target.value,
+                                  });
+                                  setSelectedDateRange("custom");
+                                }}
+                                className="w-full"
+                              />
+                            </div>
+                            <div>
+                              <label className="text-xs text-muted-foreground block mb-1">To</label>
+                              <Input
+                                type="date"
+                                value={dateRange.to}
+                                onChange={(e) => {
+                                  setDateRange({
+                                    ...dateRange,
+                                    to: e.target.value,
+                                  });
+                                  setSelectedDateRange("custom");
+                                }}
+                                className="w-full"
+                              />
+                            </div>
+                          </div>
+                        )}
+
                         {(dateRange.from || dateRange.to) && (
                           <button
-                            onClick={() => setDateRange({ from: "", to: "" })}
+                            onClick={() => {
+                              setDateRange({ from: "", to: "" });
+                              setSelectedDateRange("");
+                            }}
                             className="text-xs text-primary hover:text-primary/80 mt-2"
                           >
                             Clear date range
@@ -1200,147 +1623,246 @@ export default function EntreChatPage() {
                       </div>
 
                       {/* LOCATION FILTERS */}
-                      <div className="grid grid-cols-2 gap-3 mb-4">
-                        {/* STATE FILTER */}
-                        <div>
-                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            State/Region
-                          </h5>
-                          <select
-                            value={selectedState}
-                            onChange={(e) => setSelectedState(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
-                          >
-                            {uniqueStates.map((state) => (
-                              <option key={state} value={state}>
-                                {state}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
+                      <div className="grid grid-cols-1 gap-3 mb-2">
                         {/* COUNTRY FILTER */}
                         <div>
-                          <h5 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
-                            <Globe className="h-4 w-4" />
+                          <h5 className="text-sm font-medium text-foreground mb-2">
                             Country
                           </h5>
-                          <select
-                            value={selectedCountry}
-                            onChange={(e) => setSelectedCountry(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-sm"
-                          >
-                            {uniqueCountries.map((country) => (
-                              <option key={country} value={country}>
-                                {country}
-                              </option>
-                            ))}
-                          </select>
+                          <MultiSelectDropdown
+                            label="Countries"
+                            icon={<Globe className="h-4 w-4" />}
+                            options={uniqueCountries}
+                            selectedValues={selectedCountries}
+                            onChange={setSelectedCountries}
+                            placeholder="Select countries"
+                            allOptionLabel="All Countries"
+                          />
                         </div>
+
+                        {/* STATE FILTER */}
+                        {uniqueStates.length > 0 && (
+                          <div>
+                            <h5 className="text-sm font-medium text-foreground mb-2">
+                              State/Region
+                            </h5>
+                            <MultiSelectDropdown
+                              label="States"
+                              icon={<MapPin className="h-4 w-4" />}
+                              options={uniqueStates}
+                              selectedValues={selectedStates}
+                              onChange={setSelectedStates}
+                              placeholder="Select states"
+                              allOptionLabel="All States"
+                            />
+                          </div>
+                        )}
                       </div>
 
-                      {/* ACTIVE FILTERS SUMMARY */}
-                      {isAnyFilterActive() && (
-                        <div className="mt-4 pt-4 border-t border-border">
-                          <h5 className="text-sm font-medium text-foreground mb-2">
-                            Active Filters
+                      {/* LOCATION DETECTION */}
+                      <div className="p-3 bg-secondary/30 rounded-lg pb-0 mb-4">
+                        <div className="flex items-center justify-between mb-2">
+                          <h5 className="text-sm font-medium text-foreground flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            Your Location
                           </h5>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedCategory !== "All Interviews" && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                                {selectedCategory}
-                                <button
-                                  onClick={() =>
-                                    setSelectedCategory("All Interviews")
-                                  }
-                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
+                          <button
+                            onClick={detectUserLocation}
+                            disabled={isDetectingLocation}
+                            className="text-xs text-primary hover:text-primary/80"
+                          >
+                            {isDetectingLocation ? (
+                              <Loader2 className="h-3 w-3 animate-spin" />
+                            ) : (
+                              "Refresh"
                             )}
-                            {dateRange.from && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                From:{" "}
-                                {new Date(dateRange.from).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric",
-                                  },
-                                )}
-                                <button
-                                  onClick={() =>
-                                    setDateRange({ ...dateRange, from: "" })
-                                  }
-                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {dateRange.to && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                To:{" "}
-                                {new Date(dateRange.to).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    month: "short",
-                                    day: "numeric",
-                                    year: "numeric",
-                                  },
-                                )}
-                                <button
-                                  onClick={() =>
-                                    setDateRange({ ...dateRange, to: "" })
-                                  }
-                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {selectedState &&
-                              selectedState !== "All States" && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                                  {selectedState}
-                                  <button
-                                    onClick={() => setSelectedState("")}
-                                    className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-                            {selectedCountry &&
-                              selectedCountry !== "All Countries" && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                                  {selectedCountry}
-                                  <button
-                                    onClick={() => setSelectedCountry("")}
-                                    className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-                            {searchQuery && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                                Search: {searchQuery}
-                                <button
-                                  onClick={() => setSearchQuery("")}
-                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                          </div>
+                          </button>
                         </div>
-                      )}
+                        {userLocation.detected ? (
+                          <div className="text-xs text-muted-foreground">
+                            Detected:{" "}
+                            <span className="font-medium text-foreground">
+                              {userLocation.city && `${userLocation.city}, `}
+                              {userLocation.state && `${userLocation.state}, `}
+                              {userLocation.country}
+                            </span>
+                          </div>
+                        ) : (
+                          <div className="text-xs text-muted-foreground">
+                            Location not detected. Click refresh to try again.
+                          </div>
+                        )}
+                      </div>
                     </div>
+
+                    {/* ACTIVE FILTERS SUMMARY */}
+                    {isAnyFilterActive() && (
+                      <div className="pt-4">
+                        <h5 className="text-sm font-medium text-foreground mb-2">
+                          Active Filters
+                        </h5>
+                        <div className="flex flex-wrap gap-2">
+                          {selectedCategories.length > 0 && !selectedCategories.includes("All Interviews") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                              <Filter className="h-3 w-3" />
+                              {selectedCategories.length} category
+                              {selectedCategories.length !== 1 ? "ies" : ""}
+                              <button
+                                onClick={() => setSelectedCategories(["All Interviews"])}
+                                className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedIndustrySectors.length > 0 && !selectedIndustrySectors.includes("All Industries") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                              <Building className="h-3 w-3" />
+                              {selectedIndustrySectors.length} industry
+                              {selectedIndustrySectors.length !== 1 ? "ies" : ""}
+                              <button
+                                onClick={() => setSelectedIndustrySectors(["All Industries"])}
+                                className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedBusinessStages.length > 0 && !selectedBusinessStages.includes("All Stages") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <TrendingUp className="h-3 w-3" />
+                              {selectedBusinessStages.length} business stage
+                              {selectedBusinessStages.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedBusinessStages(["All Stages"])}
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedInterviewFormats.length > 0 && !selectedInterviewFormats.includes("All Formats") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                              <Video className="h-3 w-3" />
+                              {selectedInterviewFormats.length} format
+                              {selectedInterviewFormats.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedInterviewFormats(["All Formats"])}
+                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedFounderRegions.length > 0 && !selectedFounderRegions.includes("All Regions") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                              <Globe className="h-3 w-3" />
+                              {selectedFounderRegions.length} region
+                              {selectedFounderRegions.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedFounderRegions(["All Regions"])}
+                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedSuccessFactors.length > 0 && !selectedSuccessFactors.includes("All Funding Types") && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                              <FileText className="h-3 w-3" />
+                              {selectedSuccessFactors.length} funding type
+                              {selectedSuccessFactors.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedSuccessFactors(["All Funding Types"])}
+                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {dateRange.from && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              From:{" "}
+                              {new Date(dateRange.from).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                },
+                              )}
+                              <button
+                                onClick={() =>
+                                  setDateRange({ ...dateRange, from: "" })
+                                }
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {dateRange.to && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              To:{" "}
+                              {new Date(dateRange.to).toLocaleDateString(
+                                "en-US",
+                                {
+                                  month: "short",
+                                  day: "numeric",
+                                },
+                              )}
+                              <button
+                                onClick={() =>
+                                  setDateRange({ ...dateRange, to: "" })
+                                }
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedCountries.length > 0 && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                              <Globe className="h-3 w-3" />
+                              {selectedCountries.length} country
+                              {selectedCountries.length !== 1 ? "ies" : ""}
+                              <button
+                                onClick={() => setSelectedCountries([])}
+                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {selectedStates.length > 0 && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                              <MapPin className="h-3 w-3" />
+                              {selectedStates.length} state
+                              {selectedStates.length !== 1 ? "s" : ""}
+                              <button
+                                onClick={() => setSelectedStates([])}
+                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          {searchQuery && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                              <Search className="h-3 w-3" />
+                              Search: {searchQuery}
+                              <button
+                                onClick={() => setSearchQuery("")}
+                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -1369,11 +1891,11 @@ export default function EntreChatPage() {
               <p className="text-muted-foreground mb-6 max-w-md mx-auto">
                 {searchQuery
                   ? `No interviews found matching "${searchQuery}"${
-                      selectedCategory !== "All Interviews"
-                        ? ` in the "${selectedCategory}" category`
+                      selectedCategories.length > 0 && !selectedCategories.includes("All Interviews")
+                        ? ` in the selected categories`
                         : ""
                     }`
-                  : `There are no interviews in the "${selectedCategory}" category yet.`}
+                  : `There are no interviews with the current filters.`}
               </p>
               <Button
                 onClick={clearAllFilters}
@@ -1385,86 +1907,86 @@ export default function EntreChatPage() {
           ) : (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {currentInterviews.map((interview) => {
-                  if (
-                    showFeaturedInterviewInAllInterviews &&
-                    featuredInterview &&
-                    interview.id === featuredInterview.id
-                  ) {
-                    return null;
-                  }
-
-                  return (
-                    <div
-                      key={interview.id}
-                      onClick={() => handleInterviewClick(interview.slug)}
-                      className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
-                    >
-                      {/* IMAGE CONTAINER */}
-                      <div className="relative h-40 sm:h-40 overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                        {interview.image ? (
-                          <Image
-                            src={interview.image}
-                            alt={interview.title}
-                            fill
-                            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                              <span className="text-white/40 text-5xl font-display">
-                                {interview.interviewee.charAt(0)}
-                              </span>
-                            </div>
+                {currentInterviews.map((interview) => (
+                  <div
+                    key={interview.id}
+                    onClick={() => handleInterviewClick(interview.slug)}
+                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border cursor-pointer"
+                  >
+                    {/* IMAGE CONTAINER */}
+                    <div className="relative h-40 sm:h-40 overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                      {interview.image ? (
+                        <Image
+                          src={interview.image}
+                          alt={interview.title}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                            <span className="text-white/40 text-5xl font-display">
+                              {interview.interviewee.charAt(0)}
+                            </span>
                           </div>
-                        )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                      <div className="flex items-center justify-between mb-2 sm:mb-3">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
+                          {getCategoryIcon(interview.category)}
+                          {interview.category.split(" & ")[0]}
+                        </span>
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <User className="h-3 w-3" />
+                          {interview.interviewee.split(" ")[0]}
+                        </span>
                       </div>
 
-                      {/* CONTENT */}
-                      <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                        <div className="flex items-center justify-between mb-2 sm:mb-3">
-                          <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
-                            Interview
-                          </span>
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <User className="h-3 w-3" />
-                            {interview.interviewee.split(" ")[0]}
-                          </span>
-                        </div>
+                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                        {interview.title}
+                      </h3>
 
-                        <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                          {interview.title}
-                        </h3>
+                      <div className="flex flex-wrap gap-1 mb-2">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-blue-100 text-blue-700 text-xs">
+                          {interview.industrySector.split(" & ")[0]}
+                        </span>
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-green-100 text-green-700 text-xs">
+                          {interview.businessStage.split("/")[0]}
+                        </span>
+                      </div>
 
-                        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
-                          {interview.excerpt}
-                        </p>
+                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                        {interview.excerpt}
+                      </p>
 
-                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
-                          <div className="flex flex-col gap-1">
+                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                        <div className="flex flex-col gap-1">
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                            <span>{interview.date}</span>
+                          </div>
+                          {(interview.state || interview.country) && (
                             <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                              <span>{interview.date}</span>
+                              <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                              <span>
+                                {interview.state || interview.country}
+                              </span>
                             </div>
-                            {(interview.state || interview.country) && (
-                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                                <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                                <span>
-                                  {interview.state || interview.country}
-                                </span>
-                              </div>
-                            )}
-                          </div>
-                          <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
-                            Read
-                            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                          </div>
+                          )}
+                        </div>
+                        <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                          Read
+                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
                         </div>
                       </div>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
 
               {/* PAGINATION */}

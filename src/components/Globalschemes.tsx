@@ -1,12 +1,12 @@
-// components/GettingStarted.tsx
+// components/GlobalschemeComponent.tsx
 "use client";
 
 import { globalSchema } from "@/data/globalschema";
 import { PageBanner } from "./PageBanner";
 import Cta from "./common/Cta";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ExternalLink, Globe } from "lucide-react";
 import { useState } from "react";
-
+import { MultiSelectDropdown } from "./common/MultiSelectDropdown";
 
 
 // ---------------- TYPES ---------------- //
@@ -28,23 +28,46 @@ type CountrySchema = {
 export default function GlobalschemeComponent() {
   const countries: CountrySchema[] = globalSchema.countries;
 
-  // Default selection → first country (or change to "India" if exists)
-  const [selectedCountry, setSelectedCountry] = useState<string>(
-    countries[0]?.country || ""
+  // Multi-select countries - default to first country
+  const [selectedCountries, setSelectedCountries] = useState<string[]>(
+    countries[0]?.country ? [countries[0].country] : []
   );
 
-  const currentCountry = countries.find(
-    (c) => c.country === selectedCountry
-  );
+  // Track which scheme is expanded (null means none)
+  const [expandedScheme, setExpandedScheme] = useState<number | null>(null);
+  // Track hover state for cards
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const currentSchemes = currentCountry?.data || [];
+  // Get all schemes from selected countries (combine and deduplicate)
+  const currentSchemes = selectedCountries.length === 0
+    ? []
+    : selectedCountries
+        .flatMap((countryName) => {
+          const country = countries.find((c) => c.country === countryName);
+          return country?.data || [];
+        })
+        .filter((scheme, index, self) => 
+          index === self.findIndex(s => s.id === scheme.id)
+        );
+
+  // Toggle accordion
+  const toggleScheme = (schemeId: number) => {
+    setExpandedScheme(expandedScheme === schemeId ? null : schemeId);
+  };
+
+  // Helper to truncate description to 1-2 lines (approximately 100 characters)
+  const getTruncatedDescription = (description: string) => {
+    const maxLength = 100;
+    if (description.length <= maxLength) return description;
+    return description.slice(0, maxLength).trim() + "...";
+  };
 
   return (
     <main className="bg-background min-h-screen flex flex-col">
       {/* ================= HERO BANNER ================= */}
       <PageBanner
-        title="Global Scheme"
-        description="Check out options in the country that can set you up as an independent entrepreneur…your journey starts now!"
+        title="Global Schemes"
+        description="Check out options around the world that can set you up as an independent entrepreneur…your journey starts now!"
         image="/finalGettingstartedbanner.png"
       />
 
@@ -59,67 +82,133 @@ export default function GlobalschemeComponent() {
               </h2>
               <p className="text-muted-foreground max-w-3xl">
                 Discover government and institutional support available for women-led businesses
-                {selectedCountry && ` in ${selectedCountry}`}
+                {selectedCountries.length > 0
+                  ? ` in ${selectedCountries.join(", ")}`
+                  : ". Explore opportunities worldwide!"}
               </p>
             </div>
 
-            {/* Dropdown */}
-            <div className="relative w-full sm:w-72">
-              <select
-                value={selectedCountry}
-                onChange={(e) => setSelectedCountry(e.target.value)}
-                className="w-full appearance-none bg-card border border-border rounded-xl px-4 py-3 pr-10 
-                           text-foreground font-medium shadow-sm focus:outline-none focus:ring-2 
-                           focus:ring-primary focus:border-primary transition-all cursor-pointer"
-              >
-                {countries.map((country) => (
-                  <option key={country.country} value={country.country}>
-                    {country.country}
-                  </option>
-                ))}
-              </select>
-
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+            {/* Multi-Select Dropdown */}
+            <div className="w-full sm:w-80">
+              <MultiSelectDropdown
+                label="Countries"
+                icon={<Globe className="h-4 w-4" />}
+                options={countries.map((c) => c.country)}
+                selectedValues={selectedCountries}
+                onChange={(values) => {
+                  setSelectedCountries(values);
+                  setExpandedScheme(null); // Reset expanded state when countries change
+                }}
+                placeholder="Select countries"
+                allOptionLabel="All Countries"
+              />
             </div>
           </div>
 
-          {/* Schemes Grid */}
+          {/* Schemes Accordion List */}
           {currentSchemes.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {currentSchemes.map((scheme) => (
-                <div
-                  key={scheme.id}
-                  className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
-                             transition-all duration-300 border border-border hover:border-primary/30 
-                             flex flex-col h-full"
-                >
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {scheme.title}
-                    </h3>
+            <div className="space-y-4">
+              {currentSchemes.map((scheme) => {
+                const isExpanded = expandedScheme === scheme.id;
+                const isHovered = hoveredCard === scheme.id;
 
-                    <p className="text-muted-foreground mb-6 flex-1 leading-relaxed">
-                      {scheme.description}
-                    </p>
+                return (
+                  <div
+                    key={scheme.id}
+                    onMouseEnter={() => setHoveredCard(scheme.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    className={`bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 border
+                               ${isHovered || isExpanded
+                                 ? "shadow-2xl border-primary/50 scale-[1.02] -translate-y-1"
+                                 : "border-border shadow-md hover:shadow-lg"
+                               }`}
+                    style={{
+                      transformOrigin: "center",
+                    }}
+                  >
+                    {/* Header - Always Visible */}
+                    <button
+                      onClick={() => toggleScheme(scheme.id)}
+                      className={`w-full px-6 py-5 flex items-start justify-between gap-4 text-left 
+                                 transition-all duration-300 ${
+                                   isHovered || isExpanded
+                                     ? "bg-gradient-to-r from-primary/5 to-primary/10"
+                                     : "hover:bg-secondary/5"
+                                 }`}
+                    >
+                      <div className="flex-1">
+                        <h3
+                          className={`text-lg sm:text-xl font-display font-bold mb-2 
+                                     transition-all duration-300 ${
+                                       isHovered || isExpanded
+                                         ? "text-primary scale-[1.02]"
+                                         : "text-foreground"
+                                     }`}
+                        >
+                          {scheme.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                          {isExpanded ? scheme.description : getTruncatedDescription(scheme.description)}
+                        </p>
+                      </div>
 
-                    {scheme.link && scheme.link.trim() !== "" && (
-                      <a
-                        href={scheme.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors mt-auto"
+                      {/* Icons */}
+                      <div className="flex items-center gap-2 flex-shrink-0 mt-1">
+                        {/* Learn More Icon - only show if link exists */}
+                        {scheme.link && scheme.link.trim() !== "" && (
+                          <a
+                            href={scheme.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()} // Prevent accordion toggle when clicking link
+                            className={`p-1.5 rounded-lg transition-all duration-300 group/link ${
+                              isHovered
+                                ? "bg-primary/20 scale-110 rotate-12"
+                                : "hover:bg-primary/10 hover:scale-110"
+                            }`}
+                            title="Learn More"
+                          >
+                            <ExternalLink
+                              className={`h-5 w-5 transition-colors ${
+                                isHovered ? "text-primary" : "text-primary group-hover/link:text-primary/80"
+                              }`}
+                            />
+                          </a>
+                        )}
+
+                        {/* Chevron Icon */}
+                        <ChevronDown
+                          className={`h-5 w-5 text-primary transition-all duration-300 ${
+                            isExpanded ? "rotate-180" : ""
+                          } ${isHovered ? "scale-125" : ""}`}
+                        />
+                      </div>
+                    </button>
+
+                    {/* Expanded Content - Learn More Link */}
+                    {isExpanded && scheme.link && scheme.link.trim() !== "" && (
+                      <div
+                        className="px-6 pb-5 pt-2 border-t border-border/50 animate-in fade-in slide-in-from-top-2 duration-300"
                       >
-                        Learn More →
-                      </a>
+                        <a
+                          href={scheme.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-primary font-medium 
+                                     hover:text-primary/80 transition-all hover:gap-3 hover:translate-x-1"
+                        >
+                          Learn More →
+                        </a>
+                      </div>
                     )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-16 bg-card rounded-2xl border border-border">
               <p className="text-lg text-muted-foreground">
-                No schemes listed yet for this country.
+                No schemes listed yet for {selectedCountries.length === 0 ? "any country" : "the selected countries"}.
               </p>
               <p className="text-sm mt-2 text-muted-foreground/80">
                 Data will be updated soon.

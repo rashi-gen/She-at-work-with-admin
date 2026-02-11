@@ -1,13 +1,15 @@
 // components/GettingStarted.tsx
 "use client";
 
+import { ChevronDown, ExternalLink, MapPin } from "lucide-react";
+import { useState } from "react";
 import { PageBanner } from "./PageBanner";
 import Cta from "./common/Cta";
-import { ChevronDown } from "lucide-react";
-import { useState } from "react";
+
 
 // Import the data (adjust path as needed)
-import {gettingStartedData }from "@/data/gettingstarted";
+import { gettingStartedData } from "@/data/gettingstarted";
+import { MultiSelectDropdown } from "./common/MultiSelectDropdown";
 
 // Type for better type safety (optional but recommended)
 type Scheme = {
@@ -26,10 +28,32 @@ const allRegions: RegionData = gettingStartedData as RegionData;
 export default function GettingStartedComponent() {
   // Convert object keys to array for dropdown
   const regions = Object.keys(allRegions);
-  // Default to "India" (national level)
-  const [selectedRegion, setSelectedRegion] = useState<string>("India");
+  // Multi-select regions - default to ["India"]
+  const [selectedRegions, setSelectedRegions] = useState<string[]>(["India"]);
+  // Track which scheme is expanded (null means none)
+  const [expandedScheme, setExpandedScheme] = useState<number | null>(null);
+  // Track hover state for cards
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
-  const currentSchemes = allRegions[selectedRegion] || [];
+  // Get all schemes from selected regions (combine and deduplicate)
+  const currentSchemes = selectedRegions.length === 0
+    ? []
+    : selectedRegions.flatMap(region => allRegions[region] || [])
+        .filter((scheme, index, self) => 
+          index === self.findIndex(s => s.id === scheme.id)
+        );
+
+  // Toggle accordion
+  const toggleScheme = (schemeId: number) => {
+    setExpandedScheme(expandedScheme === schemeId ? null : schemeId);
+  };
+
+  // Helper to truncate description to 1-2 lines (approximately 100 characters)
+  const getTruncatedDescription = (description: string) => {
+    const maxLength = 100;
+    if (description.length <= maxLength) return description;
+    return description.slice(0, maxLength).trim() + "...";
+  };
 
   return (
     <main className="bg-background min-h-screen flex flex-col">
@@ -41,7 +65,7 @@ export default function GettingStartedComponent() {
       />
 
       {/* ================= MAIN CONTENT ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/10">
+      <section className="px-4 sm:px-6 lg:px-8 py-8 bg-secondary/10">
         <div className="max-w-screen-xl mx-auto">
           {/* Dropdown + Title */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 mb-10">
@@ -50,81 +74,140 @@ export default function GettingStartedComponent() {
                 Women Entrepreneurship Schemes
               </h2>
               <p className="text-muted-foreground max-w-3xl">
-                Discover government and institutional support available for women-led businesses 
-                {selectedRegion !== "India" && selectedRegion !== "central-government" 
-                  ? ` in ${selectedRegion.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}`
-                  : ""}
+                Discover government and institutional support available for women-led businesses
+                {selectedRegions.length > 0 && 
+                 !selectedRegions.includes("India") && 
+                 !selectedRegions.includes("central-government")
+                  ? ` in ${selectedRegions.map(r => r.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())).join(", ")}`
+                  : ". Calling all Woman entrepreneurs! Your quest for setting up your own business ends here!"}
               </p>
             </div>
 
-            {/* Dropdown */}
-            <div className="relative w-full sm:w-72">
-              <select
-                value={selectedRegion}
-                onChange={(e) => setSelectedRegion(e.target.value)}
-                className="w-full appearance-none bg-card border border-border rounded-xl px-4 py-3 pr-10 
-                           text-foreground font-medium shadow-sm focus:outline-none focus:ring-2 
-                           focus:ring-primary focus:border-primary transition-all cursor-pointer"
-              >
-                {regions.map((region) => (
-                  <option 
-                    key={region} 
-                    value={region}
-                  >
-                    {region === "central-government"
-                      ? "Central Government Schemes"
-                      : region === "India"
-                      ? "National / All India Level"
-                      : region.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase())}
-                  </option>
-                ))}
-              </select>
-
-              {/* Custom dropdown arrow */}
-              <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground pointer-events-none" />
+            {/* Multi-Select Dropdown */}
+            <div className="w-full sm:w-80">
+              <MultiSelectDropdown
+                label="Regions"
+                icon={<MapPin className="h-4 w-4" />}
+                options={regions.map((region) =>
+                  region === "central-government"
+                    ? "Central Government Schemes"
+                    : region === "India"
+                    ? "National / All India Level"
+                    : region.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+                )}
+                selectedValues={selectedRegions.map((region) =>
+                  region === "central-government"
+                    ? "Central Government Schemes"
+                    : region === "India"
+                    ? "National / All India Level"
+                    : region.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+                )}
+                onChange={(displayValues) => {
+                  // Convert display values back to region keys
+                  const regionKeys = displayValues.map((display) => {
+                    if (display === "Central Government Schemes") return "central-government";
+                    if (display === "National / All India Level") return "India";
+                    return display.toLowerCase().replace(/\s+/g, "-");
+                  });
+                  setSelectedRegions(regionKeys);
+                  setExpandedScheme(null); // Reset expanded state when regions change
+                }}
+                placeholder="Select regions"
+                allOptionLabel="All Regions"
+              />
             </div>
           </div>
 
-          {/* Schemes Grid / List */}
+          {/* Schemes Accordion List */}
           {currentSchemes.length > 0 ? (
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {currentSchemes.map((scheme) => (
-                <div
-                  key={scheme.id}
-                  className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-xl 
-                             transition-all duration-300 border border-border hover:border-primary/30 
-                             flex flex-col h-full"
-                >
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {scheme.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6 flex-1 leading-relaxed">
-                      {scheme.description}
-                    </p>
+            <div className="space-y-4">
+              {currentSchemes.map((scheme) => {
+                const isExpanded = expandedScheme === scheme.id;
+                const isHovered = hoveredCard === scheme.id;
 
-                    {scheme.link && scheme.link.trim() !== "" && (
-                      <a
-                        href={scheme.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors mt-auto"
-                      >
-                        Learn More →
-                      </a>
-                    )}
+                return (
+                  <div
+                    key={scheme.id}
+                    onMouseEnter={() => setHoveredCard(scheme.id)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                    className={`bg-card rounded-xl overflow-hidden shadow-md transition-all duration-300 border
+                               ${isHovered || isExpanded
+                                 ? "shadow-2xl border-primary/50 scale-[1.02] -translate-y-1"
+                                 : "border-border shadow-md hover:shadow-lg"
+                               }`}
+                    style={{
+                      transformOrigin: "center",
+                    }}
+                  >
+                    {/* Header - Always Visible */}
+                    <button
+                      onClick={() => toggleScheme(scheme.id)}
+                      className={`w-full px-6 py-5 flex items-start justify-between gap-4 text-left 
+                                 transition-all duration-300 ${
+                                   isHovered || isExpanded
+                                     ? "bg-gradient-to-r from-primary/5 to-primary/10"
+                                     : "hover:bg-secondary/5"
+                                 }`}
+                    >
+                      <div className="flex-1">
+                        <h3
+                          className={`text-lg sm:text-xl font-display font-bold mb-2 
+                                     transition-all duration-300 ${
+                                       isHovered || isExpanded
+                                         ? "text-primary scale-[1.02]"
+                                         : "text-foreground"
+                                     }`}
+                        >
+                          {scheme.title}
+                        </h3>
+                        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+                          {isExpanded ? scheme.description : getTruncatedDescription(scheme.description)}
+                        </p>
+                      </div>
+
+                      {/* Icons */}
+                      <div className="flex items-center gap-2 flex-shrink-0 mt-1">
+                        {/* Learn More Icon - only show if link exists */}
+                        {scheme.link && scheme.link.trim() !== "" && (
+                          <a
+                            href={scheme.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(e) => e.stopPropagation()} // Prevent accordion toggle when clicking link
+                            className={`p-1.5 rounded-lg transition-all duration-300 group/link ${
+                              isHovered
+                                ? "bg-primary/20 scale-110 rotate-12"
+                                : "hover:bg-primary/10 hover:scale-110"
+                            }`}
+                            title="Learn More"
+                          >
+                            <ExternalLink
+                              className={`h-5 w-5 transition-colors ${
+                                isHovered ? "text-primary" : "text-primary group-hover/link:text-primary/80"
+                              }`}
+                            />
+                          </a>
+                        )}
+
+                        {/* Chevron Icon */}
+                        <ChevronDown
+                          className={`h-5 w-5 text-primary transition-all duration-300 ${
+                            isExpanded ? "rotate-180" : ""
+                          } ${isHovered ? "scale-125" : ""}`}
+                        />
+                      </div>
+                    </button>
+
+                  
+                    
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <div className="text-center py-16 bg-card rounded-2xl border border-border">
-              <p className="text-lg text-muted-foreground">
-                No schemes listed yet for this region.
-              </p>
-              <p className="text-sm mt-2 text-muted-foreground/80">
-                Data will be updated soon.
-              </p>
+              <p className="text-lg text-muted-foreground">No schemes listed yet for this region.</p>
+              <p className="text-sm mt-2 text-muted-foreground/80">Data will be updated soon.</p>
             </div>
           )}
         </div>

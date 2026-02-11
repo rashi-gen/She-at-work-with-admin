@@ -127,10 +127,6 @@ export default function NewsPage() {
       .sort();
     return countries;
   }, [processedNews]);
-
-
-
-
   // Process news data on component mount
   useEffect(() => {
     const processNewsData = () => {
