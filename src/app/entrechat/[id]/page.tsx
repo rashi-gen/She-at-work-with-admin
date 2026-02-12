@@ -9,6 +9,8 @@ import Link from "next/link";
 
 import { Navbar } from "@/components/navbar/Navbar";
 import { entrechatData } from "@/data/Entrechat";
+import EntrechatPostContent from "@/components/enterchat/EntrechatPostContent";
+
 
 interface EntreChatItem {
   ID: string;
@@ -55,12 +57,6 @@ const formatDate = (dateString: string) => {
     console.log(error)
     return 'Date unavailable';
   }
-};
-
-const calculateReadTime = (content: string) => {
-  const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
-  const minutes = Math.ceil(wordCount / 200);
-  return `${minutes} min read`;
 };
 
 export default function EntrechatDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -251,9 +247,8 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
             </div>
           </div>
 
-          {/* Interview Content */}
-          <div 
-            className="prose prose-lg max-w-none 
+          {/* Interview Content - Use the cleaned component instead of dangerouslySetInnerHTML */}
+          <div className="prose prose-lg max-w-none 
                       prose-headings:font-display prose-headings:font-bold
                       prose-p:text-foreground/80 prose-p:leading-relaxed
                       prose-a:text-primary prose-a:no-underline hover:prose-a:underline
@@ -264,9 +259,9 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
                       prose-blockquote:border-l-4 prose-blockquote:border-primary 
                       prose-blockquote:pl-4 prose-blockquote:italic
                       prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                      mb-12"
-            dangerouslySetInnerHTML={{ __html: interview.post_content }}
-          />
+                      mb-12">
+            <EntrechatPostContent content={interview.post_content} />
+          </div>
 
           {/* Interviewee Highlight */}
           <div className="mt-12 p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border border-primary/20">
@@ -343,4 +338,11 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
       </main>
     </>
   );
+}
+
+// Helper function inside the component
+function calculateReadTime(content: string): string {
+  const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / 200);
+  return `${minutes} min read`;
 }

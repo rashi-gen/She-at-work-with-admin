@@ -43,6 +43,8 @@
     --chart-3: #3A3285;
     --chart-4: #D5B5A9;
     --chart-5: #2C2A2D;
+    --font-sans: "Inter", sans-serif;
+  --font-heading: "Manrope", sans-serif;
   }
 
   .dark {
@@ -148,3 +150,8 @@
   transform: translateY(-6px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
+
+body {
+  font-family: var(--font-sans);
+}
+

@@ -7,15 +7,16 @@ import {
   ArrowRight,
   Building,
   Calendar,
+  CalendarDays,
   ChevronRight,
   Clock,
   ExternalLink,
   FileText,
-  Filter,
   Globe,
   Loader2,
   MapPin,
   Search,
+  SlidersHorizontal,
   TrendingUp,
   User,
   Video,
@@ -294,51 +295,6 @@ const entrechatCategories = [
   "Entrepreneurship",
 ];
 
-// Industry sectors
-// const industrySectors = [
-//   "All Industries",
-//   "Technology",
-//   "Fashion & Lifestyle",
-//   "Food & Beverage",
-//   "Social Impact",
-//   "General Business",
-// ];
-
-// Business stages
-// const businessStages = [
-//   "All Stages",
-//   "Early Stage/Ideation",
-//   "Growth/Scaling",
-//   "Established Enterprise",
-// ];
-
-// Interview formats
-// const interviewFormats = [
-//   "All Formats",
-//   "Video Interview",
-//   "Text Interview",
-//   "Podcast/Audio",
-// ];
-
-// // Founder regions
-// const founderRegions = [
-//   "All Regions",
-//   "Asia-Pacific",
-//   "Europe",
-//   "North America",
-//   "Global",
-// ];
-
-// Success factors
-// const successFactors = [
-//   "All Funding Types",
-//   "Bootstrapped",
-//   "VC Funded",
-//   "Angel Backed",
-//   "Grant Supported",
-//   "Mixed Funding",
-// ];
-
 // Predefined date ranges
 const predefinedDateRanges = [
   { value: "24h", label: "24 Hours" },
@@ -534,12 +490,14 @@ export default function EntreChatPage() {
     }>
   >([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: string; to: string }>({
     from: "",
     to: "",
   });
   const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+  const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
   const [selectedStates, setSelectedStates] = useState<string[]>([]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [selectedIndustrySectors, setSelectedIndustrySectors] = useState<string[]>(["All Industries"]);
@@ -682,6 +640,7 @@ export default function EntreChatPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "week":
         from.setDate(now.getDate() - 7);
@@ -689,6 +648,7 @@ export default function EntreChatPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "month":
         from.setMonth(now.getMonth() - 1);
@@ -696,6 +656,7 @@ export default function EntreChatPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "3months":
         from.setMonth(now.getMonth() - 3);
@@ -703,8 +664,10 @@ export default function EntreChatPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "custom":
+        setShowCustomDatePicker(true);
         if (customFrom && customTo) {
           setDateRange({
             from: customFrom,
@@ -714,8 +677,31 @@ export default function EntreChatPage() {
         break;
       default:
         setDateRange({ from: "", to: "" });
+        setShowCustomDatePicker(false);
     }
     setSelectedDateRange(range);
+  };
+
+  // Get display label for date range
+  const getDateRangeDisplayLabel = () => {
+    if (selectedDateRange === "custom") {
+      if (dateRange.from || dateRange.to) {
+        const parts = [];
+        if (dateRange.from) {
+          parts.push(`From: ${new Date(dateRange.from).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`);
+        }
+        if (dateRange.to) {
+          parts.push(`To: ${new Date(dateRange.to).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`);
+        }
+        return parts.join(" • ");
+      }
+      return "Custom Range";
+    }
+    if (selectedDateRange) {
+      const range = predefinedDateRanges.find(r => r.value === selectedDateRange);
+      return range?.label || "";
+    }
+    return "";
   };
 
   // Filter interviews based on all filter criteria
@@ -930,6 +916,11 @@ export default function EntreChatPage() {
         !searchRef.current.contains(event.target as Node)
       ) {
         setShowSuggestions(false);
+      }
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
         setIsFilterOpen(false);
       }
     };
@@ -1023,6 +1014,7 @@ export default function EntreChatPage() {
     setSelectedCategories(["All Interviews"]);
     setDateRange({ from: "", to: "" });
     setSelectedDateRange("");
+    setShowCustomDatePicker(false);
     setSelectedStates([]);
     setSelectedCountries([]);
     setSelectedIndustrySectors(["All Industries"]);
@@ -1119,34 +1111,7 @@ export default function EntreChatPage() {
                 and lessons that inform, inspire, and empower your own path.
               </p>
 
-              {/* Location Detection Button */}
-              <div className="mt-6">
-                <Button
-                  variant="outline"
-                  className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
-                  onClick={detectUserLocation}
-                  disabled={isDetectingLocation}
-                >
-                  {isDetectingLocation ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Detecting Location...
-                    </>
-                  ) : userLocation.detected ? (
-                    <>
-                      <MapPin className="h-4 w-4 mr-2" />
-                      {userLocation.city && `${userLocation.city}, `}
-                      {userLocation.state && `${userLocation.state}, `}
-                      {userLocation.country}
-                    </>
-                  ) : (
-                    <>
-                      <MapPin className="h-4 w-4 mr-2" />
-                      Detect My Location for Local Interviews
-                    </>
-                  )}
-                </Button>
-              </div>
+ 
             </div>
           </div>
         </div>
@@ -1193,8 +1158,6 @@ export default function EntreChatPage() {
 
                 {/* CONTENT */}
                 <div className="p-4 ">
-                
-
                   <h2 className="text-lg sm:text-xl font-display font-bold text-foreground mb-1 group-hover:text-primary transition-colors line-clamp-2">
                     {featuredInterview.title}
                   </h2>
@@ -1202,8 +1165,6 @@ export default function EntreChatPage() {
                   <p className="text-sm sm:text-base text-muted-foreground mb-2 leading-relaxed line-clamp-3">
                     {featuredInterview.excerpt}
                   </p>
-
-           
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-1 border-t border-border">
                     <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
@@ -1223,9 +1184,9 @@ export default function EntreChatPage() {
                       )}
                     </div>
 
-                    <Button className="bg-primary hover:bg-primary/90 group text-sm  w-full sm:w-auto">
+                    <Button className="bg-primary hover:bg-primary/90 group text-sm w-full sm:w-auto">
                       Read Interview
-                      <ExternalLink className="ml-2 h-3 w-3  group-hover:translate-x-1 transition-transform" />
+                      <ExternalLink className="ml-2 h-3 w-3 group-hover:translate-x-1 transition-transform" />
                     </Button>
                   </div>
                 </div>
@@ -1372,6 +1333,7 @@ export default function EntreChatPage() {
                   ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? 'category' : 'categories'}`
                 }
                 {searchQuery && ` matching "${searchQuery}"`}
+                {getDateRangeDisplayLabel() && !searchQuery && !selectedCategories.length && ` • ${getDateRangeDisplayLabel()}`}
               </p>
             </div>
 
@@ -1415,18 +1377,31 @@ export default function EntreChatPage() {
                 />
               </div>
 
-              {/* FILTER DROPDOWN */}
-              <div className="relative w-full sm:w-auto" ref={searchRef}>
+              {/* FILTER DROPDOWN - Using SlidersHorizontal icon instead of Filter */}
+              <div className="relative w-full sm:w-auto" ref={filterRef}>
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto flex items-center gap-2"
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
                 >
-                  <Filter className="h-4 w-4" />
-
+                  <SlidersHorizontal className="h-4 w-4" />
+                  Filters
                   {isAnyFilterActive() && (
                     <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      !
+                      {(() => {
+                        let count = 0;
+                        if (selectedCategories.length > 0 && !selectedCategories.includes("All Interviews")) count++;
+                        if (dateRange.from || dateRange.to) count++;
+                        if (selectedStates.length > 0) count++;
+                        if (selectedCountries.length > 0) count++;
+                        if (selectedIndustrySectors.length > 0 && !selectedIndustrySectors.includes("All Industries")) count++;
+                        if (selectedBusinessStages.length > 0 && !selectedBusinessStages.includes("All Stages")) count++;
+                        if (selectedInterviewFormats.length > 0 && !selectedInterviewFormats.includes("All Formats")) count++;
+                        if (selectedFounderRegions.length > 0 && !selectedFounderRegions.includes("All Regions")) count++;
+                        if (selectedSuccessFactors.length > 0 && !selectedSuccessFactors.includes("All Funding Types")) count++;
+                        if (searchQuery) count++;
+                        return count;
+                      })()}
                     </span>
                   )}
                 </Button>
@@ -1439,14 +1414,6 @@ export default function EntreChatPage() {
                         <h4 className="text-lg font-semibold text-foreground">
                           Filter Interviews
                         </h4>
-                        {isAnyFilterActive() && (
-                          <button
-                            onClick={clearAllFilters}
-                            className="text-sm text-primary hover:text-primary/80"
-                          >
-                            Clear All
-                          </button>
-                        )}
                       </div>
 
                       {/* CATEGORY FILTER */}
@@ -1456,7 +1423,7 @@ export default function EntreChatPage() {
                         </h5>
                         <MultiSelectDropdown
                           label="Categories"
-                          icon={<Filter className="h-4 w-4" />}
+                          icon={<CalendarDays className="h-4 w-4" />}
                           options={entrechatCategories.filter(cat => cat !== "All Interviews")}
                           selectedValues={selectedCategories.filter(cat => cat !== "All Interviews")}
                           onChange={(values) => setSelectedCategories(values)}
@@ -1547,7 +1514,8 @@ export default function EntreChatPage() {
 
                       {/* DATE RANGE FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
                           Date Range
                         </h5>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
@@ -1556,11 +1524,7 @@ export default function EntreChatPage() {
                               key={range.value}
                               onClick={() => {
                                 setSelectedDateRange(range.value);
-                                if (range.value === "custom") {
-                                  // Show custom date inputs
-                                } else {
-                                  applyDateRangeFilter(range.value);
-                                }
+                                applyDateRangeFilter(range.value);
                               }}
                               className={`px-3 py-2 text-xs rounded-lg border ${
                                 selectedDateRange === range.value
@@ -1573,8 +1537,8 @@ export default function EntreChatPage() {
                           ))}
                         </div>
 
-                        {/* CUSTOM DATE INPUTS */}
-                        {(selectedDateRange === "custom" || dateRange.from || dateRange.to) && (
+                        {/* CUSTOM DATE INPUTS - Only shown when Custom is selected */}
+                        {showCustomDatePicker && (
                           <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
                             <div>
                               <label className="text-xs text-muted-foreground block mb-1">From</label>
@@ -1586,7 +1550,6 @@ export default function EntreChatPage() {
                                     ...dateRange,
                                     from: e.target.value,
                                   });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1601,7 +1564,6 @@ export default function EntreChatPage() {
                                     ...dateRange,
                                     to: e.target.value,
                                   });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1614,6 +1576,7 @@ export default function EntreChatPage() {
                             onClick={() => {
                               setDateRange({ from: "", to: "" });
                               setSelectedDateRange("");
+                              setShowCustomDatePicker(false);
                             }}
                             className="text-xs text-primary hover:text-primary/80 mt-2"
                           >
@@ -1659,8 +1622,8 @@ export default function EntreChatPage() {
                         )}
                       </div>
 
-                      {/* LOCATION DETECTION */}
-                      <div className="p-3 bg-secondary/30 rounded-lg pb-0 mb-4">
+                      {/* LOCATION DETECTION - Simplified */}
+                      <div className="p-3 bg-secondary/30 rounded-lg mb-4">
                         <div className="flex items-center justify-between mb-2">
                           <h5 className="text-sm font-medium text-foreground flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
@@ -1680,11 +1643,10 @@ export default function EntreChatPage() {
                         </div>
                         {userLocation.detected ? (
                           <div className="text-xs text-muted-foreground">
-                            Detected:{" "}
+                            Showing interviews from{" "}
                             <span className="font-medium text-foreground">
-                              {userLocation.city && `${userLocation.city}, `}
-                              {userLocation.state && `${userLocation.state}, `}
                               {userLocation.country}
+                              {userLocation.state && ` • ${userLocation.state}`}
                             </span>
                           </div>
                         ) : (
@@ -1697,14 +1659,23 @@ export default function EntreChatPage() {
 
                     {/* ACTIVE FILTERS SUMMARY */}
                     {isAnyFilterActive() && (
-                      <div className="pt-4">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
-                          Active Filters
-                        </h5>
+                      <div className="pt-4 mt-4 border-t border-border">
+                        <div className="flex items-center justify-between mb-2">
+                          <h5 className="text-sm font-medium text-foreground">
+                            Active Filters
+                          </h5>
+                          <button
+                            onClick={clearAllFilters}
+                            className="text-xs text-primary hover:text-primary/80 flex items-center gap-1"
+                          >
+                            <X className="h-3 w-3" />
+                            Clear All
+                          </button>
+                        </div>
                         <div className="flex flex-wrap gap-2">
                           {selectedCategories.length > 0 && !selectedCategories.includes("All Interviews") && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                              <Filter className="h-3 w-3" />
+                              <CalendarDays className="h-3 w-3" />
                               {selectedCategories.length} category
                               {selectedCategories.length !== 1 ? "ies" : ""}
                               <button
@@ -1780,7 +1751,9 @@ export default function EntreChatPage() {
                               </button>
                             </span>
                           )}
-                          {dateRange.from && (
+                          
+                          {/* Only show date range in active filters for custom dates */}
+                          {selectedDateRange === "custom" && dateRange.from && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
                               <Calendar className="h-3 w-3" />
                               From:{" "}
@@ -1801,7 +1774,7 @@ export default function EntreChatPage() {
                               </button>
                             </span>
                           )}
-                          {dateRange.to && (
+                          {selectedDateRange === "custom" && dateRange.to && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
                               <Calendar className="h-3 w-3" />
                               To:{" "}
@@ -1822,6 +1795,25 @@ export default function EntreChatPage() {
                               </button>
                             </span>
                           )}
+                          
+                          {/* Show preset date range label instead of dates */}
+                          {selectedDateRange && selectedDateRange !== "custom" && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              {predefinedDateRanges.find(r => r.value === selectedDateRange)?.label}
+                              <button
+                                onClick={() => {
+                                  setDateRange({ from: "", to: "" });
+                                  setSelectedDateRange("");
+                                  setShowCustomDatePicker(false);
+                                }}
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          
                           {selectedCountries.length > 0 && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
                               <Globe className="h-3 w-3" />
@@ -1866,17 +1858,6 @@ export default function EntreChatPage() {
                   </div>
                 )}
               </div>
-
-              {isAnyFilterActive() && (
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={clearAllFilters}
-                >
-                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Clear All
-                </Button>
-              )}
             </div>
           </div>
 

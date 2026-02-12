@@ -6,14 +6,15 @@ import { blogsData } from "@/data/Blogs";
 import {
   ArrowRight,
   Calendar,
+  CalendarDays,
   ChevronRight,
   Clock,
   ExternalLink,
-  Filter,
   Globe,
   Loader2,
   MapPin,
   Search,
+  SlidersHorizontal,
   X,
   User,
 } from "lucide-react";
@@ -52,7 +53,6 @@ interface BlogItem {
 }
 
 // Extended interface for processed blogs
-// Extended interface for processed blogs
 interface ProcessedBlogItem {
   slug: string;
   id: string;
@@ -62,8 +62,8 @@ interface ProcessedBlogItem {
   date: string;
   rawDate: Date;
   readTime: string;
-  readingTimeCategory: string; // New: Categorizes as "Quick Reads" or "Deep Dives"
-  proficiencyLevel: string; // New: Categorizes as "Beginner" or "Advanced"
+  readingTimeCategory: string;
+  proficiencyLevel: string;
   author: string;
   image: string | null;
   fullContent: string;
@@ -187,20 +187,6 @@ const blogCategories = [
   "Brand Building",
   "General",
 ];
-
-// Reading time categories
-// const readingTimeCategories = [
-//   "All Reading Times",
-//   "Quick Reads (<5 mins)",
-//   "Deep Dives (5+ mins)"
-// ];
-
-// // Proficiency levels
-// const proficiencyLevels = [
-//   "All Levels",
-//   "Beginner (Starting Up)",
-//   "Advanced (Scaling Up)"
-// ];
 
 // Format date function
 const formatDate = (dateString: string): string => {
@@ -390,9 +376,11 @@ export default function BlogsPage() {
     }>
   >([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: string; to: string }>({ from: "", to: "" });
   const [selectedDateRange, setSelectedDateRange] = useState<string>("");
+  const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
   const [selectedStates, setSelectedStates] = useState<string[]>([]);
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
   const [selectedReadingTimes, setSelectedReadingTimes] = useState<string[]>(["All Reading Times"]);
@@ -405,7 +393,7 @@ export default function BlogsPage() {
   }>({ detected: false });
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
 
-  // Function to detect user location (same as news page)
+  // Function to detect user location
   const detectUserLocation = async () => {
     setIsDetectingLocation(true);
     try {
@@ -511,6 +499,7 @@ export default function BlogsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "week":
         from.setDate(now.getDate() - 7);
@@ -518,6 +507,7 @@ export default function BlogsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "month":
         from.setMonth(now.getMonth() - 1);
@@ -525,6 +515,7 @@ export default function BlogsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "3months":
         from.setMonth(now.getMonth() - 3);
@@ -532,8 +523,10 @@ export default function BlogsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "custom":
+        setShowCustomDatePicker(true);
         if (customFrom && customTo) {
           setDateRange({
             from: customFrom,
@@ -543,8 +536,31 @@ export default function BlogsPage() {
         break;
       default:
         setDateRange({ from: "", to: "" });
+        setShowCustomDatePicker(false);
     }
     setSelectedDateRange(range);
+  };
+
+  // Get display label for date range
+  const getDateRangeDisplayLabel = () => {
+    if (selectedDateRange === "custom") {
+      if (dateRange.from || dateRange.to) {
+        const parts = [];
+        if (dateRange.from) {
+          parts.push(`From: ${new Date(dateRange.from).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`);
+        }
+        if (dateRange.to) {
+          parts.push(`To: ${new Date(dateRange.to).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`);
+        }
+        return parts.join(" • ");
+      }
+      return "Custom Range";
+    }
+    if (selectedDateRange) {
+      const range = predefinedDateRanges.find(r => r.value === selectedDateRange);
+      return range?.label || "";
+    }
+    return "";
   };
 
   // Filter blogs based on all filter criteria
@@ -640,16 +656,6 @@ export default function BlogsPage() {
     return processedBlogs.slice(0, 4);
   }, [processedBlogs]);
 
-  // Extract unique states, countries, reading times, and proficiency levels
-  // const uniqueStates = useMemo(() => {
-  //   const states = processedBlogs
-  //     .map(blog => blog.state)
-  //     .filter((state): state is string => !!state)
-  //     .filter((state, index, self) => self.indexOf(state) === index)
-  //     .sort();
-  //   return states;
-  // }, [processedBlogs]);
-
   const uniqueCountries = useMemo(() => {
     const countries = processedBlogs
       .map(blog => blog.country)
@@ -695,6 +701,8 @@ export default function BlogsPage() {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setShowSuggestions(false);
+      }
+      if (filterRef.current && !filterRef.current.contains(event.target as Node)) {
         setIsFilterOpen(false);
       }
     };
@@ -774,6 +782,7 @@ export default function BlogsPage() {
     setSelectedCategories(["All Blogs"]);
     setDateRange({ from: "", to: "" });
     setSelectedDateRange("");
+    setShowCustomDatePicker(false);
     setSelectedStates([]);
     setSelectedCountries([]);
     setSelectedReadingTimes(["All Reading Times"]);
@@ -1049,6 +1058,7 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                   ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? 'category' : 'categories'}`
                 }
                 {searchQuery && ` matching "${searchQuery}"`}
+                {getDateRangeDisplayLabel() && !searchQuery && !selectedCategories.length && ` • ${getDateRangeDisplayLabel()}`}
               </p>
             </div>
 
@@ -1089,18 +1099,28 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                 />
               </div>
               
-              {/* FILTER DROPDOWN */}
-              <div className="relative w-full sm:w-auto" ref={searchRef}>
+              {/* FILTER DROPDOWN - Using SlidersHorizontal icon instead of Filter */}
+              <div className="relative w-full sm:w-auto" ref={filterRef}>
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto flex items-center gap-2"
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
                 >
-                  <Filter className="h-4 w-4" />
-                  
+                  <SlidersHorizontal className="h-4 w-4" />
+                  Filters
                   {isAnyFilterActive() && (
                     <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      !
+                      {(() => {
+                        let count = 0;
+                        if (selectedCategories.length > 0 && !selectedCategories.includes("All Blogs")) count++;
+                        if (dateRange.from || dateRange.to) count++;
+                        if (selectedStates.length > 0) count++;
+                        if (selectedCountries.length > 0) count++;
+                        if (selectedReadingTimes.length > 0 && !selectedReadingTimes.includes("All Reading Times")) count++;
+                        if (selectedProficiencyLevels.length > 0 && !selectedProficiencyLevels.includes("All Levels")) count++;
+                        if (searchQuery) count++;
+                        return count;
+                      })()}
                     </span>
                   )}
                 </Button>
@@ -1113,14 +1133,6 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                         <h4 className="text-lg font-semibold text-foreground">
                           Filter Articles
                         </h4>
-                        {isAnyFilterActive() && (
-                          <button
-                            onClick={clearAllFilters}
-                            className="text-sm text-primary hover:text-primary/80"
-                          >
-                            Clear All
-                          </button>
-                        )}
                       </div>
 
                       {/* CATEGORY FILTER */}
@@ -1130,7 +1142,7 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                         </h5>
                         <MultiSelectDropdown
                           label="Categories"
-                          icon={<Filter className="h-4 w-4" />}
+                          icon={<CalendarDays className="h-4 w-4" />}
                           options={blogCategories.filter(cat => cat !== "All Blogs")}
                           selectedValues={selectedCategories.filter(cat => cat !== "All Blogs")}
                           onChange={(values) => setSelectedCategories(values)}
@@ -1173,7 +1185,8 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
 
                       {/* DATE RANGE FILTER */}
                       <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
+                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                          <Calendar className="h-4 w-4" />
                           Date Range
                         </h5>
                         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
@@ -1182,11 +1195,7 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                               key={range.value}
                               onClick={() => {
                                 setSelectedDateRange(range.value);
-                                if (range.value === "custom") {
-                                  // Show custom date inputs
-                                } else {
-                                  applyDateRangeFilter(range.value);
-                                }
+                                applyDateRangeFilter(range.value);
                               }}
                               className={`px-3 py-2 text-xs rounded-lg border ${
                                 selectedDateRange === range.value
@@ -1199,8 +1208,8 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                           ))}
                         </div>
 
-                        {/* CUSTOM DATE INPUTS */}
-                        {(selectedDateRange === "custom" || dateRange.from || dateRange.to) && (
+                        {/* CUSTOM DATE INPUTS - Only shown when Custom is selected */}
+                        {showCustomDatePicker && (
                           <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
                             <div>
                               <label className="text-xs text-muted-foreground block mb-1">From</label>
@@ -1209,7 +1218,6 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                                 value={dateRange.from}
                                 onChange={(e) => {
                                   setDateRange({ ...dateRange, from: e.target.value });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1221,7 +1229,6 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                                 value={dateRange.to}
                                 onChange={(e) => {
                                   setDateRange({ ...dateRange, to: e.target.value });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1234,6 +1241,7 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                             onClick={() => {
                               setDateRange({ from: "", to: "" });
                               setSelectedDateRange("");
+                              setShowCustomDatePicker(false);
                             }}
                             className="text-xs text-primary hover:text-primary/80 mt-2"
                           >
@@ -1259,28 +1267,10 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                             allOptionLabel="All Countries"
                           />
                         </div>
-
-                        {/* STATE FILTER */}
-                        {/* {uniqueStates.length > 0 && (
-                          <div>
-                            <h5 className="text-sm font-medium text-foreground mb-2">
-                              State/Region
-                            </h5>
-                            <MultiSelectDropdown
-                              label="States"
-                              icon={<MapPin className="h-4 w-4" />}
-                              options={uniqueStates}
-                              selectedValues={selectedStates}
-                              onChange={setSelectedStates}
-                              placeholder="Select states"
-                              allOptionLabel="All States"
-                            />
-                          </div>
-                        )} */}
                       </div>
 
-                      {/* LOCATION DETECTION */}
-                      <div className="p-3 bg-secondary/30 rounded-lg pb-0 mb-4">
+                      {/* LOCATION DETECTION - Simplified */}
+                      <div className="p-3 bg-secondary/30 rounded-lg mb-4">
                         <div className="flex items-center justify-between mb-2">
                           <h5 className="text-sm font-medium text-foreground flex items-center gap-2">
                             <MapPin className="h-4 w-4" />
@@ -1300,11 +1290,10 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                         </div>
                         {userLocation.detected ? (
                           <div className="text-xs text-muted-foreground">
-                            Detected:{" "}
+                            Showing content from{" "}
                             <span className="font-medium text-foreground">
-                              {userLocation.city && `${userLocation.city}, `}
-                              {userLocation.state && `${userLocation.state}, `}
                               {userLocation.country}
+                              {userLocation.state && ` • ${userLocation.state}`}
                             </span>
                           </div>
                         ) : (
@@ -1317,14 +1306,23 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
 
                     {/* ACTIVE FILTERS SUMMARY */}
                     {isAnyFilterActive() && (
-                      <div className="pt-4 ">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
-                          Active Filters
-                        </h5>
+                      <div className="pt-4 mt-4 border-t border-border">
+                        <div className="flex items-center justify-between mb-2">
+                          <h5 className="text-sm font-medium text-foreground">
+                            Active Filters
+                          </h5>
+                          <button
+                            onClick={clearAllFilters}
+                            className="text-xs text-primary hover:text-primary/80 flex items-center gap-1"
+                          >
+                            <X className="h-3 w-3" />
+                            Clear All
+                          </button>
+                        </div>
                         <div className="flex flex-wrap gap-2">
                           {selectedCategories.length > 0 && !selectedCategories.includes("All Blogs") && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                              <Filter className="h-3 w-3" />
+                              <CalendarDays className="h-3 w-3" />
                               {selectedCategories.length} category
                               {selectedCategories.length !== 1 ? "ies" : ""}
                               <button
@@ -1361,7 +1359,9 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                               </button>
                             </span>
                           )}
-                          {dateRange.from && (
+                          
+                          {/* Only show date range in active filters for custom dates */}
+                          {selectedDateRange === "custom" && dateRange.from && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
                               <Calendar className="h-3 w-3" />
                               From:{" "}
@@ -1382,7 +1382,7 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                               </button>
                             </span>
                           )}
-                          {dateRange.to && (
+                          {selectedDateRange === "custom" && dateRange.to && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
                               <Calendar className="h-3 w-3" />
                               To:{" "}
@@ -1403,6 +1403,25 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                               </button>
                             </span>
                           )}
+                          
+                          {/* Show preset date range label instead of dates */}
+                          {selectedDateRange && selectedDateRange !== "custom" && (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                              <Calendar className="h-3 w-3" />
+                              {predefinedDateRanges.find(r => r.value === selectedDateRange)?.label}
+                              <button
+                                onClick={() => {
+                                  setDateRange({ from: "", to: "" });
+                                  setSelectedDateRange("");
+                                  setShowCustomDatePicker(false);
+                                }}
+                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                              >
+                                <X className="h-3 w-3" />
+                              </button>
+                            </span>
+                          )}
+                          
                           {selectedCountries.length > 0 && (
                             <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
                               <Globe className="h-3 w-3" />
@@ -1447,17 +1466,6 @@ From funding and strategy to inspiring journeys, discover ideas that help you st
                   </div>
                 )}
               </div>
-
-              {isAnyFilterActive() && (
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={clearAllFilters}
-                >
-                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Clear All
-                </Button>
-              )}
             </div>
           </div>
 

@@ -1,3 +1,4 @@
+/*eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { PageBanner } from "@/components/PageBanner";
@@ -7,21 +8,24 @@ import { newsData } from "@/data/news";
 import {
   ArrowRight,
   Calendar,
+  CalendarDays,
   ChevronRight,
   Clock,
   ExternalLink,
   FileText,
-  Filter,
   Globe,
-  Loader2,
   MapPin,
   Search,
-  X,
+  SlidersHorizontal,
+  X
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import Cta from "../common/Cta";
-import { ExternalLinkModal } from "./ExternalLinkModal";
+import {
+  getCategoryIcon,
+  MultiSelectDropdown,
+} from "../common/MultiSelectDropdown";
 import {
   calculateReadTime,
   extractExcerpt,
@@ -37,10 +41,6 @@ import {
   ProcessedNewsItem,
 } from "./helper";
 import { SearchSuggestions } from "./SearchSuggestions";
-import {
-  getCategoryIcon,
-  MultiSelectDropdown,
-} from "../common/MultiSelectDropdown";
 
 export default function NewsPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
@@ -63,6 +63,7 @@ export default function NewsPage() {
     }>
   >([]);
   const searchRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [dateRange, setDateRange] = useState<{ from: string; to: string }>({
     from: "",
@@ -87,6 +88,8 @@ export default function NewsPage() {
     detected: boolean;
   }>({ detected: false });
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
+  const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
+  const [isSplitView, setIsSplitView] = useState(false);
 
   // Function to detect user location
   const detectUserLocation = async () => {
@@ -95,14 +98,16 @@ export default function NewsPage() {
       const response = await fetch("https://ipapi.co/json/");
       const data = await response.json();
 
-      setUserLocation({
+      const locationData = {
         country: data.country_name,
         state: data.region,
         city: data.city,
         detected: true,
-      });
+      };
 
-      // Auto-set country filter if location detected
+      setUserLocation(locationData);
+
+      // Auto-set country filter if location detected and not already selected
       if (data.country_name && !selectedCountries.includes(data.country_name)) {
         setSelectedCountries([data.country_name]);
       }
@@ -117,8 +122,6 @@ export default function NewsPage() {
     }
   };
 
-
-
   const uniqueCountries = useMemo(() => {
     const countries = processedNews
       .map((news) => news.country)
@@ -127,6 +130,7 @@ export default function NewsPage() {
       .sort();
     return countries;
   }, [processedNews]);
+
   // Process news data on component mount
   useEffect(() => {
     const processNewsData = () => {
@@ -219,7 +223,7 @@ export default function NewsPage() {
     customTo?: string,
   ) => {
     const now = new Date();
-    const  from = new Date();
+    const from = new Date();
 
     switch (range) {
       case "24h":
@@ -228,6 +232,7 @@ export default function NewsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "week":
         from.setDate(now.getDate() - 7);
@@ -235,6 +240,7 @@ export default function NewsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "month":
         from.setMonth(now.getMonth() - 1);
@@ -242,6 +248,7 @@ export default function NewsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "3months":
         from.setMonth(now.getMonth() - 3);
@@ -249,8 +256,10 @@ export default function NewsPage() {
           from: from.toISOString().split("T")[0],
           to: now.toISOString().split("T")[0],
         });
+        setShowCustomDatePicker(false);
         break;
       case "custom":
+        setShowCustomDatePicker(true);
         if (customFrom && customTo) {
           setDateRange({
             from: customFrom,
@@ -260,8 +269,37 @@ export default function NewsPage() {
         break;
       default:
         setDateRange({ from: "", to: "" });
+        setShowCustomDatePicker(false);
     }
     setSelectedDateRange(range);
+  };
+
+  // Get display label for date range
+  const getDateRangeDisplayLabel = () => {
+    if (selectedDateRange === "custom") {
+      if (dateRange.from || dateRange.to) {
+        const parts = [];
+        if (dateRange.from) {
+          parts.push(
+            `From: ${new Date(dateRange.from).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
+          );
+        }
+        if (dateRange.to) {
+          parts.push(
+            `To: ${new Date(dateRange.to).toLocaleDateString("en-US", { month: "short", day: "numeric" })}`,
+          );
+        }
+        return parts.join(" • ");
+      }
+      return "Custom Range";
+    }
+    if (selectedDateRange) {
+      const range = predefinedDateRanges.find(
+        (r) => r.value === selectedDateRange,
+      );
+      return range?.label || "";
+    }
+    return "";
   };
 
   // Filter news articles based on all filter criteria
@@ -385,6 +423,11 @@ export default function NewsPage() {
         !searchRef.current.contains(event.target as Node)
       ) {
         setShowSuggestions(false);
+      }
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
         setIsFilterOpen(false);
       }
     };
@@ -455,6 +498,21 @@ export default function NewsPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // Handle external link click with split view
+  const openExternalLink = (url: string, title: string) => {
+    if (url && url.trim() !== "") {
+      try {
+        const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
+
+        // Open in split view (60% our site, 40% external)
+        const splitViewUrl = `/split-view?url=${encodeURIComponent(urlWithProtocol)}&title=${encodeURIComponent(title)}`;
+        window.open(splitViewUrl, "_blank");
+      } catch (error) {
+        console.error("Error opening URL:", error);
+      }
+    }
+  };
+
   // Handle external link click for featured news
   const handleFeaturedExternalLink = (
     e: React.MouseEvent,
@@ -465,14 +523,7 @@ export default function NewsPage() {
     e.stopPropagation();
 
     if (url && url.trim() !== "") {
-      try {
-        const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
-        setSelectedExternalLink({ url: urlWithProtocol, title });
-        setModalOpen(true);
-      } catch (error) {
-        console.error("Error opening URL:", error);
-        alert(`Could not open: ${title}`);
-      }
+      openExternalLink(url, title);
     } else {
       window.location.href = `/news/${featuredNews?.slug}`;
     }
@@ -489,14 +540,7 @@ export default function NewsPage() {
     e.stopPropagation();
 
     if (url && url.trim() !== "") {
-      try {
-        const urlWithProtocol = url.startsWith("http") ? url : `https://${url}`;
-        setSelectedExternalLink({ url: urlWithProtocol, title });
-        setModalOpen(true);
-      } catch (error) {
-        console.error("Error opening URL:", error);
-        window.location.href = `/news/${slug}`;
-      }
+      openExternalLink(url, title);
     } else {
       window.location.href = `/news/${slug}`;
     }
@@ -526,6 +570,7 @@ export default function NewsPage() {
     setSelectedCategories(["All News"]);
     setDateRange({ from: "", to: "" });
     setSelectedDateRange("");
+    setShowCustomDatePicker(false);
     setSelectedStates([]);
     setSelectedCountries([]);
     setSelectedRegions([]);
@@ -585,17 +630,6 @@ export default function NewsPage() {
 
   return (
     <main className="bg-background min-h-screen">
-      {/* External Link Modal */}
-      <ExternalLinkModal
-        isOpen={modalOpen}
-        onClose={() => {
-          setModalOpen(false);
-          setSelectedExternalLink(null);
-        }}
-        url={selectedExternalLink?.url || ""}
-        title={selectedExternalLink?.title || ""}
-      />
-
       <section className={`relative h-[470px] overflow-hidden pt-24`}>
         {/* Background Image */}
         <div className="absolute inset-0" style={{ top: "96px" }}>
@@ -627,35 +661,6 @@ export default function NewsPage() {
                 India and beyond. Insights and policy updates driving innovation
                 and growth in women-led enterprises.
               </p>
-
-              {/* Location Detection Button */}
-              <div className="mt-6">
-                <Button
-                  variant="outline"
-                  className="bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20"
-                  onClick={detectUserLocation}
-                  disabled={isDetectingLocation}
-                >
-                  {isDetectingLocation ? (
-                    <>
-                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Detecting Location...
-                    </>
-                  ) : userLocation.detected ? (
-                    <>
-                      <MapPin className="h-4 w-4 mr-2" />
-                      {userLocation.city && `${userLocation.city}, `}
-                      {userLocation.state && `${userLocation.state}, `}
-                      {userLocation.country}
-                    </>
-                  ) : (
-                    <>
-                      <MapPin className="h-4 w-4 mr-2" />
-                      Detect My Location for Local News
-                    </>
-                  )}
-                </Button>
-              </div>
             </div>
           </div>
         </div>
@@ -910,6 +915,10 @@ export default function NewsPage() {
                   !selectedCategories.includes("All News") &&
                   ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? "category" : "categories"}`}
                 {searchQuery && ` matching "${searchQuery}"`}
+                {getDateRangeDisplayLabel() &&
+                  !searchQuery &&
+                  !selectedCategories.length &&
+                  ` • ${getDateRangeDisplayLabel()}`}
               </p>
             </div>
 
@@ -953,18 +962,36 @@ export default function NewsPage() {
                 />
               </div>
 
-              {/* FILTER DROPDOWN */}
-              <div className="relative w-full sm:w-auto" ref={searchRef}>
+              {/* FILTER DROPDOWN - Using SlidersHorizontal icon instead of Filter */}
+              <div className="relative w-full sm:w-auto" ref={filterRef}>
                 <Button
                   variant="outline"
                   className="w-full sm:w-auto flex items-center gap-2"
                   onClick={() => setIsFilterOpen(!isFilterOpen)}
                 >
-                  <Filter className="h-4 w-4" />
-
+                  <SlidersHorizontal className="h-4 w-4" />
+                  Filters
                   {isAnyFilterActive() && (
                     <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      !
+                      {(() => {
+                        let count = 0;
+                        if (
+                          selectedCategories.length > 0 &&
+                          !selectedCategories.includes("All News")
+                        )
+                          count++;
+                        if (dateRange.from || dateRange.to) count++;
+                        if (selectedStates.length > 0) count++;
+                        if (selectedCountries.length > 0) count++;
+                        if (selectedRegions.length > 0) count++;
+                        if (
+                          selectedSourceTypes.length > 0 &&
+                          !selectedSourceTypes.includes("All Sources")
+                        )
+                          count++;
+                        if (searchQuery) count++;
+                        return count;
+                      })()}
                     </span>
                   )}
                 </Button>
@@ -977,14 +1004,6 @@ export default function NewsPage() {
                         <h4 className="text-lg font-semibold text-foreground">
                           Filter Articles
                         </h4>
-                        {isAnyFilterActive() && (
-                          <button
-                            onClick={clearAllFilters}
-                            className="text-sm text-primary hover:text-primary/80"
-                          >
-                            Clear All
-                          </button>
-                        )}
                       </div>
 
                       {/* CATEGORY FILTER */}
@@ -994,7 +1013,7 @@ export default function NewsPage() {
                         </h5>
                         <MultiSelectDropdown
                           label="Categories"
-                          icon={<Filter className="h-4 w-4" />}
+                          icon={<CalendarDays className="h-4 w-4" />}
                           options={newsCategories.filter(
                             (cat) => cat !== "All News",
                           )}
@@ -1008,19 +1027,7 @@ export default function NewsPage() {
                       </div>
 
                       {/* DATE RANGE FILTER */}
-                      {/* <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
-                          Date Range
-                        </h5>
-                        <DateRangeSelector
-                          dateRange={dateRange}
-                          selectedDateRange={selectedDateRange}
-                          onDateRangeChange={setDateRange}
-                          onPredefinedRangeSelect={applyDateRangeFilter}
-                        />
-                      </div> */}
-
-                      <div className="mb-2">
+                      <div className="mb-4">
                         <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
                           <Calendar className="h-4 w-4" />
                           Date Range
@@ -1031,11 +1038,7 @@ export default function NewsPage() {
                               key={range.value}
                               onClick={() => {
                                 setSelectedDateRange(range.value);
-                                if (range.value === "custom") {
-                                  // Show custom date inputs
-                                } else {
-                                  applyDateRangeFilter(range.value);
-                                }
+                                applyDateRangeFilter(range.value);
                               }}
                               className={`px-3 py-2 text-xs rounded-lg border ${
                                 selectedDateRange === range.value
@@ -1048,10 +1051,8 @@ export default function NewsPage() {
                           ))}
                         </div>
 
-                        {/* CUSTOM DATE INPUTS */}
-                        {(selectedDateRange === "custom" ||
-                          dateRange.from ||
-                          dateRange.to) && (
+                        {/* CUSTOM DATE INPUTS - Only shown when Custom is selected */}
+                        {showCustomDatePicker && (
                           <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
                             <div>
                               <label className="text-xs text-muted-foreground block mb-1">
@@ -1065,7 +1066,6 @@ export default function NewsPage() {
                                     ...dateRange,
                                     from: e.target.value,
                                   });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1082,7 +1082,6 @@ export default function NewsPage() {
                                     ...dateRange,
                                     to: e.target.value,
                                   });
-                                  setSelectedDateRange("custom");
                                 }}
                                 className="w-full"
                               />
@@ -1095,6 +1094,7 @@ export default function NewsPage() {
                             onClick={() => {
                               setDateRange({ from: "", to: "" });
                               setSelectedDateRange("");
+                              setShowCustomDatePicker(false);
                             }}
                             className="text-xs text-primary hover:text-primary/80 mt-2"
                           >
@@ -1120,195 +1120,182 @@ export default function NewsPage() {
                             allOptionLabel="All Countries"
                           />
                         </div>
-
-                        {/* STATE FILTER */}
                       </div>
 
-                      {/* LOCATION DETECTION */}
-                      <div className="p-3 bg-secondary/30 rounded-lg pb-0">
-                        <div className="flex items-center justify-between mb-2">
-                          <h5 className="text-sm font-medium text-foreground flex items-center gap-2">
-                            <MapPin className="h-4 w-4" />
-                            Your Location
-                          </h5>
-                          <button
-                            onClick={detectUserLocation}
-                            disabled={isDetectingLocation}
-                            className="text-xs text-primary hover:text-primary/80"
-                          >
-                            {isDetectingLocation ? (
-                              <Loader2 className="h-3 w-3 animate-spin" />
-                            ) : (
-                              "Refresh"
+                      {/* ACTIVE FILTERS SUMMARY */}
+                      {isAnyFilterActive() && (
+                        <div className="pt-4 mt-4 border-t border-border">
+                          <div className="flex items-center justify-between mb-2">
+                            <h5 className="text-sm font-medium text-foreground">
+                              Active Filters
+                            </h5>
+                            <button
+                              onClick={clearAllFilters}
+                              className="text-xs text-primary hover:text-primary/80 flex items-center gap-1"
+                            >
+                              <X className="h-3 w-3" />
+                              Clear All
+                            </button>
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {selectedCategories.length > 0 &&
+                              !selectedCategories.includes("All News") && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
+                                  <CalendarDays className="h-3 w-3" />
+                                  {selectedCategories.length} category
+                                  {selectedCategories.length !== 1 ? "ies" : ""}
+                                  <button
+                                    onClick={() =>
+                                      setSelectedCategories(["All News"])
+                                    }
+                                    className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </button>
+                                </span>
+                              )}
+                            {selectedSourceTypes.length > 0 &&
+                              !selectedSourceTypes.includes("All Sources") && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
+                                  <FileText className="h-3 w-3" />
+                                  {selectedSourceTypes.length} source type
+                                  {selectedSourceTypes.length !== 1 ? "s" : ""}
+                                  <button
+                                    onClick={() =>
+                                      setSelectedSourceTypes(["All Sources"])
+                                    }
+                                    className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </button>
+                                </span>
+                              )}
+
+                            {/* Only show date range in active filters for custom dates */}
+                            {selectedDateRange === "custom" &&
+                              dateRange.from && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                  <Calendar className="h-3 w-3" />
+                                  From:{" "}
+                                  {new Date(dateRange.from).toLocaleDateString(
+                                    "en-US",
+                                    {
+                                      month: "short",
+                                      day: "numeric",
+                                    },
+                                  )}
+                                  <button
+                                    onClick={() =>
+                                      setDateRange({ ...dateRange, from: "" })
+                                    }
+                                    className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </button>
+                                </span>
+                              )}
+                            {selectedDateRange === "custom" && dateRange.to && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                <Calendar className="h-3 w-3" />
+                                To:{" "}
+                                {new Date(dateRange.to).toLocaleDateString(
+                                  "en-US",
+                                  {
+                                    month: "short",
+                                    day: "numeric",
+                                  },
+                                )}
+                                <button
+                                  onClick={() =>
+                                    setDateRange({ ...dateRange, to: "" })
+                                  }
+                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
                             )}
-                          </button>
+
+                            {/* Show preset date range label instead of dates */}
+                            {selectedDateRange &&
+                              selectedDateRange !== "custom" && (
+                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+                                  <Calendar className="h-3 w-3" />
+                                  {
+                                    predefinedDateRanges.find(
+                                      (r) => r.value === selectedDateRange,
+                                    )?.label
+                                  }
+                                  <button
+                                    onClick={() => {
+                                      setDateRange({ from: "", to: "" });
+                                      setSelectedDateRange("");
+                                    }}
+                                    className="ml-1 hover:bg-green-200 rounded-full p-0.5"
+                                  >
+                                    <X className="h-3 w-3" />
+                                  </button>
+                                </span>
+                              )}
+
+                            {selectedCountries.length > 0 && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                                <Globe className="h-3 w-3" />
+                                {selectedCountries.length} country
+                                {selectedCountries.length !== 1 ? "ies" : ""}
+                                <button
+                                  onClick={() => setSelectedCountries([])}
+                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedStates.length > 0 && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                                <MapPin className="h-3 w-3" />
+                                {selectedStates.length} state
+                                {selectedStates.length !== 1 ? "s" : ""}
+                                <button
+                                  onClick={() => setSelectedStates([])}
+                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {selectedRegions.length > 0 && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+                                <Globe className="h-3 w-3" />
+                                {selectedRegions.length} region
+                                {selectedRegions.length !== 1 ? "s" : ""}
+                                <button
+                                  onClick={() => setSelectedRegions([])}
+                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                            {searchQuery && (
+                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
+                                <Search className="h-3 w-3" />
+                                Search: {searchQuery}
+                                <button
+                                  onClick={() => setSearchQuery("")}
+                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
+                                >
+                                  <X className="h-3 w-3" />
+                                </button>
+                              </span>
+                            )}
+                          </div>
                         </div>
-                        {userLocation.detected ? (
-                          <div className="text-xs text-muted-foreground">
-                            Detected:{" "}
-                            <span className="font-medium text-foreground">
-                              {userLocation.city && `${userLocation.city}, `}
-                              {userLocation.state && `${userLocation.state}, `}
-                              {userLocation.country}
-                            </span>
-                          </div>
-                        ) : (
-                          <div className="text-xs text-muted-foreground">
-                            Location not detected. Click refresh to try again.
-                          </div>
-                        )}
-                      </div>
+                      )}
                     </div>
-
-                    {/* ACTIVE FILTERS SUMMARY */}
-                    {isAnyFilterActive() && (
-                      <div className="pt-4 ">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
-                          Active Filters
-                        </h5>
-                        <div className="flex flex-wrap gap-2">
-                          {selectedCategories.length > 0 &&
-                            !selectedCategories.includes("All News") && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                                <Filter className="h-3 w-3" />
-                                {selectedCategories.length} category
-                                {selectedCategories.length !== 1 ? "ies" : ""}
-                                <button
-                                  onClick={() =>
-                                    setSelectedCategories(["All News"])
-                                  }
-                                  className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                          {selectedSourceTypes.length > 0 &&
-                            !selectedSourceTypes.includes("All Sources") && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                <FileText className="h-3 w-3" />
-                                {selectedSourceTypes.length} source type
-                                {selectedSourceTypes.length !== 1 ? "s" : ""}
-                                <button
-                                  onClick={() =>
-                                    setSelectedSourceTypes(["All Sources"])
-                                  }
-                                  className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                          {dateRange.from && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                              <Calendar className="h-3 w-3" />
-                              From:{" "}
-                              {new Date(dateRange.from).toLocaleDateString(
-                                "en-US",
-                                {
-                                  month: "short",
-                                  day: "numeric",
-                                },
-                              )}
-                              <button
-                                onClick={() =>
-                                  setDateRange({ ...dateRange, from: "" })
-                                }
-                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                          {dateRange.to && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                              <Calendar className="h-3 w-3" />
-                              To:{" "}
-                              {new Date(dateRange.to).toLocaleDateString(
-                                "en-US",
-                                {
-                                  month: "short",
-                                  day: "numeric",
-                                },
-                              )}
-                              <button
-                                onClick={() =>
-                                  setDateRange({ ...dateRange, to: "" })
-                                }
-                                className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                          {selectedCountries.length > 0 && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                              <Globe className="h-3 w-3" />
-                              {selectedCountries.length} country
-                              {selectedCountries.length !== 1 ? "ies" : ""}
-                              <button
-                                onClick={() => setSelectedCountries([])}
-                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                          {selectedStates.length > 0 && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                              <MapPin className="h-3 w-3" />
-                              {selectedStates.length} state
-                              {selectedStates.length !== 1 ? "s" : ""}
-                              <button
-                                onClick={() => setSelectedStates([])}
-                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                          {selectedRegions.length > 0 && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                              <Globe className="h-3 w-3" />
-                              {selectedRegions.length} region
-                              {selectedRegions.length !== 1 ? "s" : ""}
-                              <button
-                                onClick={() => setSelectedRegions([])}
-                                className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                          {searchQuery && (
-                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                              <Search className="h-3 w-3" />
-                              Search: {searchQuery}
-                              <button
-                                onClick={() => setSearchQuery("")}
-                                className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    )}
                   </div>
                 )}
               </div>
-
-              {isAnyFilterActive() && (
-                <Button
-                  variant="outline"
-                  className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                  onClick={clearAllFilters}
-                >
-                  <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                  Clear All
-                </Button>
-              )}
             </div>
           </div>
 

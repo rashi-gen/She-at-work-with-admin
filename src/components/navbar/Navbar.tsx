@@ -90,7 +90,7 @@ export const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   className={`
-                    text-sm font-medium transition-colors duration-300
+                    text-md font-medium transition-colors duration-300
                     ${
                       isActive
                         ? "text-accent"
@@ -108,7 +108,7 @@ export const Navbar = () => {
               <button
                 onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
                 className={`
-                  flex items-center gap-1 text-sm font-medium transition-colors duration-300
+                  flex items-center gap-1 text-md font-medium transition-colors duration-300
                   ${
                     isAboutActive
                       ? "text-accent"
@@ -135,7 +135,7 @@ export const Navbar = () => {
                         key={item.name}
                         href={item.href}
                         className={`
-                          block px-4 py-2 text-sm transition-colors
+                          block px-4 py-2 text-md transition-colors
                           ${
                             isActive
                               ? "bg-accent/10 text-accent"
@@ -157,7 +157,7 @@ export const Navbar = () => {
               <button
                 onClick={() => setIsGettingStartedDropdownOpen(!isGettingStartedDropdownOpen)}
                 className={`
-                  flex items-center gap-1 text-sm font-medium transition-colors duration-300
+                  flex items-center gap-1 text-md font-medium transition-colors duration-300
                   ${
                     isGettingStartedActive
                       ? "text-accent"
@@ -184,7 +184,7 @@ export const Navbar = () => {
                         key={item.name}
                         href={item.href}
                         className={`
-                          block px-4 py-2 text-sm transition-colors
+                          block px-4 py-2 text-md transition-colors
                           ${
                             isActive
                               ? "bg-accent/10 text-accent"
@@ -205,7 +205,7 @@ export const Navbar = () => {
             <Link
               href="/contact"
               className={`
-                text-sm font-medium transition-colors duration-300
+                text-md font-medium transition-colors duration-300
                 ${
                   isContactActive
                     ? "text-accent"

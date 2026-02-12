@@ -3,7 +3,7 @@
 
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Mail } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Mail, ArrowRight, MapPin, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { blogsData } from "@/data/Blogs";
@@ -140,6 +140,22 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
     }
   };
 
+  // Helper function to extract excerpt (copied from blogs page)
+const extractExcerpt = (content: string, maxLength: number = 150): string => {
+  if (!content) return 'No excerpt available';
+  
+  try {
+    const plainText = content.replace(/<[^>]*>/g, '');
+    const cleanText = plainText.replace(/\s+/g, ' ').trim();
+    
+    if (cleanText.length <= maxLength) return cleanText;
+    return cleanText.substring(0, maxLength) + '...';
+  } catch (error) {
+    console.warn('Error extracting excerpt:', error);
+    return 'No excerpt available';
+  }
+};
+
   return (
     <>
       <Navbar/>
@@ -264,45 +280,89 @@ export default function BlogDetailPage({ params }: { params: Promise<{ id: strin
           />
 
           {/* Related Articles */}
-          {relatedBlogs.length > 0 && (
-            <div className="mt-16 pt-8 border-t">
-              <h2 className="text-2xl font-display font-bold text-foreground mb-6">
-                Related Articles
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedBlogs.map((relatedBlog) => (
-                  <Link 
-                    key={relatedBlog.ID} 
-                    href={`/blogs/${relatedBlog.post_name}`}
-                    className="group"
-                  >
-                    <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border">
-                      <div className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
-                          style={{ backgroundImage: relatedBlog.featured_image_url ? `url(${relatedBlog.featured_image_url})` : undefined }}>
-                        {!relatedBlog.featured_image_url && (
-                          <div className="h-full flex items-center justify-center text-white/40 text-4xl font-display">
-                            {relatedBlog.post_title.charAt(0)}
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-4">
-                        <span className="inline-block px-2 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 uppercase">
-                          {extractCategory(relatedBlog.post_content)}
+     {/* Related Articles */}
+{relatedBlogs.length > 0 && (
+  <div className="mt-16 pt-8 border-t">
+    <h2 className="text-2xl font-display font-bold text-foreground mb-6">
+      Related Articles
+    </h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+      {relatedBlogs.map((relatedBlog) => (
+        <Link 
+          key={relatedBlog.ID} 
+          href={`/blogs/${relatedBlog.post_name}`}
+          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full"
+        >
+          {/* IMAGE CONTAINER - Exact same as blogs page */}
+          <div className="relative h-40 sm:h-44 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
+            {relatedBlog.featured_image_url ? (
+              <img
+                src={relatedBlog.featured_image_url}
+                alt={relatedBlog.post_title}
+                className="absolute inset-0 w-full h-full object-fit"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                <div className="text-white/40 text-5xl font-display">
+                  {relatedBlog.post_title.charAt(0)}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* CONTENT - Exact same as blogs page */}
+          <div className="p-4 sm:p-6 flex flex-col flex-grow">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
+              
+              <span className="text-xs text-muted-foreground flex items-center gap-1">
+                <User className="h-3 w-3" />
+                {extractAuthor(relatedBlog.post_content).split(' ')[0]}
+              </span>
+            </div>
+
+            <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+              {relatedBlog.post_title.replace(/&amp;/g, '&')}
+            </h3>
+
+            <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+              {relatedBlog.post_excerpt || extractExcerpt(relatedBlog.post_content, 120)}
+            </p>
+
+            <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                  <span>{formatDate(relatedBlog.post_date)}</span>
+                </div>
+                {/* Optional: Add location if available */}
+                {(() => {
+                  const content = relatedBlog.post_content.toLowerCase();
+                  if (content.includes('california') || content.includes('new york') || content.includes('texas')) {
+                    return (
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                        <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                        <span>
+                          {content.includes('california') && 'California'}
+                          {content.includes('new york') && 'New York'}
+                          {content.includes('texas') && 'Texas'}
                         </span>
-                        <h3 className="font-display font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                          {relatedBlog.post_title.replace(/&amp;/g, '&')}
-                        </h3>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Calendar className="h-3 w-3" />
-                          <span>{formatDate(relatedBlog.post_date)}</span>
-                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    );
+                  }
+                  return null;
+                })()}
+              </div>
+              <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
+                Read
+                <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
-          )}
+          </div>
+        </Link>
+      ))}
+    </div>
+  </div>
+)}
 
           {/* Back to Blogs Button */}
           <div className="mt-12 text-center">
