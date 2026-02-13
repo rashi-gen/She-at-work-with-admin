@@ -1,3 +1,4 @@
+/*eslint-disable  @typescript-eslint/no-unused-vars */
 // /app/lib/wordpress-converter.ts
 import DOMPurify from 'isomorphic-dompurify';
 
@@ -10,18 +11,20 @@ export interface WordPressPost {
   featured_image_url: string | null;
   section_name: string;
   post_name: string;
+  post_author?: string;
+  comment_count?: string;
 }
 
 export class WordPressContentConverter {
   /**
    * Main method to convert WordPress content to clean HTML
    */
-  static convert(content: string): string {
+  static convert(content: string, title?: string): string {
     if (!content) return '';
 
     try {
-      // Step 1: Remove WordPress block comments
-      let cleaned = this.removeBlockComments(content);
+      // Step 1: Remove WordPress block comments and shortcodes
+      let cleaned = this.removeWordPressMarkup(content);
 
       // Step 2: Decode HTML entities early
       cleaned = this.decodeEntities(cleaned);
@@ -35,8 +38,8 @@ export class WordPressContentConverter {
       // Step 5: Clean WordPress-specific classes/styles
       cleaned = this.cleanWordPressClasses(cleaned);
 
-      // Step 6: Detect content type and format accordingly
-      cleaned = this.formatContent(cleaned);
+      // Step 6: Detect and format interview content (Q&A format with quotes)
+      cleaned = this.formatInterviewContent(cleaned, title);
 
       // Step 7: Clean spacing and empty tags
       cleaned = this.cleanSpacing(cleaned);
@@ -61,12 +64,25 @@ export class WordPressContentConverter {
   }
 
   // ─────────────────────────────────────────────
-  // STEP 1 – Remove WordPress block comments
+  // STEP 1 – Remove WordPress block comments and shortcodes
   // ─────────────────────────────────────────────
-  private static removeBlockComments(content: string): string {
+  private static removeWordPressMarkup(content: string): string {
     return content
+      // Remove WordPress block comments (both opening and closing)
       .replace(/<!-- \/?wp:[^\-]*?-->/g, '')
-      .replace(/<!--.*?-->/g, '');
+      .replace(/<!-- \/?wp:paragraph[^\-]*?-->/g, '')
+      .replace(/<!-- \/?wp:list[^\-]*?-->/g, '')
+      .replace(/<!-- \/?wp:heading[^\-]*?-->/g, '')
+      .replace(/<!--.*?-->/gs, '') // Remove any other HTML comments
+      
+      // Remove FreshFramework shortcodes
+      .replace(/\[\/?ffb[^\]]*\]/g, '')
+      
+      // Remove any other WordPress shortcodes
+      .replace(/\[\/?[a-z_]+[^\]]*\]/gi, '')
+      
+      // Clean up any leftover empty lines from removed comments
+      .replace(/^\s*[\r\n]/gm, '');
   }
 
   // ─────────────────────────────────────────────
@@ -79,14 +95,18 @@ export class WordPressContentConverter {
       .replace(/&lt;/g, '<')
       .replace(/&gt;/g, '>')
       .replace(/&quot;/g, '"')
-      .replace(/&#8217;/g, '\u2019')
-      .replace(/&#8216;/g, '\u2018')
-      .replace(/&#8220;/g, '\u201C')
-      .replace(/&#8221;/g, '\u201D')
-      .replace(/&#8211;/g, '\u2013')
-      .replace(/&#8212;/g, '\u2014')
+      .replace(/&#8217;/g, '\u2019') // Right single quote
+      .replace(/&#8216;/g, '\u2018') // Left single quote
+      .replace(/&#8220;/g, '\u201C') // Left double quote
+      .replace(/&#8221;/g, '\u201D') // Right double quote
+      .replace(/&#8211;/g, '\u2013') // En dash
+      .replace(/&#8212;/g, '\u2014') // Em dash
       .replace(/&#038;/g, '&')
-      .replace(/&hellip;/g, '…');
+      .replace(/&hellip;/g, '…')
+      .replace(/&ldquo;/g, '"')
+      .replace(/&rdquo;/g, '"')
+      .replace(/&lsquo;/g, "'")
+      .replace(/&rsquo;/g, "'");
   }
 
   // ─────────────────────────────────────────────
@@ -97,6 +117,8 @@ export class WordPressContentConverter {
       .replace(/\r\n/g, '\n')
       .replace(/\r/g, '\n')
       .replace(/[ \t]+/g, ' ')
+      .replace(/\n\s+\n/g, '\n\n')
+      .replace(/\n{3,}/g, '\n\n')
       .trim();
   }
 
@@ -150,183 +172,190 @@ export class WordPressContentConverter {
   }
 
   // ─────────────────────────────────────────────
-  // STEP 6 – Smart content formatter
-  //   Detects and handles ALL content patterns:
-  //   (a) Prose intro + Q&A mixed
-  //   (b) Pure Q&A with various Q/A markers
-  //   (c) Pure prose / narrative
-  //   (d) Standalone quotes
+  // STEP 6 – Format interview content (Q&A with quotes)
   // ─────────────────────────────────────────────
-  private static formatContent(content: string): string {
-    // First extract and process standalone HTML blocks (tables, figures, etc.)
-    // Then work on the text content
+  private static formatInterviewContent(content: string, title?: string): string {
+    let formatted = content;
 
-    let out = content;
+  
 
-    // ── (i) Blockquotes already in <blockquote> tags ──
-    out = out.replace(
-      /<blockquote[^>]*>([\s\S]*?)<\/blockquote>/gi,
-      (_m, inner) =>
-        `<figure class="wp-block-quote"><blockquote><p>${inner.replace(/<\/?p>/gi, '').trim()}</p></blockquote></figure>`
-    );
+    // Format the intro paragraph (first paragraph with interviewee description)
+    formatted = this.formatInterviewIntro(formatted);
 
-    // ── (ii) Explicit <blockquote> or figure.wp-block-quote ──
-    // already handled above
+    // Format quotes with "Quote –" prefix
+    formatted = this.formatPrefixedQuotes(formatted);
 
-    // ── (iii) Process paragraph-level Q&A and prose ──
-    out = this.processParagraphs(out);
+    // Format Q&A pairs with numbered questions
+    formatted = this.formatQuestionAnswerPairs(formatted);
 
-    // ── (iv) Inline quote pattern: text ending with "quoted text" on its own line ──
-    out = this.extractInlineQuotes(out);
+    // Format any remaining quotes
+    formatted = this.formatStandaloneQuotes(formatted);
 
-    return out;
+    return formatted;
   }
 
   // ─────────────────────────────────────────────
-  // Core paragraph processor – handles every known Q&A style
+  // Format interview intro paragraph
   // ─────────────────────────────────────────────
-  private static processParagraphs(content: string): string {
-    // Split into blocks (p tags, divs, or raw text separated by double newlines)
-    // We'll work on the raw string with regex passes
-
-    let out = content;
-
-    // ── Pattern A: <p><strong>Q.</strong> or <p><strong>Q1.</strong> etc. ──
-    // e.g. <p><strong>Q. How did you...</strong></p>
-    out = out.replace(
-      /<p[^>]*>\s*<strong>\s*Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s*(.*?)<\/strong>\s*<\/p>/gi,
-      (_m, q) => this.makeQuestion(q.trim())
-    );
-
-    // ── Pattern B: <p>Q. plain text (no strong tag) ──
-    out = out.replace(
-      /<p[^>]*>\s*Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s+(.+?)<\/p>/gi,
-      (_m, q) => this.makeQuestion(q.trim())
-    );
-
-    // ── Pattern C: <p><strong>1. Question text</strong></p> (numbered, bold) ──
-    out = out.replace(
-      /<p[^>]*>\s*<strong>\s*(\d+)[.)]\s+(.*?)<\/strong>\s*<\/p>/gi,
-      (_m, num, q) => this.makeQuestion(`${num}. ${q.trim()}`)
-    );
-
-    // ── Pattern D: <p>1. Question text</p> (numbered plain) ──
-    out = out.replace(
-      /<p[^>]*>\s*(\d+)[.)]\s+([A-Z].{10,})\s*<\/p>/gi,
-      (_m, num, q) => this.makeQuestion(`${num}. ${q.trim()}`)
-    );
-
-    // ── Pattern E: Ans. / Answer: / A. prefix ──
-    out = out.replace(
-      /<p[^>]*>\s*<strong>\s*A(?:ns(?:wer)?)?\.?\s*[:\-]?\s*<\/strong>\s*(.*?)<\/p>/gi,
-      (_m, a) => this.makeAnswer(a.trim())
-    );
-
-    out = out.replace(
-      /<p[^>]*>\s*A(?:ns(?:wer)?)?\.?\s*[:\-]\s+(.+?)<\/p>/gi,
-      (_m, a) => this.makeAnswer(a.trim())
-    );
-
-    // ── Pattern F: Mixed inline Q and A in same paragraph
-    //    e.g. "Q. How did...? It happened by chance..."
-    //    This is the tricky prose+QA pattern from your sample
-    out = this.splitInlineMixedQA(out);
-
-    // ── Pattern G: Prose intro paragraph (no Q/A marker) → wrap in intro class ──
-    // Already plain <p> tags — just ensure they're clean
-
-    // ── Pattern H: Standalone "Quote –" or italicized quotes ──
-    out = out.replace(
-      /<p[^>]*>\s*["""]([^"""]{20,})["""]\s*<\/p>/gi,
-      (_m, q) =>
-        `<figure class="wp-block-quote"><blockquote><p>${q.trim()}</p></blockquote></figure>`
-    );
-
-    out = out.replace(
-      /<p[^>]*>\s*<em>\s*["""]([^"""]{15,})["""]\s*<\/em>\s*<\/p>/gi,
-      (_m, q) =>
-        `<figure class="wp-block-quote"><blockquote><p>${q.trim()}</p></blockquote></figure>`
-    );
-
-    out = out.replace(
-      /<p[^>]*>\s*Quote\s*[–\-—:]\s*["""]?(.+?)["""]?\s*<\/p>/gi,
-      (_m, q) =>
-        `<figure class="wp-block-quote"><blockquote><p>${q.trim()}</p></blockquote></figure>`
-    );
-
-    return out;
+  private static formatInterviewIntro(content: string, ): string {
+    // Look for the first paragraph that introduces the interviewee
+    const paragraphs = content.match(/<p>(.*?)<\/p>/g);
+    
+    if (paragraphs && paragraphs.length > 0) {
+      // Check if the first paragraph contains introduction text
+      const firstPara = paragraphs[0];
+      if (firstPara.includes('joined by') || firstPara.includes('Founder') || firstPara.includes('Design Head')) {
+        return content.replace(firstPara, `<div class="interview-intro">${firstPara}</div>`);
+      }
+    }
+    
+    return content;
   }
 
   // ─────────────────────────────────────────────
-  // Handle prose paragraphs that contain BOTH
-  // a question AND its answer inline (no tags)
-  // e.g.: "Q. How did you...? It happened by chance."
+  // Format quotes with "Quote –" prefix
   // ─────────────────────────────────────────────
-  private static splitInlineMixedQA(content: string): string {
-    // Match paragraphs that start with Q. but are NOT already wrapped
-    // and contain enough text to be question+answer
-    return content.replace(
-      /<p[^>]*>\s*(Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s+[^<]{10,})\s*<\/p>/gi,
-      (_m, text) => {
-        // Try to split at the first sentence-ending punctuation followed by a capital letter
-        // The question usually ends at ? or . followed by a new sentence
-        const splitMatch = text.match(
-          /^(Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s+[\s\S]+?[?.])\s+([A-Z][\s\S]+)$/
-        );
+  private static formatPrefixedQuotes(content: string): string {
+    // Pattern: "Quote –" followed by quoted text
+    const quotePattern = /<p>\s*Quote\s*[–\-—]\s*[“"]([^"”]+)[”"]\s*<\/p>/gi;
+    
+    return content.replace(quotePattern, (match, quoteText) => {
+      return this.buildQuote(quoteText.trim());
+    });
+  }
 
-        if (splitMatch) {
-          const questionPart = splitMatch[1].replace(/^Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s+/i, '').trim();
-          const answerPart = splitMatch[2].trim();
-          return this.makeQuestion(questionPart) + this.makeAnswer(answerPart);
-        }
-
-        // If no clean split found, treat entire text as question
-        const cleanQ = text.replace(/^Q(?:ues(?:tion)?)?\.?\s*\d*[.:)–\-]?\s+/i, '').trim();
-        return this.makeQuestion(cleanQ);
+  // ─────────────────────────────────────────────
+  // Format Q&A pairs
+  // ─────────────────────────────────────────────
+  private static formatQuestionAnswerPairs(content: string): string {
+    let formatted = content;
+    
+    // Pattern: Numbered questions (e.g., "1. What sparked your interest...")
+    formatted = formatted.replace(
+      /<p>\s*(\d+)[\s\.\)]\s*(.*?)<\/p>\s*<p>(.*?)<\/p>(?=\s*<p>\s*(?:\d+|\d+\.|<\/p>|$))/gs,
+      (match, num, question, answer) => {
+        return this.buildQAPair(question.trim(), answer.trim());
       }
     );
+
+    // Pattern: Questions that might have multiple answer paragraphs
+    const questionRegex = /<p>\s*(\d+)[\s\.\)]\s*(.*?)<\/p>/g;
+    let lastIndex = 0;
+    let result = '';
+    const  matches = [];
+
+    // Collect all questions with their positions
+    let match;
+    while ((match = questionRegex.exec(formatted)) !== null) {
+      matches.push({
+        num: match[1],
+        question: match[2],
+        index: match.index,
+        endIndex: match.index + match[0].length
+      });
+    }
+
+    // Build result with Q&A pairs
+    if (matches.length > 0) {
+      for (let i = 0; i < matches.length; i++) {
+        const currentMatch = matches[i];
+        const nextMatch = matches[i + 1];
+        
+        // Add text before this question
+        result += formatted.substring(lastIndex, currentMatch.index);
+        
+        // Find answer paragraphs (all paragraphs until next question or end)
+        const startPos = currentMatch.endIndex;
+        const endPos = nextMatch ? nextMatch.index : formatted.length;
+        const answerContent = formatted.substring(startPos, endPos)
+          .replace(/<\/?p>/g, '') // Remove paragraph tags
+          .trim();
+        
+        // Build Q&A pair
+        result += this.buildQAPair(currentMatch.question, answerContent);
+        
+        lastIndex = endPos;
+      }
+      
+      // Add remaining content
+      result += formatted.substring(lastIndex);
+      formatted = result;
+    }
+
+    return formatted;
   }
 
   // ─────────────────────────────────────────────
-  // Extract inline quotes embedded in prose
-  // e.g. She says, "I do not have any experience..."
+  // Format standalone quotes (not prefixed with "Quote –")
   // ─────────────────────────────────────────────
-  private static extractInlineQuotes(content: string): string {
-    // Only extract if the quoted text is long enough to be meaningful (40+ chars)
-    // and it's a standalone quote attribution pattern
-    return content.replace(
-      /<p[^>]*>([^<"]*(?:says?|shares?|explains?|points? out|states?|notes?)[^<"]*)["""]([^"""]{40,})["""]([^<]*)<\/p>/gi,
-      (_m, before, quote, after) => {
-        const cleanBefore = before.trim();
-        const cleanAfter = after.trim();
-        const attribution = (cleanBefore + ' ' + cleanAfter).trim();
+  private static formatStandaloneQuotes(content: string): string {
+    let formatted = content;
 
-        return `<p>${attribution}</p>
+    // Pattern: Quoted text with attribution
+    formatted = formatted.replace(
+      /<p>\s*[“"]([^"”]{20,})[”"]\s*[—–]\s*([^<]+)<\/p>/gi,
+      (_match, quote, attribution) => {
+        return this.buildQuote(quote.trim(), attribution.trim());
+      }
+    );
+
+    // Pattern: Standalone quotes (just quoted text)
+    formatted = formatted.replace(
+      /<p>\s*[“"]([^"”]{20,})[”"]\s*<\/p>/gi,
+      (_match, quote) => {
+        return this.buildQuote(quote.trim());
+      }
+    );
+
+    // Pattern: Quotes in italics
+    formatted = formatted.replace(
+      /<p>\s*<em>\s*[“"]([^"”]{20,})[”"]\s*<\/em>\s*<\/p>/gi,
+      (_match, quote) => {
+        return this.buildQuote(quote.trim(), undefined, true);
+      }
+    );
+
+    return formatted;
+  }
+
+  // ─────────────────────────────────────────────
+  // Build Q&A pair HTML
+  // ─────────────────────────────────────────────
+  private static buildQAPair(question: string, answer: string): string {
+    // Clean question (remove any remaining HTML)
+    const cleanQuestion = question.replace(/<[^>]+>/g, '').trim();
+    
+    // Clean answer and split into paragraphs if needed
+    const cleanAnswer = answer.replace(/<[^>]+>/g, '').trim();
+    const answerParagraphs = cleanAnswer.split('\n\n').filter(p => p.trim());
+    
+    const answerHtml = answerParagraphs.length > 0
+      ? answerParagraphs.map(p => `<p>${p}</p>`).join('')
+      : `<p>${cleanAnswer}</p>`;
+
+    return `
+<div class="interview-question">
+  <h3>${cleanQuestion}</h3>
+</div>
+<div class="interview-answer">
+  ${answerHtml}
+</div>`;
+  }
+
+  // ─────────────────────────────────────────────
+  // Build quote HTML
+  // ─────────────────────────────────────────────
+  private static buildQuote(quote: string, attribution?: string, italic: boolean = false): string {
+    const quoteContent = italic ? `<em>“${quote}”</em>` : `“${quote}”`;
+    const attributionHtml = attribution ? `<cite>— ${attribution}</cite>` : '';
+
+    return `
 <figure class="wp-block-quote">
-  <blockquote><p>${quote.trim()}</p></blockquote>
+  <blockquote>
+    <p>${quoteContent}</p>
+    ${attributionHtml}
+  </blockquote>
 </figure>`;
-      }
-    );
-  }
-
-  // ─────────────────────────────────────────────
-  // HTML builders
-  // ─────────────────────────────────────────────
-  private static makeQuestion(text: string): string {
-    // Strip any remaining HTML tags inside the question text
-    const clean = text.replace(/<[^>]+>/g, '').trim();
-    return `
-<div class="entrechat-question">
-  <h3>${clean}</h3>
-</div>`;
-  }
-
-  private static makeAnswer(text: string): string {
-    const clean = text.trim();
-    return `
-<div class="entrechat-answer">
-  <p>${clean}</p>
-</div>`;
   }
 
   // ─────────────────────────────────────────────
@@ -338,8 +367,17 @@ export class WordPressContentConverter {
     // Remove empty paragraphs
     cleaned = cleaned.replace(/<p[^>]*>\s*(&nbsp;)?\s*<\/p>/gi, '');
 
-    // Collapse 3+ newlines
+    // Remove empty divs
+    cleaned = cleaned.replace(/<div[^>]*>\s*<\/div>/gi, '');
+
+    // Collapse multiple newlines
     cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
+
+    // Ensure proper spacing between interview sections
+    cleaned = cleaned.replace(
+      /<\/div>\s*\n\s*<div class="interview-/g,
+      '</div>\n<div class="interview-'
+    );
 
     return cleaned;
   }
@@ -369,25 +407,58 @@ export class WordPressContentConverter {
   }
 
   // ─────────────────────────────────────────────
-  // Public utility methods (used by other components)
+  // Public utility methods
   // ─────────────────────────────────────────────
 
-  static extractExcerpt(content: string, maxLength = 160): string {
+  static extractExcerpt(content: string, maxLength = 200): string {
     if (!content) return '';
+    
+    // First, try to find a good excerpt (first non-empty paragraph after intro)
+    const introMatch = content.match(/<div class="interview-intro">(.*?)<\/div>/);
+    if (introMatch) {
+      const text = introMatch[1]
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (text.length <= maxLength) return text;
+      return text.substring(0, maxLength).trim() + '…';
+    }
+
+    // Fallback: first paragraph
+    const pMatch = content.match(/<p>(.*?)<\/p>/);
+    if (pMatch) {
+      const text = pMatch[1]
+        .replace(/<[^>]*>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+      if (text.length <= maxLength) return text;
+      return text.substring(0, maxLength).trim() + '…';
+    }
+
+    // Final fallback: strip all HTML
     const text = content
       .replace(/<[^>]*>/g, ' ')
-      .replace(/<!--[\s\S]*?-->/g, '')
       .replace(/\s+/g, ' ')
       .trim();
+    
     if (text.length <= maxLength) return text;
     return text.substring(0, maxLength).trim() + '…';
   }
 
   static extractInterviewee(title: string): string {
     if (!title) return 'Interviewee';
+    
+    // Pattern: "Entrechat With Tanya Aggarwal"
+    const match = title.match(/Entrechat\s+(?:with|With)\s+(.+)/i);
+    if (match) {
+      return match[1]
+        .replace(/^(Ms\.|Mr\.|Mrs\.|Dr\.|Prof\.)\s+/i, '')
+        .replace(/&amp;/g, '&')
+        .trim();
+    }
+
     return title
-      .replace(/Entrechat\s+(?:With|with)\s+/i, '')
-      .replace(/Entrechat\s*[–\-—]\s*/i, '')
+      .replace(/Entrechat\s*/i, '')
       .replace(/^(Ms\.|Mr\.|Mrs\.|Dr\.|Prof\.)\s+/i, '')
       .replace(/&amp;/g, '&')
       .trim() || 'Interviewee';
@@ -398,22 +469,48 @@ export class WordPressContentConverter {
     const text = `${title} ${content}`.toLowerCase();
 
     const categories = [
-      { keywords: ['design', 'interior', 'architecture', 'fashion', 'home decor', 'art', 'madhubani', 'craft'], name: 'Design & Architecture' },
-      { keywords: ['wellness', 'health', 'yoga', 'fitness', 'mental', 'meditation', 'graphology', 'healing', 'dental'], name: 'Wellness & Health' },
-      { keywords: ['finance', 'funding', 'investment', 'wealth', 'money', 'banking', 'consulting', 'tax'], name: 'Funding & Finance' },
-      { keywords: ['technology', 'tech', 'software', 'ai', 'digital', 'coding', 'vr', 'aviation', 'edtech'], name: 'Technology' },
-      { keywords: ['leadership', 'management', 'hr', 'consulting', 'mentor', 'advocacy'], name: 'Leadership' },
-      { keywords: ['education', 'edtech', 'learning', 'teaching', 'school', 'college', 'student'], name: 'Education' },
-      { keywords: ['food', 'baking', 'culinary', 'restaurant', 'kitchen', 'cooking'], name: 'Food & Beverage' },
-      { keywords: ['sports', 'tt', 'table tennis', 'badminton', 'athlete', 'fitness'], name: 'Sports' },
-      { keywords: ['logistics', 'transport', 'cargo', 'supply chain', 'fleet'], name: 'Logistics' },
-      { keywords: ['travel', 'tourism', 'boutique', 'itinerary', 'destinations', 'wanderer'], name: 'Travel & Tourism' },
-      { keywords: ['social', 'ngo', 'foundation', 'nonprofit', 'disability', 'autism', 'empowerment'], name: 'Social Impact' },
+      { 
+        keywords: ['interior design', 'design head', 'space', 'decor', 'architecture', 'aesthetic'], 
+        name: 'Interior Design' 
+      },
+      { 
+        keywords: ['fitness', 'nutrition', 'health', 'wellness', 'workout', 'diet', 'yoga'], 
+        name: 'Health & Fitness' 
+      },
+      { 
+        keywords: ['travel', 'tourism', 'wanderer', 'destination', 'tour', 'footprint'], 
+        name: 'Travel & Tourism' 
+      },
+      { 
+        keywords: ['fashion', 'design', 'boutique', 'jewellery', 'handicraft', 'artisan', 'craft'], 
+        name: 'Fashion & Design' 
+      },
+      { 
+        keywords: ['media', 'content', 'storytelling', 'film', 'picture', 'studio'], 
+        name: 'Media & Entertainment' 
+      },
+      { 
+        keywords: ['education', 'school', 'communication', 'learning', 'student', 'teacher'], 
+        name: 'Education' 
+      },
+      { 
+        keywords: ['technology', 'tech', 'digital', 'platform', 'software', 'app'], 
+        name: 'Technology' 
+      },
+      { 
+        keywords: ['social', 'ngo', 'foundation', 'nonprofit', 'community', 'empowerment'], 
+        name: 'Social Impact' 
+      },
+      { 
+        keywords: ['food', 'baking', 'culinary', 'kitchen', 'dessert', 'restaurant'], 
+        name: 'Food & Beverage' 
+      },
     ];
 
     for (const category of categories) {
       if (category.keywords.some((kw) => text.includes(kw))) return category.name;
     }
+    
     return 'Entrepreneurship';
   }
 
@@ -430,9 +527,46 @@ export class WordPressContentConverter {
     try {
       const date = new Date(dateString);
       if (isNaN(date.getTime())) return 'Date unavailable';
-      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+      return date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      });
     } catch {
       return 'Date unavailable';
     }
+  }
+
+  static getInterviewer(content: string): string {
+    // Look for interviewer name in the content
+    const patterns = [
+      /(?:with|by)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*(?:on|in|&ndash;|–|—)/,
+      /(?:as told to|interview by)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+      /joined by\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+    ];
+
+    for (const pattern of patterns) {
+      const match = content.match(pattern);
+      if (match) return match[1];
+    }
+
+    return 'SheAtWork';
+  }
+
+  /**
+   * Extract the main quote from content (useful for displaying as pull quote)
+   */
+  static extractMainQuote(content: string): string | null {
+    // Look for quotes with "Quote –" prefix first
+    const quoteMatch = content.match(/Quote\s*[–\-—]\s*[“"]([^"”]+)[”"]/i);
+    if (quoteMatch) return quoteMatch[1];
+
+    // Then look for any substantial quote
+    const quotes = content.match(/[“"]([^"”]{30,})[”"]/g);
+    if (quotes && quotes.length > 0) {
+      return quotes[0].replace(/[“"]/g, '');
+    }
+
+    return null;
   }
 }

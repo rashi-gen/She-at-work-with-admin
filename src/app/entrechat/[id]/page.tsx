@@ -3,14 +3,23 @@
 
 import { notFound } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Calendar, Clock, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Mail, User } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  ArrowLeft,
+  Share2,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Mail,
+  User,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 import { Navbar } from "@/components/navbar/Navbar";
 import { entrechatData } from "@/data/Entrechat";
 import EntrechatPostContent from "@/components/enterchat/EntrechatPostContent";
-
 
 interface EntreChatItem {
   ID: string;
@@ -29,40 +38,56 @@ interface EntreChatItem {
 
 // Helper functions
 const extractInterviewee = (title: string): string => {
-  const cleaned = title.replace(/Entrechat\s+(?:With|with)\s+/i, '').trim();
-  const finalName = cleaned.replace(/^(Ms\.|Mr\.)\s+/i, '').trim();
+  const cleaned = title.replace(/Entrechat\s+(?:With|with)\s+/i, "").trim();
+  const finalName = cleaned.replace(/^(Ms\.|Mr\.)\s+/i, "").trim();
   return finalName || "Interviewee";
 };
 
 const extractCategory = (content: string): string => {
   const contentLower = content.toLowerCase();
-  if (contentLower.includes("design") || contentLower.includes("interior")) return "Design & Architecture";
-  if (contentLower.includes("wellness") || contentLower.includes("health")) return "Wellness & Health";
-  if (contentLower.includes("funding") || contentLower.includes("finance")) return "Funding & Finance";
-  if (contentLower.includes("technology") || contentLower.includes("tech")) return "Technology";
-  if (contentLower.includes("leadership") || contentLower.includes("management")) return "Leadership";
+  if (contentLower.includes("design") || contentLower.includes("interior"))
+    return "Design & Architecture";
+  if (contentLower.includes("wellness") || contentLower.includes("health"))
+    return "Wellness & Health";
+  if (contentLower.includes("funding") || contentLower.includes("finance"))
+    return "Funding & Finance";
+  if (contentLower.includes("technology") || contentLower.includes("tech"))
+    return "Technology";
+  if (
+    contentLower.includes("leadership") ||
+    contentLower.includes("management")
+  )
+    return "Leadership";
   return "Entrepreneurship";
 };
 
 const formatDate = (dateString: string) => {
   try {
     const date = new Date(dateString);
-    if (isNaN(date.getTime())) return 'Date unavailable';
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    if (isNaN(date.getTime())) return "Date unavailable";
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     });
   } catch (error) {
-    console.log(error)
-    return 'Date unavailable';
+    console.log(error);
+    return "Date unavailable";
   }
 };
 
-export default function EntrechatDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const [unwrappedParams, setUnwrappedParams] = useState<{ id: string } | null>(null);
+export default function EntrechatDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const [unwrappedParams, setUnwrappedParams] = useState<{ id: string } | null>(
+    null,
+  );
   const [interview, setInterview] = useState<EntreChatItem | null>(null);
-  const [relatedInterviews, setRelatedInterviews] = useState<EntreChatItem[]>([]);
+  const [relatedInterviews, setRelatedInterviews] = useState<EntreChatItem[]>(
+    [],
+  );
   const [isLoading, setIsLoading] = useState(true);
 
   // Unwrap params (Next.js 15 compatibility)
@@ -80,31 +105,33 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
 
     // Find the interview by slug/ID
     const foundInterview = entrechatData.find(
-      (item) => item.post_name === unwrappedParams.id || item.ID === unwrappedParams.id
+      (item) =>
+        item.post_name === unwrappedParams.id || item.ID === unwrappedParams.id,
     );
 
     if (foundInterview) {
       setInterview(foundInterview);
-      
+
       // Get related interviews (same category, exclude current)
       const category = extractCategory(foundInterview.post_content);
       const related = entrechatData
-        .filter(item => 
-          item.ID !== foundInterview.ID && 
-          extractCategory(item.post_content) === category
+        .filter(
+          (item) =>
+            item.ID !== foundInterview.ID &&
+            extractCategory(item.post_content) === category,
         )
         .slice(0, 3);
-      
+
       setRelatedInterviews(related);
     }
-    
+
     setIsLoading(false);
   }, [unwrappedParams]);
 
   if (isLoading) {
     return (
       <>
-        <Navbar/>
+        <Navbar />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
@@ -122,18 +149,27 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
   const handleShare = (platform: string) => {
     const url = window.location.href;
     const title = interview.post_title;
-    
+
     switch (platform) {
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+      case "facebook":
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+          "_blank",
+        );
         break;
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+      case "twitter":
+        window.open(
+          `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`,
+          "_blank",
+        );
         break;
-      case 'linkedin':
-        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+      case "linkedin":
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
+          "_blank",
+        );
         break;
-      case 'email':
+      case "email":
         window.location.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`Check out this interview: ${url}`)}`;
         break;
     }
@@ -144,7 +180,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
 
   return (
     <>
-      <Navbar/>
+      <Navbar />
       <main className="min-h-screen bg-background">
         {/* Navigation */}
         <div className="border-b">
@@ -170,11 +206,11 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
                 Interview
               </span>
             </div>
-            
+
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-foreground mb-6">
-              {interview.post_title.replace(/&amp;/g, '&')}
+              {interview.post_title.replace(/&amp;/g, "&")}
             </h1>
-            
+
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
@@ -186,10 +222,12 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
                   <span>{calculateReadTime(interview.post_content)}</span>
                 </div>
               </div>
-              
+
               <div className="flex items-center gap-2">
                 <User className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">With {interviewee}</span>
+                <span className="text-sm text-muted-foreground">
+                  With {interviewee}
+                </span>
               </div>
             </div>
           </header>
@@ -215,7 +253,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleShare('facebook')}
+                onClick={() => handleShare("facebook")}
                 className="h-8 w-8 p-0"
               >
                 <Facebook className="h-4 w-4" />
@@ -223,7 +261,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleShare('twitter')}
+                onClick={() => handleShare("twitter")}
                 className="h-8 w-8 p-0"
               >
                 <Twitter className="h-4 w-4" />
@@ -231,7 +269,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleShare('linkedin')}
+                onClick={() => handleShare("linkedin")}
                 className="h-8 w-8 p-0"
               >
                 <Linkedin className="h-4 w-4" />
@@ -239,7 +277,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleShare('email')}
+                onClick={() => handleShare("email")}
                 className="h-8 w-8 p-0"
               >
                 <Mail className="h-4 w-4" />
@@ -247,14 +285,12 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
             </div>
           </div>
 
-        
+          {/* Interview Content - Use WordPress converter */}
 
-{/* Interview Content - Use WordPress converter */}
-
-{/* Interview Content */}
-<div className="wordpress-content mb-12">
-  <EntrechatPostContent content={interview.post_content} />
-</div>
+          {/* Interview Content */}
+          <div className="wordpress-content mb-12">
+            <EntrechatPostContent content={interview.post_content} />
+          </div>
 
           {/* Interviewee Highlight */}
           <div className="mt-12 p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border border-primary/20">
@@ -267,8 +303,9 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
                   About {interviewee}
                 </h3>
                 <p className="text-foreground/80 leading-relaxed">
-                  In this exclusive EntreChat interview, {interviewee} shares valuable insights, experiences, 
-                  and advice for aspiring entrepreneurs and professionals.
+                  In this exclusive EntreChat interview, {interviewee} shares
+                  valuable insights, experiences, and advice for aspiring
+                  entrepreneurs and professionals.
                 </p>
               </div>
             </div>
@@ -282,16 +319,24 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedInterviews.map((related) => {
-                  const relatedInterviewee = extractInterviewee(related.post_title);
+                  const relatedInterviewee = extractInterviewee(
+                    related.post_title,
+                  );
                   return (
-                    <Link 
-                      key={related.ID} 
+                    <Link
+                      key={related.ID}
                       href={`/entrechat/${related.post_name}`}
                       className="group"
                     >
                       <div className="bg-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-border h-full">
-                        <div className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
-                            style={{ backgroundImage: related.featured_image_url ? `url(${related.featured_image_url})` : undefined }}>
+                        <div
+                          className="h-48 bg-gradient-to-br from-muted to-secondary bg-cover bg-center"
+                          style={{
+                            backgroundImage: related.featured_image_url
+                              ? `url(${related.featured_image_url})`
+                              : undefined,
+                          }}
+                        >
                           {!related.featured_image_url && (
                             <div className="h-full flex items-center justify-center text-white/40 text-4xl font-display">
                               {relatedInterviewee.charAt(0)}
@@ -303,7 +348,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
                             Interview
                           </span>
                           <h3 className="font-display font-bold text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-                            {related.post_title.replace(/&amp;/g, '&')}
+                            {related.post_title.replace(/&amp;/g, "&")}
                           </h3>
                           <div className="flex items-center gap-2 text-xs text-muted-foreground">
                             <Calendar className="h-3 w-3" />
@@ -335,7 +380,7 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
 
 // Helper function inside the component
 function calculateReadTime(content: string): string {
-  const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  const wordCount = content.replace(/<[^>]*>/g, "").split(/\s+/).length;
   const minutes = Math.ceil(wordCount / 200);
   return `${minutes} min read`;
 }

@@ -41,6 +41,10 @@ import {
   ProcessedNewsItem,
 } from "./helper";
 import { SearchSuggestions } from "./SearchSuggestions";
+import { ScrollReveal,  } from "@/components/common/ScrollReveal";
+import { motion, useAnimation, useInView, Variants } from "framer-motion";
+import { AnimatedText, ScrollFade, StaggerChildren } from "../common/ScrollFade";
+
 
 export default function NewsPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
@@ -76,11 +80,7 @@ export default function NewsPage() {
   const [selectedSourceTypes, setSelectedSourceTypes] = useState<string[]>([
     "All Sources",
   ]);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedExternalLink, setSelectedExternalLink] = useState<{
-    url: string;
-    title: string;
-  } | null>(null);
+
   const [userLocation, setUserLocation] = useState<{
     country?: string;
     state?: string;
@@ -89,7 +89,32 @@ export default function NewsPage() {
   }>({ detected: false });
   const [isDetectingLocation, setIsDetectingLocation] = useState(false);
   const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
-  const [isSplitView, setIsSplitView] = useState(false);
+
+  // Animation variants for banner text
+const bannerVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
+
+const bannerSubtitleVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      delay: 0.2,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
   // Function to detect user location
   const detectUserLocation = async () => {
@@ -644,855 +669,969 @@ export default function NewsPage() {
           />
         </div>
 
-        {/* Content - Left aligned */}
+        {/* Content - Left aligned with animations */}
         <div className="relative z-10 h-full flex items-center">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
-              {/* Title */}
-              <h1 className="text-white leading-tight">
-                <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
-                  Women in
-                  <br /> Business News
-                </span>
-              </h1>
+              {/* Animated Title */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={bannerVariants}
+              >
+                <h1 className="text-white leading-tight">
+                  <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold">
+                    Women in
+                    <br /> Business News
+                  </span>
+                </h1>
+              </motion.div>
 
-              <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl">
+              {/* Animated Subtitle with delay */}
+              <motion.p
+                initial="hidden"
+                animate="visible"
+                variants={bannerSubtitleVariants}
+                className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl"
+              >
                 Latest news, trends, and stories from women entrepreneurs across
                 India and beyond. Insights and policy updates driving innovation
                 and growth in women-led enterprises.
-              </p>
+              </motion.p>
             </div>
           </div>
         </div>
       </section>
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
-      <section className="px-4 sm:px-6 lg:px-8 py-8 ">
-        <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
-          {/* FEATURED - 2 COLUMNS */}
-          {featuredNews && (
-            <div className="lg:col-span-2">
-              <div
-                onClick={(e) =>
-                  handleFeaturedExternalLink(
-                    e,
-                    featuredNews.externalUrl,
-                    featuredNews.title,
-                  )
-                }
-                className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10 cursor-pointer"
-              >
-                {/* FEATURED BADGE */}
-                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
-                  <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-accent to-accent/80 text-white text-xs font-bold uppercase shadow-lg">
-                    Featured Story
-                  </span>
-                </div>
-
-                {/* IMAGE CONTAINER */}
-                <div className="relative h-48 sm:h-64 lg:h-[340px]">
-                  {featuredNews.image !== "/placeholder-news.jpg" ? (
-                    <Image
-                      src={featuredNews.image}
-                      alt={featuredNews.title}
-                      fill
-                      className="object-cover "
-                      priority
-                    />
-                  ) : (
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                      <div className="text-white/40 text-6xl font-display">
-                        {featuredNews.title.charAt(0)}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/* CONTENT */}
-                <div className="p-4 sm:px-6 sm:py-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 mb-2">
-                    <span className="inline-flex items-center gap-1 px-2 sm:px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase w-fit">
-                      {getCategoryIcon(featuredNews.category)}
-                      {featuredNews.category}
-                    </span>
-                    <span className="text-xs sm:text-sm text-muted-foreground">
-                      {featuredNews.source} • {featuredNews.sourceType}
+      <ScrollReveal direction="up" delay={0.2} threshold={0.1}>
+        <section className="px-4 sm:px-6 lg:px-8 py-8">
+          <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
+            {/* FEATURED - 2 COLUMNS */}
+            {featuredNews && (
+              <ScrollReveal direction="left" delay={0.3} className="lg:col-span-2">
+                <div
+                  onClick={(e) =>
+                    handleFeaturedExternalLink(
+                      e,
+                      featuredNews.externalUrl,
+                      featuredNews.title,
+                    )
+                  }
+                  className="block group bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-primary/10 cursor-pointer"
+                >
+                  {/* FEATURED BADGE */}
+                  <div className="absolute top-4 left-4 sm:top-6 sm:left-6 z-10">
+                    <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-gradient-to-r from-accent to-accent/80 text-white text-xs font-bold uppercase shadow-lg">
+                      Featured Story
                     </span>
                   </div>
 
-                  <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                    {featuredNews.title}
-                  </h2>
+                  {/* IMAGE CONTAINER */}
+                  <div className="relative h-48 sm:h-64 lg:h-[340px]">
+                    {featuredNews.image !== "/placeholder-news.jpg" ? (
+                      <Image
+                        src={featuredNews.image}
+                        alt={featuredNews.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        priority
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                        <div className="text-white/40 text-6xl font-display">
+                          {featuredNews.title.charAt(0)}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4  border-t border-border mt-auto">
-                    <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
-                        {featuredNews.date}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
-                        {featuredNews.readTime}
-                      </div>
-                      {featuredNews.state && (
-                        <div className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
-                          <span>{featuredNews.state}</span>
-                        </div>
-                      )}
-                      {featuredNews.country && !featuredNews.state && (
-                        <div className="flex items-center gap-1">
-                          <Globe className="h-3 w-3 sm:h-4 sm:w-4" />
-                          <span>{featuredNews.country}</span>
-                        </div>
-                      )}
+                  {/* CONTENT */}
+                  <div className="p-4 sm:px-6 sm:py-4">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-2 mb-2">
+                      <span className="inline-flex items-center gap-1 px-2 sm:px-3 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase w-fit">
+                        {getCategoryIcon(featuredNews.category)}
+                        {featuredNews.category}
+                      </span>
+                      <span className="text-xs sm:text-sm text-muted-foreground">
+                        {featuredNews.source} • {featuredNews.sourceType}
+                      </span>
                     </div>
 
+                    <h2 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-3 group-hover:text-primary transition-colors line-clamp-2">
+                      {featuredNews.title}
+                    </h2>
+
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-border mt-auto">
+                      <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
+                          {featuredNews.date}
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-3 w-3 sm:h-4 sm:w-4" />
+                          {featuredNews.readTime}
+                        </div>
+                        {featuredNews.state && (
+                          <div className="flex items-center gap-1">
+                            <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span>{featuredNews.state}</span>
+                          </div>
+                        )}
+                        {featuredNews.country && !featuredNews.state && (
+                          <div className="flex items-center gap-1">
+                            <Globe className="h-3 w-3 sm:h-4 sm:w-4" />
+                            <span>{featuredNews.country}</span>
+                          </div>
+                        )}
+                      </div>
+
+                      <Button
+                        className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          handleFeaturedExternalLink(
+                            e,
+                            featuredNews.externalUrl,
+                            featuredNews.title,
+                          );
+                        }}
+                      >
+                        {featuredNews.externalUrl
+                          ? "Read Full Story"
+                          : "View Details"}
+                        <ExternalLink className="ml-2 h-3 w-3 sm:w-4 group-hover:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            )}
+
+            {/* SIDEBAR - LATEST HEADLINES */}
+            <ScrollReveal direction="right" delay={0.4} className={!featuredNews ? "lg:col-span-3" : ""}>
+              <div className="space-y-4 sm:space-y-6">
+                <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
+                  {/* HEADER */}
+                  <div className="flex items-center gap-2 mb-4 sm:mb-6">
+                    <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                    <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
+                      Latest Headlines
+                    </h3>
+                  </div>
+
+                  {/* LATEST HEADLINES VIEW WITH IMAGES */}
+                  <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
+                    <StaggerChildren>
+                      <div className="space-y-3 sm:space-y-4">
+                        {latestHeadlines.map((news, i) => (
+                          <motion.div
+                            key={i}
+                            variants={{
+                              hidden: { opacity: 0, x: -20 },
+                              visible: { opacity: 1, x: 0 }
+                            }}
+                            onClick={(e) =>
+                              handleExternalLink(
+                                e,
+                                news.externalUrl,
+                                news.title,
+                                news.slug,
+                              )
+                            }
+                            className="block cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+                          >
+                            <div className="flex items-start gap-3">
+                              {/* IMAGE */}
+                              <div className="flex-shrink-0">
+                                <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-secondary">
+                                  {news.image !== "/placeholder-news.jpg" ? (
+                                    <Image
+                                      src={news.image}
+                                      alt={news.title}
+                                      fill
+                                      className="object-cover transition-transform duration-300 hover:scale-110"
+                                      sizes="(max-width: 768px) 48px, 56px"
+                                    />
+                                  ) : (
+                                    <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
+                                      <div className="text-primary/40 text-lg font-display">
+                                        {news.title.charAt(0)}
+                                      </div>
+                                    </div>
+                                  )}
+                                  {/* NUMBER OVERLAY */}
+                                  <div className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent text-white text-xs font-bold">
+                                    {i + 1}
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* CONTENT */}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
+                                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                                    {getCategoryIcon(news.category)}
+                                    <span className="truncate">
+                                      {news.category.split(" ")[0]}
+                                    </span>
+                                  </span>
+                                  <span className="text-[10px] text-muted-foreground truncate">
+                                    {news.source}
+                                  </span>
+                                </div>
+                                <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+                                  {news.title}
+                                </h4>
+                                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
+                                  <div className="flex items-center gap-1">
+                                    <Calendar className="h-3 w-3" />
+                                    <span>{news.date}</span>
+                                  </div>
+                                  {news.state && (
+                                    <div className="flex items-center gap-1">
+                                      <MapPin className="h-3 w-3" />
+                                      <span className="truncate max-w-[60px]">
+                                        {news.state}
+                                      </span>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
+
+                              {/* ARROW INDICATOR */}
+                              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </StaggerChildren>
+                  </div>
+
+                  {/* QUICK ACTION BUTTON */}
+                  <div className="mt-4 pt-4 border-t border-border">
                     <Button
-                      className="bg-primary hover:bg-primary/90 group text-sm sm:text-base w-full sm:w-auto"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        handleFeaturedExternalLink(
-                          e,
-                          featuredNews.externalUrl,
-                          featuredNews.title,
-                        );
+                      variant="ghost"
+                      className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
+                      onClick={() => {
+                        clearAllFilters();
+                        window.scrollTo({
+                          top:
+                            document.getElementById("all-news-section")
+                              ?.offsetTop || 0,
+                          behavior: "smooth",
+                        });
                       }}
                     >
-                      {featuredNews.externalUrl
-                        ? "Read Full Story"
-                        : "View Details"}
-                      <ExternalLink className="ml-2 h-3 w-3  sm:w-4 group-hover:translate-x-1 transition-transform" />
+                      View All News
+                      <ExternalLink className="h-3.5 w-3.5" />
                     </Button>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            </ScrollReveal>
+          </div>
+        </section>
+      </ScrollReveal>
 
-          {/* SIDEBAR - LATEST HEADLINES */}
-          <div
-            className={`space-y-4 sm:space-y-6 ${!featuredNews ? "lg:col-span-3" : ""}`}
-          >
-            <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
-              {/* HEADER */}
-              <div className="flex items-center gap-2 mb-4 sm:mb-6">
-                <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                <h3 className="text-lg sm:text-xl font-display font-bold text-foreground">
-                  Latest Headlines
-                </h3>
-              </div>
+      {/* ================= ALL NEWS GRID ================= */}
+      <ScrollFade delay={0.3}>
+        <section id="all-news-section" className="px-4 sm:px-6 lg:px-8 py-12">
+          <div className="max-w-screen-xl mx-auto">
+            {/* HEADER WITH SEARCH AND FILTER */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
+              <ScrollReveal direction="right" delay={0.2}>
+                <div>
+                  <AnimatedText as="h2" delay={0.1}>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
+                      {selectedCategories.includes("All News") ||
+                      selectedCategories.length === 0
+                        ? "All News Articles"
+                        : `${selectedCategories.length} ${selectedCategories.length === 1 ? "Category" : "Categories"} Selected`}
+                      {searchQuery && (
+                        <span className="text-lg sm:text-xl text-primary">
+                          {" "}
+                          - Search results for {searchQuery}
+                        </span>
+                      )}
+                    </h2>
+                  </AnimatedText>
+                  <AnimatedText as="p" delay={0.2}>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      {filteredNews.length}{" "}
+                      {filteredNews.length === 1 ? "article" : "articles"} found
+                      {selectedCategories.length > 0 &&
+                        !selectedCategories.includes("All News") &&
+                        ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? "category" : "categories"}`}
+                      {searchQuery && ` matching "${searchQuery}"`}
+                      {getDateRangeDisplayLabel() &&
+                        !searchQuery &&
+                        !selectedCategories.length &&
+                        ` • ${getDateRangeDisplayLabel()}`}
+                    </p>
+                  </AnimatedText>
+                </div>
+              </ScrollReveal>
 
-              {/* LATEST HEADLINES VIEW WITH IMAGES */}
-              <div className="max-h-[320px] overflow-y-auto pr-2 custom-scrollbar">
-                <div className="space-y-3 sm:space-y-4">
-                  {latestHeadlines.map((news, i) => (
-                    <div
-                      key={i}
-                      onClick={(e) =>
-                        handleExternalLink(
-                          e,
-                          news.externalUrl,
-                          news.title,
-                          news.slug,
-                        )
-                      }
-                      className="block cursor-pointer pb-3 sm:pb-4 border-b border-border last:border-0 last:pb-0 hover:bg-secondary/30 rounded-lg px-2 -mx-2 transition-all duration-200"
+              <ScrollReveal direction="left" delay={0.3}>
+                <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
+                  <div className="relative w-full sm:w-64" ref={searchRef}>
+                    <form onSubmit={handleSearchSubmit}>
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
+                      <Input
+                        type="search"
+                        placeholder="Search news..."
+                        className="pl-10 pr-10 w-full bg-white"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                        onFocus={() => {
+                          if (
+                            searchQuery.length >= 2 &&
+                            searchSuggestions.length > 0
+                          ) {
+                            setShowSuggestions(true);
+                          }
+                        }}
+                      />
+                      {searchQuery && (
+                        <button
+                          type="button"
+                          onClick={() => setSearchQuery("")}
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
+                        >
+                          <X className="h-4 w-4 text-black" />
+                        </button>
+                      )}
+                    </form>
+
+                    {/* SEARCH SUGGESTIONS DROPDOWN */}
+                    <SearchSuggestions
+                      suggestions={searchSuggestions}
+                      onSelect={handleSuggestionSelect}
+                      searchQuery={searchQuery}
+                      isVisible={showSuggestions}
+                      onClose={() => setShowSuggestions(false)}
+                    />
+                  </div>
+
+                  {/* FILTER DROPDOWN */}
+                  <div className="relative w-full sm:w-auto" ref={filterRef}>
+                    <Button
+                      variant="outline"
+                      className="w-full sm:w-auto flex items-center gap-2"
+                      onClick={() => setIsFilterOpen(!isFilterOpen)}
                     >
-                      <div className="flex items-start gap-3">
-                        {/* IMAGE */}
-                        <div className="flex-shrink-0">
-                          <div className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-lg overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                            {news.image !== "/placeholder-news.jpg" ? (
-                              <Image
-                                src={news.image}
-                                alt={news.title}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 48px, 56px"
-                              />
-                            ) : (
-                              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 flex items-center justify-center">
-                                <div className="text-primary/40 text-lg font-display">
-                                  {news.title.charAt(0)}
+                      <SlidersHorizontal className="h-4 w-4" />
+                      Filters
+                      {isAnyFilterActive() && (
+                        <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
+                          {(() => {
+                            let count = 0;
+                            if (
+                              selectedCategories.length > 0 &&
+                              !selectedCategories.includes("All News")
+                            )
+                              count++;
+                            if (dateRange.from || dateRange.to) count++;
+                            if (selectedStates.length > 0) count++;
+                            if (selectedCountries.length > 0) count++;
+                            if (selectedRegions.length > 0) count++;
+                            if (
+                              selectedSourceTypes.length > 0 &&
+                              !selectedSourceTypes.includes("All Sources")
+                            )
+                              count++;
+                            if (searchQuery) count++;
+                            return count;
+                          })()}
+                        </span>
+                      )}
+                    </Button>
+
+                    {/* FILTER DROPDOWN MENU */}
+                    {isFilterOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto p-4"
+                      >
+                        <div className="mb-2">
+                          <div className="flex items-center justify-between mb-4">
+                            <h4 className="text-lg font-semibold text-foreground">
+                              Filter Articles
+                            </h4>
+                          </div>
+
+                          {/* CATEGORY FILTER */}
+                          <div className="mb-4">
+                            <h5 className="text-sm font-medium text-foreground mb-2">
+                              Topic / Category
+                            </h5>
+                            <MultiSelectDropdown
+                              label="Categories"
+                              icon={<CalendarDays className="h-4 w-4" />}
+                              options={newsCategories.filter(
+                                (cat) => cat !== "All News",
+                              )}
+                              selectedValues={selectedCategories.filter(
+                                (cat) => cat !== "All News",
+                              )}
+                              onChange={(values) => setSelectedCategories(values)}
+                              placeholder="Select categories"
+                              allOptionLabel="All Categories"
+                            />
+                          </div>
+
+                          {/* DATE RANGE FILTER */}
+                          <div className="mb-4">
+                            <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
+                              <Calendar className="h-4 w-4" />
+                              Date Range
+                            </h5>
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
+                              {predefinedDateRanges.map((range) => (
+                                <button
+                                  key={range.value}
+                                  onClick={() => {
+                                    setSelectedDateRange(range.value);
+                                    applyDateRangeFilter(range.value);
+                                  }}
+                                  className={`px-3 py-2 text-xs rounded-lg border transition-all duration-200 ${
+                                    selectedDateRange === range.value
+                                      ? "bg-primary text-white border-primary scale-105"
+                                      : "bg-secondary/50 border-border hover:bg-secondary"
+                                  }`}
+                                >
+                                  {range.label}
+                                </button>
+                              ))}
+                            </div>
+
+                            {/* CUSTOM DATE INPUTS */}
+                            {showCustomDatePicker && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg overflow-hidden"
+                              >
+                                <div>
+                                  <label className="text-xs text-muted-foreground block mb-1">
+                                    From
+                                  </label>
+                                  <Input
+                                    type="date"
+                                    value={dateRange.from}
+                                    onChange={(e) => {
+                                      setDateRange({
+                                        ...dateRange,
+                                        from: e.target.value,
+                                      });
+                                    }}
+                                    className="w-full"
+                                  />
                                 </div>
-                              </div>
+                                <div>
+                                  <label className="text-xs text-muted-foreground block mb-1">
+                                    To
+                                  </label>
+                                  <Input
+                                    type="date"
+                                    value={dateRange.to}
+                                    onChange={(e) => {
+                                      setDateRange({
+                                        ...dateRange,
+                                        to: e.target.value,
+                                      });
+                                    }}
+                                    className="w-full"
+                                  />
+                                </div>
+                              </motion.div>
                             )}
-                            {/* NUMBER OVERLAY */}
-                            <div className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 rounded-full bg-gradient-to-br from-primary to-accent text-white text-xs font-bold">
-                              {i + 1}
+
+                            {(dateRange.from || dateRange.to) && (
+                              <button
+                                onClick={() => {
+                                  setDateRange({ from: "", to: "" });
+                                  setSelectedDateRange("");
+                                  setShowCustomDatePicker(false);
+                                }}
+                                className="text-xs text-primary hover:text-primary/80 mt-2 transition-colors"
+                              >
+                                Clear date range
+                              </button>
+                            )}
+                          </div>
+
+                          {/* LOCATION FILTERS */}
+                          <div className="grid grid-cols-1 gap-3 mb-2">
+                            {/* COUNTRY FILTER */}
+                            <div>
+                              <h5 className="text-sm font-medium text-foreground mb-2">
+                                Country
+                              </h5>
+                              <MultiSelectDropdown
+                                label="Countries"
+                                icon={<Globe className="h-4 w-4" />}
+                                options={uniqueCountries}
+                                selectedValues={selectedCountries}
+                                onChange={setSelectedCountries}
+                                placeholder="Select countries"
+                                allOptionLabel="All Countries"
+                              />
                             </div>
                           </div>
+
+                          {/* ACTIVE FILTERS SUMMARY */}
+                          {isAnyFilterActive() && (
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              className="pt-4 mt-4 border-t border-border"
+                            >
+                              <div className="flex items-center justify-between mb-2">
+                                <h5 className="text-sm font-medium text-foreground">
+                                  Active Filters
+                                </h5>
+                                <button
+                                  onClick={clearAllFilters}
+                                  className="text-xs text-primary hover:text-primary/80 flex items-center gap-1 transition-colors"
+                                >
+                                  <X className="h-3 w-3" />
+                                  Clear All
+                                </button>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {selectedCategories.length > 0 &&
+                                  !selectedCategories.includes("All News") && (
+                                    <motion.span
+                                      initial={{ scale: 0.8, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs"
+                                    >
+                                      <CalendarDays className="h-3 w-3" />
+                                      {selectedCategories.length} category
+                                      {selectedCategories.length !== 1 ? "ies" : ""}
+                                      <button
+                                        onClick={() =>
+                                          setSelectedCategories(["All News"])
+                                        }
+                                        className="ml-1 hover:bg-primary/20 rounded-full p-0.5 transition-colors"
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </button>
+                                    </motion.span>
+                                  )}
+                                {selectedSourceTypes.length > 0 &&
+                                  !selectedSourceTypes.includes("All Sources") && (
+                                    <motion.span
+                                      initial={{ scale: 0.8, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs"
+                                    >
+                                      <FileText className="h-3 w-3" />
+                                      {selectedSourceTypes.length} source type
+                                      {selectedSourceTypes.length !== 1 ? "s" : ""}
+                                      <button
+                                        onClick={() =>
+                                          setSelectedSourceTypes(["All Sources"])
+                                        }
+                                        className="ml-1 hover:bg-blue-200 rounded-full p-0.5 transition-colors"
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </button>
+                                    </motion.span>
+                                  )}
+
+                                {selectedDateRange === "custom" &&
+                                  dateRange.from && (
+                                    <motion.span
+                                      initial={{ scale: 0.8, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs"
+                                    >
+                                      <Calendar className="h-3 w-3" />
+                                      From:{" "}
+                                      {new Date(dateRange.from).toLocaleDateString(
+                                        "en-US",
+                                        {
+                                          month: "short",
+                                          day: "numeric",
+                                        },
+                                      )}
+                                      <button
+                                        onClick={() =>
+                                          setDateRange({ ...dateRange, from: "" })
+                                        }
+                                        className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </button>
+                                    </motion.span>
+                                  )}
+                                {selectedDateRange === "custom" && dateRange.to && (
+                                  <motion.span
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs"
+                                  >
+                                    <Calendar className="h-3 w-3" />
+                                    To:{" "}
+                                    {new Date(dateRange.to).toLocaleDateString(
+                                      "en-US",
+                                      {
+                                        month: "short",
+                                        day: "numeric",
+                                      },
+                                    )}
+                                    <button
+                                      onClick={() =>
+                                        setDateRange({ ...dateRange, to: "" })
+                                      }
+                                      className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </button>
+                                  </motion.span>
+                                )}
+
+                                {selectedDateRange &&
+                                  selectedDateRange !== "custom" && (
+                                    <motion.span
+                                      initial={{ scale: 0.8, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs"
+                                    >
+                                      <Calendar className="h-3 w-3" />
+                                      {
+                                        predefinedDateRanges.find(
+                                          (r) => r.value === selectedDateRange,
+                                        )?.label
+                                      }
+                                      <button
+                                        onClick={() => {
+                                          setDateRange({ from: "", to: "" });
+                                          setSelectedDateRange("");
+                                        }}
+                                        className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </button>
+                                    </motion.span>
+                                  )}
+
+                                {selectedCountries.length > 0 && (
+                                  <motion.span
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs"
+                                  >
+                                    <Globe className="h-3 w-3" />
+                                    {selectedCountries.length} country
+                                    {selectedCountries.length !== 1 ? "ies" : ""}
+                                    <button
+                                      onClick={() => setSelectedCountries([])}
+                                      className="ml-1 hover:bg-purple-200 rounded-full p-0.5 transition-colors"
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </button>
+                                  </motion.span>
+                                )}
+                                {selectedStates.length > 0 && (
+                                  <motion.span
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs"
+                                  >
+                                    <MapPin className="h-3 w-3" />
+                                    {selectedStates.length} state
+                                    {selectedStates.length !== 1 ? "s" : ""}
+                                    <button
+                                      onClick={() => setSelectedStates([])}
+                                      className="ml-1 hover:bg-amber-200 rounded-full p-0.5 transition-colors"
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </button>
+                                  </motion.span>
+                                )}
+                                {selectedRegions.length > 0 && (
+                                  <motion.span
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs"
+                                  >
+                                    <Globe className="h-3 w-3" />
+                                    {selectedRegions.length} region
+                                    {selectedRegions.length !== 1 ? "s" : ""}
+                                    <button
+                                      onClick={() => setSelectedRegions([])}
+                                      className="ml-1 hover:bg-purple-200 rounded-full p-0.5 transition-colors"
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </button>
+                                  </motion.span>
+                                )}
+                                {searchQuery && (
+                                  <motion.span
+                                    initial={{ scale: 0.8, opacity: 0 }}
+                                    animate={{ scale: 1, opacity: 1 }}
+                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs"
+                                  >
+                                    <Search className="h-3 w-3" />
+                                    Search: {searchQuery}
+                                    <button
+                                      onClick={() => setSearchQuery("")}
+                                      className="ml-1 hover:bg-amber-200 rounded-full p-0.5 transition-colors"
+                                    >
+                                      <X className="h-3 w-3" />
+                                    </button>
+                                  </motion.span>
+                                )}
+                              </div>
+                            </motion.div>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+
+            {filteredNews.length === 0 ? (
+              <ScrollFade delay={0.4}>
+                <div className="text-center py-16">
+                  <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
+                    <Search className="h-8 w-8 text-muted-foreground" />
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
+                    No articles found
+                  </h3>
+                  <p className="text-muted-foreground mb-6 max-w-md mx-auto">
+                    {searchQuery
+                      ? `No articles found matching "${searchQuery}"${
+                          selectedCategories.length > 0 &&
+                          !selectedCategories.includes("All News")
+                            ? ` in the selected categories`
+                            : ""
+                        }`
+                      : `There are no news articles with the current filters.`}
+                  </p>
+                  <Button
+                    onClick={clearAllFilters}
+                    className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
+                  >
+                    View All News
+                  </Button>
+                </div>
+              </ScrollFade>
+            ) : (
+              <>
+                <StaggerChildren>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+                    {currentNews.map((news, index) => (
+                      <motion.div
+                        key={news.id}
+                        variants={{
+                          hidden: { opacity: 0, y: 30 },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            transition: {
+                              duration: 0.6,
+                              ease: [0.22, 1, 0.36, 1],
+                            },
+                          },
+                        }}
+                        onClick={(e) =>
+                          handleExternalLink(
+                            e,
+                            news.externalUrl,
+                            news.title,
+                            news.slug,
+                          )
+                        }
+                        className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full cursor-pointer"
+                      >
+                        {/* IMAGE CONTAINER */}
+                        <div className="relative h-40 sm:h-48 bg-gradient-to-br from-muted to-secondary flex-shrink-0 overflow-hidden">
+                          {news.image !== "/placeholder-news.jpg" ? (
+                            <Image
+                              src={news.image}
+                              alt={news.title}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-110"
+                              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                            />
+                          ) : (
+                            <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
+                              <div className="text-white/40 text-5xl font-display">
+                                {news.title.charAt(0)}
+                              </div>
+                            </div>
+                          )}
                         </div>
 
                         {/* CONTENT */}
-                        <div className="flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center gap-1.5 mb-1.5">
-                            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-semibold uppercase tracking-wide truncate max-w-[80px]">
+                        <div className="p-4 sm:p-6 flex flex-col flex-grow">
+                          <div className="flex items-center justify-between mb-2 sm:mb-3">
+                            <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
                               {getCategoryIcon(news.category)}
-                              <span className="truncate">
-                                {news.category.split(" ")[0]}
+                              {news.category.split(" & ")[0]}
+                            </span>
+                            <div className="flex flex-col items-end">
+                              <span className="text-xs text-muted-foreground">
+                                {news.source}
                               </span>
-                            </span>
-                            <span className="text-[10px] text-muted-foreground truncate">
-                              {news.source}
-                            </span>
+                              <span className="text-[10px] text-muted-foreground/70">
+                                {news.sourceType}
+                              </span>
+                            </div>
                           </div>
-                          <h4 className="font-semibold text-xs sm:text-sm text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug line-clamp-2">
+
+                          <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
                             {news.title}
-                          </h4>
-                          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-muted-foreground">
-                            <div className="flex items-center gap-1">
-                              <Calendar className="h-3 w-3" />
-                              <span>{news.date}</span>
-                            </div>
-                            {news.state && (
-                              <div className="flex items-center gap-1">
-                                <MapPin className="h-3 w-3" />
-                                <span className="truncate max-w-[60px]">
-                                  {news.state}
-                                </span>
+                          </h3>
+
+                          <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
+                            {news.excerpt}
+                          </p>
+
+                          <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
+                            <div className="flex flex-col gap-1">
+                              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                                <span>{news.date}</span>
                               </div>
-                            )}
-                          </div>
-                        </div>
-
-                        {/* ARROW INDICATOR */}
-                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground/40 group-hover:text-primary/60 transition-colors flex-shrink-0 mt-1" />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* QUICK ACTION BUTTON */}
-              <div className="mt-4 pt-4 border-t border-border">
-                <Button
-                  variant="ghost"
-                  className="w-full text-accent hover:bg-accent/10 hover:text-accent text-sm flex items-center justify-center gap-2 group"
-                  onClick={() => {
-                    clearAllFilters();
-                    window.scrollTo({
-                      top:
-                        document.getElementById("all-news-section")
-                          ?.offsetTop || 0,
-                      behavior: "smooth",
-                    });
-                  }}
-                >
-                  View All News
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ================= ALL NEWS GRID ================= */}
-      <section id="all-news-section" className="px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-screen-xl mx-auto">
-          {/* HEADER WITH SEARCH AND FILTER */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
-            <div>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                {selectedCategories.includes("All News") ||
-                selectedCategories.length === 0
-                  ? "All News Articles"
-                  : `${selectedCategories.length} ${selectedCategories.length === 1 ? "Category" : "Categories"} Selected`}
-                {searchQuery && (
-                  <span className="text-lg sm:text-xl text-primary">
-                    {" "}
-                    - Search results for {searchQuery}
-                  </span>
-                )}
-              </h2>
-              <p className="text-sm sm:text-base text-muted-foreground">
-                {filteredNews.length}{" "}
-                {filteredNews.length === 1 ? "article" : "articles"} found
-                {selectedCategories.length > 0 &&
-                  !selectedCategories.includes("All News") &&
-                  ` in ${selectedCategories.length} ${selectedCategories.length === 1 ? "category" : "categories"}`}
-                {searchQuery && ` matching "${searchQuery}"`}
-                {getDateRangeDisplayLabel() &&
-                  !searchQuery &&
-                  !selectedCategories.length &&
-                  ` • ${getDateRangeDisplayLabel()}`}
-              </p>
-            </div>
-
-            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 w-full sm:w-auto">
-              <div className="relative w-full sm:w-64" ref={searchRef}>
-                <form onSubmit={handleSearchSubmit}>
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-black z-10" />
-                  <Input
-                    type="search"
-                    placeholder="Search news..."
-                    className="pl-10 pr-10 w-full bg-white"
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    onFocus={() => {
-                      if (
-                        searchQuery.length >= 2 &&
-                        searchSuggestions.length > 0
-                      ) {
-                        setShowSuggestions(true);
-                      }
-                    }}
-                  />
-                  {searchQuery && (
-                    <button
-                      type="button"
-                      onClick={() => setSearchQuery("")}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-foreground hover:text-foreground z-10"
-                    >
-                      <X className="h-4 w-4 text-black" />
-                    </button>
-                  )}
-                </form>
-
-                {/* SEARCH SUGGESTIONS DROPDOWN */}
-                <SearchSuggestions
-                  suggestions={searchSuggestions}
-                  onSelect={handleSuggestionSelect}
-                  searchQuery={searchQuery}
-                  isVisible={showSuggestions}
-                  onClose={() => setShowSuggestions(false)}
-                />
-              </div>
-
-              {/* FILTER DROPDOWN - Using SlidersHorizontal icon instead of Filter */}
-              <div className="relative w-full sm:w-auto" ref={filterRef}>
-                <Button
-                  variant="outline"
-                  className="w-full sm:w-auto flex items-center gap-2"
-                  onClick={() => setIsFilterOpen(!isFilterOpen)}
-                >
-                  <SlidersHorizontal className="h-4 w-4" />
-                  Filters
-                  {isAnyFilterActive() && (
-                    <span className="ml-1 inline-flex items-center justify-center h-5 w-5 rounded-full bg-primary text-white text-xs">
-                      {(() => {
-                        let count = 0;
-                        if (
-                          selectedCategories.length > 0 &&
-                          !selectedCategories.includes("All News")
-                        )
-                          count++;
-                        if (dateRange.from || dateRange.to) count++;
-                        if (selectedStates.length > 0) count++;
-                        if (selectedCountries.length > 0) count++;
-                        if (selectedRegions.length > 0) count++;
-                        if (
-                          selectedSourceTypes.length > 0 &&
-                          !selectedSourceTypes.includes("All Sources")
-                        )
-                          count++;
-                        if (searchQuery) count++;
-                        return count;
-                      })()}
-                    </span>
-                  )}
-                </Button>
-
-                {/* FILTER DROPDOWN MENU */}
-                {isFilterOpen && (
-                  <div className="absolute top-full right-0 mt-1 w-80 sm:w-96 bg-white border border-border rounded-lg shadow-xl z-50 max-h-[80vh] overflow-y-auto p-4">
-                    <div className="mb-2">
-                      <div className="flex items-center justify-between mb-4">
-                        <h4 className="text-lg font-semibold text-foreground">
-                          Filter Articles
-                        </h4>
-                      </div>
-
-                      {/* CATEGORY FILTER */}
-                      <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-2">
-                          Topic / Category
-                        </h5>
-                        <MultiSelectDropdown
-                          label="Categories"
-                          icon={<CalendarDays className="h-4 w-4" />}
-                          options={newsCategories.filter(
-                            (cat) => cat !== "All News",
-                          )}
-                          selectedValues={selectedCategories.filter(
-                            (cat) => cat !== "All News",
-                          )}
-                          onChange={(values) => setSelectedCategories(values)}
-                          placeholder="Select categories"
-                          allOptionLabel="All Categories"
-                        />
-                      </div>
-
-                      {/* DATE RANGE FILTER */}
-                      <div className="mb-4">
-                        <h5 className="text-sm font-medium text-foreground mb-3 flex items-center gap-2">
-                          <Calendar className="h-4 w-4" />
-                          Date Range
-                        </h5>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-3">
-                          {predefinedDateRanges.map((range) => (
-                            <button
-                              key={range.value}
-                              onClick={() => {
-                                setSelectedDateRange(range.value);
-                                applyDateRangeFilter(range.value);
-                              }}
-                              className={`px-3 py-2 text-xs rounded-lg border ${
-                                selectedDateRange === range.value
-                                  ? "bg-primary text-white border-primary"
-                                  : "bg-secondary/50 border-border hover:bg-secondary"
-                              }`}
+                              {(news.state || news.country) && (
+                                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                                  <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                                  <span>{news.state || news.country}</span>
+                                </div>
+                              )}
+                            </div>
+                            <motion.div
+                              whileHover={{ x: 5 }}
+                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors"
                             >
-                              {range.label}
-                            </button>
-                          ))}
-                        </div>
-
-                        {/* CUSTOM DATE INPUTS - Only shown when Custom is selected */}
-                        {showCustomDatePicker && (
-                          <div className="grid grid-cols-2 gap-3 mt-3 p-3 bg-secondary/30 rounded-lg">
-                            <div>
-                              <label className="text-xs text-muted-foreground block mb-1">
-                                From
-                              </label>
-                              <Input
-                                type="date"
-                                value={dateRange.from}
-                                onChange={(e) => {
-                                  setDateRange({
-                                    ...dateRange,
-                                    from: e.target.value,
-                                  });
-                                }}
-                                className="w-full"
-                              />
-                            </div>
-                            <div>
-                              <label className="text-xs text-muted-foreground block mb-1">
-                                To
-                              </label>
-                              <Input
-                                type="date"
-                                value={dateRange.to}
-                                onChange={(e) => {
-                                  setDateRange({
-                                    ...dateRange,
-                                    to: e.target.value,
-                                  });
-                                }}
-                                className="w-full"
-                              />
-                            </div>
-                          </div>
-                        )}
-
-                        {(dateRange.from || dateRange.to) && (
-                          <button
-                            onClick={() => {
-                              setDateRange({ from: "", to: "" });
-                              setSelectedDateRange("");
-                              setShowCustomDatePicker(false);
-                            }}
-                            className="text-xs text-primary hover:text-primary/80 mt-2"
-                          >
-                            Clear date range
-                          </button>
-                        )}
-                      </div>
-
-                      {/* LOCATION FILTERS */}
-                      <div className="grid grid-cols-1 gap-3 mb-2">
-                        {/* COUNTRY FILTER */}
-                        <div>
-                          <h5 className="text-sm font-medium text-foreground mb-2">
-                            Country
-                          </h5>
-                          <MultiSelectDropdown
-                            label="Countries"
-                            icon={<Globe className="h-4 w-4" />}
-                            options={uniqueCountries}
-                            selectedValues={selectedCountries}
-                            onChange={setSelectedCountries}
-                            placeholder="Select countries"
-                            allOptionLabel="All Countries"
-                          />
-                        </div>
-                      </div>
-
-                      {/* ACTIVE FILTERS SUMMARY */}
-                      {isAnyFilterActive() && (
-                        <div className="pt-4 mt-4 border-t border-border">
-                          <div className="flex items-center justify-between mb-2">
-                            <h5 className="text-sm font-medium text-foreground">
-                              Active Filters
-                            </h5>
-                            <button
-                              onClick={clearAllFilters}
-                              className="text-xs text-primary hover:text-primary/80 flex items-center gap-1"
-                            >
-                              <X className="h-3 w-3" />
-                              Clear All
-                            </button>
-                          </div>
-                          <div className="flex flex-wrap gap-2">
-                            {selectedCategories.length > 0 &&
-                              !selectedCategories.includes("All News") && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-primary/10 text-primary text-xs">
-                                  <CalendarDays className="h-3 w-3" />
-                                  {selectedCategories.length} category
-                                  {selectedCategories.length !== 1 ? "ies" : ""}
-                                  <button
-                                    onClick={() =>
-                                      setSelectedCategories(["All News"])
-                                    }
-                                    className="ml-1 hover:bg-primary/20 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-                            {selectedSourceTypes.length > 0 &&
-                              !selectedSourceTypes.includes("All Sources") && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-blue-100 text-blue-700 text-xs">
-                                  <FileText className="h-3 w-3" />
-                                  {selectedSourceTypes.length} source type
-                                  {selectedSourceTypes.length !== 1 ? "s" : ""}
-                                  <button
-                                    onClick={() =>
-                                      setSelectedSourceTypes(["All Sources"])
-                                    }
-                                    className="ml-1 hover:bg-blue-200 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-
-                            {/* Only show date range in active filters for custom dates */}
-                            {selectedDateRange === "custom" &&
-                              dateRange.from && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                                  <Calendar className="h-3 w-3" />
-                                  From:{" "}
-                                  {new Date(dateRange.from).toLocaleDateString(
-                                    "en-US",
-                                    {
-                                      month: "short",
-                                      day: "numeric",
-                                    },
-                                  )}
-                                  <button
-                                    onClick={() =>
-                                      setDateRange({ ...dateRange, from: "" })
-                                    }
-                                    className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-                            {selectedDateRange === "custom" && dateRange.to && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                                <Calendar className="h-3 w-3" />
-                                To:{" "}
-                                {new Date(dateRange.to).toLocaleDateString(
-                                  "en-US",
-                                  {
-                                    month: "short",
-                                    day: "numeric",
-                                  },
-                                )}
-                                <button
-                                  onClick={() =>
-                                    setDateRange({ ...dateRange, to: "" })
-                                  }
-                                  className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-
-                            {/* Show preset date range label instead of dates */}
-                            {selectedDateRange &&
-                              selectedDateRange !== "custom" && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
-                                  <Calendar className="h-3 w-3" />
-                                  {
-                                    predefinedDateRanges.find(
-                                      (r) => r.value === selectedDateRange,
-                                    )?.label
-                                  }
-                                  <button
-                                    onClick={() => {
-                                      setDateRange({ from: "", to: "" });
-                                      setSelectedDateRange("");
-                                    }}
-                                    className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                                  >
-                                    <X className="h-3 w-3" />
-                                  </button>
-                                </span>
-                              )}
-
-                            {selectedCountries.length > 0 && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                                <Globe className="h-3 w-3" />
-                                {selectedCountries.length} country
-                                {selectedCountries.length !== 1 ? "ies" : ""}
-                                <button
-                                  onClick={() => setSelectedCountries([])}
-                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {selectedStates.length > 0 && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                                <MapPin className="h-3 w-3" />
-                                {selectedStates.length} state
-                                {selectedStates.length !== 1 ? "s" : ""}
-                                <button
-                                  onClick={() => setSelectedStates([])}
-                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {selectedRegions.length > 0 && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
-                                <Globe className="h-3 w-3" />
-                                {selectedRegions.length} region
-                                {selectedRegions.length !== 1 ? "s" : ""}
-                                <button
-                                  onClick={() => setSelectedRegions([])}
-                                  className="ml-1 hover:bg-purple-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
-                            {searchQuery && (
-                              <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-amber-100 text-amber-700 text-xs">
-                                <Search className="h-3 w-3" />
-                                Search: {searchQuery}
-                                <button
-                                  onClick={() => setSearchQuery("")}
-                                  className="ml-1 hover:bg-amber-200 rounded-full p-0.5"
-                                >
-                                  <X className="h-3 w-3" />
-                                </button>
-                              </span>
-                            )}
+                              Read
+                              <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                            </motion.div>
                           </div>
                         </div>
-                      )}
-                    </div>
+                      </motion.div>
+                    ))}
                   </div>
-                )}
-              </div>
-            </div>
-          </div>
+                </StaggerChildren>
 
-          {filteredNews.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
-                <Search className="h-8 w-8 text-muted-foreground" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-display font-bold text-foreground mb-2">
-                No articles found
-              </h3>
-              <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-                {searchQuery
-                  ? `No articles found matching "${searchQuery}"${
-                      selectedCategories.length > 0 &&
-                      !selectedCategories.includes("All News")
-                        ? ` in the selected categories`
-                        : ""
-                    }`
-                  : `There are no news articles with the current filters.`}
-              </p>
-              <Button
-                onClick={clearAllFilters}
-                className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
-              >
-                View All News
-              </Button>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-                {currentNews.map((news) => (
-                  <div
-                    key={news.id}
-                    onClick={(e) =>
-                      handleExternalLink(
-                        e,
-                        news.externalUrl,
-                        news.title,
-                        news.slug,
-                      )
-                    }
-                    className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border flex flex-col h-full cursor-pointer"
-                  >
-                    {/* IMAGE CONTAINER */}
-                    <div className="relative h-40 sm:h-48 bg-gradient-to-br from-muted to-secondary flex-shrink-0">
-                      {news.image !== "/placeholder-news.jpg" ? (
-                        <Image
-                          src={news.image}
-                          alt={news.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
-                      ) : (
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-accent flex items-center justify-center">
-                          <div className="text-white/40 text-5xl font-display">
-                            {news.title.charAt(0)}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* CONTENT */}
-                    <div className="p-4 sm:p-6 flex flex-col flex-grow">
-                      <div className="flex items-center justify-between mb-2 sm:mb-3">
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-accent/10 text-accent text-xs font-semibold uppercase">
-                          {getCategoryIcon(news.category)}
-                          {news.category.split(" & ")[0]}
-                        </span>
-                        <div className="flex flex-col items-end">
-                          <span className="text-xs text-muted-foreground">
-                            {news.source}
-                          </span>
-                          <span className="text-[10px] text-muted-foreground/70">
-                            {news.sourceType}
-                          </span>
-                        </div>
+                {/* PAGINATION */}
+                {totalPages > 1 && (
+                  <ScrollFade delay={0.5}>
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
+                      <div className="text-sm text-muted-foreground">
+                        Showing {startIndex + 1}-
+                        {Math.min(endIndex, filteredNews.length)} of{" "}
+                        {filteredNews.length} articles
                       </div>
 
-                      <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
-                        {news.title}
-                      </h3>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handlePageChange(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="gap-1"
+                        >
+                          <ArrowRight className="h-3 w-3 rotate-180" />
+                          Previous
+                        </Button>
 
-                      <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-5 line-clamp-2 leading-relaxed flex-grow">
-                        {news.excerpt}
-                      </p>
-
-                      <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border mt-auto">
-                        <div className="flex flex-col gap-1">
-                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                            <Calendar className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                            <span>{news.date}</span>
-                          </div>
-                          {(news.state || news.country) && (
-                            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                              <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                              <span>{news.state || news.country}</span>
-                            </div>
-                          )}
-                        </div>
-                        <div className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors">
-                          Read
-                          <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* PAGINATION */}
-              {totalPages > 1 && (
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
-                  <div className="text-sm text-muted-foreground">
-                    Showing {startIndex + 1}-
-                    {Math.min(endIndex, filteredNews.length)} of{" "}
-                    {filteredNews.length} articles
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                      className="gap-1"
-                    >
-                      <ArrowRight className="h-3 w-3 rotate-180" />
-                      Previous
-                    </Button>
-
-                    <div className="flex items-center gap-1">
-                      {Array.from(
-                        { length: Math.min(5, totalPages) },
-                        (_, i) => {
-                          let pageNum;
-                          if (totalPages <= 5) {
-                            pageNum = i + 1;
-                          } else if (currentPage <= 3) {
-                            pageNum = i + 1;
-                          } else if (currentPage >= totalPages - 2) {
-                            pageNum = totalPages - 4 + i;
-                          } else {
-                            pageNum = currentPage - 2 + i;
-                          }
-
-                          return (
-                            <Button
-                              key={pageNum}
-                              variant={
-                                currentPage === pageNum ? "default" : "outline"
+                        <div className="flex items-center gap-1">
+                          {Array.from(
+                            { length: Math.min(5, totalPages) },
+                            (_, i) => {
+                              let pageNum;
+                              if (totalPages <= 5) {
+                                pageNum = i + 1;
+                              } else if (currentPage <= 3) {
+                                pageNum = i + 1;
+                              } else if (currentPage >= totalPages - 2) {
+                                pageNum = totalPages - 4 + i;
+                              } else {
+                                pageNum = currentPage - 2 + i;
                               }
-                              size="sm"
-                              className="w-10 h-10 p-0"
-                              onClick={() => handlePageChange(pageNum)}
-                            >
-                              {pageNum}
-                            </Button>
-                          );
-                        },
-                      )}
 
-                      {totalPages > 5 && currentPage < totalPages - 2 && (
-                        <>
-                          <span className="px-2">...</span>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="w-10 h-10 p-0"
-                            onClick={() => handlePageChange(totalPages)}
-                          >
-                            {totalPages}
-                          </Button>
-                        </>
-                      )}
+                              return (
+                                <motion.div
+                                  key={pageNum}
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
+                                >
+                                  <Button
+                                    variant={
+                                      currentPage === pageNum ? "default" : "outline"
+                                    }
+                                    size="sm"
+                                    className="w-10 h-10 p-0"
+                                    onClick={() => handlePageChange(pageNum)}
+                                  >
+                                    {pageNum}
+                                  </Button>
+                                </motion.div>
+                              );
+                            },
+                          )}
+
+                          {totalPages > 5 && currentPage < totalPages - 2 && (
+                            <>
+                              <span className="px-2">...</span>
+                              <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-10 h-10 p-0"
+                                  onClick={() => handlePageChange(totalPages)}
+                                >
+                                  {totalPages}
+                                </Button>
+                              </motion.div>
+                            </>
+                          )}
+                        </div>
+
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handlePageChange(currentPage + 1)}
+                          disabled={currentPage === totalPages}
+                          className="gap-1"
+                        >
+                          Next
+                          <ArrowRight className="h-3 w-3" />
+                        </Button>
+                      </div>
                     </div>
+                  </ScrollFade>
+                )}
+              </>
+            )}
+          </div>
+        </section>
+      </ScrollFade>
 
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                      className="gap-1"
-                    >
-                      Next
-                      <ArrowRight className="h-3 w-3" />
-                    </Button>
-                  </div>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </section>
-
-      <Cta />
+      <ScrollFade delay={0.4}>
+        <Cta />
+      </ScrollFade>
     </main>
   );
 }
