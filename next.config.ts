@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+   serverExternalPackages: ['jsdom'], // Add this to handle jsdom
 
   images: {
     remotePatterns: [

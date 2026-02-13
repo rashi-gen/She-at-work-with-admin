@@ -247,21 +247,14 @@ export default function EntrechatDetailPage({ params }: { params: Promise<{ id: 
             </div>
           </div>
 
-          {/* Interview Content - Use the cleaned component instead of dangerouslySetInnerHTML */}
-          <div className="prose prose-lg max-w-none 
-                      prose-headings:font-display prose-headings:font-bold
-                      prose-p:text-foreground/80 prose-p:leading-relaxed
-                      prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                      prose-strong:font-bold prose-strong:text-foreground
-                      prose-ul:list-disc prose-ul:pl-6
-                      prose-ol:list-decimal prose-ol:pl-6
-                      prose-li:my-2
-                      prose-blockquote:border-l-4 prose-blockquote:border-primary 
-                      prose-blockquote:pl-4 prose-blockquote:italic
-                      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-4
-                      mb-12">
-            <EntrechatPostContent content={interview.post_content} />
-          </div>
+        
+
+{/* Interview Content - Use WordPress converter */}
+
+{/* Interview Content */}
+<div className="wordpress-content mb-12">
+  <EntrechatPostContent content={interview.post_content} />
+</div>
 
           {/* Interviewee Highlight */}
           <div className="mt-12 p-6 bg-gradient-to-br from-primary/5 to-primary/10 rounded-xl border border-primary/20">
