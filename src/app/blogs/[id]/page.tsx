@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { blogsData } from "@/data/Blogs";
 import { Navbar } from "@/components/navbar/Navbar";
+import BlogPostContent from "@/components/blogs/BlogPostContent";
 
 interface BlogItem {
   ID: string;
@@ -258,26 +259,12 @@ const extractExcerpt = (content: string, maxLength: number = 150): string => {
           </div>
 
           {/* Blog Content */}
-          <div 
-            className="prose prose-lg max-w-none 
-                      prose-headings:font-display prose-headings:font-bold
-                      prose-p:text-foreground/80 prose-p:leading-relaxed prose-p:my-6
-                      prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                      prose-strong:font-bold prose-strong:text-foreground
-                      prose-ul:list-disc prose-ul:pl-6 prose-ul:my-6
-                      prose-ol:list-decimal prose-ol:pl-6 prose-ol:my-6
-                      prose-li:my-2 prose-li:marker:text-foreground/60
-                      prose-blockquote:border-l-4 prose-blockquote:border-primary 
-                      prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:my-8
-                      prose-img:rounded-lg prose-img:my-8
-                      prose-hr:my-8
-                      prose-pre:my-8
-                      prose-table:my-8
-                      prose-figure:my-8
-                      prose-embed:my-8
-                      mb-12"
-            dangerouslySetInnerHTML={{ __html: blog.post_content }}
-          />
+        
+
+{/* Blog Content */}
+<div className="blog-content-wrapper">
+  <BlogPostContent content={blog.post_content} />
+</div>
 
           {/* Related Articles */}
      {/* Related Articles */}
