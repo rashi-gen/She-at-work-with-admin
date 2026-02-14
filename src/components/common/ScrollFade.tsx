@@ -9,14 +9,15 @@ interface ScrollFadeProps {
   children: ReactNode;
   delay?: number;
   className?: string;
+  once?: boolean; // Add this
 }
 
-export const ScrollFade = ({ children, delay = 0, className = "" }: ScrollFadeProps) => {
+export const ScrollFade = ({ children, delay = 0, className = "", once = false }: ScrollFadeProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once, margin: "-50px" }} // Use the once prop
       transition={{
         duration: 0.8,
         delay,
@@ -29,19 +30,18 @@ export const ScrollFade = ({ children, delay = 0, className = "" }: ScrollFadePr
   );
 };
 
-
-
 interface StaggerChildrenProps {
   children: ReactNode;
   className?: string;
+  once?: boolean; // Add this
 }
 
-export const StaggerChildren = ({ children, className = "" }: StaggerChildrenProps) => {
+export const StaggerChildren = ({ children, className = "", once = false }: StaggerChildrenProps) => {
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once, margin: "-50px" }} // Use the once prop
       variants={{
         hidden: { opacity: 0 },
         visible: {
@@ -59,13 +59,12 @@ export const StaggerChildren = ({ children, className = "" }: StaggerChildrenPro
   );
 };
 
-
-
 interface AnimatedTextProps {
   children: ReactNode;
   className?: string;
   as?: keyof JSX.IntrinsicElements;
   delay?: number;
+  once?: boolean; // Add this
 }
 
 export const AnimatedText = ({
@@ -73,6 +72,7 @@ export const AnimatedText = ({
   className = "",
   as: Component = "p",
   delay = 0,
+  once = false, // Add this
 }: AnimatedTextProps) => {
   const MotionComponent = (motion as any)[Component] as typeof motion.div;
 
@@ -80,7 +80,7 @@ export const AnimatedText = ({
     <MotionComponent
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once, margin: "-50px" }} // Use the once prop
       transition={{
         duration: 0.6,
         delay,

@@ -81,6 +81,26 @@ const scaleIn: Variants = {
   },
 };
 
+// Animation for the FAQ items
+const faqItemVariants: Variants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  },
+  exit: { 
+    opacity: 0, 
+    x: 20,
+    transition: {
+      duration: 0.3
+    }
+  }
+};
+
 export default function ContactPage() {
   const [open, setOpen] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -142,12 +162,11 @@ export default function ContactPage() {
 
   return (
     <main className="bg-background min-h-screen overflow-x-hidden">
-         <PageBanner
-              title="Get In Touch"
-              description=" Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey."
-              image="/FinalContactusbanner.png"
-            />
-  
+      <PageBanner
+        title="Get In Touch"
+        description=" Have questions or want to collaborate? We&apos;d love to hear from you and support your entrepreneurial journey."
+        image="/FinalContactusbanner.png"
+      />
 
       {/* ================= CONTACT + FORM ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -156,7 +175,7 @@ export default function ContactPage() {
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }} // Changed to once: false
             variants={fadeInUp}
             className="space-y-6 sm:space-y-8"
           >
@@ -256,7 +275,7 @@ export default function ContactPage() {
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: false, margin: "-50px" }} // Changed to once: false
             variants={scaleIn}
             className="relative"
           >
@@ -281,7 +300,7 @@ export default function ContactPage() {
                 <motion.div 
                   initial={{ width: 0 }}
                   whileInView={{ width: "48px" }}
-                  viewport={{ once: true }}
+                  viewport={{ once: false }} // Changed to once: false
                   transition={{ delay: 0.2, duration: 0.8 }}
                   className="h-1 bg-gradient-to-r from-primary to-accent rounded-full"
                 />
@@ -295,6 +314,7 @@ export default function ContactPage() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   className="mb-6 rounded-xl bg-green-50 border-2 border-green-200 p-4"
                 >
                   <div className="flex items-center gap-3">
@@ -323,6 +343,7 @@ export default function ContactPage() {
                 <motion.div 
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
                   className="mb-6 rounded-xl bg-red-50 border-2 border-red-200 p-4"
                 >
                   <div className="flex items-center gap-3">
@@ -346,6 +367,9 @@ export default function ContactPage() {
 
               <motion.form 
                 variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, margin: "-50px" }} // Changed to once: false
                 onSubmit={handleSubmit} 
                 className="space-y-3 sm:space-y-4 lg:space-y-5"
               >
@@ -440,7 +464,8 @@ export default function ContactPage() {
                   
                   <motion.p 
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: false }} // Changed to once: false
                     transition={{ delay: 0.5 }}
                     className="text-xs text-center text-muted-foreground mt-2"
                   >
@@ -457,7 +482,7 @@ export default function ContactPage() {
       <motion.section 
         initial={{ height: 0 }}
         whileInView={{ height: "80px" }}
-        viewport={{ once: true }}
+        viewport={{ once: false, margin: "-50px" }} // Changed to once: false
         transition={{ duration: 1.2 }}
         className="hero-gradient"
       />
@@ -467,7 +492,7 @@ export default function ContactPage() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }} // Changed to once: false
           variants={fadeInUp}
           className="max-w-screen-xl mx-auto text-center mb-8 sm:mb-12"
         >
@@ -482,7 +507,7 @@ export default function ContactPage() {
         <motion.div 
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: false, margin: "-50px" }} // Changed to once: false
           variants={staggerContainer}
           className="max-w-4xl mx-auto space-y-3 sm:space-y-4"
         >
@@ -491,7 +516,7 @@ export default function ContactPage() {
             return (
               <motion.div
                 key={i}
-                variants={fadeInUp}
+                variants={faqItemVariants}
                 whileHover={{ y: -3 }}
                 className={`group border-2 rounded-lg sm:rounded-xl lg:rounded-2xl bg-card overflow-hidden transition-all duration-300 ${
                   isOpen
@@ -552,7 +577,7 @@ export default function ContactPage() {
       <motion.section 
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        viewport={{ once: false, margin: "-50px" }} // Changed to once: false
         transition={{ duration: 0.8 }}
         className="relative px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 overflow-hidden hero-gradient"
       >
@@ -575,7 +600,7 @@ export default function ContactPage() {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }} // Changed to once: false
             className="text-lg sm:text-xl lg:text-2xl font-display font-bold mb-2 sm:mb-3"
           >
             Follow Us on Social Media
@@ -584,7 +609,7 @@ export default function ContactPage() {
             variants={fadeInUp}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }} // Changed to once: false
             className="text-white/90 text-sm sm:text-base mb-6 sm:mb-8 max-w-3xl mx-auto"
           >
             Stay connected and inspired
@@ -594,7 +619,7 @@ export default function ContactPage() {
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: false, margin: "-50px" }} // Changed to once: false
             className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:gap-4"
           >
             {[

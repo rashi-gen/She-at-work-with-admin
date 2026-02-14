@@ -1,6 +1,8 @@
 "use client";
 
 import Cta from "@/components/common/Cta";
+import { AnimatedText, ScrollFade } from "@/components/common/ScrollFade";
+import { motion, Variants } from "framer-motion";
 import { Award, Briefcase, ChevronDown, ChevronUp, Globe, Linkedin, Mail, Twitter } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
@@ -130,6 +132,67 @@ const advisoryBoard = [
   }
 ];
 
+// Animation variants
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }
+  }
+};
+
+const fadeInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1
+    }
+  }
+};
+
 export default function CoreTeamPage() {
   const [expandedMember, setExpandedMember] = useState<string | null>(null);
   const searchParams = useSearchParams();
@@ -191,22 +254,38 @@ export default function CoreTeamPage() {
       <section className="relative px-4 sm:px-6 lg:px-8 pt-28 pb-2 overflow-hidden hero-gradient">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent" />
         <div className="relative w-full mx-auto text-center text-white px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
-            Our Core Team
-          </h1>
-          <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
-            Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation.
-          </p>
+          <ScrollFade>
+            <motion.div
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false }}
+            >
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 px-2 sm:px-0">
+                Our Core Team
+              </h1>
+              <p className="text-sm sm:text-base lg:text-lg text-white/90 mb-6 sm:mb-8 max-w-4xl mx-auto px-4 sm:px-8 lg:px-0">
+                Meet the passionate individuals and advisors who drive our mission to empower women entrepreneurs through knowledge, community, and innovation.
+              </p>
+            </motion.div>
+          </ScrollFade>
         </div>
       </section>
 
       {/* CORE TEAM */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/10">
         <div className="max-w-screen-xl mx-auto">
-          <div className="space-y-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-50px" }}
+            className="space-y-8"
+          >
             {coreTeam.map((member, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={fadeInUp}
                 ref={(el) => { memberRefs.current[member.id] = el; }}
                 className={`group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border ${
                   member.featured ? 'border-primary/30' : ''
@@ -214,71 +293,97 @@ export default function CoreTeamPage() {
               >
                 <div className="lg:flex">
                   {/* Image section - Fixed height */}
-                  <div className="lg:w-1/4 relative h-64 lg:h-auto min-h-[256px]">
+                  <motion.div 
+                    variants={scaleIn}
+                    className="lg:w-1/4 relative h-64 lg:h-auto min-h-[256px] overflow-hidden"
+                  >
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-contain p-4 group-hover:scale-105 transition-transform duration-500"
-                      sizes="(max-width: 1024px) 100vw, 25vw"
-                      priority={member.featured}
-                    />
+                    <motion.div
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-full h-full"
+                    >
+                      <Image
+                        src={member.image}
+                        alt={member.name}
+                        fill
+                        className="object-contain p-4"
+                        sizes="(max-width: 1024px) 100vw, 25vw"
+                        priority={member.featured}
+                      />
+                    </motion.div>
                     {member.featured && (
-                      <div className="absolute top-4 left-4">
+                      <motion.div 
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: "spring", delay: 0.2 }}
+                        className="absolute top-4 left-4"
+                      >
                         <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-medium">
                           <Award className="h-3 w-3" />
                           Founder
                         </div>
-                      </div>
+                      </motion.div>
                     )}
-                  </div>
+                  </motion.div>
 
                   {/* Content section */}
                   <div className="lg:w-3/4 p-6 sm:p-8">
                     <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
                       <div className="flex-1">
-                        <h3 className="text-2xl font-display font-bold text-foreground mb-1">
+                        <motion.h3 
+                          variants={fadeInLeft}
+                          className="text-2xl font-display font-bold text-foreground mb-1"
+                        >
                           {member.name}
-                        </h3>
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mb-4">
+                        </motion.h3>
+                        <motion.div 
+                          variants={fadeInRight}
+                          className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary font-medium mb-4"
+                        >
                           <Briefcase className="h-3 w-3" />
                           {member.role}
-                        </div>
-                        <p className="text-foreground mb-4 leading-relaxed">
+                        </motion.div>
+                        <motion.p 
+                          variants={fadeInUp}
+                          className="text-foreground mb-4 leading-relaxed"
+                        >
                           {member.summary}
-                        </p>
+                        </motion.p>
                       </div>
                       
                       {/* Social links */}
-                      <div className="flex gap-2 mt-4 sm:mt-0">
-                        <a
-                          href={member.linkedin}
-                          className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                          title="LinkedIn"
-                        >
-                          <Linkedin className="h-5 w-5" />
-                        </a>
-                        <a
-                          href={member.twitter}
-                          className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                          title="Twitter"
-                        >
-                          <Twitter className="h-5 w-5" />
-                        </a>
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                          title="Email"
-                        >
-                          <Mail className="h-5 w-5" />
-                        </a>
-                      </div>
+                      <motion.div 
+                        variants={staggerContainer}
+                        className="flex gap-2 mt-4 sm:mt-0"
+                      >
+                        {[
+                          { href: member.linkedin, icon: Linkedin, label: "LinkedIn" },
+                          { href: member.twitter, icon: Twitter, label: "Twitter" },
+                          { href: `mailto:${member.email}`, icon: Mail, label: "Email" }
+                        ].map((social, idx) => (
+                          <motion.a
+                            key={idx}
+                            variants={scaleIn}
+                            whileHover={{ y: -3, scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            href={social.href}
+                            className="w-10 h-10 rounded-lg bg-secondary hover:bg-primary flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                            title={social.label}
+                          >
+                            <social.icon className="h-5 w-5" />
+                          </motion.a>
+                        ))}
+                      </motion.div>
                     </div>
 
                     {/* Expandable bullet points */}
-                    <div className="border-t border-border pt-6">
-                      <button
+                    <motion.div 
+                      variants={fadeInUp}
+                      className="border-t border-border pt-6"
+                    >
+                      <motion.button
+                        whileHover={{ x: 5 }}
                         onClick={() => toggleExpand(member.id)}
                         className="flex items-center gap-2 text-primary font-medium hover:text-primary/80 transition-colors mb-4"
                       >
@@ -293,106 +398,167 @@ export default function CoreTeamPage() {
                             View Key Achievements & Expertise
                           </>
                         )}
-                      </button>
+                      </motion.button>
                       
                       {expandedMember === member.id && (
-                        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-3 animate-fadeIn">
+                        <motion.div 
+                          initial={{ opacity: 0, y: -20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -20 }}
+                          transition={{ duration: 0.3 }}
+                          className="grid sm:grid-cols-1 md:grid-cols-2 gap-3"
+                        >
                           {member.bullets.map((bullet, idx) => (
-                            <div key={idx} className="flex items-start gap-2">
+                            <motion.div 
+                              key={idx}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: idx * 0.1 }}
+                              className="flex items-start gap-2"
+                            >
                               <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                               <span className="text-muted-foreground">{bullet}</span>
-                            </div>
+                            </motion.div>
                           ))}
-                        </div>
+                        </motion.div>
                       )}
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ADVISORY BOARD */}
       <section className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent font-medium mb-4">
-              <Globe className="h-4 w-4" />
-              Advisory Board
+          <ScrollFade>
+            <div className="text-center mb-12">
+              <motion.div 
+                variants={scaleIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent font-medium mb-4"
+              >
+                <Globe className="h-4 w-4" />
+                Advisory Board
+              </motion.div>
+              <AnimatedText 
+                as="h2" 
+                className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4"
+              >
+                Guiding Voices
+              </AnimatedText>
+              <AnimatedText delay={0.1} className="text-muted-foreground max-w-2xl mx-auto">
+                Industry leaders and experts who provide strategic guidance and mentorship
+              </AnimatedText>
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4">
-              Guiding Voices
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Industry leaders and experts who provide strategic guidance and mentorship
-            </p>
-          </div>
+          </ScrollFade>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, margin: "-50px" }}
+            className="grid md:grid-cols-2 gap-8"
+          >
             {advisoryBoard.map((advisor, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={fadeInUp}
                 ref={(el) => { memberRefs.current[advisor.id] = el; }}
-                className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-border"
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="group bg-card rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border"
               >
                 <div className="flex flex-col h-full">
                   <div className="p-6 sm:p-8 flex-1">
                     <div className="flex items-start gap-6 mb-6">
                       {/* Fixed height image */}
-                      <div className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0">
+                      <motion.div 
+                        variants={scaleIn}
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        className="relative w-24 h-24 rounded-xl overflow-hidden flex-shrink-0"
+                      >
                         <Image
                           src={advisor.image}
                           alt={advisor.name}
                           fill
                           className="object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                      </div>
+                      </motion.div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-display font-bold text-foreground mb-1">
+                        <motion.h3 
+                          variants={fadeInLeft}
+                          className="text-xl font-display font-bold text-foreground mb-1"
+                        >
                           {advisor.name}
-                        </h3>
-                        <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-3">
+                        </motion.h3>
+                        <motion.div 
+                          variants={fadeInRight}
+                          className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium mb-3"
+                        >
                           {advisor.role}
-                        </div>
-                        <p className="text-foreground">
+                        </motion.div>
+                        <motion.p 
+                          variants={fadeInUp}
+                          className="text-foreground"
+                        >
                           {advisor.summary}
-                        </p>
+                        </motion.p>
                       </div>
                     </div>
 
                     {/* Bullet points - always visible for advisors */}
-                    <div className="space-y-2 mt-4">
+                    <motion.div 
+                      variants={staggerContainer}
+                      className="space-y-2 mt-4"
+                    >
                       {advisor.bullets.slice(0, 4).map((bullet, idx) => (
-                        <div key={idx} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                        <motion.div 
+                          key={idx}
+                          variants={fadeInLeft}
+                          className="flex items-start gap-2"
+                        >
+                          <motion.div 
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ duration: 2, repeat: Infinity, delay: idx * 0.3 }}
+                            className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0"
+                          />
                           <span className="text-muted-foreground text-sm">{bullet}</span>
-                        </div>
+                        </motion.div>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
 
                   <div className="p-6 pt-0">
-                    <div className="flex gap-2">
-                      <a
-                        href={advisor.linkedin}
-                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                      >
-                        <Linkedin className="h-5 w-5" />
-                      </a>
-                      <a
-                        href={advisor.twitter}
-                        className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
-                      >
-                        <Twitter className="h-5 w-5" />
-                      </a>
-                    </div>
+                    <motion.div 
+                      variants={staggerContainer}
+                      className="flex gap-2"
+                    >
+                      {[
+                        { href: advisor.linkedin, icon: Linkedin, label: "LinkedIn" },
+                        { href: advisor.twitter, icon: Twitter, label: "Twitter" }
+                      ].map((social, idx) => (
+                        <motion.a
+                          key={idx}
+                          variants={scaleIn}
+                          whileHover={{ y: -3, scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          href={social.href}
+                          className="w-10 h-10 rounded-lg bg-secondary hover:bg-accent flex items-center justify-center text-muted-foreground hover:text-white transition-colors"
+                        >
+                          <social.icon className="h-5 w-5" />
+                        </motion.a>
+                      ))}
+                    </motion.div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -428,7 +594,9 @@ export default function CoreTeamPage() {
         }
       `}</style>
 
-      <Cta />
+      <ScrollFade>
+        <Cta />
+      </ScrollFade>
     </main>
   );
 }

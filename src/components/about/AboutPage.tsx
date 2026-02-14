@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import Cta from "../common/Cta";
 import { PageBanner } from "../PageBanner";
 import { ScrollFade, StaggerChildren, AnimatedText } from "../common/ScrollFade";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const stats = [
   { value: "975+", label: "Articles & Resources" },
@@ -111,6 +111,44 @@ const teamMembers = [
   },
 ];
 
+// Animation variants for elements that need custom animations
+const scaleInVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }
+  }
+};
+
+const fadeInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const router = useRouter();
@@ -136,24 +174,25 @@ export default function AboutPage() {
       />
 
       {/* ================= OUR STORY ================= */}
-      <ScrollFade>
+      <ScrollFade once={false}> {/* Changed to once: false */}
         <section className="px-4 sm:px-6 lg:px-8 py-12">
           <div className="max-w-screen-xl mx-auto text-center px-4">
             <AnimatedText 
               as="h2" 
+              once={false} // Changed to once: false
               className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6"
             >
               Our Story
             </AnimatedText>
             <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed max-w-4xl mx-auto">
-              <AnimatedText delay={0.1}>
+              <AnimatedText delay={0.1} once={false}>
                 SheAtWork.com germinated with a singular objective: to support
                 women who are looking to start an entrepreneurial venture that
                 aligns with their abilities and skills. Launched in January 2017,
                 our aim is to educate, train, support, and motivate women
                 entrepreneurs globally.
               </AnimatedText>
-              <AnimatedText delay={0.2}>
+              <AnimatedText delay={0.2} once={false}>
                 We provide a storehouse of information to increase awareness on
                 all relevant areas of entrepreneurship—from innovative business
                 ideas and startup funding avenues to legal support and mentor
@@ -167,15 +206,16 @@ export default function AboutPage() {
       {/* ================= OUR JOURNEY ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12">
         <div className="max-w-screen-xl mx-auto px-4">
-          <ScrollFade>
+          <ScrollFade once={false}>
             <div className="text-center mb-8 sm:mb-12 lg:mb-16">
               <AnimatedText 
                 as="h2" 
+                once={false}
                 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3"
               >
                 Our Journey
               </AnimatedText>
-              <AnimatedText delay={0.1} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+              <AnimatedText delay={0.1} once={false} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
                 Milestones that shaped who we are today
               </AnimatedText>
             </div>
@@ -187,39 +227,42 @@ export default function AboutPage() {
 
             <div className="space-y-8 sm:space-y-12">
               {journey.map((item, i) => (
-                <ScrollFade key={i} delay={i * 0.1}>
+                <ScrollFade key={i} delay={i * 0.1} once={false}>
                   <div className={`relative flex items-start md:items-center ${
                     i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                   } flex-col gap-4 sm:gap-6 md:gap-8`}>
                     {/* CONTENT */}
-                    <div className="flex-1 w-full md:w-1/2">
+                    <motion.div 
+                      variants={i % 2 === 0 ? fadeInLeft : fadeInRight}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, margin: "-50px" }}
+                      className="flex-1 w-full md:w-1/2"
+                    >
                       <div className={`bg-card rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-border hover:border-primary/50 ${
                         i % 2 === 0 ? "md:mr-8" : "md:ml-8"
                       }`}>
                         <AnimatedText 
                           as="h3" 
                           delay={0.1}
+                          once={false}
                           className="text-lg sm:text-xl font-display font-bold text-foreground mb-2"
                         >
                           {item.title}
                         </AnimatedText>
-                        <AnimatedText delay={0.2} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                        <AnimatedText delay={0.2} once={false} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                           {item.description}
                         </AnimatedText>
                       </div>
-                    </div>
+                    </motion.div>
 
-                    {/* YEAR BUBBLE - Animate only the scale */}
+                    {/* YEAR BUBBLE */}
                     <motion.div 
-                      initial={{ scale: 0 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ 
-                        type: "spring", 
-                        stiffness: 260, 
-                        damping: 20,
-                        delay: i * 0.1 + 0.3
-                      }}
+                      variants={scaleInVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, margin: "-50px" }}
+                      transition={{ delay: i * 0.1 + 0.3 }}
                       className="relative shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg z-10"
                     >
                       {item.year}
@@ -234,26 +277,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-
-
       {/* ================= CORE VALUES ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto px-4">
-          <ScrollFade>
+          <ScrollFade once={false}>
             <div className="text-center mb-8 sm:mb-12">
               <AnimatedText 
                 as="h2" 
+                once={false}
                 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-2 sm:mb-3"
               >
                 Our Core Values
               </AnimatedText>
-              <AnimatedText delay={0.1} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
+              <AnimatedText delay={0.1} once={false} className="text-sm sm:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto">
                 The principles that guide everything we do
               </AnimatedText>
             </div>
           </ScrollFade>
 
-          <StaggerChildren>
+          <StaggerChildren once={false}> {/* Changed to once: false */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
               {coreValues.map((value, i) => (
                 <motion.div
@@ -266,15 +308,11 @@ export default function AboutPage() {
                   className="group relative bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-border hover:border-primary/30"
                 >
                   <motion.div 
-                    initial={{ rotate: -180, scale: 0 }}
-                    whileInView={{ rotate: 0, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ 
-                      type: "spring",
-                      stiffness: 260,
-                      damping: 20,
-                      delay: i * 0.1
-                    }}
+                    variants={scaleInVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, margin: "-50px" }}
+                    transition={{ delay: i * 0.1 }}
                     className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform"
                   >
                     <value.icon className="h-5 w-5 sm:h-6 sm:w-6 lg:h-8 lg:w-8" />
@@ -284,11 +322,12 @@ export default function AboutPage() {
                     <AnimatedText 
                       as="h3" 
                       delay={0.2}
+                      once={false}
                       className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground mb-2 sm:mb-3"
                     >
                       {value.title}
                     </AnimatedText>
-                    <AnimatedText delay={0.3} className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">
+                    <AnimatedText delay={0.3} once={false} className="text-xs sm:text-sm lg:text-base text-muted-foreground leading-relaxed">
                       {value.description}
                     </AnimatedText>
                   </div>
@@ -300,25 +339,31 @@ export default function AboutPage() {
       </section>
 
       {/* ================= OUR MISSION ================= */}
-      <ScrollFade>
+      <ScrollFade once={false}>
         <section className="px-4 sm:px-6 lg:px-8 py-12">
           <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-8 sm:gap-12 items-center px-4">
             {/* LEFT TEXT */}
-            <div>
+            <motion.div
+              variants={fadeInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, margin: "-50px" }}
+            >
               <AnimatedText 
                 as="h2" 
+                once={false}
                 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-4 sm:mb-6"
               >
                 Our Mission
               </AnimatedText>
               <div className="space-y-3 sm:space-y-4">
-                <AnimatedText delay={0.1} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <AnimatedText delay={0.1} once={false} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                   To create a one-stop knowledge hub for any woman aspiring to be
                   an entrepreneur or aiming to move to the next level. We hope to
                   help all women entrepreneurs expand their frontiers and enhance
                   their skills to achieve their true potential.
                 </AnimatedText>
-                <AnimatedText delay={0.2} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                <AnimatedText delay={0.2} once={false} className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                   We strive to provide a friendly forum for growth through the
                   right knowledge and professional networking. By giving
                   visibility to women entrepreneurs and running mentoring
@@ -326,13 +371,14 @@ export default function AboutPage() {
                   sectors.
                 </AnimatedText>
               </div>
-            </div>
+            </motion.div>
 
             {/* RIGHT IMAGE */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              variants={fadeInRight}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-2xl group"
             >
@@ -354,24 +400,26 @@ export default function AboutPage() {
       </ScrollFade>
 
       {/* ================= MEET OUR TEAM ================= */}
-      <ScrollFade>
+      <ScrollFade once={false}>
         <section className="px-4 sm:px-6 lg:px-8 py-12 bg-gradient-to-b from-background to-secondary/20">
           <div className="max-w-screen-xl mx-auto">
             <div className="text-center mb-12">
               <AnimatedText 
                 as="h2" 
+                once={false}
                 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-foreground mb-4"
               >
                 Meet Our Leaders
               </AnimatedText>
-              <AnimatedText delay={0.1} className="text-muted-foreground max-w-2xl mx-auto mb-8">
+              <AnimatedText delay={0.1} once={false} className="text-muted-foreground max-w-2xl mx-auto mb-8">
                 The visionary minds driving our mission forward
               </AnimatedText>
               <motion.div
-                initial={{ scale: 0.9 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ type: "spring", delay: 0.2 }}
+                variants={scaleInVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, margin: "-50px" }}
+                transition={{ delay: 0.2 }}
               >
                 <Link
                   href="/about/core-team"
@@ -383,7 +431,7 @@ export default function AboutPage() {
               </motion.div>
             </div>
 
-            <StaggerChildren>
+            <StaggerChildren once={false}>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {teamMembers.map((member, i) => (
                   <motion.div
@@ -400,14 +448,12 @@ export default function AboutPage() {
                     onClick={() => handleMemberClick(member.id)}
                     className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border cursor-pointer relative"
                   >
-         
-                   
-
                     {/* AVATAR */}
                     <motion.div 
-                      initial={{ scale: 0.8 }}
-                      whileInView={{ scale: 1 }}
-                      viewport={{ once: true }}
+                      variants={scaleInVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: false, margin: "-50px" }}
                       transition={{ delay: i * 0.1 }}
                       className="relative h-48 sm:h-56 flex items-center justify-center overflow-hidden bg-secondary/30"
                     >
@@ -440,17 +486,19 @@ export default function AboutPage() {
                       <AnimatedText 
                         as="h3" 
                         delay={0.1}
+                        once={false}
                         className="text-base sm:text-lg lg:text-xl font-display font-bold text-foreground mb-1"
                       >
                         {member.name}
                       </AnimatedText>
-                      <AnimatedText delay={0.15} className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
+                      <AnimatedText delay={0.15} once={false} className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4">
                         {member.role}
                       </AnimatedText>
                       <motion.div 
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: false, margin: "-50px" }}
                         transition={{ delay: 0.2 }}
                         className="flex justify-center gap-2"
                       >
@@ -474,16 +522,27 @@ export default function AboutPage() {
                 ))}
               </div>
             </StaggerChildren>
-            
-       
           </div>
         </section>
       </ScrollFade>
 
       {/* CTA Section */}
-      <ScrollFade delay={0.2}>
+      <ScrollFade delay={0.2} once={false}>
         <Cta />
       </ScrollFade>
     </main>
   );
 }
+
+// Add this fadeInUp variant since it's used but not defined
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};

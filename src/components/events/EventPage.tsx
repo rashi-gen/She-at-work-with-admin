@@ -1,9 +1,11 @@
 // /components/events/EventsPage.tsx
 "use client";
 
+import { AnimatedText, ScrollFade } from "@/components/common/ScrollFade";
 import { Button } from "@/components/ui/button";
 import { eventsData } from "@/data/events";
 import { openEventRegistrationEmail } from "@/hooks/Emailutils";
+import { AnimatePresence, motion, Variants } from "framer-motion";
 import {
   ArrowRight,
   Calendar,
@@ -60,6 +62,69 @@ const eventCategories = [
   "Festivals",
   "Other Events",
 ];
+
+// Animation variants
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const fadeInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
+
+const scaleIn: Variants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 260,
+      damping: 20
+    }
+  }
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1
+    }
+  }
+};
+
+;
 
 // Extract categories from content
 const getCategoryFromContent = (content: string): string => {
@@ -538,11 +603,11 @@ interface ProcessedEvent {
 
 export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Events");
-  // const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showFilter, setShowFilter] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [processedEvents, setProcessedEvents] = useState<ProcessedEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState<{ [key: string]: boolean }>({});
   const router = useRouter();
 
   useEffect(() => {
@@ -730,6 +795,10 @@ export default function EventsPage() {
     });
   };
 
+  const handleImageLoad = (id: string) => {
+    setImagesLoaded(prev => ({ ...prev, [id]: true }));
+  };
+
   if (isLoading) {
     return (
       <main className="bg-background min-h-screen">
@@ -738,142 +807,199 @@ export default function EventsPage() {
           description="Join workshops, webinars and networking opportunities designed to empower and inspire"
           image="/FinalEventsbanner.png"
         />
-        <div className="flex items-center justify-center py-20">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center justify-center py-20"
+        >
           <div className="text-center">
-            <div className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full"
+            />
             <p className="text-muted-foreground">Loading events...</p>
           </div>
-        </div>
+        </motion.div>
       </main>
     );
   }
 
   return (
     <main className="bg-background min-h-screen flex flex-col">
-      <section className={`relative h-[470px] overflow-hidden pt-24`}>
-        {/* Background Image */}
-        <div className="absolute inset-0" style={{ top: "96px" }}>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(/FinalEventsbanner.png)`,
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-          {/* Overlay for better text readability */}
-          {/* <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent" /> */}
-        </div>
-
-        {/* Content - Left aligned */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
-              {/* Title */}
-              <h1 className="text-white leading-tight">
-                <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
-                  Events
-                </span>
-              </h1>
-
-              {/* Description */}
-
-              <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-                Discover workshops, webinars, and networking events designed to support women entrepreneurs.
-Explore opportunities for learning, mentoring, and meaningful connections that help your business grow.
-              </p>
-            </div>
+      <ScrollFade>
+        <section className={`relative h-[470px] overflow-hidden pt-24`}>
+          {/* Background Image */}
+          <div className="absolute inset-0" style={{ top: "96px" }}>
+            <motion.div
+              initial={{ scale: 1.1, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className="w-full h-full"
+              style={{
+                backgroundImage: `url(/FinalEventsbanner.png)`,
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            />
           </div>
-        </div>
-      </section>
 
-      {/* ================= FEATURED EVENT ================= */}
-      {showFeaturedEvent && featuredEvent && (
-        <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1">
-          <div className="max-w-screen-xl mx-auto">
-            <div className="grid lg:grid-cols-[65%_35%] bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 hover:shadow-2xl transition-shadow duration-300">
-              <div className="relative min-h-48 sm:min-h-64 overflow-hidden bg-gradient-to-br from-muted to-secondary">
-                {featuredEvent.image !== "/placeholder-event.jpg" ? (
-                  <Image
-                    src="/Evventssmallbanner.png"
-                    alt={featuredEvent.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    priority
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                      <span className="text-white/40 text-6xl font-display">
-                        {featuredEvent.title.charAt(0)}
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
+          {/* Content - Left aligned */}
+          <div className="relative z-10 h-full flex items-center">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div 
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="max-w-3xl px-4 sm:px-6 lg:px-8"
+              >
+                <motion.h1 
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate="visible"
+                  className="text-white leading-tight"
+                >
+                  <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
+                    Events
+                  </span>
+                </motion.h1>
 
-              <div className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
-                <span className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 w-fit">
-                  {featuredEvent.category}
-                </span>
-
-                <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4">
-                  {featuredEvent.title}
-                </h2>
-
-                <p className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 leading-relaxed line-clamp-3">
-                  {featuredEvent.description}
-                </p>
-
-                <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
-                  <div className="flex items-center gap-2 sm:gap-3 text-foreground">
-                    <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    <span className="font-medium text-sm sm:text-base">
-                      {featuredEvent.date}{" "}
-                      {featuredEvent.time && `• ${featuredEvent.time}`}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 text-foreground">
-                    <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    <span className="font-medium text-sm sm:text-base">
-                      {featuredEvent.location}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 text-foreground">
-                    <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-                    <span className="font-medium text-sm sm:text-base">
-                      {featuredEvent.format}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2 sm:gap-3 text-foreground">
-                    <IndianRupee className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                    <span className="font-semibold text-base sm:text-lg">
-                      {featuredEvent.price}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 w-full">
-                  <Button
-                    onClick={() => handleCardClick(featuredEvent.slug)}
-                    variant="outline"
-                    className="h-10 sm:h-12 border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all text-sm sm:text-base"
-                  >
-                    View Details
-                  </Button>
-                  <Button
-                    onClick={(e) => handleContactClick(featuredEvent, e)}
-                    className="h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all text-sm sm:text-base"
-                  >
-                    <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                    Contact
-                  </Button>
-                </div>
-              </div>
+                <motion.p 
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.2 }}
+                  className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl"
+                >
+                  Discover workshops, webinars, and networking events designed to support women entrepreneurs.
+                  Explore opportunities for learning, mentoring, and meaningful connections that help your business grow.
+                </motion.p>
+              </motion.div>
             </div>
           </div>
         </section>
+      </ScrollFade>
+
+      {/* ================= FEATURED EVENT ================= */}
+      {showFeaturedEvent && featuredEvent && (
+        <ScrollFade>
+          <section className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 flex-1">
+            <div className="max-w-screen-xl mx-auto">
+              <motion.div 
+                variants={scaleIn}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
+                className="grid lg:grid-cols-[65%_35%] bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl border border-primary/10 hover:shadow-2xl transition-shadow duration-300"
+              >
+                <motion.div 
+                  variants={fadeInLeft}
+                  className="relative min-h-48 sm:min-h-64 overflow-hidden bg-gradient-to-br from-muted to-secondary"
+                >
+                  {!imagesLoaded[featuredEvent.id] && (
+                    <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                  )}
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    className="w-full h-full"
+                  >
+                    <Image
+                      src="/Evventssmallbanner.png"
+                      alt={featuredEvent.title}
+                      fill
+                      className={`object-cover transition-opacity duration-500 ${
+                        imagesLoaded[featuredEvent.id] ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      priority
+                      onLoad={() => handleImageLoad(featuredEvent.id)}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 65vw, 800px"
+                    />
+                  </motion.div>
+                </motion.div>
+
+                <motion.div 
+                  variants={fadeInRight}
+                  className="p-4 sm:p-6 lg:p-8 flex flex-col justify-center"
+                >
+                  <motion.span 
+                    variants={scaleIn}
+                    className="inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-primary/10 text-primary text-xs sm:text-sm font-semibold mb-3 sm:mb-4 w-fit"
+                  >
+                    {featuredEvent.category}
+                  </motion.span>
+
+                  <AnimatedText 
+                    as="h2" 
+                    className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-3 sm:mb-4"
+                  >
+                    {featuredEvent.title}
+                  </AnimatedText>
+
+                  <AnimatedText delay={0.1} className="text-sm sm:text-base text-muted-foreground mb-6 sm:mb-8 leading-relaxed line-clamp-3">
+                    {featuredEvent.description}
+                  </AnimatedText>
+
+                  <motion.div 
+                    variants={staggerContainer}
+                    className="space-y-3 sm:space-y-4 mb-6 sm:mb-8"
+                  >
+                    <motion.div variants={fadeInUp} className="flex items-center gap-2 sm:gap-3 text-foreground">
+                      <Calendar className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                      <span className="font-medium text-sm sm:text-base">
+                        {featuredEvent.date}{" "}
+                        {featuredEvent.time && `• ${featuredEvent.time}`}
+                      </span>
+                    </motion.div>
+                    <motion.div variants={fadeInUp} className="flex items-center gap-2 sm:gap-3 text-foreground">
+                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                      <span className="font-medium text-sm sm:text-base">
+                        {featuredEvent.location}
+                      </span>
+                    </motion.div>
+                    <motion.div variants={fadeInUp} className="flex items-center gap-2 sm:gap-3 text-foreground">
+                      <Users className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+                      <span className="font-medium text-sm sm:text-base">
+                        {featuredEvent.format}
+                      </span>
+                    </motion.div>
+                    <motion.div variants={fadeInUp} className="flex items-center gap-2 sm:gap-3 text-foreground">
+                      <IndianRupee className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                      <span className="font-semibold text-base sm:text-lg">
+                        {featuredEvent.price}
+                      </span>
+                    </motion.div>
+                  </motion.div>
+
+                  <motion.div 
+                    variants={staggerContainer}
+                    className="grid grid-cols-2 gap-3 w-full"
+                  >
+                    <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        onClick={() => handleCardClick(featuredEvent.slug)}
+                        variant="outline"
+                        className="h-10 sm:h-12 border-2 border-primary text-primary font-semibold hover:bg-primary hover:text-white transition-all text-sm sm:text-base w-full"
+                      >
+                        View Details
+                      </Button>
+                    </motion.div>
+                    <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        onClick={(e) => handleContactClick(featuredEvent, e)}
+                        className="h-10 sm:h-12 bg-accent text-white font-semibold shadow-lg hover:shadow-xl transition-all text-sm sm:text-base w-full"
+                      >
+                        <Mail className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                        Contact
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            </div>
+          </section>
+        </ScrollFade>
       )}
 
       {/* ================= ALL EVENTS GRID ================= */}
@@ -881,73 +1007,101 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
         <div className="max-w-screen-xl mx-auto">
           <div className="grid lg:grid-cols-4 gap-6 sm:gap-8">
             <div className="lg:col-span-3">
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12">
-                <div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
-                    {selectedCategory === "All Events"
-                      ? "All Events"
-                      : selectedCategory}
-                  </h2>
-                  <p className="text-sm sm:text-base text-muted-foreground">
-                    {filteredEvents.length}{" "}
-                    {filteredEvents.length === 1 ? "event" : "events"} found
-                    {selectedCategory !== "All Events" &&
-                      ` in ${selectedCategory}`}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-2 w-full sm:w-auto">
-                  {selectedCategory !== "All Events" && (
-                    <Button
-                      variant="outline"
-                      className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                      onClick={() => {
-                        setSelectedCategory("All Events");
-                        setCurrentPage(1);
-                      }}
-                    >
-                      <X className="h-3 w-3 sm:h-4 sm:w-4" />
-                      Clear Filter
-                    </Button>
-                  )}
-
-                  <Button
-                    variant="outline"
-                    className="flex items-center gap-2 border-2 w-full sm:w-auto"
-                    onClick={() => setShowFilter(!showFilter)}
-                  >
-                    <Filter className="h-3 w-3 sm:h-4 sm:w-4" />
-                    Filter
-                  </Button>
-                </div>
-              </div>
-
-              {showFilter && (
-                <div className="mb-6 p-4 bg-card rounded-xl shadow-lg border border-border">
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {eventCategories.slice(1).map((cat) => (
-                      <button
-                        key={cat}
-                        onClick={() => {
-                          setSelectedCategory(cat);
-                          setShowFilter(false);
-                          setCurrentPage(1);
-                        }}
-                        className={`px-3 py-2 rounded-lg transition-colors text-sm ${
-                          selectedCategory === cat
-                            ? "bg-primary/10 text-primary font-medium"
-                            : "hover:bg-secondary text-muted-foreground"
-                        }`}
-                      >
-                        {cat}
-                      </button>
-                    ))}
+              <ScrollFade>
+                <motion.div 
+                  variants={fadeInUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: false }}
+                  className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 sm:mb-12"
+                >
+                  <div>
+                    <h2 className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-display font-bold text-foreground mb-1 sm:mb-2">
+                      {selectedCategory === "All Events"
+                        ? "All Events"
+                        : selectedCategory}
+                    </h2>
+                    <p className="text-sm sm:text-base text-muted-foreground">
+                      {filteredEvents.length}{" "}
+                      {filteredEvents.length === 1 ? "event" : "events"} found
+                      {selectedCategory !== "All Events" &&
+                        ` in ${selectedCategory}`}
+                    </p>
                   </div>
-                </div>
-              )}
+
+                  <div className="flex items-center gap-2 w-full sm:w-auto">
+                    {selectedCategory !== "All Events" && (
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Button
+                          variant="outline"
+                          className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                          onClick={() => {
+                            setSelectedCategory("All Events");
+                            setCurrentPage(1);
+                          }}
+                        >
+                          <X className="h-3 w-3 sm:h-4 sm:w-4" />
+                          Clear Filter
+                        </Button>
+                      </motion.div>
+                    )}
+
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Button
+                        variant="outline"
+                        className="flex items-center gap-2 border-2 w-full sm:w-auto"
+                        onClick={() => setShowFilter(!showFilter)}
+                      >
+                        <Filter className="h-3 w-3 sm:h-4 sm:w-4" />
+                        Filter
+                      </Button>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </ScrollFade>
+
+              <AnimatePresence>
+                {showFilter && (
+                  <motion.div 
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mb-6 overflow-hidden"
+                  >
+                    <div className="p-4 bg-card rounded-xl shadow-lg border border-border">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {eventCategories.slice(1).map((cat) => (
+                          <motion.button
+                            key={cat}
+                            whileHover={{ scale: 1.02, backgroundColor: "rgba(var(--primary), 0.1)" }}
+                            whileTap={{ scale: 0.98 }}
+                            onClick={() => {
+                              setSelectedCategory(cat);
+                              setShowFilter(false);
+                              setCurrentPage(1);
+                            }}
+                            className={`px-3 py-2 rounded-lg transition-colors text-sm ${
+                              selectedCategory === cat
+                                ? "bg-primary/10 text-primary font-medium"
+                                : "hover:bg-secondary text-muted-foreground"
+                            }`}
+                          >
+                            {cat}
+                          </motion.button>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {filteredEvents.length === 0 ? (
-                <div className="text-center py-16">
+                <motion.div 
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center py-16"
+                >
                   <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary flex items-center justify-center">
                     <Calendar className="h-8 w-8 text-muted-foreground" />
                   </div>
@@ -958,60 +1112,88 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
                     There are no upcoming events in the &quot;{selectedCategory}
                     &quot; category yet.
                   </p>
-                  <Button
-                    onClick={() => {
-                      setSelectedCategory("All Events");
-                      setCurrentPage(1);
-                    }}
-                    className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
-                  >
-                    View All Events
-                  </Button>
-                </div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button
+                      onClick={() => {
+                        setSelectedCategory("All Events");
+                        setCurrentPage(1);
+                      }}
+                      className="bg-gradient-to-r from-primary to-accent text-white font-semibold"
+                    >
+                      View All Events
+                    </Button>
+                  </motion.div>
+                </motion.div>
               ) : (
                 <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  <motion.div 
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, margin: "-50px" }}
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"
+                  >
                     {currentEvents
                       .filter((event) => !event.featured)
                       .map((event) => (
-                        <div
+                        <motion.div
                           key={event.id}
-                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 sm:hover:-translate-y-2 border border-border"
+                          variants={fadeInUp}
+                          whileHover={{ y: -5, scale: 1.02 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                          className="group bg-card rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 border border-border"
                         >
                           <div
                             onClick={() => handleCardClick(event.slug)}
                             className="relative h-40 sm:h-44 overflow-hidden bg-gradient-to-br from-muted to-secondary cursor-pointer"
                           >
-                            {event.image !== "/placeholder-event.jpg" ? (
+                            {!imagesLoaded[event.id] && (
+                              <div className="absolute inset-0 bg-gray-200 animate-pulse" />
+                            )}
+                            <motion.div
+                              whileHover={{ scale: 1.1 }}
+                              transition={{ duration: 0.3 }}
+                              className="w-full h-full"
+                            >
                               <Image
                                 src={event.image}
                                 alt={event.title}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                className={`object-cover transition-opacity duration-300 ${
+                                  imagesLoaded[event.id] ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                onLoad={() => handleImageLoad(event.id)}
+                                onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.style.display = 'none';
+                                }}
+                                loading="lazy"
                               />
-                            ) : (
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="w-full h-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                                  <span className="text-white/40 text-5xl font-display">
-                                    {event.title.charAt(0)}
-                                  </span>
-                                </div>
-                              </div>
-                            )}
-                            <div className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg">
+                            </motion.div>
+                            <motion.div 
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ type: "spring", delay: 0.2 }}
+                              className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-white rounded-lg sm:rounded-xl p-2 sm:p-3 text-center shadow-lg"
+                            >
                               <div className="text-xs text-muted-foreground font-medium uppercase">
                                 {event.month}
                               </div>
                               <div className="text-xl sm:text-2xl font-bold text-foreground">
                                 {event.day}
                               </div>
-                            </div>
-                            <div className="absolute top-3 right-3 sm:top-4 sm:right-4">
+                            </motion.div>
+                            <motion.div 
+                              initial={{ x: 50, opacity: 0 }}
+                              animate={{ x: 0, opacity: 1 }}
+                              transition={{ delay: 0.3 }}
+                              className="absolute top-3 right-3 sm:top-4 sm:right-4"
+                            >
                               <span className="px-2 py-1 rounded-full bg-white/90 backdrop-blur-sm text-xs font-medium text-foreground">
                                 {event.format.split(" ")[0]}
                               </span>
-                            </div>
+                            </motion.div>
                           </div>
 
                           <div className="p-4 sm:p-6">
@@ -1019,42 +1201,61 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
                               onClick={() => handleCardClick(event.slug)}
                               className="cursor-pointer"
                             >
-                              <span className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase">
+                              <motion.span 
+                                variants={scaleIn}
+                                className="inline-block px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-2 sm:mb-3 uppercase"
+                              >
                                 {event.category}
-                              </span>
+                              </motion.span>
 
-                              <h3 className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+                              <AnimatedText 
+                                as="h3" 
+                                delay={0.1}
+                                className="text-sm sm:text-base lg:text-lg font-display font-bold text-foreground mb-2 sm:mb-3 line-clamp-2 group-hover:text-primary transition-colors"
+                              >
                                 {event.title}
-                              </h3>
+                              </AnimatedText>
                             </div>
 
-                            <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border">
+                            <motion.div 
+                              variants={staggerContainer}
+                              className="flex items-center justify-between pt-3 sm:pt-4 border-t border-border"
+                            >
                               <div className="flex gap-2">
-                                <Button
-                                  onClick={(e) => handleContactClick(event, e)}
-                                  size="sm"
-                                  variant="outline"
-                                  className="border-primary text-primary hover:bg-primary hover:text-white"
-                                >
-                                  <Mail className="mr-1 h-3 w-3" />
-                                  Contact
-                                </Button>
-                                <Button
-                                  onClick={() => handleCardClick(event.slug)}
-                                  size="sm"
-                                  className="bg-primary hover:bg-primary/90 text-white"
-                                >
-                                  View Details
-                                </Button>
+                                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                  <Button
+                                    onClick={(e) => handleContactClick(event, e)}
+                                    size="sm"
+                                    variant="outline"
+                                    className="border-primary text-primary hover:bg-primary hover:text-white"
+                                  >
+                                    <Mail className="mr-1 h-3 w-3" />
+                                    Contact
+                                  </Button>
+                                </motion.div>
+                                <motion.div variants={scaleIn} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                  <Button
+                                    onClick={() => handleCardClick(event.slug)}
+                                    size="sm"
+                                    className="bg-primary hover:bg-primary/90 text-white"
+                                  >
+                                    View Details
+                                  </Button>
+                                </motion.div>
                               </div>
-                            </div>
+                            </motion.div>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
-                  </div>
+                  </motion.div>
 
                   {totalPages > 1 && (
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border">
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 }}
+                      className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 sm:mt-12 pt-8 border-t border-border"
+                    >
                       <div className="text-sm text-muted-foreground">
                         Showing {startIndex + 1}-
                         {Math.min(endIndex, filteredEvents.length)} of{" "}
@@ -1062,16 +1263,18 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
                       </div>
 
                       <div className="flex items-center gap-2">
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handlePageChange(currentPage - 1)}
-                          disabled={currentPage === 1}
-                          className="gap-1"
-                        >
-                          <ArrowRight className="h-3 w-3 rotate-180" />
-                          Previous
-                        </Button>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handlePageChange(currentPage - 1)}
+                            disabled={currentPage === 1}
+                            className="gap-1"
+                          >
+                            <ArrowRight className="h-3 w-3 rotate-180" />
+                            Previous
+                          </Button>
+                        </motion.div>
 
                         <div className="flex items-center gap-1">
                           {Array.from(
@@ -1089,19 +1292,24 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
                               }
 
                               return (
-                                <Button
+                                <motion.div
                                   key={pageNum}
-                                  variant={
-                                    currentPage === pageNum
-                                      ? "default"
-                                      : "outline"
-                                  }
-                                  size="sm"
-                                  className="w-10 h-10 p-0"
-                                  onClick={() => handlePageChange(pageNum)}
+                                  whileHover={{ scale: 1.1 }}
+                                  whileTap={{ scale: 0.95 }}
                                 >
-                                  {pageNum}
-                                </Button>
+                                  <Button
+                                    variant={
+                                      currentPage === pageNum
+                                        ? "default"
+                                        : "outline"
+                                    }
+                                    size="sm"
+                                    className="w-10 h-10 p-0"
+                                    onClick={() => handlePageChange(pageNum)}
+                                  >
+                                    {pageNum}
+                                  </Button>
+                                </motion.div>
                               );
                             },
                           )}
@@ -1109,30 +1317,37 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
                           {totalPages > 5 && currentPage < totalPages - 2 && (
                             <>
                               <span className="px-2">...</span>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                className="w-10 h-10 p-0"
-                                onClick={() => handlePageChange(totalPages)}
+                              <motion.div
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
                               >
-                                {totalPages}
-                              </Button>
+                                <Button
+                                  variant="outline"
+                                  size="sm"
+                                  className="w-10 h-10 p-0"
+                                  onClick={() => handlePageChange(totalPages)}
+                                >
+                                  {totalPages}
+                                </Button>
+                              </motion.div>
                             </>
                           )}
                         </div>
 
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          onClick={() => handlePageChange(currentPage + 1)}
-                          disabled={currentPage === totalPages}
-                          className="gap-1"
-                        >
-                          Next
-                          <ArrowRight className="h-3 w-3" />
-                        </Button>
+                        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                          <Button
+                            variant="outline"
+                            size="sm"
+                            onClick={() => handlePageChange(currentPage + 1)}
+                            disabled={currentPage === totalPages}
+                            className="gap-1"
+                          >
+                            Next
+                            <ArrowRight className="h-3 w-3" />
+                          </Button>
+                        </motion.div>
                       </div>
-                    </div>
+                    </motion.div>
                   )}
                 </>
               )}
@@ -1140,129 +1355,177 @@ Explore opportunities for learning, mentoring, and meaningful connections that h
 
             {/* SIDEBAR */}
             <aside className="space-y-6 lg:sticky lg:top-24 lg:self-start">
-              <div className="bg-card rounded-xl p-5 shadow-lg border border-border">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-display font-bold text-foreground flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
-                    Upcoming Soon
-                  </h3>
-                </div>
+              <ScrollFade>
+                <motion.div 
+                  variants={scaleIn}
+                  className="bg-card rounded-xl p-5 shadow-lg border border-border"
+                >
+                  <motion.div 
+                    variants={fadeInUp}
+                    className="flex items-center justify-between mb-4"
+                  >
+                    <h3 className="text-lg font-display font-bold text-foreground flex items-center gap-2">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-accent" />
+                      Upcoming Soon
+                    </h3>
+                  </motion.div>
 
-                <div className="space-y-4">
-                  {filteredTrendingEvents.length > 0 ? (
-                    filteredTrendingEvents.map((event, index) => (
-                      <div
-                        key={event.id}
-                        onClick={() => handleCardClick(event.slug)}
-                        className="block group cursor-pointer pb-4 border-b border-border last:border-0 last:pb-0 hover:border-primary/30 transition-colors"
-                      >
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                            {index + 1}
-                          </span>
-                          <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
-                            {event.category.split(" ")[0]}
-                          </span>
-                        </div>
-                        <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug text-sm line-clamp-2">
-                          {event.title}
-                        </h4>
-                        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                          <Calendar className="h-3 w-3" />
-                          <span>
-                            {event.month} {event.day}
-                          </span>
-                        </div>
+                  <motion.div 
+                    variants={staggerContainer}
+                    className="space-y-4"
+                  >
+                    {filteredTrendingEvents.length > 0 ? (
+                      filteredTrendingEvents.map((event, index) => (
+                        <motion.div
+                          key={event.id}
+                          variants={fadeInLeft}
+                          whileHover={{ x: 5 }}
+                          onClick={() => handleCardClick(event.slug)}
+                          className="block group cursor-pointer pb-4 border-b border-border last:border-0 last:pb-0 hover:border-primary/30 transition-colors"
+                        >
+                          <div className="flex items-center gap-2 mb-1">
+                            <motion.span 
+                              initial={{ scale: 0 }}
+                              animate={{ scale: 1 }}
+                              transition={{ delay: index * 0.1 }}
+                              className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/10 text-primary text-xs font-bold"
+                            >
+                              {index + 1}
+                            </motion.span>
+                            <span className="inline-block px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-semibold uppercase">
+                              {event.category.split(" ")[0]}
+                            </span>
+                          </div>
+                          <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1.5 leading-snug text-sm line-clamp-2">
+                            {event.title}
+                          </h4>
+                          <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            <span>
+                              {event.month} {event.day}
+                            </span>
+                          </div>
+                        </motion.div>
+                      ))
+                    ) : (
+                      <div className="text-center py-2">
+                        <p className="text-muted-foreground text-sm">
+                          No upcoming events
+                        </p>
                       </div>
-                    ))
-                  ) : (
-                    <div className="text-center py-2">
-                      <p className="text-muted-foreground text-sm">
-                        No upcoming events
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
+                    )}
+                  </motion.div>
+                </motion.div>
+              </ScrollFade>
 
-              <div className="bg-gradient-to-br from-secondary/50 to-secondary rounded-xl p-5 border border-border">
-                <h3 className="text-base font-display font-bold text-foreground mb-3">
-                  Event Categories
-                </h3>
-                <div className="space-y-2">
-                  {eventCategories.slice(1).map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => {
-                        setSelectedCategory(cat);
-                        setCurrentPage(1);
-                      }}
-                      className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm ${
-                        selectedCategory === cat
-                          ? "bg-primary/10 text-primary font-medium"
-                          : "hover:bg-white/20 text-muted-foreground"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <ScrollFade>
+                <motion.div 
+                  variants={scaleIn}
+                  className="bg-gradient-to-br from-secondary/50 to-secondary rounded-xl p-5 border border-border"
+                >
+                  <h3 className="text-base font-display font-bold text-foreground mb-3">
+                    Event Categories
+                  </h3>
+                  <motion.div 
+                    variants={staggerContainer}
+                    className="space-y-2"
+                  >
+                    {eventCategories.slice(1).map((cat) => (
+                      <motion.button
+                        key={cat}
+                        variants={fadeInRight}
+                        whileHover={{ x: 5 }}
+                        onClick={() => {
+                          setSelectedCategory(cat);
+                          setCurrentPage(1);
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg transition-colors text-sm ${
+                          selectedCategory === cat
+                            ? "bg-primary/10 text-primary font-medium"
+                            : "hover:bg-white/20 text-muted-foreground"
+                        }`}
+                      >
+                        {cat}
+                      </motion.button>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              </ScrollFade>
 
               {selectedCategory !== "All Events" && (
-                <div className="bg-primary/5 rounded-xl p-5 border border-primary/20">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-sm font-display font-bold text-foreground">
-                      Active Filter
-                    </h3>
-                    <button
-                      onClick={() => {
-                        setSelectedCategory("All Events");
-                        setCurrentPage(1);
-                      }}
-                      className="text-xs text-primary hover:text-accent transition-colors font-medium"
+                <ScrollFade>
+                  <motion.div 
+                    variants={scaleIn}
+                    className="bg-primary/5 rounded-xl p-5 border border-primary/20"
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-sm font-display font-bold text-foreground">
+                        Active Filter
+                      </h3>
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => {
+                          setSelectedCategory("All Events");
+                          setCurrentPage(1);
+                        }}
+                        className="text-xs text-primary hover:text-accent transition-colors font-medium"
+                      >
+                        Clear
+                      </motion.button>
+                    </div>
+                    <p className="text-sm text-muted-foreground mb-3">
+                      Viewing events in:
+                    </p>
+                    <motion.div 
+                      variants={scaleIn}
+                      className="px-3 py-2 bg-primary text-white rounded-lg text-sm font-semibold text-center shadow-sm"
                     >
-                      Clear
-                    </button>
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    Viewing events in:
-                  </p>
-                  <div className="px-3 py-2 bg-primary text-white rounded-lg text-sm font-semibold text-center shadow-sm">
-                    {selectedCategory}
-                  </div>
-                  <p className="text-xs text-muted-foreground mt-3 text-center">
-                    {filteredEvents.length}{" "}
-                    {filteredEvents.length === 1 ? "event" : "events"} found
-                  </p>
-                </div>
+                      {selectedCategory}
+                    </motion.div>
+                    <p className="text-xs text-muted-foreground mt-3 text-center">
+                      {filteredEvents.length}{" "}
+                      {filteredEvents.length === 1 ? "event" : "events"} found
+                    </p>
+                  </motion.div>
+                </ScrollFade>
               )}
 
-              <div className="bg-card rounded-xl p-5 shadow-lg border border-border">
-                <h3 className="text-base font-display font-bold text-foreground mb-3">
-                  Event Tips
-                </h3>
-                <ul className="space-y-2 text-xs text-muted-foreground">
-                  <li className="flex items-start gap-2">
-                    <Clock className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Register early for best rates</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Users className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Network with fellow attendees</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <Calendar className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
-                    <span>Add events to your calendar</span>
-                  </li>
-                </ul>
-              </div>
+              <ScrollFade>
+                <motion.div 
+                  variants={scaleIn}
+                  className="bg-card rounded-xl p-5 shadow-lg border border-border"
+                >
+                  <h3 className="text-base font-display font-bold text-foreground mb-3">
+                    Event Tips
+                  </h3>
+                  <motion.ul 
+                    variants={staggerContainer}
+                    className="space-y-2 text-xs text-muted-foreground"
+                  >
+                    <motion.li variants={fadeInUp} className="flex items-start gap-2">
+                      <Clock className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
+                      <span>Register early for best rates</span>
+                    </motion.li>
+                    <motion.li variants={fadeInUp} className="flex items-start gap-2">
+                      <Users className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
+                      <span>Network with fellow attendees</span>
+                    </motion.li>
+                    <motion.li variants={fadeInUp} className="flex items-start gap-2">
+                      <Calendar className="h-3 w-3 text-accent mt-0.5 flex-shrink-0" />
+                      <span>Add events to your calendar</span>
+                    </motion.li>
+                  </motion.ul>
+                </motion.div>
+              </ScrollFade>
             </aside>
           </div>
         </div>
       </section>
 
-      <Cta />
+      <ScrollFade>
+        <Cta />
+      </ScrollFade>
     </main>
   );
 }
