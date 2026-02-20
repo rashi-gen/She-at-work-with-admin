@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { entrechatData } from "@/data/Entrechat";
+import { PageBanner } from "@/components/PageBanner";
 import {
   ArrowRight,
   Building,
@@ -1055,19 +1056,11 @@ export default function EntreChatPage() {
   if (isLoading) {
     return (
       <main className="bg-background min-h-screen">
-        <section className={`relative h-[470px] overflow-hidden pt-24`}>
-          <div className="absolute inset-0" style={{ top: "96px" }}>
-            <div
-              className="w-full h-full"
-              style={{
-                backgroundImage: `url(/FinalEntrechatbanner.png)`,
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          </div>
-        </section>
+        <PageBanner
+  title="EntreChat Community"
+  description="Candid conversations with inspiring women entrepreneurs sharing real journeys and experiences"
+  image="/FinalEntrechatbanner.png"
+/>
         <div className="flex items-center justify-center py-20">
           <div className="text-center">
             <div className="w-16 h-16 mx-auto mb-4 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
@@ -1080,43 +1073,82 @@ export default function EntreChatPage() {
 
   return (
     <main className="bg-background min-h-screen">
-      <section className={`relative h-[470px] overflow-hidden pt-24`}>
-        {/* Background Image */}
-        <div className="absolute inset-0" style={{ top: "96px" }}>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(/FinalEntrechatbanner.png)`,
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }}
-          />
-        </div>
+      {/* DESKTOP BANNER */}
+{/* DESKTOP BANNER */}
+<section className="relative h-[470px] overflow-hidden pt-24 hidden lg:block">
+  <div className="absolute inset-0" style={{ top: "96px" }}>
+    <div
+      className="w-full h-full"
+      style={{
+        backgroundImage: `url(/FinalEntrechatbanner.png)`,
+        backgroundPosition: "center center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    />
+  </div>
+  <div className="relative z-10 h-full flex items-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
+        <h1 className="text-white leading-tight">
+          <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold">
+            EntreChat Community
+          </span>
+        </h1>
+        <p className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl">
+          Candid conversations with inspiring women entrepreneurs sharing real
+          journeys and experiences. Discover challenges, strategies, and lessons
+          that inform, inspire, and empower your own path.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        {/* Content - Left aligned */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
-              {/* Title */}
-              <h1 className="text-white leading-tight">
-                <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
-                  EntreChat Community
-                </span>
-              </h1>
-
-              <p className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl">
-                Candid conversations with inspiring women entrepreneurs sharing
-                real journeys and experiences. Discover challenges, strategies,
-                and lessons that inform, inspire, and empower your own path.
-              </p>
-
- 
-            </div>
-          </div>
-        </div>
-      </section>
-
+{/* MOBILE/TABLET BANNER */}
+<section className="relative overflow-hidden pt-24 block lg:hidden">
+  <div className="absolute inset-0 top-24 block lg:hidden">
+    <Image
+      src="/Mobile-Entrechat.png"
+      alt="EntreChat Banner"
+      fill
+      className="object-cover object-center"
+      priority
+    />
+  </div>
+  <div className="absolute inset-0 top-24 hidden lg:block">
+    <Image
+      src="/FinalEntrechatbanner.png"
+      alt="EntreChat Banner"
+      fill
+      className="object-cover object-center"
+      priority
+    />
+  </div>
+  <div className="relative z-10 flex items-start lg:items-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="
+        max-w-3xl
+        mx-auto text-left
+        lg:mx-0 lg:text-left lg:px-8
+        pt-9 sm:pt-16 lg:pt-0
+        sm:pb-[470px] lg:pb-0
+        min-h-[470px] lg:min-h-0
+      ">
+        <h1 className="text-white leading-tight drop-shadow-lg">
+          <span className="block text-4xl sm:text-5xl lg:text-6xl font-bold">
+            EntreChat Community
+          </span>
+        </h1>
+        <p className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/90 leading-relaxed drop-shadow-md">
+          Candid conversations with inspiring women entrepreneurs sharing real
+          journeys and experiences. Discover challenges, strategies, and lessons
+          that inform, inspire, and empower your own path.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
       {/* ================= FEATURED INTERVIEW + SIDEBAR ================= */}
       <section className="px-4 sm:px-6 lg:px-8 py-12 bg-secondary/30">
         <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
