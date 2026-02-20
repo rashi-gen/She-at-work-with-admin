@@ -658,7 +658,55 @@ export default function NewsPage() {
 
   return (
     <main className="bg-background min-h-screen">
-      <section className="relative overflow-hidden pt-24">
+
+          <section className="relative h-[470px] overflow-hidden pt-24 hidden lg:block">
+        {/* Background Image */}
+        <div className="absolute inset-0" style={{ top: "96px" }}>
+          <div
+            className="w-full h-full"
+            style={{
+              backgroundImage: `url(/finalNewsbanner.png)`,
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </div>
+
+        {/* Content - Left aligned with animations */}
+        <div className="relative z-10 h-full flex items-center">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
+              {/* Animated Title */}
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={bannerVariants}
+              >
+                <h1 className="text-white leading-tight">
+                  <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold">
+                    Women in
+                    <br /> Business News
+                  </span>
+                </h1>
+              </motion.div>
+
+              {/* Animated Subtitle with delay */}
+              <motion.p
+                initial="hidden"
+                animate="visible"
+                variants={bannerSubtitleVariants}
+                className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl"
+              >
+                Latest news, trends, and stories from women entrepreneurs across
+                India and beyond. Insights and policy updates driving innovation
+                and growth in women-led enterprises.
+              </motion.p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="relative overflow-hidden pt-24 block lg:hidden">
         {/* MOBILE/TABLET IMAGE - hidden on desktop */}
         <div className="absolute inset-0 top-24 block lg:hidden">
           <Image
@@ -690,7 +738,7 @@ export default function NewsPage() {
         mx-auto text-left
         lg:mx-0 lg:text-left lg:px-8
          pt-9 sm:pt-16 lg:pt-0     
-         sm:pb-[380px] lg:pb-0
+         sm:pb-[470px] lg:pb-0
         min-h-[470px] lg:min-h-0
       ">
         <motion.div initial="hidden" animate="visible" variants={bannerVariants}>
