@@ -16,7 +16,7 @@ const navLinks = [
 ];
 
 const aboutDropdownItems = [
-  { name: "About Us", href: "/about" },
+  // { name: "About Us", href: "/about" },
   { name: "Core Team", href: "/about/core-team" },
   { name: "Press Room", href: "/about/press-room" },
 ];
@@ -104,25 +104,32 @@ export const Navbar = () => {
             })}
 
             {/* ABOUT US DROPDOWN */}
-            <div className="relative" ref={aboutDropdownRef}>
-              <button
-                onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
-                className={`
-                  flex items-center gap-1 text-md font-medium transition-colors duration-300
-                  ${
-                    isAboutActive
-                      ? "text-accent"
-                      : "text-foreground hover:text-accent"
-                  }
-                `}
-              >
-                About Us
-                <ChevronDown 
-                  className={`h-4 w-4 transition-transform duration-300 ${
-                    isAboutDropdownOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </button>
+           {/* ABOUT US DROPDOWN */}
+<div className="relative" ref={aboutDropdownRef}>
+  <div className="flex items-center gap-1">
+    <Link
+      href="/about"
+      className={`
+        text-md font-medium transition-colors duration-300
+        ${isAboutActive ? "text-accent" : "text-foreground hover:text-accent"}
+      `}
+    >
+      About Us
+    </Link>
+    <button
+      onClick={() => setIsAboutDropdownOpen(!isAboutDropdownOpen)}
+      className={`
+        transition-colors duration-300
+        ${isAboutActive ? "text-accent" : "text-foreground hover:text-accent"}
+      `}
+    >
+      <ChevronDown
+        className={`h-4 w-4 transition-transform duration-300 ${
+          isAboutDropdownOpen ? "rotate-180" : ""
+        }`}
+      />
+    </button>
+  </div>
 
               {/* ABOUT DROPDOWN MENU */}
               {isAboutDropdownOpen && (

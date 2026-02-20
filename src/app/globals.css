@@ -72,14 +72,21 @@
     --ring: #CF2554;
   }
 
-  * {
-    @apply border-border;
-  }
+* {
+  @apply border-border;
+}
 
-  body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-sans, 'Inter', sans-serif);
-  }
+html {
+  overflow-x: hidden;  /* ADD THIS */
+}
+
+
+body {
+  @apply bg-background text-foreground;
+  font-family: var(--font-sans, 'Inter', sans-serif);
+  overflow-x: hidden;  /* ADD THIS */
+  max-width: 100%;     /* ADD THIS */
+}
 }
 
 @layer components {

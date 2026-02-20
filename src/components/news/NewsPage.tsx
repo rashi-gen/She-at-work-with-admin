@@ -17,7 +17,7 @@ import {
   MapPin,
   Search,
   SlidersHorizontal,
-  X
+  X,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -41,10 +41,13 @@ import {
   ProcessedNewsItem,
 } from "./helper";
 import { SearchSuggestions } from "./SearchSuggestions";
-import { ScrollReveal,  } from "@/components/common/ScrollReveal";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { motion, useAnimation, useInView, Variants } from "framer-motion";
-import { AnimatedText, ScrollFade, StaggerChildren } from "../common/ScrollFade";
-
+import {
+  AnimatedText,
+  ScrollFade,
+  StaggerChildren,
+} from "../common/ScrollFade";
 
 export default function NewsPage() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([
@@ -91,30 +94,30 @@ export default function NewsPage() {
   const [showCustomDatePicker, setShowCustomDatePicker] = useState(false);
 
   // Animation variants for banner text
-const bannerVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1],
+  const bannerVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1],
+      },
     },
-  },
-};
+  };
 
-const bannerSubtitleVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.8,
-      delay: 0.2,
-      ease: [0.22, 1, 0.36, 1],
+  const bannerSubtitleVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        delay: 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      },
     },
-  },
-};
+  };
 
   // Function to detect user location
   const detectUserLocation = async () => {
@@ -655,53 +658,63 @@ const bannerSubtitleVariants: Variants = {
 
   return (
     <main className="bg-background min-h-screen">
-      <section className={`relative h-[470px] overflow-hidden pt-24`}>
-        {/* Background Image */}
-        <div className="absolute inset-0" style={{ top: "96px" }}>
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url(/finalNewsbanner.png)`,
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }}
+      <section className="relative overflow-hidden pt-24">
+        {/* MOBILE/TABLET IMAGE - hidden on desktop */}
+        <div className="absolute inset-0 top-24 block lg:hidden">
+          <Image
+            src="/mobileBannernews.png"
+            alt="News Banner"
+            fill
+            className="object-cover object-center"
+            priority
           />
+          {/* <div className="absolute inset-0 bg-black/20" /> */}
         </div>
 
-        {/* Content - Left aligned with animations */}
-        <div className="relative z-10 h-full flex items-center">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
-              {/* Animated Title */}
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={bannerVariants}
-              >
-                <h1 className="text-white leading-tight">
-                  <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold">
-                    Women in
-                    <br /> Business News
-                  </span>
-                </h1>
-              </motion.div>
-
-              {/* Animated Subtitle with delay */}
-              <motion.p
-                initial="hidden"
-                animate="visible"
-                variants={bannerSubtitleVariants}
-                className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl"
-              >
-                Latest news, trends, and stories from women entrepreneurs across
-                India and beyond. Insights and policy updates driving innovation
-                and growth in women-led enterprises.
-              </motion.p>
-            </div>
-          </div>
+        {/* DESKTOP IMAGE - hidden on mobile/tablet */}
+        <div className="absolute inset-0 top-24 hidden lg:block">
+          <Image
+            src="/finalNewsbanner.png"
+            alt="News Banner"
+            fill
+            className="object-cover object-center"
+            priority
+          />
+          {/* <div className="absolute inset-0 bg-black/20" /> */}
         </div>
+
+     <div className="relative z-10 flex items-start lg:items-center">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="
+        max-w-3xl 
+        mx-auto text-left
+        lg:mx-0 lg:text-left lg:px-8
+         pt-9 sm:pt-16 lg:pt-0     
+         sm:pb-[380px] lg:pb-0
+        min-h-[470px] lg:min-h-0
+      ">
+        <motion.div initial="hidden" animate="visible" variants={bannerVariants}>
+          <h1 className="text-white leading-tight drop-shadow-lg">
+            <span className="block text-4xl sm:text-5xl lg:text-6xl font-bold">
+              Women in<br />Business News
+            </span>
+          </h1>
+        </motion.div>
+        <motion.p
+          initial="hidden"
+          animate="visible"
+          variants={bannerSubtitleVariants}
+          className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/90 leading-relaxed drop-shadow-md"
+        >
+          Stay informed with the latest news, insights, and success stories
+          from women entrepreneurs worldwide
+        </motion.p>
+      </div>
+    </div>
+  </div>
       </section>
+
+      
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
       <ScrollReveal direction="up" delay={0.2} threshold={0.1}>
@@ -709,7 +722,11 @@ const bannerSubtitleVariants: Variants = {
           <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* FEATURED - 2 COLUMNS */}
             {featuredNews && (
-              <ScrollReveal direction="left" delay={0.3} className="lg:col-span-2">
+              <ScrollReveal
+                direction="left"
+                delay={0.3}
+                className="lg:col-span-2"
+              >
                 <div
                   onClick={(e) =>
                     handleFeaturedExternalLink(
@@ -810,7 +827,11 @@ const bannerSubtitleVariants: Variants = {
             )}
 
             {/* SIDEBAR - LATEST HEADLINES */}
-            <ScrollReveal direction="right" delay={0.4} className={!featuredNews ? "lg:col-span-3" : ""}>
+            <ScrollReveal
+              direction="right"
+              delay={0.4}
+              className={!featuredNews ? "lg:col-span-3" : ""}
+            >
               <div className="space-y-4 sm:space-y-6">
                 <div className="bg-card rounded-xl sm:rounded-2xl lg:rounded-3xl p-4 sm:p-6 shadow-lg border border-border lg:sticky lg:top-24">
                   {/* HEADER */}
@@ -830,7 +851,7 @@ const bannerSubtitleVariants: Variants = {
                             key={i}
                             variants={{
                               hidden: { opacity: 0, x: -20 },
-                              visible: { opacity: 1, x: 0 }
+                              visible: { opacity: 1, x: 0 },
                             }}
                             onClick={(e) =>
                               handleExternalLink(
@@ -1079,7 +1100,9 @@ const bannerSubtitleVariants: Variants = {
                               selectedValues={selectedCategories.filter(
                                 (cat) => cat !== "All News",
                               )}
-                              onChange={(values) => setSelectedCategories(values)}
+                              onChange={(values) =>
+                                setSelectedCategories(values)
+                              }
                               placeholder="Select categories"
                               allOptionLabel="All Categories"
                             />
@@ -1217,7 +1240,9 @@ const bannerSubtitleVariants: Variants = {
                                     >
                                       <CalendarDays className="h-3 w-3" />
                                       {selectedCategories.length} category
-                                      {selectedCategories.length !== 1 ? "ies" : ""}
+                                      {selectedCategories.length !== 1
+                                        ? "ies"
+                                        : ""}
                                       <button
                                         onClick={() =>
                                           setSelectedCategories(["All News"])
@@ -1229,7 +1254,9 @@ const bannerSubtitleVariants: Variants = {
                                     </motion.span>
                                   )}
                                 {selectedSourceTypes.length > 0 &&
-                                  !selectedSourceTypes.includes("All Sources") && (
+                                  !selectedSourceTypes.includes(
+                                    "All Sources",
+                                  ) && (
                                     <motion.span
                                       initial={{ scale: 0.8, opacity: 0 }}
                                       animate={{ scale: 1, opacity: 1 }}
@@ -1237,10 +1264,14 @@ const bannerSubtitleVariants: Variants = {
                                     >
                                       <FileText className="h-3 w-3" />
                                       {selectedSourceTypes.length} source type
-                                      {selectedSourceTypes.length !== 1 ? "s" : ""}
+                                      {selectedSourceTypes.length !== 1
+                                        ? "s"
+                                        : ""}
                                       <button
                                         onClick={() =>
-                                          setSelectedSourceTypes(["All Sources"])
+                                          setSelectedSourceTypes([
+                                            "All Sources",
+                                          ])
                                         }
                                         className="ml-1 hover:bg-blue-200 rounded-full p-0.5 transition-colors"
                                       >
@@ -1258,16 +1289,18 @@ const bannerSubtitleVariants: Variants = {
                                     >
                                       <Calendar className="h-3 w-3" />
                                       From:{" "}
-                                      {new Date(dateRange.from).toLocaleDateString(
-                                        "en-US",
-                                        {
-                                          month: "short",
-                                          day: "numeric",
-                                        },
-                                      )}
+                                      {new Date(
+                                        dateRange.from,
+                                      ).toLocaleDateString("en-US", {
+                                        month: "short",
+                                        day: "numeric",
+                                      })}
                                       <button
                                         onClick={() =>
-                                          setDateRange({ ...dateRange, from: "" })
+                                          setDateRange({
+                                            ...dateRange,
+                                            from: "",
+                                          })
                                         }
                                         className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
                                       >
@@ -1275,31 +1308,31 @@ const bannerSubtitleVariants: Variants = {
                                       </button>
                                     </motion.span>
                                   )}
-                                {selectedDateRange === "custom" && dateRange.to && (
-                                  <motion.span
-                                    initial={{ scale: 0.8, opacity: 0 }}
-                                    animate={{ scale: 1, opacity: 1 }}
-                                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs"
-                                  >
-                                    <Calendar className="h-3 w-3" />
-                                    To:{" "}
-                                    {new Date(dateRange.to).toLocaleDateString(
-                                      "en-US",
-                                      {
+                                {selectedDateRange === "custom" &&
+                                  dateRange.to && (
+                                    <motion.span
+                                      initial={{ scale: 0.8, opacity: 0 }}
+                                      animate={{ scale: 1, opacity: 1 }}
+                                      className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs"
+                                    >
+                                      <Calendar className="h-3 w-3" />
+                                      To:{" "}
+                                      {new Date(
+                                        dateRange.to,
+                                      ).toLocaleDateString("en-US", {
                                         month: "short",
                                         day: "numeric",
-                                      },
-                                    )}
-                                    <button
-                                      onClick={() =>
-                                        setDateRange({ ...dateRange, to: "" })
-                                      }
-                                      className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
-                                    >
-                                      <X className="h-3 w-3" />
-                                    </button>
-                                  </motion.span>
-                                )}
+                                      })}
+                                      <button
+                                        onClick={() =>
+                                          setDateRange({ ...dateRange, to: "" })
+                                        }
+                                        className="ml-1 hover:bg-green-200 rounded-full p-0.5 transition-colors"
+                                      >
+                                        <X className="h-3 w-3" />
+                                      </button>
+                                    </motion.span>
+                                  )}
 
                                 {selectedDateRange &&
                                   selectedDateRange !== "custom" && (
@@ -1334,7 +1367,9 @@ const bannerSubtitleVariants: Variants = {
                                   >
                                     <Globe className="h-3 w-3" />
                                     {selectedCountries.length} country
-                                    {selectedCountries.length !== 1 ? "ies" : ""}
+                                    {selectedCountries.length !== 1
+                                      ? "ies"
+                                      : ""}
                                     <button
                                       onClick={() => setSelectedCountries([])}
                                       className="ml-1 hover:bg-purple-200 rounded-full p-0.5 transition-colors"
@@ -1518,7 +1553,11 @@ const bannerSubtitleVariants: Variants = {
                             </div>
                             <motion.div
                               whileHover={{ x: 5 }}
-                              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 400,
+                                damping: 10,
+                              }}
                               className="inline-flex items-center gap-1 px-2 py-1 -mx-2 -my-1 rounded-md text-primary group-hover:text-accent group-hover:bg-primary/5 transition-colors"
                             >
                               Read
@@ -1576,7 +1615,9 @@ const bannerSubtitleVariants: Variants = {
                                 >
                                   <Button
                                     variant={
-                                      currentPage === pageNum ? "default" : "outline"
+                                      currentPage === pageNum
+                                        ? "default"
+                                        : "outline"
                                     }
                                     size="sm"
                                     className="w-10 h-10 p-0"
