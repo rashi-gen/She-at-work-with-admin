@@ -22,14 +22,14 @@ export const ScrollReveal = ({
   duration = 0.8,
   className = "",
   staggerChildren = 0,
-  threshold = 0.2,
+  threshold = 0.1,
   // once = false, // Changed to false for re-animation
 }: ScrollRevealProps) => {
   const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { 
     amount: threshold,
-    margin: "0px 0px -100px 0px" // Negative margin to trigger earlier
+    margin: "0px 0px -5px 0px" // Negative margin to trigger earlier
   });
 
   useEffect(() => {

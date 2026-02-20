@@ -765,7 +765,7 @@ export default function NewsPage() {
       
 
       {/* ================= FEATURED NEWS + SIDEBAR ================= */}
-      <ScrollReveal direction="up" delay={0.2} threshold={0.1}>
+      <ScrollReveal direction="up" delay={0.2} threshold={0}>
         <section className="px-4 sm:px-6 lg:px-8 py-8">
           <div className="max-w-screen-xl mx-auto grid lg:grid-cols-3 gap-6 sm:gap-8">
             {/* FEATURED - 2 COLUMNS */}

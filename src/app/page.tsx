@@ -24,19 +24,17 @@ export default function Home() {
       <About />
 
       {/* Other sections use ScrollReveal with once={false} */}
-      <ScrollReveal direction="up" threshold={0.2} delay={0.1} once={false}>
+      <ScrollReveal direction="up" threshold={0.1} delay={0} once={false}>
         <FeaturedStories />
       </ScrollReveal>
-
-      <ScrollReveal direction="up" threshold={0.2} delay={0.1} once={false}>
+      <ScrollReveal direction="up" threshold={0.1} delay={0} once={false}>
         <Categories />
       </ScrollReveal>
-
-      <ScrollReveal direction="up" threshold={0.2} delay={0.1} once={false}>
+      <ScrollReveal direction="up" threshold={0.1} delay={0} once={false}>
         <LatestBlogs />
       </ScrollReveal>
 
-      <ScrollReveal direction="up" threshold={0.1} delay={0.1} once={false}>
+      <ScrollReveal direction="up" threshold={0.1} delay={0} once={false}>
         <Cta />
       </ScrollReveal>
     </div>
