@@ -828,58 +828,98 @@ export default function EventsPage() {
   return (
     <main className="bg-background min-h-screen flex flex-col">
       <ScrollFade>
-        <section className={`relative h-[470px] overflow-hidden pt-24`}>
-          {/* Background Image */}
-          <div className="absolute inset-0" style={{ top: "96px" }}>
-            <motion.div
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1.2 }}
-              className="w-full h-full"
-              style={{
-                backgroundImage: `url(/FinalEventsbanner.png)`,
-                backgroundPosition: "center center",
-                backgroundSize: "cover",
-                backgroundRepeat: "no-repeat",
-              }}
-            />
-          </div>
+  {/* DESKTOP BANNER */}
+  <section className="relative h-[470px] overflow-hidden pt-24 hidden lg:block">
+    <div className="absolute inset-0" style={{ top: "96px" }}>
+      <div
+        className="w-full h-full"
+        style={{
+          backgroundImage: `url(/FinalEventsbanner.png)`,
+          backgroundPosition: "center center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      />
+    </div>
+    <div className="relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-3xl px-4 sm:px-6 lg:px-8">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <h1 className="text-white leading-tight">
+              <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold">
+                Events
+              </span>
+            </h1>
+          </motion.div>
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="mt-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-xl"
+          >
+            Discover workshops, webinars, and networking events designed to
+            support women entrepreneurs. Explore opportunities for learning,
+            mentoring, and meaningful connections that help your business grow.
+          </motion.p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          {/* Content - Left aligned */}
-          <div className="relative z-10 h-full flex items-center">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-              <motion.div 
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="max-w-3xl px-4 sm:px-6 lg:px-8"
-              >
-                <motion.h1 
-                  variants={fadeInUp}
-                  initial="hidden"
-                  animate="visible"
-                  className="text-white leading-tight"
-                >
-                  <span className="block text-3xl sm:text-4xl lg:text-6xl font-bold sm:font-bold ">
-                    Events
-                  </span>
-                </motion.h1>
-
-                <motion.p 
-                  variants={fadeInUp}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: 0.2 }}
-                  className="mt-4 mb-4 sm:mt-6 text-md sm:text-base md:text-xl text-white/90 leading-relaxed max-w-3xl"
-                >
-                  Discover workshops, webinars, and networking events designed to support women entrepreneurs.
-                  Explore opportunities for learning, mentoring, and meaningful connections that help your business grow.
-                </motion.p>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-      </ScrollFade>
+  {/* MOBILE/TABLET BANNER */}
+  <section className="relative overflow-hidden pt-24 block lg:hidden">
+    <div className="absolute inset-0 top-24 block lg:hidden">
+      <Image
+        src="/Mobile-Events.png"
+        alt="Events Banner"
+        fill
+        className="object-cover object-center"
+        priority
+      />
+    </div>
+    <div className="absolute inset-0 top-24 hidden lg:block">
+      <Image
+        src="/FinalEventsbanner.png"
+        alt="Events Banner"
+        fill
+        className="object-cover object-center"
+        priority
+      />
+    </div>
+    <div className="relative z-10 flex items-start lg:items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="
+          max-w-3xl
+          mx-auto text-left
+          lg:mx-0 lg:text-left lg:px-8
+          pt-9 sm:pt-16 lg:pt-0
+          sm:pb-[470px] lg:pb-0
+          min-h-[470px] lg:min-h-0
+        ">
+          <motion.div initial="hidden" animate="visible" variants={fadeInUp}>
+            <h1 className="text-white leading-tight drop-shadow-lg">
+              <span className="block text-4xl sm:text-5xl lg:text-6xl font-bold">
+                Events
+              </span>
+            </h1>
+          </motion.div>
+          <motion.p
+            initial="hidden"
+            animate="visible"
+            variants={fadeInUp}
+            transition={{ delay: 0.2 }}
+            className="mt-4 sm:mt-6 text-base sm:text-lg md:text-xl text-white/90 leading-relaxed drop-shadow-md"
+          >
+            Discover workshops, webinars, and networking events designed to
+            support women entrepreneurs. Explore opportunities for learning,
+            mentoring, and meaningful connections that help your business grow.
+          </motion.p>
+        </div>
+      </div>
+    </div>
+  </section>
+</ScrollFade>
 
       {/* ================= FEATURED EVENT ================= */}
       {showFeaturedEvent && featuredEvent && (

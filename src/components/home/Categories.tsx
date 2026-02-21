@@ -97,7 +97,7 @@ export const Categories = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const isInView = useInView(sectionRef, { 
-    amount: 0.3,
+    amount: 0.1,
     once: true, // Only trigger once
     margin: "0px 0px -100px 0px"
   });
