@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate:images": "node --env-file=.env migrate-images.mjs"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.7.4",
@@ -25,6 +26,7 @@
     "@radix-ui/react-toast": "^1.2.6",
     "bcryptjs": "^3.0.2",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.9.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
@@ -44,6 +46,7 @@
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
     "react-spinners": "^0.15.0",
+    "sharp": "^0.34.5",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",

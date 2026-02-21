@@ -26,7 +26,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/11\/WhatsApp-Image-2025-11-26-at-17.15.18.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648524\/4a36f895-WhatsApp-Image-2025-11-26-at-17.15.18.jpg",
       "external_url": null
     },
     {
@@ -55,7 +55,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/10\/WhatsApp-Image-2025-10-17-at-3.31.35-PM.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648528\/f8585aab-WhatsApp-Image-2025-10-17-at-3.31.35-PM.jpg",
       "external_url": "https:\/\/www.youtube.com\/channel\/UCc6XZTICkiWx1lORAPNlwUg"
     },
     {
@@ -84,7 +84,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-6.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648536\/f91e7a4c-In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-6.png",
       "external_url": null
     },
     {
@@ -113,7 +113,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/07\/business-1200-x-644-px-5.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648542\/8ce721aa-business-1200-x-644-px-5.png",
       "external_url": null
     },
     {
@@ -142,7 +142,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/01\/business-2025-01-08T121002.414.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648545\/90d79517-business-2025-01-08T121002.414.png",
       "external_url": null
     },
     {
@@ -171,7 +171,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/12\/business-2024-12-12T112702.078.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648550\/147fc409-business-2024-12-12T112702.078.png",
       "external_url": null
     },
     {
@@ -200,7 +200,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/09\/WhatsApp-Image-2024-09-17-at-12.16.00.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648553\/6f567ce8-WhatsApp-Image-2024-09-17-at-12.16.00.jpg",
       "external_url": null
     },
     {
@@ -229,7 +229,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/09\/business-2024-09-11T115901.509.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648556\/bf82acf9-business-2024-09-11T115901.509.png",
       "external_url": null
     },
     {
@@ -258,7 +258,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-100.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648563\/1fc0380a-business-100.png",
       "external_url": null
     },
     {
@@ -287,7 +287,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/WhatsApp-Image-2024-07-26-at-13.20.27.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648567\/9907fa3d-WhatsApp-Image-2024-07-26-at-13.20.27.jpg",
       "external_url": null
     },
     {
@@ -316,7 +316,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/business-93.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648573\/2d8afd1d-business-93.png",
       "external_url": null
     },
     {
@@ -345,7 +345,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-11.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648578\/2c327527-Entrechat-with-Priti-Goel-11.png",
       "external_url": null
     },
     {
@@ -374,7 +374,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-7.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648582\/78739ed1-Entrechat-with-Priti-Goel-7.png",
       "external_url": null
     },
     {
@@ -403,7 +403,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-80.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648586\/cf95c509-business-80.png",
       "external_url": null
     },
     {
@@ -432,7 +432,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-37.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648590\/7ffefc20-business-37.png",
       "external_url": null
     },
     {
@@ -461,7 +461,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-29.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648594\/2f93205d-business-29.png",
       "external_url": null
     },
     {
@@ -490,7 +490,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-27.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648599\/7b9a8f6f-business-27.png",
       "external_url": null
     },
     {
@@ -519,7 +519,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/07\/business-20-1.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648607\/062a0fd6-business-20-1.png",
       "external_url": null
     },
     {
@@ -548,7 +548,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/06\/business-17.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648610\/31b8bdf1-business-17.png",
       "external_url": null
     },
     {
@@ -577,7 +577,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/06\/business-14.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648616\/6f284505-business-14.png",
       "external_url": null
     },
     {
@@ -606,7 +606,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/06\/business-8.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648622\/b079fc26-business-8.png",
       "external_url": null
     },
     {
@@ -635,7 +635,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/04\/business.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648631\/3e0a7ccc-business.png",
       "external_url": null
     },
     {
@@ -664,7 +664,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/Ruchi-25.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648642\/cde306f5-Ruchi-25.png",
       "external_url": null
     },
     {
@@ -693,7 +693,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/Ruchi-20.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648646\/50c5a1d9-Ruchi-20.png",
       "external_url": "https:\/\/www.facebook.com\/groups\/1673856092897222\/?ref=share_group_link"
     },
     {
@@ -722,7 +722,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/Ruchi-18.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648650\/9a742141-Ruchi-18.png",
       "external_url": null
     },
     {
@@ -751,7 +751,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/Usha-Jha-Echat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648656\/d4b6990e-Usha-Jha-Echat.jpg",
       "external_url": null
     },
     {
@@ -780,7 +780,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/Ruchi-9.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648667\/f64cf836-Ruchi-9.png",
       "external_url": null
     },
     {
@@ -809,7 +809,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/Ruchi-8.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648681\/47c845d8-Ruchi-8.png",
       "external_url": null
     },
     {
@@ -838,7 +838,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-7.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648686\/1826a3a7-Ruchi-7.png",
       "external_url": null
     },
     {
@@ -867,7 +867,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-6.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648698\/1d432eba-Ruchi-6.png",
       "external_url": null
     },
     {
@@ -896,7 +896,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-5.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648710\/3e3b0928-Ruchi-5.png",
       "external_url": null
     },
     {
@@ -925,7 +925,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-3.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648722\/c658ef9d-Ruchi-3.png",
       "external_url": null
     },
     {
@@ -954,7 +954,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-2.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648734\/56b0f163-Ruchi-2.png",
       "external_url": null
     },
     {
@@ -983,7 +983,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/WhatsApp-Image-2022-07-08-at-3.11.34-PM.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648737\/077d7596-WhatsApp-Image-2022-07-08-at-3.11.34-PM.jpg",
       "external_url": null
     },
     {
@@ -1012,7 +1012,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/Parul-Tarang-Bhargava-12.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648750\/a76e8e70-Parul-Tarang-Bhargava-12.png",
       "external_url": null
     },
     {
@@ -1020,7 +1020,7 @@ export const entrechatData =
       "post_author": "9",
       "post_date": "2022-05-08 11:48:33",
       "post_date_gmt": "2022-05-08 06:18:33",
-      "post_content": "<!-- wp:paragraph -->\n<p><strong><em>sheatwork examines what is the secret ‘mantra’ that mompreneurs follow - to successfully manage their business ventures &amp; families<\/em><\/strong>.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Mother's Day<\/em>&nbsp;is a celebration honouring the ‘mother’ of the family; it also extends to motherhood, maternal bonds and the influence of mothers in the family. A mother’s job is a job that is ever-changing and frequently frustrating; for Moms don’t get days off nor do they receive attractive salaries. Instead, their reward lies embedded in the satisfaction of seeing their children grow up to be happy, healthy adults. But then, ambitious Mothers have branched out to start businesses of their own and keep it going too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, this is a good occasion to celebrate Mompreneurs. We gathered view points from some Mompreneurs on what is the secret of their success. The question was – <strong><em>“<\/em><\/strong><strong><em>How did you succeed in managing your venture and your children simultaneously; striking the right balance and culling the desired results on both ends?”<\/em><\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here’s what they have to say….<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":15915,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/pics-1024x576.jpg\" alt=\"\" class=\"wp-image-15915\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p><strong>Ruby Sinha, Founder, Sheatwork<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"It is never easy being an entrepreneur and doubly challenging when you are a mompreneur. But over the years I have realised that being an entrepreneur also has its perks. I have the flexibility to work out my schedules instead of being bound by a 9-5 routine. Ofcourse, you work round the clock literally as an entrepreneur but if you manage good work life integration, the journey becomes smoother. Our personal and professional lives do have to co-exist in today’s digital age. Also, my mother has always advised me to try and maintain a balance between career ambitions and parental duties. This has helped me try and get my priorities right and set realistic goals instead of trying to achieve everything. Infact, I owe a lot to her for being my pillar of support over the years both when I was growing up and later when I became a mother myself.\"<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Sandhya Chaturvedi, Founder, and COO, Mummy's Kitchen, NOIDA<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“For me, striking the balance meant I religiously followed some guidelines I had set for myself when I decided to launch my business. So, I would say, to succeed as a Mompreneur, you need to first plan (to finish chores, or cook for orders); then be flexible and get the work done, keeping in mind how to manage resources well (always look to keep that passion alive). Keep yourself driven\/motivated: a change of weather, especially the heat wave, can take a toll on your will to stand in the kitchen; whether for the house or for business. But, I would seriously advise - every once in a while, please take some time out!”<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Bhavana Gulati, Owner &amp; Founder, Engraved Store<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“My proiority was always my family plus my business. As a single mother (with my geologist husband being away on site) I managed to groom my son and my business side-by-side. &nbsp;As my son grew up, he helped me too, especially managing my social media. So, I would say being a mother, you must bring about a balance. If you groom your children, your business will also be groomed.”&nbsp;&nbsp;<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Dr Priyanka Goyat, Co Founder, Rejove Aligners<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"Being a mompreneur during the pandemic has been challenging but, the experience has taught me an important life lesson - that as a mompreneur, you are responsible for not just your children and family but also your team and their families as well. Despite the challenges of juggling different roles as a mother, entrepreneur, and doctor, I believe that if we have the confidence and honesty to face any situation, we can work towards accomplishing a successful business with grit and perseverance\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Himani Mishra, CEO, Brand Radiator<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Having being born in a patriarchal society, people did everything to traumatize my mom for being the mother of three girls; and it certainly sparked some frightening moments for me too. I grew up with two sisters (and they were no angels), but my parents had to deal with most situations, without compromising on anything. &nbsp;‘What kept me going was my parents’ motivation stating - “Chin up princess or else the crown falls”’. Stepping into an entrepreneurial journey, the heat is always on delivering the best (within a time-frame), to the industry requirements, untiringly with motto – We All Win.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Another challenge for me is finding the right skill fit in Bihar, so I consistently work on making my team ‘future ready’. Life has experienced ups and downs fairly well. There are extremely painful days when my perceptions are challenged, for being a Momrepreneur is tasking and strenuous. On one side, I am married with a 14+ year old son who demands my time, while on the other hand, I am married to my venture. The Pareto theory to address the top 20% of challenges that contribute to the 80% of priorities, both personally and professionally, helps me maintain a healthy balance between both”.<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em><strong>Ms Shilpa Singhal, Founder, Sitare Foundation<\/strong><\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"My husband Amit and I, started the foundation when our kids were a little older - our daughter was in college and our son in high school. Being a very dedicated and involved mom when our kids were growing up, my learning started long back when they were small, as an active volunteer in their schools. And, I continued learning for almost sixteen years! This had little to do with what I imbibed in college or my professional life. I was just a proud MOM.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>I learned that even in developed countries, lack of resources and role models for children in underprivileged homes make it very challenging for even the brightest of kids to succeed. I felt sad for kids who don't have the parental support (unlike my kids). My heart cried out when I saw children on the streets, during our visits to India. Over the years, I developed a strong urge to help underprivileged children who want to change their lives, but just don't know how.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>This is how Sitare came into being, and ‘motherhood’ at home gave birth to Mompreneur - for over four hundred children in the Sitare Foundation\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Debjani Mukherjee, Founder Nanighar Ghar se Dil Tak &amp; Brandigence: Intelligence Ahead<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Self decipline and prioritizing things are the most important for success, specially when you are multi-tasking, at the same time being adament and focused are my mantras.”<\/em><\/p>\n<!-- \/wp:paragraph -->",
+      "post_content": "<!-- wp:paragraph -->\n<p><strong><em>sheatwork examines what is the secret ‘mantra’ that mompreneurs follow - to successfully manage their business ventures &amp; families<\/em><\/strong>.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Mother's Day<\/em>&nbsp;is a celebration honouring the ‘mother’ of the family; it also extends to motherhood, maternal bonds and the influence of mothers in the family. A mother’s job is a job that is ever-changing and frequently frustrating; for Moms don’t get days off nor do they receive attractive salaries. Instead, their reward lies embedded in the satisfaction of seeing their children grow up to be happy, healthy adults. But then, ambitious Mothers have branched out to start businesses of their own and keep it going too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, this is a good occasion to celebrate Mompreneurs. We gathered view points from some Mompreneurs on what is the secret of their success. The question was – <strong><em>“<\/em><\/strong><strong><em>How did you succeed in managing your venture and your children simultaneously; striking the right balance and culling the desired results on both ends?”<\/em><\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here’s what they have to say….<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":15915,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648753\/96932387-pics-1024x576.jpg\" alt=\"\" class=\"wp-image-15915\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p><strong>Ruby Sinha, Founder, Sheatwork<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"It is never easy being an entrepreneur and doubly challenging when you are a mompreneur. But over the years I have realised that being an entrepreneur also has its perks. I have the flexibility to work out my schedules instead of being bound by a 9-5 routine. Ofcourse, you work round the clock literally as an entrepreneur but if you manage good work life integration, the journey becomes smoother. Our personal and professional lives do have to co-exist in today’s digital age. Also, my mother has always advised me to try and maintain a balance between career ambitions and parental duties. This has helped me try and get my priorities right and set realistic goals instead of trying to achieve everything. Infact, I owe a lot to her for being my pillar of support over the years both when I was growing up and later when I became a mother myself.\"<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Sandhya Chaturvedi, Founder, and COO, Mummy's Kitchen, NOIDA<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“For me, striking the balance meant I religiously followed some guidelines I had set for myself when I decided to launch my business. So, I would say, to succeed as a Mompreneur, you need to first plan (to finish chores, or cook for orders); then be flexible and get the work done, keeping in mind how to manage resources well (always look to keep that passion alive). Keep yourself driven\/motivated: a change of weather, especially the heat wave, can take a toll on your will to stand in the kitchen; whether for the house or for business. But, I would seriously advise - every once in a while, please take some time out!”<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Bhavana Gulati, Owner &amp; Founder, Engraved Store<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“My proiority was always my family plus my business. As a single mother (with my geologist husband being away on site) I managed to groom my son and my business side-by-side. &nbsp;As my son grew up, he helped me too, especially managing my social media. So, I would say being a mother, you must bring about a balance. If you groom your children, your business will also be groomed.”&nbsp;&nbsp;<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Dr Priyanka Goyat, Co Founder, Rejove Aligners<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"Being a mompreneur during the pandemic has been challenging but, the experience has taught me an important life lesson - that as a mompreneur, you are responsible for not just your children and family but also your team and their families as well. Despite the challenges of juggling different roles as a mother, entrepreneur, and doctor, I believe that if we have the confidence and honesty to face any situation, we can work towards accomplishing a successful business with grit and perseverance\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Himani Mishra, CEO, Brand Radiator<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Having being born in a patriarchal society, people did everything to traumatize my mom for being the mother of three girls; and it certainly sparked some frightening moments for me too. I grew up with two sisters (and they were no angels), but my parents had to deal with most situations, without compromising on anything. &nbsp;‘What kept me going was my parents’ motivation stating - “Chin up princess or else the crown falls”’. Stepping into an entrepreneurial journey, the heat is always on delivering the best (within a time-frame), to the industry requirements, untiringly with motto – We All Win.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Another challenge for me is finding the right skill fit in Bihar, so I consistently work on making my team ‘future ready’. Life has experienced ups and downs fairly well. There are extremely painful days when my perceptions are challenged, for being a Momrepreneur is tasking and strenuous. On one side, I am married with a 14+ year old son who demands my time, while on the other hand, I am married to my venture. The Pareto theory to address the top 20% of challenges that contribute to the 80% of priorities, both personally and professionally, helps me maintain a healthy balance between both”.<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em><strong>Ms Shilpa Singhal, Founder, Sitare Foundation<\/strong><\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"My husband Amit and I, started the foundation when our kids were a little older - our daughter was in college and our son in high school. Being a very dedicated and involved mom when our kids were growing up, my learning started long back when they were small, as an active volunteer in their schools. And, I continued learning for almost sixteen years! This had little to do with what I imbibed in college or my professional life. I was just a proud MOM.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>I learned that even in developed countries, lack of resources and role models for children in underprivileged homes make it very challenging for even the brightest of kids to succeed. I felt sad for kids who don't have the parental support (unlike my kids). My heart cried out when I saw children on the streets, during our visits to India. Over the years, I developed a strong urge to help underprivileged children who want to change their lives, but just don't know how.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>This is how Sitare came into being, and ‘motherhood’ at home gave birth to Mompreneur - for over four hundred children in the Sitare Foundation\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Debjani Mukherjee, Founder Nanighar Ghar se Dil Tak &amp; Brandigence: Intelligence Ahead<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Self decipline and prioritizing things are the most important for success, specially when you are multi-tasking, at the same time being adament and focused are my mantras.”<\/em><\/p>\n<!-- \/wp:paragraph -->",
       "post_title": "Celebrating Mompreneurs on Mother’s Day",
       "post_excerpt": "",
       "post_status": "publish",
@@ -1041,7 +1041,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Untitled-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648758\/dba1b112-Untitled-1.jpg",
       "external_url": null
     },
     {
@@ -1070,7 +1070,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/IWD.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648762\/03a543f9-IWD.jpg",
       "external_url": null
     },
     {
@@ -1099,7 +1099,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/12\/Echat-Purvi-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648769\/c8314934-Echat-Purvi-1.jpg",
       "external_url": null
     },
     {
@@ -1128,7 +1128,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/10\/echat-9.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648775\/d4c6066a-echat-9.jpg",
       "external_url": "http:\/\/www.youthideathon.in"
     },
     {
@@ -1157,7 +1157,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/Echat-VA.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648778\/cee809f8-Echat-VA.jpg",
       "external_url": null
     },
     {
@@ -1186,7 +1186,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/07\/echat-Dr-Goyat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648784\/d208edac-echat-Dr-Goyat.jpg",
       "external_url": null
     },
     {
@@ -1215,7 +1215,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/natlie-echat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648788\/5f85b82f-natlie-echat.jpg",
       "external_url": null
     },
     {
@@ -1244,7 +1244,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/FDAY21.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648795\/f82ea2e3-FDAY21.jpg",
       "external_url": null
     },
     {
@@ -1273,7 +1273,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/union-budget-21.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648799\/cfe0e4f2-union-budget-21.jpg",
       "external_url": null
     },
     {
@@ -1302,7 +1302,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Anish-entrechat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648806\/16d1c59c-Anish-entrechat.jpg",
       "external_url": null
     },
     {
@@ -1331,7 +1331,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/hny-n.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648812\/8a20e74b-hny-n.jpg",
       "external_url": null
     },
     {
@@ -1360,7 +1360,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/echat-myjen.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648818\/91f8fd24-echat-myjen.jpg",
       "external_url": null
     },
     {
@@ -1389,7 +1389,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/echat-Tuhina-Pandey.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648824\/8fb3f31a-echat-Tuhina-Pandey.jpg",
       "external_url": null
     },
     {
@@ -1418,7 +1418,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Echat-Noopur-Jhunjhunwalla.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648830\/685870f3-Echat-Noopur-Jhunjhunwalla.jpg",
       "external_url": null
     },
     {
@@ -1447,7 +1447,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/echat-Priya.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648838\/cf1485a4-echat-Priya.jpg",
       "external_url": null
     },
     {
@@ -1476,7 +1476,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/Neha-Mittal.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648842\/48b218ed-Neha-Mittal.jpg",
       "external_url": null
     },
     {
@@ -1505,7 +1505,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/JP-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648845\/e1f4d7e4-JP-1.jpg",
       "external_url": null
     },
     {
@@ -1534,7 +1534,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/echat-mc-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648848\/8b5b1cb9-echat-mc-1.jpg",
       "external_url": null
     },
     {
@@ -1563,7 +1563,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/echat-dual.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648852\/8aeb22b2-echat-dual.jpg",
       "external_url": null
     },
     {
@@ -1592,7 +1592,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/echat-3.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648857\/f5499fd3-echat-3.jpg",
       "external_url": null
     },
     {
@@ -1621,7 +1621,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/Entrechat-Sumitra-Kalapatapu.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648863\/2ccf6dc9-Entrechat-Sumitra-Kalapatapu.jpg",
       "external_url": null
     },
     {
@@ -1650,7 +1650,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/EC-Akshaya-Ravindra-Babu.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648872\/c02c8f90-EC-Akshaya-Ravindra-Babu.jpg",
       "external_url": "https:\/\/thecraftchocolate.com\/"
     },
     {
@@ -1679,7 +1679,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Ecchat-HM.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648882\/577dc59d-Ecchat-HM.jpg",
       "external_url": "https:\/\/brainywiz.in"
     },
     {
@@ -1708,7 +1708,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Sandhya.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648889\/00046a9d-Sandhya.jpg",
       "external_url": null
     },
     {
@@ -1737,7 +1737,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Anshu-Archit-Jhunjhunwala.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648894\/f874b4a1-Anshu-Archit-Jhunjhunwala.jpg",
       "external_url": "http:\/\/www.foodforthought.co.in\/"
     },
     {
@@ -1766,7 +1766,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/ECHAT.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648907\/befccbb3-ECHAT.jpg",
       "external_url": "http:\/\/www.lotusrescue.net"
     },
     {
@@ -1795,7 +1795,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/reimagine.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648912\/ea64ddfb-reimagine.jpg",
       "external_url": null
     },
     {
@@ -1824,7 +1824,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/Picture6.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648923\/9b3ed8cc-Picture6.png",
       "external_url": "https:\/\/www.champaca.in\/gift-vouchers"
     },
     {
@@ -1853,7 +1853,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/24-March-Antrechat-with-Manjari-Maitreya.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648926\/1cb243fe-24-March-Antrechat-with-Manjari-Maitreya.jpg",
       "external_url": null
     },
     {
@@ -1882,7 +1882,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Entrechat-with-Valli-Arunachalam.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648929\/bf83fbc1-Entrechat-with-Valli-Arunachalam.jpg",
       "external_url": null
     },
     {
@@ -1911,7 +1911,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Entrechat-with-Sandhya-Chaturvedi-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648931\/dd3bc1ec-Entrechat-with-Sandhya-Chaturvedi-1.jpg",
       "external_url": null
     },
     {
@@ -1940,7 +1940,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/19-November-Entrechat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648934\/6aef8d12-19-November-Entrechat.jpg",
       "external_url": null
     },
     {
@@ -1969,7 +1969,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/Video-Image-Juhi-Garg.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648936\/62f47d77-Video-Image-Juhi-Garg.jpg",
       "external_url": null
     },
     {
@@ -1998,7 +1998,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/Shikha-Moudgill.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648939\/640bac9b-Shikha-Moudgill.jpg",
       "external_url": null
     },
     {
@@ -2027,7 +2027,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/Prachi-Kagzi.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648942\/ae73603d-Prachi-Kagzi.jpg",
       "external_url": null
     },
     {
@@ -2056,7 +2056,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Parbati-Bhattacharya.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648944\/417f22de-Parbati-Bhattacharya.jpg",
       "external_url": null
     },
     {
@@ -2085,7 +2085,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Prof-Ramola-Kumar.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648946\/120a692f-Prof-Ramola-Kumar.jpg",
       "external_url": null
     },
     {
@@ -2114,7 +2114,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/08\/Entrechat-with-Ms.-Sangita-Keisham-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648949\/14449d88-Entrechat-with-Ms.-Sangita-Keisham-1.jpg",
       "external_url": null
     },
     {
@@ -2143,7 +2143,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/06\/Enterchat-Rekha-Devi.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648952\/1313e3cb-Enterchat-Rekha-Devi.jpg",
       "external_url": null
     },
     {
@@ -2172,7 +2172,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/06\/AnterChat-Ms-Geeta-Jain.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648955\/a787a6b9-AnterChat-Ms-Geeta-Jain.jpg",
       "external_url": null
     },
     {
@@ -2201,7 +2201,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/05\/Rekha-Parihar-31-5-19.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648958\/a12b6219-Rekha-Parihar-31-5-19.jpg",
       "external_url": null
     },
     {
@@ -2230,7 +2230,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/05\/Sudha-Agarwal.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648962\/470e813c-Sudha-Agarwal.jpg",
       "external_url": "http:\/\/www.paawanherbal.com\/"
     },
     {
@@ -2259,7 +2259,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/04\/3-4-2019.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648966\/a3fb029b-3-4-2019.jpg",
       "external_url": null
     },
     {
@@ -2288,7 +2288,7 @@ export const entrechatData =
       "comment_count": "4",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2019\/02\/1-3.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648971\/66627f10-1-3.jpg",
       "external_url": null
     },
     {
@@ -2317,7 +2317,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/12\/Enterchat-20-12-2018-1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648975\/114f3710-Enterchat-20-12-2018-1.jpg",
       "external_url": null
     },
     {
@@ -2346,7 +2346,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/11\/She-at-Work-Apeksha-Jain.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648979\/dbcb8950-She-at-Work-Apeksha-Jain.jpg",
       "external_url": null
     },
     {
@@ -2375,7 +2375,7 @@ export const entrechatData =
       "comment_count": "4",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/10\/Sangita-Pal.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648981\/51d08509-Sangita-Pal.jpg",
       "external_url": "http:\/\/www.arteastic.in\/"
     },
     {
@@ -2404,7 +2404,7 @@ export const entrechatData =
       "comment_count": "4",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/09\/Entrechat-Sagarika-Dev.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648984\/2467bf79-Entrechat-Sagarika-Dev.jpg",
       "external_url": "https:\/\/www.goodreads.com\/author\/show\/3004479.Coco_Chanel"
     },
     {
@@ -2433,7 +2433,7 @@ export const entrechatData =
       "comment_count": "4",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/09\/Entrechat-Neetu-Bajwa-Malladi.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648987\/e0088a1e-Entrechat-Neetu-Bajwa-Malladi.jpg",
       "external_url": null
     },
     {
@@ -2462,7 +2462,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/09\/Entrechat.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648990\/630ba5cd-Entrechat.jpg",
       "external_url": null
     },
     {
@@ -2491,7 +2491,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/07\/Prof.-Ramola-Kumar.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648998\/c45f9b68-Prof.-Ramola-Kumar.jpg",
       "external_url": null
     },
     {
@@ -2520,7 +2520,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/07\/Prachi-Kagzi.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649001\/8a70755f-Prachi-Kagzi.jpg",
       "external_url": null
     },
     {
@@ -2549,7 +2549,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/07\/Rashmi-Patwardhan.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649005\/f8726f35-Rashmi-Patwardhan.jpg",
       "external_url": null
     },
     {
@@ -2578,7 +2578,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/TD.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649009\/027f8738-TD.jpg",
       "external_url": null
     },
     {
@@ -2607,7 +2607,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/pk-ec.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649013\/4d6dd6c3-pk-ec.jpg",
       "external_url": null
     },
     {
@@ -2636,7 +2636,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/et3.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649017\/dce72326-et3.jpg",
       "external_url": null
     },
     {
@@ -2665,7 +2665,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/EC2.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649020\/30eb6022-EC2.jpg",
       "external_url": null
     },
     {
@@ -2694,7 +2694,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Fullscreen-capture-2232018-11912-PM.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649023\/1d7ba8e2-Fullscreen-capture-2232018-11912-PM.jpg",
       "external_url": null
     },
     {
@@ -2723,7 +2723,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Fullscreen-capture-292018-10930-PM.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649026\/378301f8-Fullscreen-capture-292018-10930-PM.jpg",
       "external_url": null
     },
     {
@@ -2752,7 +2752,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/bug.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649029\/2090887a-bug.jpg",
       "external_url": null
     },
     {
@@ -2781,7 +2781,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/EC-SJ.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649032\/8e057c6c-EC-SJ.jpg",
       "external_url": null
     },
     {
@@ -2810,7 +2810,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/NY.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649035\/8b672e2d-NY.jpg",
       "external_url": "https:\/\/sheatwork.com\/"
     },
     {
@@ -2839,7 +2839,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/EC3.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649039\/7db84c0b-EC3.jpg",
       "external_url": null
     },
     {
@@ -2926,7 +2926,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/IGD.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649046\/fb726419-IGD.jpg",
       "external_url": null
     },
     {
@@ -2955,7 +2955,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/2.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649053\/73d0b084-2.jpg",
       "external_url": null
     },
     {
@@ -2984,7 +2984,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/1.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649055\/427d3a00-1.jpg",
       "external_url": null
     },
     {
@@ -3013,7 +3013,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Desktop4.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649069\/123991ec-Desktop4.jpg",
       "external_url": null
     },
     {
@@ -3042,7 +3042,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/entrepreneurial_culture.jpeg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649074\/e2a0b232-entrepreneurial_culture.jpg",
       "external_url": null
     },
     {
@@ -3071,7 +3071,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Desktop3.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649088\/35e5ece2-Desktop3.jpg",
       "external_url": null
     },
     {
@@ -3100,7 +3100,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/India70Logo.gif",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649098\/d663a9ef-India70Logo.gif",
       "external_url": null
     },
     {
@@ -3129,7 +3129,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/o-GENDER-EQUALITY-SIGN-facebook.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649101\/7ebbb011-o-GENDER-EQUALITY-SIGN-facebook.jpg",
       "external_url": "http:\/\/www.worldbank.org\/en\/topic\/gender\/overview"
     },
     {
@@ -3158,7 +3158,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/India-at-70.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649103\/9d566de9-India-at-70.png",
       "external_url": null
     },
     {
@@ -3187,7 +3187,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Bombaykery.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649107\/2b4d099c-Bombaykery.jpg",
       "external_url": null
     },
     {
@@ -3245,7 +3245,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Shraddha-Bhavalkar.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649115\/f9e58285-Shraddha-Bhavalkar.jpg",
       "external_url": null
     },
     {
@@ -3274,7 +3274,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/skills.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649119\/f0e2dfa7-skills.jpg",
       "external_url": "https:\/\/www.forbes.com\/sites\/aileron\/2013\/11\/26\/the-top-skills-every-entrepreneur-needs\/#686cd80376e3"
     },
     {
@@ -3303,7 +3303,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/GST-Final.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649124\/1be7271d-GST-Final.jpg",
       "external_url": null
     },
     {
@@ -3332,7 +3332,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/We-at-work.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649126\/7ade1023-We-at-work.jpg",
       "external_url": null
     },
     {
@@ -3361,7 +3361,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/FathersD.png",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649135\/520d7696-FathersD.png",
       "external_url": "http:\/\/timesofindia.indiatimes.com\/topic\/Father's-Day"
     },
     {
@@ -3390,7 +3390,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Parbati.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649139\/79d67172-Parbati.jpg",
       "external_url": null
     },
     {
@@ -3448,7 +3448,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Vijaya.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649143\/5dccc021-Vijaya.jpg",
       "external_url": null
     },
     {
@@ -3477,7 +3477,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/Desktop.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649154\/424e3aeb-Desktop.jpg",
       "external_url": "https:\/\/en.wikipedia.org\/wiki\/Jism_2"
     },
     {
@@ -3506,7 +3506,7 @@ export const entrechatData =
       "comment_count": "0",
       "section_id": "62",
       "section_name": "Entrechat",
-      "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/131369872331007701.jpg",
+      "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771649157\/99acca82-131369872331007701.jpg",
       "external_url": null
     }
   ]

@@ -4,7 +4,7 @@ export const newsData = [
     "post_author": "9",
     "post_date": "2025-09-29 12:00:59",
     "post_date_gmt": "2025-09-29 06:30:59",
-    "post_content": "<!-- wp:image {\"lightbox\":{\"enabled\":false},\"id\":20478,\"sizeSlug\":\"large\",\"linkDestination\":\"custom\"} -->\n<figure class=\"wp-block-image size-large\"><a href=\"https:\/\/bricscci.com\/brics-cci-we-wise\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/WhatsApp-Image-2025-08-19-at-11.36.58-1024x576.jpeg\" alt=\"\" class=\"wp-image-20478\"\/><\/a><\/figure>\n<!-- \/wp:image -->",
+    "post_content": "<!-- wp:image {\"lightbox\":{\"enabled\":false},\"id\":20478,\"sizeSlug\":\"large\",\"linkDestination\":\"custom\"} -->\n<figure class=\"wp-block-image size-large\"><a href=\"https:\/\/bricscci.com\/brics-cci-we-wise\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653463/94bbaf32-WhatsApp-Image-2025-08-19-at-11.36.58-1024x576.jpg\" alt=\"\" class=\"wp-image-20478\"\/><\/a><\/figure>\n<!-- \/wp:image -->",
     "post_title": "Explore WISE with She at Work",
     "post_excerpt": "",
     "post_status": "publish",
@@ -25,7 +25,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/WhatsApp-Image-2025-08-19-at-11.36.58.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653467/7748ebd1-WhatsApp-Image-2025-08-19-at-11.36.58.jpg",
     "external_url": "https:\/\/bricscci.com\/brics-cci-we-wise"
 },
 {
@@ -54,7 +54,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/lucknow\/viksit-bharat-2047-goldman-sachs-iims-partner-to-empower-women-entrepreneurs\/articleshow\/124056052.cms"
 },
 {
@@ -83,7 +83,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.businessworld.in\/article\/inclusive-growth-women-empowerment-shape-indias-viksit-bharat-vision-572327"
 },
 {
@@ -112,7 +112,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/09\/Orange-and-Blue-Modern-Vintage-Independence-Day-of-India-Instagram-Post-1200-x-644-px-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653486/eff6f59c-Orange-and-Blue-Modern-Vintage-Independence-Day-of-India-Instagram-Post-1200-x-644-px-1.png",
     "external_url": "https:\/\/thebetterindia.com\/61925\/industrial-park-for-women-entrepreneurs-first-in-india-uttarakhand\/"
 },
 {
@@ -141,7 +141,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/krishijagran.com\/news\/saras-aajeevika-mela-2025-begins-in-delhi-400plus-rural-women-entrepreneurs-display-handicrafts-sarees-and-traditional-foods\/"
 },
 {
@@ -170,7 +170,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/www.newindianexpress.com\/nation\/2025\/Aug\/29\/bihar-government-approves-scheme-to-provide-financial-aid-to-women-for-starting-employment-ventures"
 },
 {
@@ -199,7 +199,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/ddnews.gov.in\/en\/pm-modi-launches-jeevika-nidhi-to-empower-rural-women-entrepreneurs-in-bihar\/"
 },
 {
@@ -228,7 +228,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/thelogicalindian.com\/bihar-govt-launches-mahila-rojgar-yojana-%E2%82%B910000-startup-aid-up-to-%E2%82%B92-lakh-support-for-women-entrepreneurs\/"
 },
 {
@@ -257,7 +257,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/india\/women-entrepreneurs-face-disadvantage-in-securing-formal-loans-compared-to-men-gim-research\/articleshow\/123344411.cms?from=mdr"
 },
 {
@@ -286,7 +286,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/sahyadristartups.com\/wise\/udyam-sakhi-portal-empowers-4535-women-entrepreneurs-with-business-growth-support\/"
 },
 {
@@ -315,7 +315,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.deccanherald.com\/business\/women-entrepreneurs-face-disadvantage-in-securing-formal-loans-compared-to-men-gim-research-3684473"
 },
 {
@@ -344,7 +344,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-8.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653517/a2040268-In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-8.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/goa\/new-goa-startup-policy-promotes-women-entrepreneurs-10000-jobs\/articleshow\/123210588.cms"
 },
 {
@@ -373,7 +373,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/impressivetimes.com\/latest\/shivraj-singh-chouhan-handloom-day-shg-women-swadeshi\/"
 },
 {
@@ -402,7 +402,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-7.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653530/8832a9d3-In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-7.png",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/mumbai\/startup-policy-maharashtra-cabinet-10171807\/"
 },
 {
@@ -431,7 +431,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653540/5af3969b-In-the-Spotlight-Meet-the-Women-Powering-Chads-Entrepreneurial-Spirit-1200-x-644-px-1.png",
     "external_url": "https:\/\/www.indiatodayne.in\/manipur\/story\/manipur-launches-first-rural-roots-market-to-empower-women-entrepreneurs-1255796-2025-08-04"
 },
 {
@@ -460,7 +460,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/sahyadristartups.com\/wise\/empowering-women-entrepreneurs-over-31500-women-trained-under-pm-janman\/"
 },
 {
@@ -489,7 +489,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/impressivetimes.com\/latest\/swavalambini-women-entrepreneurship-programme-msde-niti-aayog\/"
 },
 {
@@ -518,7 +518,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/govt-taking-steps-to-boost-msme-and-women-entrepreneur-participation-on-gem-jitin-prasada"
 },
 {
@@ -547,7 +547,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-74.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653565/bc8242ca-business-74.png",
     "external_url": "https:\/\/www.ndtv.com\/india-news\/india-uk-free-trade-deal-empowers-indian-women-across-sectors-8939129"
 },
 {
@@ -576,7 +576,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/news.abplive.com\/business\/stand-up-india-sanctions-nearly-rs-29-000-crore-to-scst-and-women-entrepreneurs-since-april-2022-1789893"
 },
 {
@@ -605,7 +605,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/uttarakhand-cm-dhami-celebrates-women-entrepreneurs-driving-local-economy-says-women-youth-and-culture-will-drive-uttarakhands-next-25-years\/articleshow\/122438067.cms"
 },
 {
@@ -634,7 +634,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/www.thehindu.com\/data\/women-msmes-still-struggle-for-credit-despite-schemes\/article69787164.ece"
 },
 {
@@ -663,7 +663,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.tice.news\/tice-trending\/startup-bharat-dpiit-mous-gaming-women-global-scale-9463031"
 },
 {
@@ -692,7 +692,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/news.abplive.com\/cities\/goa-cm-pramod-sawant-flags-off-anubhuti-says-rural-women-turning-entrepreneurs-via-lakhpati-didi-scheme-1786228"
 },
 {
@@ -721,7 +721,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/thecsruniverse.com\/articles\/ncw-and-edii-collaborate-to-promote-women-s-entrepreneurship-and-digital-empowerment"
 },
 {
@@ -750,7 +750,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.dailyexcelsior.com\/rbi-celebrates-msme-day-focuses-women-entrepreneurs\/"
 },
 {
@@ -779,7 +779,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/apacnewsnetwork.com\/2025\/06\/women-in-msmes-west-bengal-leads-the-country-with-62-women-entrepreneurs\/"
 },
 {
@@ -808,7 +808,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.businessworld.in\/article\/report-finds-52-women-entrepreneurs-still-need-male-relative-for-biz-loans-561620"
 },
 {
@@ -837,7 +837,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.shiksha.com\/news\/college-iit-madras-finds-key-factors-that-empower-women-entrepreneurs-in-tamil-nadu-blogId-73491"
 },
 {
@@ -866,7 +866,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/www.apnnews.com\/amrita-university-and-coastal-women-entrepreneurs-launch-devaamritam-seaweed-superfoods-at-incredible-chef-challenge-2025\/"
 },
 {
@@ -895,7 +895,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/www.thestatesman.com\/india\/haryana-ranks-7th-in-indias-startup-landscape-women-drive-innovation-surge-1503446582.html"
 },
 {
@@ -924,7 +924,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/bhubaneswar\/cm-emphasizes-womens-empowerment-as-states-priority\/articleshow\/121834137.cms"
 },
 {
@@ -953,7 +953,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/smestreet.in\/msme-opportunities\/niti-aayog-hosts-seminar-on-strengthening-rural-microenterprises-9337287"
 },
 {
@@ -982,7 +982,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/www.business-standard.com\/india-news\/cait-meta-initiative-to-train-25-000-women-traders-with-digital-skills-125060400565_1.html"
 },
 {
@@ -1011,7 +1011,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/download-66.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653587/a7113b66-download-66.jpg",
     "external_url": "https:\/\/munsifdaily.com\/women-emerging-as-pillars-of-indias-progress\/"
 },
 {
@@ -1040,7 +1040,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/globalkashmir.net\/distt-admin-kulgam-organizes-capacity-building-workshop-on-women-entrepreneurship\/"
 },
 {
@@ -1069,7 +1069,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/nse-partners-with-telanganas-we-hub-foundation-to-enhance-financial-literacy-and-support-women-entrepreneurs"
 },
 {
@@ -1098,7 +1098,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/sme-sector\/96-of-women-entrepreneurs-adopting-digital-business-tools-are-from-bharat-says-tide-data\/articleshow\/118727363.cms?from=mdr"
 },
 {
@@ -1127,7 +1127,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.bwdisrupt.com\/article\/about-37-of-women-led-small-businesses-in-india-are-primary-income-sources-report-549546"
 },
 {
@@ -1156,7 +1156,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653596/102c7477-business-58.png",
     "external_url": "https:\/\/theprint.in\/india\/homemakers-to-changemakers-women-entrepreneurs-help-empower-rural-bihar-against-climate-challenges\/2507960\/"
 },
 {
@@ -1185,7 +1185,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/smestreet.in\/sectors\/cowe-hosts-wise-2025-for-women-entrepreneurs-in-hyderabad-8753881"
 },
 {
@@ -1214,7 +1214,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/www.deccanherald.com\/india\/karnataka\/expo-of-products-manufactured-by-women-entrepreneurs-in-mysuru-3410866"
 },
 {
@@ -1243,7 +1243,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653605/0d1873f5-business-58-2.png",
     "external_url": "https:\/\/www.newindian.in\/%E2%82%B92-cr-loan-for-first-time-women-entrepreneurs-to-drive-economic-participation-experts\/"
 },
 {
@@ -1272,7 +1272,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/pune\/maharashtra-mann-deshi-foundation-rural-women-entrepreneurs-9840750\/"
 },
 {
@@ -1301,7 +1301,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/affairscloud.com\/union-mos-jayant-chaudhary-virtually-launched-swavalambini-women-entrepreneurship-programme-in-3-ne-states\/"
 },
 {
@@ -1330,7 +1330,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/andhra-pradesh\/andhra-pradesh-cabinet-clears-proposals-to-encourage-sc-st-women-entrepreneurs\/article69188968.ece"
 },
 {
@@ -1359,7 +1359,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/pib.gov.in\/PressReleasePage.aspx?PRID=2100760"
 },
 {
@@ -1388,7 +1388,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-74.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653565/bc8242ca-business-74.png",
     "external_url": "https:\/\/www.uniindia.com\/amazon-india-signs-mou-with-arga-to-boost-women-entrepreneurship-in-up\/business-economy\/news\/3384761.html"
 },
 {
@@ -1417,7 +1417,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/boldnewsonline.com\/modi-governments-vision-of-women-led-startups-takes-center-stage-in-indias-global-economic-rise\/"
 },
 {
@@ -1446,7 +1446,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/inc42.com\/buzz\/stand-up-india-loans-sanctioned-to-nearly-2-lakh-women-entrepreneurs\/"
 },
 {
@@ -1475,7 +1475,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/sme-sector\/over-50-of-indias-artisans-are-women-but-only-22-of-msmes-are-women-owned-economic-survey-2025\/articleshow\/117792414.cms?from=mdr"
 },
 {
@@ -1504,7 +1504,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.passionateinmarketing.com\/sbi-champions-women-entrepreneurship-launches-skill-development-program-for-5200-women\/"
 },
 {
@@ -1533,7 +1533,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.msn.com\/en-in\/news\/India\/powergrid-ggm-admin-ink-mou-for-women-s-empowerment-projects\/ar-AA1vLKTx?apiversion=v2&amp;noservercache=1&amp;domshim=1&amp;renderwebcomponents=1&amp;wcseo=1&amp;batchservertelemetry=1&amp;noservertelemetry=1"
 },
 {
@@ -1562,7 +1562,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/www.thestatesman.com\/india\/manipur-leads-northeast-in-msme-growth-women-entrepreneurs-shine-cm-1503387685.html"
 },
 {
@@ -1591,7 +1591,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-65.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653620/c4183fb4-business-65.png",
     "external_url": null
 },
 {
@@ -1620,7 +1620,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/business\/india-business\/dehradun-hosts-inaugural-devbhumi-udyam-conclave-to-empower-women-entrepreneurs\/articleshow\/117305262.cms"
 },
 {
@@ -1649,7 +1649,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/www.freepressjournal.in\/mumbai\/panvel-municipal-corporation-hosts-sales-exhibition-for-400-women-entrepreneurs-from-self-help-groups"
 },
 {
@@ -1678,7 +1678,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/telanganatoday.com\/isb-samhita-cgf-prorgamme-empowers-500-aspiring-rural-women-entrepreneurs"
 },
 {
@@ -1707,7 +1707,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/ahmedabad\/45-self-help-groups-in-gujarats-kutch-promote-entrepreneurship-among-women\/articleshow\/117077971.cms"
 },
 {
@@ -1736,7 +1736,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/pib.gov.in\/PressReleasePage.aspx?PRID=2091175"
 },
 {
@@ -1765,7 +1765,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/business\/rural-women-entrepreneurs-take-centre-stage-at-nabards-grameen-bharat-mahotsav\/"
 },
 {
@@ -1794,7 +1794,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/pune.news\/business\/wep-and-mbmcs-faral-sakhi-team-up-to-empower-women-entrepreneurs-284972\/"
 },
 {
@@ -1823,7 +1823,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/www.techiexpert.com\/telanganas-vision-for-women-entrepreneurs-gets-a-boost-with-aleaps-mous\/"
 },
 {
@@ -1852,7 +1852,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-39.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653633/69e7566d-business-39.png",
     "external_url": "https:\/\/www.newindianexpress.com\/cities\/hyderabad\/2024\/Dec\/29\/a-giant-leap-for-womankind-mou-signed-to-nurture-entrepreneurs"
 },
 {
@@ -1881,7 +1881,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.zeebiz.com\/india\/news-government-e-marketplace-gem-registered-1-69-lakh-women-led-msmes-for-government-procurement-335416"
 },
 {
@@ -1910,7 +1910,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/www.tice.news\/tice-trending\/new-age-of-entrepreneurship-73k-women-directors-8567287"
 },
 {
@@ -1939,7 +1939,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/www.dnpindia.in\/current-affairs\/business\/india-becomes-3rd-largest-startup-hub-157000-recognised-ventures-73000-women-led-startups-drive-innovation-8563453"
 },
 {
@@ -1968,7 +1968,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/ranchi\/us-consulate-aids-training-of-indigenous-women-entrepreneurs-in-state\/articleshow\/116480937.cms"
 },
 {
@@ -1997,7 +1997,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/cmogujarat.gov.in\/en\/latest-news\/women-innovators-celebration-i-hub-gujarat"
 },
 {
@@ -2026,7 +2026,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.newsbytesapp.com\/news\/business\/cxxo-report-reveals-state-of-female-entrepreneurship-in-india\/story"
 },
 {
@@ -2055,7 +2055,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.tice.news\/tice-dispatch\/business-finance-economy-and-corporate-news\/startup-india-report-2024-3000-cr-investments-in-women-led-startups-8426606"
 },
 {
@@ -2084,7 +2084,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/pm-calls-for-womens-empowerment-launches-initiative-to-enrol-lakhs-as-insurance-agents\/articleshow\/116150319.cms"
 },
 {
@@ -2113,7 +2113,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/agrospectrumindia.com\/2024\/12\/05\/empowering-odisha-women-entrepreneurs-through-rice-and-millet-innovation.html"
 },
 {
@@ -2142,7 +2142,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/www.republicworld.com\/india\/sri-sri-university-hosts-award-to-reward-programme-to-honour-women-entrepreneurs"
 },
 {
@@ -2171,7 +2171,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.bizzbuzz.news\/national\/andhrapradesh\/nrdc-completes-2nd-cohort-of-mentoring-women-entrepreneurs-1344088"
 },
 {
@@ -2200,7 +2200,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-27T124509.042.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653647/70e9bb5d-business-2024-11-27T124509.042.png",
     "external_url": null
 },
 {
@@ -2229,7 +2229,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/india-showcases-shgs-work-towards-enabling-womens-empowerment-at-un-women-meet\/articleshow\/115461133.cms"
 },
 {
@@ -2258,7 +2258,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/smestreet.in\/limelight\/wep-launches-beauty-sector-pilot-to-support-women-msmes-7585334"
 },
 {
@@ -2287,7 +2287,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/thecsrjournal.in\/nasscom-foundation-krea-university-report-digital-social-commerce-women-entrepreneurs-rural-india\/"
 },
 {
@@ -2316,7 +2316,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/enewstime.in\/enews\/edii-empowers-women-entrepreneurs-with-26-day-micro-skillpreneurship-training-in-west-tripura-26535.html"
 },
 {
@@ -2345,7 +2345,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/agartala\/empowering-women-entrepreneurs-in-tripura-and-mizoram-a-transformative-boot-camp-experience-in-kolkata\/articleshow\/115272041.cms"
 },
 {
@@ -2374,7 +2374,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-13T130513.135.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653651/f6711d3a-business-2024-11-13T130513.135.png",
     "external_url": "https:\/\/sheatwork.com\/maines-women-owned-businesses-small-state-big-success\/"
 },
 {
@@ -2403,7 +2403,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-08T111153.824.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653666/4e8eac12-business-2024-11-08T111153.824.png",
     "external_url": "https:\/\/krishijagran.com\/news\/world-bank-s-usd200-million-initiative-to-boost-climate-resilient-farming-and-agri-entrepreneurship-in-kerala\/"
 },
 {
@@ -2432,7 +2432,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/bestcolleges.indiatoday.in\/news-detail\/india-needs-to-add-145-million-women-to-workforce-by-2047-to-meet-30-trillion-economic-target-report"
 },
 {
@@ -2461,7 +2461,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/11\/business-2024-11-04T124819.427.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653505/875dfc44-business-2024-11-04T124819.427.png",
     "external_url": "https:\/\/www.hindustantimes.com\/india-news\/new-tech-platform-to-aid-budding-women-entrepreneurs-in-up-s-bahraich-dm-101730216926188.html"
 },
 {
@@ -2490,7 +2490,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.peoplematters.in\/news\/business\/india-needs-to-address-the-gender-gap-to-become30-trillion-economy-by-2047-report-43186"
 },
 {
@@ -2519,7 +2519,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-25T105725.833.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653496/feffa1c5-business-2024-10-25T105725.833.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/ranchi\/empowering-tribal-women-gumlas-innovative-sanitary-pad-entrepreneurs\/articleshow\/114480995.cms"
 },
 {
@@ -2548,7 +2548,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/chandigarh\/women-entrepreneurs-to-get-3l-loans-under-special-scheme-says-dc\/"
 },
 {
@@ -2577,7 +2577,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/pib.gov.in\/PressReleaseIframePage.aspx?PRID=2066041"
 },
 {
@@ -2606,7 +2606,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-57.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653675/50a85bff-business-57.png",
     "external_url": "https:\/\/www.cnbctv18.com\/economy\/gender-disparity-only-14-of-entrepreneurs-in-india-are-women-18823391.htm"
 },
 {
@@ -2635,7 +2635,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/10\/business-2024-10-17T110859.597.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653557/8824149e-business-2024-10-17T110859.597.png",
     "external_url": "https:\/\/theprint.in\/india\/only-that-society-progresses-fast-where-work-done-for-women-empowerment-rajasthan-governor\/2311434\/"
 },
 {
@@ -2664,7 +2664,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.financialexpress.com\/business\/sme\/49-of-women-owned-micro-businesses-cannot-survive-in-case-of-sudden-revenue-loss-study\/3636578\/"
 },
 {
@@ -2693,7 +2693,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.financialexpress.com\/business\/banking-finance-women-entrepreneurs-desire-mentorship-65-have-not-taken-a-business-loan-report-3632555\/"
 },
 {
@@ -2722,7 +2722,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/telangana\/telangana-gets-first-state-chapter-of-niti-aayogs-women-entrepreneurship-platform\/article68705217.ece"
 },
 {
@@ -2751,7 +2751,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.news18.com\/business\/economy\/65-women-entrepreneurs-in-indian-metros-self-finance-their-business-dreams-report-9070419.html"
 },
 {
@@ -2780,7 +2780,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-74.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653565/bc8242ca-business-74.png",
     "external_url": "https:\/\/www.indiatoday.in\/education-today\/news\/story\/iim-ahmedabad-report-finds-3225-of-women-achieve-work-life-balance-nationwide-2603973-2024-09-21"
 },
 {
@@ -2809,7 +2809,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/hyderabad\/rs-100-crore-yantram-fund-subsidies-for-women-entrepreneurs-telangana-rolls-out-dedicated-msme-policy\/articleshow\/113458817.cms"
 },
 {
@@ -2838,7 +2838,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/narendra-modi-gdc13e92e0_1920.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653683/e7814a02-narendra-modi-gdc13e92e0_1920.jpg",
     "external_url": "https:\/\/ddnews.gov.in\/en\/pm-modi-to-visit-maharashtra-to-unveil-major-initiatives-for-artisans-textile-sector-and-women-entrepreneurs\/"
 },
 {
@@ -2867,7 +2867,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/Mangalore\/union-bank-of-india-will-open-four-women-centric-branches-in-the-country-md\/article68659733.ece"
 },
 {
@@ -2896,7 +2896,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/hyderabad\/empowering-women-entrepreneurs-telangana-leads-with-31-per-1000-women-owned-businesses\/articleshow\/113502199.cms"
 },
 {
@@ -2925,7 +2925,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653596/102c7477-business-58.png",
     "external_url": "https:\/\/www.business-northeast.com\/edii-and-accenture-launch-micro-skillpreneurship-development-program-for-rural-sc-women"
 },
 {
@@ -2954,7 +2954,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/tn-msmes-hit-4948-lakh-units-govt-allocates-rs-1500-crore-for-expansion"
 },
 {
@@ -2983,7 +2983,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-74.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653565/bc8242ca-business-74.png",
     "external_url": "https:\/\/www.devdiscourse.com\/article\/headlines\/3078412-unleashing-the-untapped-power-women-entrepreneurs-drive-change-in-rural-india"
 },
 {
@@ -3012,7 +3012,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/www.apnnews.com\/republic-of-korea-and-united-states-launch-initiative-to-support-women-entrepreneurs-in-india\/"
 },
 {
@@ -3041,7 +3041,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-52.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653692/25294b23-business-52.png",
     "external_url": "https:\/\/www.tgnns.com\/telangana\/the-telangana-government-initiative-to-empower-women-through-bus-ownership\/2024\/08\/31\/"
 },
 {
@@ -3070,7 +3070,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/www.moneycontrol.com\/news\/india\/karnataka-to-launch-e-commerce-portal-to-promote-products-made-by-rural-women-12809905.html"
 },
 {
@@ -3099,7 +3099,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.business-northeast.com\/prif-and-iimcip-launch-unique-program-to-boost-women-s-empowerment"
 },
 {
@@ -3128,7 +3128,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/odisha\/odisha-chief-minister-mohan-majhi-announces-implementation-of-much-awaited-subhadra-scheme\/article68558493.ece"
 },
 {
@@ -3157,7 +3157,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/www.msn.com\/en-in\/news\/India\/india-us-join-hands-to-promote-cooperation-in-msmes\/ar-AA1oLeC9"
 },
 {
@@ -3186,7 +3186,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/www.tice.news\/know-this\/women-power-48-india-startups-6895820"
 },
 {
@@ -3215,7 +3215,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/sectors\/govts-stand-up-india-scheme-shows-mixed-results-in-fy-2023-24"
 },
 {
@@ -3244,7 +3244,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/m.economictimes.com\/news\/india\/nedfi-can-join-hands-with-state-government-for-better-success-of-micro-lending-facilities-says-assam-cm-himanta-biswa-sarma\/amp_articleshow\/112409414.cms"
 },
 {
@@ -3273,7 +3273,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.siasat.com\/india-us-ink-landmark-mou-on-msmes-3078634\/"
 },
 {
@@ -3302,7 +3302,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/theprint.in\/economy\/over-1-4-lakh-startups-recognized-in-india-67499-have-women-directors\/2216827\/"
 },
 {
@@ -3331,7 +3331,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.indiatodayne.in\/amp\/assam\/story\/assam-to-boost-women-and-youth-entrepreneurs-with-rs-10000-grants-and-rs-2-lakh-support-1068285-2024-08-09"
 },
 {
@@ -3360,7 +3360,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/www.newstap.in\/telangana\/we-hub-secures-105-million-investment-from-us-firm-wkh-1546853"
 },
 {
@@ -3389,7 +3389,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/39-of-registered-enterprises-led-by-female-entrepreneurs-govt-data"
 },
 {
@@ -3418,7 +3418,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/business\/india-business\/tn-looks-to-women-to-boost-growth\/articleshow\/112269173.cms"
 },
 {
@@ -3447,7 +3447,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/apacnewsnetwork.com\/2024\/08\/nsdc-and-britannia-collaborate-for-women-entrepreneurship-program\/"
 },
 {
@@ -3476,7 +3476,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.financialexpress.com\/business\/sme\/39-of-msmes-in-india-women-owned-govt-data\/3568185\/"
 },
 {
@@ -3505,7 +3505,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/lucknow\/women-workforce-doubled-in-up-due-to-improved-law-and-order\/articleshow\/112027939.cms"
 },
 {
@@ -3534,7 +3534,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/indianexpress.com\/article\/technology\/artificial-intelligence\/microsoft-ai-digital-literacy-rural-india-women-entrepreneurs-9478954\/"
 },
 {
@@ -3563,7 +3563,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653703/dce5537c-Entrechat-with-Priti-Goel-1.png",
     "external_url": "https:\/\/smestreet.in\/infocus\/plfs-annual-report-highlights-women-entrepreneurs-in-rural-india-6594207"
 },
 {
@@ -3592,7 +3592,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-97.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653711/c83af8de-business-97.png",
     "external_url": "https:\/\/www.businessinsider.in\/author_articles_all.cms?query=87654321&amp;author=ani=&amp;page=1"
 },
 {
@@ -3621,7 +3621,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-39.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653633/69e7566d-business-39.png",
     "external_url": "https:\/\/kashmirreader.com\/2024\/07\/12\/jktpos-e-commerce-onboarding-drive-reaches-srinagar-to-empower-boost-local-entrepreneurs\/"
 },
 {
@@ -3650,7 +3650,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/business-94.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653549/74760096-business-94.png",
     "external_url": "https:\/\/inc42.com\/buzz\/women-led-startups-see-81-yoy-surge-in-funding-in-h1-2024\/"
 },
 {
@@ -3679,7 +3679,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/sectors\/tie-doit-partners-to-empower-women-entrepreneurs-in-rajasthan"
 },
 {
@@ -3708,7 +3708,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/07\/download-81.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653713/aa44fa55-download-81.jpg",
     "external_url": "https:\/\/www.deccanherald.com\/india\/financial-empowerment-of-women-way-to-a-stronger-society-says-supreme-court-justice-nagarathna-3100672"
 },
 {
@@ -3737,7 +3737,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653605/0d1873f5-business-58-2.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/jaipur\/tie-raj-govt-tie-up-for-women-led-startups\/articleshow\/111563393.cms"
 },
 {
@@ -3766,7 +3766,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-49.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653716/c997d2a7-business-49.png",
     "external_url": "https:\/\/www.businessinsider.in\/india\/news\/union-minister-piyush-goyal-announces-80-licensing-fee-concession-for-women-entrepreneurs\/articleshow\/111489810.cms"
 },
 {
@@ -3795,7 +3795,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.thestatesman.com\/india\/niti-aayogs-wep-launches-initiatives-to-support-women-entrepreneurs-1503317381.html"
 },
 {
@@ -3824,7 +3824,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/www.policycircle.org\/industry\/women-led-rural-enterprises\/"
 },
 {
@@ -3853,7 +3853,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-49.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653716/c997d2a7-business-49.png",
     "external_url": "https:\/\/apparelresources.com\/business-news\/retail\/300-sellers-400-women-entrepreneurs-join-ondc-network\/"
 },
 {
@@ -3882,7 +3882,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/ladakh.gov.in\/national-commission-for-women-entrepreneurship-development-institute-of-india-ahmedabad-hold-99th-programme-to-orient-women-towards-entrepreneurship\/"
 },
 {
@@ -3911,7 +3911,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/msme-ministry-launches-yashasvini-scheme-for-women-entrepreneurs"
 },
 {
@@ -3940,7 +3940,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/pib.gov.in\/PressReleaseIframePage.aspx?PRID=2027730"
 },
 {
@@ -3969,7 +3969,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/women-entrepreneurship-can-generate-150-170-million-jobs-in-india-by-2030-11582011698763.html"
 },
 {
@@ -3998,7 +3998,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-9.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653586/78f58dae-Entrechat-with-Priti-Goel-9.png",
     "external_url": "https:\/\/www.business-standard.com\/economy\/news\/skill-ministry-to-train-1-5l-women-candidates-under-pmkvy-in-first-100-days-124061301123_1.html"
 },
 {
@@ -4027,7 +4027,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-8.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653727/65822442-Entrechat-with-Priti-Goel-8.png",
     "external_url": "https:\/\/thekashmirhorizon.com\/2024\/06\/13\/jkrlm-inks-mou-with-cii-to-empower-rural-entrepreneurs-through-industry-mentorship\/"
 },
 {
@@ -4056,7 +4056,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-6.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653734/25548dd9-Entrechat-with-Priti-Goel-6.png",
     "external_url": "https:\/\/vdo.ai\/contact?utm_medium=video&amp;utm_term=theprint.in&amp;utm_source=vdoai_logo"
 },
 {
@@ -4085,7 +4085,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/women-entrepreneurship-can-generate-150-170-million-jobs-in-india-by-2030-11582011698763.html"
 },
 {
@@ -4114,7 +4114,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-52.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653692/25294b23-business-52.png",
     "external_url": "https:\/\/www.livemint.com\/industry\/banking\/publicsector-banks-to-launch-new-schemes-to-support-women-entrepreneurs-11717654813256.html"
 },
 {
@@ -4143,7 +4143,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/06\/Entrechat-with-Priti-Goel-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653703/dce5537c-Entrechat-with-Priti-Goel-1.png",
     "external_url": "https:\/\/blogs.worldbank.org\/en\/endpovertyinsouthasia\/india--women-entrepreneurs-in-bihar-help-improve-air-quality-thr0"
 },
 {
@@ -4172,7 +4172,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.forbesindia.com\/blog\/enterprise\/need-to-invest-in-women-owned-msmes-to-further-women-led-development-in-india\/"
 },
 {
@@ -4201,7 +4201,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/FICCI-FLO-Siliguri.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653740/e01d176e-FICCI-FLO-Siliguri.jpg",
     "external_url": null
 },
 {
@@ -4230,7 +4230,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/www.news18.com\/lifestyle\/goas-startup-ecosystem-sees-a-33-increase-in-women-entrepreneurs-8892115.html"
 },
 {
@@ -4259,7 +4259,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/www.indianretailer.com\/article\/retail-business\/retail-trends\/indias-fmcg-industry-surges-65-pc-rural-demand-surpassing"
 },
 {
@@ -4288,7 +4288,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.dailyexcelsior.com\/isb-launches-ivi-programme-for-grassroot-entrepreneurs-no-degree-cat-gmat-gre-needed\/"
 },
 {
@@ -4317,7 +4317,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653749/086441fd-business-58-1.png",
     "external_url": "https:\/\/myrepublica.nagariknetwork.com\/news\/sanitary-napkin-production-training-organized-in-partnership-with-fwean-and-godawari-municipality-concludes\/"
 },
 {
@@ -4346,7 +4346,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/05\/business-92.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653483/9fe124b7-business-92.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/women-in-pachayati-raj-institutions-to-take-part-in-un-session\/articleshow\/109792864.cms"
 },
 {
@@ -4375,7 +4375,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-36.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653758/6867aaaf-business-36.png",
     "external_url": "https:\/\/businessworld.in\/article\/woman-empowerment-is-crucial-for-building-new-india-ls-speaker-287236"
 },
 {
@@ -4404,7 +4404,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/university-of-wollongong-hosts-entrepreneurial-event-spotlighting-women-in-tech\/"
 },
 {
@@ -4433,7 +4433,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/businessworld.in\/article\/over-rs-30160-cr-loans-sanctioned-under-stand-up-india-scheme-in-6-yrs-govt%0D%0A%0D%0A-424526"
 },
 {
@@ -4462,7 +4462,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-57.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653675/50a85bff-business-57.png",
     "external_url": "https:\/\/www.business-standard.com\/finance\/investment\/only-3-women-have-access-to-external-funding-in-small-cities-finds-study-124050201128_1.html"
 },
 {
@@ -4491,7 +4491,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/organiser.org\/2024\/04\/26\/234359\/bharat\/bridging-vision-and-impact-women-led-startups-transforming-indias-climate-landscape\/"
 },
 {
@@ -4520,7 +4520,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/theprint.in\/economy\/womaniya-initiative-of-government-e-marketplace-empowers-women-led-enterprises-in-public-procurement\/2054782\/"
 },
 {
@@ -4549,7 +4549,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653596/102c7477-business-58.png",
     "external_url": "https:\/\/www.entrepreneur.com\/en-in\/news-and-trends\/family-is-the-biggest-motivator-for-78-of-women\/473170"
 },
 {
@@ -4578,7 +4578,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/tech\/technology\/financial-credit-a-challenge-for-almost-half-of-women-entrepreneurs-in-msmes-report\/articleshow\/109565859.cms?from=mdr"
 },
 {
@@ -4607,7 +4607,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/www.business-standard.com\/industry\/news\/women-representation-in-mfg-sector-to-touch-40-by-year-end-teamlease-124042200362_1.html"
 },
 {
@@ -4636,7 +4636,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-90.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653577/70dbc697-business-90.png",
     "external_url": "https:\/\/www.businessinsider.in\/india\/news\/employment-could-rise-by-22-by-2028-as-india-targets-5-trillion-economy-goal-employment-outlook-report\/articleshow\/109340060.cms"
 },
 {
@@ -4665,7 +4665,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-60.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653762/e4e9aee6-business-60.png",
     "external_url": "https:\/\/www.orfonline.org\/expert-speak\/empowering-india-s-elderly-strategies-for-supporting-the-poor-rural-and-women"
 },
 {
@@ -4694,7 +4694,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-89.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653772/071a6dcf-business-89.png",
     "external_url": "https:\/\/indiacsr.in\/bridging-gender-gap-strategies-inclusive-growth-msmes\/"
 },
 {
@@ -4723,7 +4723,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.newindianexpress.com\/states\/karnataka\/2024\/Apr\/12\/bengaluru-brings-women-to-the-drivers-seat"
 },
 {
@@ -4752,7 +4752,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-60.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653762/e4e9aee6-business-60.png",
     "external_url": "https:\/\/www.sentinelassam.com\/cities\/guwahati-city\/women-entrepreneurship-conclave-ignites-innovation-at-iit-guwahati"
 },
 {
@@ -4781,7 +4781,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/\/news\/economy\/policy\/centre-drawing-up-road-map-to-invest-in-women-entrepreneurs\/articleshow\/109073756.cms?utm_source=contentofinterest&amp;utm_medium=text&amp;utm_campaign=cppst"
 },
 {
@@ -4810,7 +4810,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-88.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653513/3b74b811-business-88.png",
     "external_url": "https:\/\/nagalandpost.com\/index.php\/2024\/04\/05\/msmes-women-entrepreneurs-trained-on-cybersecurity\/"
 },
 {
@@ -4839,7 +4839,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-65.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653620/c4183fb4-business-65.png",
     "external_url": "https:\/\/www.theweek.in\/wire-updates\/national\/2024\/03\/29\/del65-pm-gates-women.html"
 },
 {
@@ -4868,7 +4868,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/tech\/technology\/more-women-running-startups-on-company-boards-nirmala-sitharaman\/articleshow\/108823947.cms?from=mdr"
 },
 {
@@ -4897,7 +4897,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/04\/business-87.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653479/b71c825d-business-87.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/agartala\/us-consulate-kolkata-hosts-bootcamp-for-women-entrepreneurs-of-tripura\/articleshow\/108789698.cms"
 },
 {
@@ -4926,7 +4926,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/ddnews.gov.in\/en\/women-led-development-integral-to-vision-of-viksit-bharat-by-2047-ruchira-kamboj\/"
 },
 {
@@ -4955,7 +4955,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-47.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653781/95f4dc62-business-47.png",
     "external_url": "https:\/\/www.gomantaktimes.com\/news\/business\/discovershe-boot-camp-in-goa-gives-women-entrepreneurs-a-helping-hand"
 },
 {
@@ -4984,7 +4984,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-85.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653787/2da74cdb-business-85.png",
     "external_url": "https:\/\/www.deccanherald.com\/india\/karnataka\/bengaluru\/technical-sessions-for-women-entrepreneurs-in-ev-2940099"
 },
 {
@@ -5013,7 +5013,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-84.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653527/b730914f-business-84.png",
     "external_url": "https:\/\/news.abplive.com\/business\/gujarat-purchase-policy-2024-purchase-policy-with-special-boost-for-msmes-women-entrepreneurs-cm-bhupendra-patel-1672501"
 },
 {
@@ -5042,7 +5042,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/download-68.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653789/98636c68-download-68.jpg",
     "external_url": "https:\/\/www.deccanherald.com\/india\/kerala\/women-need-to-embrace-unique-fields-to-become-empowered-missile-woman-2943599"
 },
 {
@@ -5071,7 +5071,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653749/086441fd-business-58-1.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/company\/corporate-trends\/etpwla-2024-fuelling-funding-for-female-entrepreneurship-and-enabling-women-led-ventures-in-tier-i-and-tier-ii-cities\/articleshow\/108518594.cms?from=mdr"
 },
 {
@@ -5100,7 +5100,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-70.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653643/90a791e8-business-70.png",
     "external_url": "https:\/\/www.india.com\/news\/india\/breaking-boundaries-wit-global-sets-up-india-chapter-to-advance-women-in-tech-6786575\/"
 },
 {
@@ -5129,7 +5129,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/ddnews.gov.in\/en\/states\/niti-aayog-state-workshop-empowers-women-entrepreneurs-in-goa\/"
 },
 {
@@ -5158,7 +5158,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653791/145d8da1-business-2.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/business\/defence-indian-armys-commitment-for-women-empowerment-in-northeast-india-3419623\/"
 },
 {
@@ -5187,7 +5187,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/modi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653796/82859085-modi.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/cities\/others\/centre-aims-to-make-three-crore-women-lakhpati-didi-pm-modi-101710080942699.html"
 },
 {
@@ -5216,7 +5216,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/download-66.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653587/a7113b66-download-66.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/india\/india-moving-ahead-with-vision-of-women-led-development-nirmala-sitharaman\/articleshow\/108244054.cms?from=mdr"
 },
 {
@@ -5245,7 +5245,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/03\/business-81.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653805/43660c45-business-81.png",
     "external_url": "https:\/\/newsonair.gov.in\/Main-News-Details.aspx?id=478237"
 },
 {
@@ -5274,7 +5274,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-49.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653716/c997d2a7-business-49.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/number-of-women-led-registered-msmes-in-india-double-to-205"
 },
 {
@@ -5303,7 +5303,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-60.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653762/e4e9aee6-business-60.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/number-of-women-entrepreneurs-in-msme-sector-record-high-at-14-cr-union-minister-narayan-rane"
 },
 {
@@ -5332,7 +5332,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-79.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653609/431fb61d-business-79.png",
     "external_url": "https:\/\/startup.outlookindia.com\/sector\/e-commerce\/amazon-india-and-game-sign-mou-under-saheli-program-to-boost-rural-women-entrepreneurship-via-e-commerce-news-10608"
 },
 {
@@ -5361,7 +5361,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653596/102c7477-business-58.png",
     "external_url": "https:\/\/www.business-standard.com\/economy\/news\/us-india-alliance-for-women-s-economic-empowerment-being-revitalised-124022001035_1.html"
 },
 {
@@ -5390,7 +5390,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-77.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653816/7ddfd8d3-business-77.png",
     "external_url": "https:\/\/brighterkashmir.com\/jkrlm-celebrates-success-empowering-women-entrepreneurs"
 },
 {
@@ -5419,7 +5419,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-76.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653829/7b913a17-business-76.png",
     "external_url": "https:\/\/theprint.in\/india\/programmes-to-support-early-stage-startups-women-entrepreneurs-to-be-launched-siddaramaiah\/1969151\/"
 },
 {
@@ -5448,7 +5448,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/Neha-Bagaria-Founder-CEO@HerKey-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653840/587af86d-Neha-Bagaria-Founder-CEO%40HerKey-.jpg",
     "external_url": "https:\/\/www.psuconnect.in\/news\/edii-flagship-weact-programme-signed-mou-with-commissionerate-of-cottage-and-rural-industries\/41324"
 },
 {
@@ -5477,7 +5477,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-47.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653781/95f4dc62-business-47.png",
     "external_url": "https:\/\/inc42.com\/buzz\/women-tech-startup-funding-tanks-80-in-2023-but-is-all-hope-lost\/"
 },
 {
@@ -5506,7 +5506,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-66.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653850/285cf3ac-business-66.png",
     "external_url": "https:\/\/www.indiatodayne.in\/assam\/story\/assam-budget-2024-introduces-mukhya-mantri-mahila-udyamita-abhiyaan-to-empower-women-entrepreneurs-870212-2024-02-12"
 },
 {
@@ -5535,7 +5535,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653596/102c7477-business-58.png",
     "external_url": "https:\/\/risingkashmir.com\/womens-participation-can-make-india-innovation-powerhouse-lg"
 },
 {
@@ -5564,7 +5564,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-28.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653859/fcee3c6f-business-28.png",
     "external_url": "https:\/\/www.financialexpress.com\/jobs-career\/education-global-alliance-for-mass-entrepreneurship-and-mahila-arthik-vikas-mahamandal-collaborates-to-foster-womens-entrepreneurship-in-maharashtra-3385987\/"
 },
 {
@@ -5593,7 +5593,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-75.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653573/574b0107-business-75.png",
     "external_url": "https:\/\/www.hindustantimes.com\/india-news\/govt-enhances-target-to-help-30-mn-women-become-lakhpati-didis-sitharaman-101706772650213.html"
 },
 {
@@ -5622,7 +5622,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-50.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653869/ef38eaa4-business-50.png",
     "external_url": "https:\/\/www.business-standard.com\/economy\/news\/women-s-unemployment-rate-at-16-month-low-labour-participation-declines-124020501116_1.html"
 },
 {
@@ -5651,7 +5651,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-74.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653565/bc8242ca-business-74.png",
     "external_url": "https:\/\/www.livemint.com\/news\/budget-2024-more-women-in-education-but-india-inc-fails-hiring-target-11706777276826.html"
 },
 {
@@ -5680,7 +5680,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-73.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653880/505335ff-business-73.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/kerala\/women-welcome-women-guests-in-keralas-spice-groves\/article67779890.ece"
 },
 {
@@ -5709,7 +5709,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/02\/business-71.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653884/c2ebb300-business-71.png",
     "external_url": "https:\/\/www.indiablooms.com\/finance-details\/19858\/electric-vehicles-pilot-launched-for-rural-women-entrepreneurs.html"
 },
 {
@@ -5738,7 +5738,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-52.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653692/25294b23-business-52.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/Hyderabad\/to-support-women-the-marginalised-and-the-lgbtiq-community-in-entrepreneurship-telanganas-we-hub-with-the-support-of-australian-govt-to-offer-pre-incubation-programme\/article67789522.ece"
 },
 {
@@ -5767,7 +5767,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-69.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653888/8bc9d5e5-business-69.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/iit-mandi-ihub-showcases-the-success-of-drone-didi-program-to-honble-president-of-india-doupadi-murmu\/articleshow\/107187144.cms?from=mdr"
 },
 {
@@ -5796,7 +5796,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-52.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653692/25294b23-business-52.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/india-sets-up-global-alliance-to-push-women-empowerment-gender-equality\/articleshow\/106974114.cms?from=mdr"
 },
 {
@@ -5825,7 +5825,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-39.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653633/69e7566d-business-39.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/economy\/policy\/budget-2024-nari-shakti-may-drive-bharats-moment-in-the-world-order\/articleshow\/106979347.cms?from=mdr"
 },
 {
@@ -5854,7 +5854,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-49.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653716/c997d2a7-business-49.png",
     "external_url": "https:\/\/www.apnnews.com\/libf-expo-2024-for-cross-border-trade-and-women-entrepreneurship-as-indias-growth-story\/"
 },
 {
@@ -5883,7 +5883,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-47.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653781/95f4dc62-business-47.png",
     "external_url": "https:\/\/www.pmindia.gov.in\/en\/news_updates\/dungarpur-woman-entrepreneur-impresses-pm-with-her-zeal-for-spreading-awareness-among-women\/"
 },
 {
@@ -5912,7 +5912,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-68.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653891/c741eeac-business-68.png",
     "external_url": "https:\/\/dst.gov.in\/women-scientists-conclave-discusses-action-plan-overcome-mindset-challenges-promoting-women"
 },
 {
@@ -5941,7 +5941,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-67.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653896/48d02f4e-business-67.png",
     "external_url": "https:\/\/www.thestatesman.com\/india\/womens-empowerment-essential-to-developed-india-by-2047-president-1503260179.html"
 },
 {
@@ -5970,7 +5970,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-66.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653850/285cf3ac-business-66.png",
     "external_url": "https:\/\/www.ndtv.com\/india-news\/assam-launches-lakhpati-baideo-scheme-for-40-lakh-woman-entrepreneurs-4846929"
 },
 {
@@ -5999,7 +5999,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-47.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653781/95f4dc62-business-47.png",
     "external_url": "https:\/\/www.dailypioneer.com\/2024\/state-editions\/ccl-organises-special-programme-for-sc-st---women-entrepreneurs-to-promote-business.html"
 },
 {
@@ -6028,7 +6028,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-65.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653620/c4183fb4-business-65.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/bis-announces-revised-concession-fees-for-msmes-and-women-entrepreneurs"
 },
 {
@@ -6057,7 +6057,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-64.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653623/a54a38a4-business-64.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/Tiruchirapalli\/nit-t-holds-workshop-on-thirumathikart-app-for-women-entrepreneurs\/article67719720.ece"
 },
 {
@@ -6086,7 +6086,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.guwahatiplus.com\/assam\/new-scheme-unveiled-to-empower-rural-women-entrepreneurs-of-assam-2"
 },
 {
@@ -6115,7 +6115,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-63.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653905/239163f8-business-63.png",
     "external_url": "https:\/\/statetimes.in\/vp-dhankhar-to-inaugurate-biotech-startup-expo-in-kathua-today\/"
 },
 {
@@ -6144,7 +6144,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/bhubaneswar\/rural-industrial-parks-for-women-entrepreneurs-in-sambalpur\/articleshow\/106364616.cms"
 },
 {
@@ -6152,7 +6152,7 @@ export const newsData = [
     "post_author": "9",
     "post_date": "2024-01-02 11:20:12",
     "post_date_gmt": "2024-01-02 05:50:12",
-    "post_content": "<!-- wp:paragraph -->\n<p>#WomenInBusiness #NewYearResolutions #EntrepreneurialJourney #2024Goals #EmpowerHerBusiness #InnovationIn2024<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As the dawn of a new year approaches, women entrepreneurs are gearing up to set ambitious resolutions that will shape their professional journeys in 2024. Fueled by a spirit of innovation, resilience &amp; determination, these entrepreneurs are poised to redefine success, overcome challenges, and embrace fresh opportunities in the business landscape.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>What will the future be like? While we are stepping into the New Year what advice would you like to give yourself? What would you like to be your biggest triumph by the end of the year?<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here, we delve into the inspiring New Year resolutions of women entrepreneurs, exploring their goals, strategies and the impactful changes they aim to bring to their ventures in the upcoming year. Join us on this journey of aspirations, growth, and empowerment as we witness the remarkable resolutions that will shape the narratives of women in business in 2024.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Ms Shivani Singh Kapoor, Co-Founder, ThinkStartup<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18228,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-1080-x-1080-px-1-1024x1024.png\" alt=\"\" class=\"wp-image-18228\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“I find the end of the year a great time for introspection. A time to ask ourselves questions such as what was our journey like in the last year? What did I succeed at? What did I try but failed at? And that leads to the question of what would I like the next year to look like.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Every year I set myself a minimum of 3 goals – one each in the categories of professional achievement, personal development and interpersonal relationships. This year is no different. On the professional front I look forward to a year of growth and increased impact for my venture ThinkStartup as we take on setting up Centres for Youth Entrepreneurship in 50 more schools across India. On the personal development front I am committed to catching up on my reading list and learning a new skill. And on the interpersonal relationship front I am committed to becoming a more patient listener! Wish everyone a year filled with growth and learning and above all may the journey be joyful!”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Dr. Priyanka Anuj Sidharth, Dental Surgeon<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18225,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/66-1024x1024.png\" alt=\"\" class=\"wp-image-18225\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Time flies and we are standing on the threshold of 2024. <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As an individual, the last year has given me lot of learning and realization. Keeping all the learnings in mind I will advise myself to work more on my tolerance and resilience, as these are the two virtues that I needed most last year.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As a human I know my fundamental darkness and I think acknowledging it makes half of the work done. I am a doctor and mother of a teenager, both the dimensions need these virtues to be polished.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>One more thing I need to accept is the “change”. Because change is only the thing which is constant.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Life can’t be stagnant, so I will accept the surprises of 2024. Lets see what this year holds for me. My biggest triumph this year is the enhancement of my confidence level.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Along with the Dental we are working hard on cosmetology, that’s what has made my profession more interesting. I have also surprised myself by my reaction while facing the challenging situation at work front.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Year 2024 will be the year of expansion for me - both at the professional and personal front.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Debjani Mukherjee, Founder, Nani Ghar<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18218,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/59-1024x1024.png\" alt=\"\" class=\"wp-image-18218\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Health: What I have realized is that if required I can rent or borrow anyone’s house, jacket, books but can never borrow any one’s body even for a moment. We should take utmost care with priority when it comes to good health.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Priorities: Set the priorities and accordingly persistently achieve those one by one. While doing so I will be little gentle on myself and will concentrate one job at a time. After all we are more experienced and aging is a natural process.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Learn: like every year will try to learn something new and it can be some new vegan dishes too.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">> Shormishtha Ghosh, Founder MD, In Tandem Global Consulting (ITGC) Pvt Ltd<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18224,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/65-1024x1024.png\" alt=\"\" class=\"wp-image-18224\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“The biggest advice that I shall give myself for the new Year is: Regroup, focus and try again. 2023 for me has been an unprecedented year as I managed to become much healthier and fitter. Completed the first year of my new venture too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>It has been a year of errors, shortfalls and tremendous learning. My biggest triumph by end of 2024 would be to effectively implement all that I have learnt and derive my new success story.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Parbati Bhattacharya, Founder &amp; Director, Wonderers Footprints Travel Boutique<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18230,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-1080-x-1080-px-2-1024x1024.png\" alt=\"\" class=\"wp-image-18230\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“We aspire to beat the ChatGPT or AI-driven travel solutions and stay in the market by adding value to the customers' travel experience. We will delve into extreme personalization to delight our travelers. For travel is a very human-centric business, and we hope to add the human touch, to add the icing on the cake!<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, it will be all about rebooting customer experience to highlight the magic of travel.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Mrs. Lavalina Sogani, Founder-Secretary of Vimukti Sanstha<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18226,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/business-1080-x-1080-px-1024x1024.png\" alt=\"\" class=\"wp-image-18226\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“In this upcoming year, I resolve to pour every ounce of my passion into nurturing the dreams of these incredible girls from Jaipur's slums. As we build our campus brick by brick, my soul is dedicated to seeing these girls not just study but soar. I promise to be their unwavering support, standing by them as they carve paths to becoming lawyers, doctors, and leaders. With every beat of my heart, I'll continue championing their education and empowerment, ensuring they shine as the brightest stars in our sky of hope and possibility.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Shraddha Bhavalkar, CEO of GetSetGo Fitness<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18220,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/61-1024x1024.png\" alt=\"\" class=\"wp-image-18220\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“What is a resolution? It’s a decision to do something that’s necessary to create a positive change in life. Since covid my take on new year resolution has changed completely.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>I don’t wait for 1st January to take action. I have already started taking small steps towards my goals which makes me feel confident stepping into the new year. I don’t have pressure to perform because I am already making progress and growing at a pace that’s comfortable for me.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Why postpone what’s good for you?”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Usha Jha, Founder,&nbsp;Petal Craft&nbsp;<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18219,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/60-1024x1024.png\" alt=\"\" class=\"wp-image-18219\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Every year we make New Year's resolutions but it is hard to fulfil them. My 2024 resolution is to make my life easier, comfortable and be happy. I will create a program for the entire year and have an agenda for each of the 12 months.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>It will be easier to fulfil my pledge. I will see what mistakes I have made in the past and try not to repeat them. Each month I will reflect and act on one agenda. It is better to lead a happier life if we accept our mistakes.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\" id=\"h-vijaya-eastwood-founder-of-criblife\">&gt; Vijaya&nbsp;Eastwood, Founder of CribLife&nbsp;<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18221,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/62-1024x1024.png\" alt=\"\" class=\"wp-image-18221\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“2024 is all about thinking and actioning positive both personally and at work both mentally and physically. It’s going to be exiting&nbsp;year&nbsp;so stay focused as we take CribLife to its next chapter of growth.”<\/p>\n<!-- \/wp:paragraph -->",
+    "post_content": "<!-- wp:paragraph -->\n<p>#WomenInBusiness #NewYearResolutions #EntrepreneurialJourney #2024Goals #EmpowerHerBusiness #InnovationIn2024<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As the dawn of a new year approaches, women entrepreneurs are gearing up to set ambitious resolutions that will shape their professional journeys in 2024. Fueled by a spirit of innovation, resilience &amp; determination, these entrepreneurs are poised to redefine success, overcome challenges, and embrace fresh opportunities in the business landscape.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>What will the future be like? While we are stepping into the New Year what advice would you like to give yourself? What would you like to be your biggest triumph by the end of the year?<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here, we delve into the inspiring New Year resolutions of women entrepreneurs, exploring their goals, strategies and the impactful changes they aim to bring to their ventures in the upcoming year. Join us on this journey of aspirations, growth, and empowerment as we witness the remarkable resolutions that will shape the narratives of women in business in 2024.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Ms Shivani Singh Kapoor, Co-Founder, ThinkStartup<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18228,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653918/abe1ff34-business-1080-x-1080-px-1-1024x1024.png\" alt=\"\" class=\"wp-image-18228\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“I find the end of the year a great time for introspection. A time to ask ourselves questions such as what was our journey like in the last year? What did I succeed at? What did I try but failed at? And that leads to the question of what would I like the next year to look like.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Every year I set myself a minimum of 3 goals – one each in the categories of professional achievement, personal development and interpersonal relationships. This year is no different. On the professional front I look forward to a year of growth and increased impact for my venture ThinkStartup as we take on setting up Centres for Youth Entrepreneurship in 50 more schools across India. On the personal development front I am committed to catching up on my reading list and learning a new skill. And on the interpersonal relationship front I am committed to becoming a more patient listener! Wish everyone a year filled with growth and learning and above all may the journey be joyful!”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Dr. Priyanka Anuj Sidharth, Dental Surgeon<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18225,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653927/7ed2bdfe-66-1024x1024.png\" alt=\"\" class=\"wp-image-18225\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Time flies and we are standing on the threshold of 2024. <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As an individual, the last year has given me lot of learning and realization. Keeping all the learnings in mind I will advise myself to work more on my tolerance and resilience, as these are the two virtues that I needed most last year.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>As a human I know my fundamental darkness and I think acknowledging it makes half of the work done. I am a doctor and mother of a teenager, both the dimensions need these virtues to be polished.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>One more thing I need to accept is the “change”. Because change is only the thing which is constant.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Life can’t be stagnant, so I will accept the surprises of 2024. Lets see what this year holds for me. My biggest triumph this year is the enhancement of my confidence level.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Along with the Dental we are working hard on cosmetology, that’s what has made my profession more interesting. I have also surprised myself by my reaction while facing the challenging situation at work front.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Year 2024 will be the year of expansion for me - both at the professional and personal front.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Debjani Mukherjee, Founder, Nani Ghar<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18218,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653931/eaa7f150-59-1024x1024.png\" alt=\"\" class=\"wp-image-18218\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Health: What I have realized is that if required I can rent or borrow anyone’s house, jacket, books but can never borrow any one’s body even for a moment. We should take utmost care with priority when it comes to good health.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Priorities: Set the priorities and accordingly persistently achieve those one by one. While doing so I will be little gentle on myself and will concentrate one job at a time. After all we are more experienced and aging is a natural process.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Learn: like every year will try to learn something new and it can be some new vegan dishes too.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">> Shormishtha Ghosh, Founder MD, In Tandem Global Consulting (ITGC) Pvt Ltd<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18224,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653940/296b7da8-65-1024x1024.png\" alt=\"\" class=\"wp-image-18224\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“The biggest advice that I shall give myself for the new Year is: Regroup, focus and try again. 2023 for me has been an unprecedented year as I managed to become much healthier and fitter. Completed the first year of my new venture too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>It has been a year of errors, shortfalls and tremendous learning. My biggest triumph by end of 2024 would be to effectively implement all that I have learnt and derive my new success story.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Parbati Bhattacharya, Founder &amp; Director, Wonderers Footprints Travel Boutique<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18230,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771649698/c15a4112-business-1080-x-1080-px-2-1024x1024.png\" alt=\"\" class=\"wp-image-18230\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“We aspire to beat the ChatGPT or AI-driven travel solutions and stay in the market by adding value to the customers' travel experience. We will delve into extreme personalization to delight our travelers. For travel is a very human-centric business, and we hope to add the human touch, to add the icing on the cake!<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, it will be all about rebooting customer experience to highlight the magic of travel.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Mrs. Lavalina Sogani, Founder-Secretary of Vimukti Sanstha<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18226,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653950/d9d791f0-business-1080-x-1080-px-1024x1024.png\" alt=\"\" class=\"wp-image-18226\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“In this upcoming year, I resolve to pour every ounce of my passion into nurturing the dreams of these incredible girls from Jaipur's slums. As we build our campus brick by brick, my soul is dedicated to seeing these girls not just study but soar. I promise to be their unwavering support, standing by them as they carve paths to becoming lawyers, doctors, and leaders. With every beat of my heart, I'll continue championing their education and empowerment, ensuring they shine as the brightest stars in our sky of hope and possibility.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Shraddha Bhavalkar, CEO of GetSetGo Fitness<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18220,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653958/d0e03bec-61-1024x1024.png\" alt=\"\" class=\"wp-image-18220\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“What is a resolution? It’s a decision to do something that’s necessary to create a positive change in life. Since covid my take on new year resolution has changed completely.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>I don’t wait for 1st January to take action. I have already started taking small steps towards my goals which makes me feel confident stepping into the new year. I don’t have pressure to perform because I am already making progress and growing at a pace that’s comfortable for me.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Why postpone what’s good for you?”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\">&gt; Usha Jha, Founder,&nbsp;Petal Craft&nbsp;<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18219,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771650891/c7f5e182-60-1024x1024.png\" alt=\"\" class=\"wp-image-18219\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“Every year we make New Year's resolutions but it is hard to fulfil them. My 2024 resolution is to make my life easier, comfortable and be happy. I will create a program for the entire year and have an agenda for each of the 12 months.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>It will be easier to fulfil my pledge. I will see what mistakes I have made in the past and try not to repeat them. Each month I will reflect and act on one agenda. It is better to lead a happier life if we accept our mistakes.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:heading {\"level\":5} -->\n<h5 class=\"wp-block-heading\" id=\"h-vijaya-eastwood-founder-of-criblife\">&gt; Vijaya&nbsp;Eastwood, Founder of CribLife&nbsp;<\/h5>\n<!-- \/wp:heading -->\n\n<!-- wp:image {\"id\":18221,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771650918/4594147f-62-1024x1024.png\" alt=\"\" class=\"wp-image-18221\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>“2024 is all about thinking and actioning positive both personally and at work both mentally and physically. It’s going to be exiting&nbsp;year&nbsp;so stay focused as we take CribLife to its next chapter of growth.”<\/p>\n<!-- \/wp:paragraph -->",
     "post_title": "Empowering Ventures: Unveiling the New Year Resolutions of Women Entrepreneurs in 2024",
     "post_excerpt": "",
     "post_status": "publish",
@@ -6173,7 +6173,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2024\/01\/WhatsApp-Image-2024-01-01-at-22.52.43.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653963/55e5ca07-WhatsApp-Image-2024-01-01-at-22.52.43.jpg",
     "external_url": null
 },
 {
@@ -6202,7 +6202,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-62.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653966/4771c45b-business-62.png",
     "external_url": "https:\/\/www.ndtv.com\/india-news\/making-india-developed-possible-only-when-every-woman-is-empowered-president-murmu-4730250"
 },
 {
@@ -6231,7 +6231,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-45.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653975/2e54e0e4-business-45.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/visakhapatnam\/andhra-pradesh-to-get-niti-aayog-women-entrepreneurship-chapter\/articleshow\/106229810.cms"
 },
 {
@@ -6260,7 +6260,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-61.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653978/00b4f6c3-business-61.png",
     "external_url": "https:\/\/indianexpress.com\/article\/north-east-india\/tripura\/tripuras-weekly-sanskritik-haat-turns-a-hit-brings-smiles-on-rural-women-entrepreneurs-9082054\/"
 },
 {
@@ -6289,7 +6289,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653988/de5bb23c-business-1.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/government-of-india-committed-to-gender-justice-and-promoting-womens-empowerment\/"
 },
 {
@@ -6318,7 +6318,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/07\/business-19.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653999/13fc9bb2-business-19.png",
     "external_url": "https:\/\/tech.einnews.com\/pr_news\/675816499\/ispiice-volunteering-in-india-is-pleased-to-announce-that-it-is-providing-women-s-empowerment-volunteer-programs-in-2024"
 },
 {
@@ -6347,7 +6347,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-41.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654009/4bf85037-business-41.png",
     "external_url": "https:\/\/www.livemint.com\/economy\/women-major-beneficiaries-of-mudra-and-stand-up-india-schemes-11702904294123.html"
 },
 {
@@ -6376,7 +6376,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-60.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653762/e4e9aee6-business-60.png",
     "external_url": "https:\/\/odishabarta.com\/shakti-samman-is-a-testament-of-womens-strength-in-society-cm\/"
 },
 {
@@ -6405,7 +6405,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654012/2afaafbb-business.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/news\/tiecon-kerala-2023-calls-for-entrepreneurial-solutions-to-global-challenges-and-opportunities\/article67644430.ece"
 },
 {
@@ -6434,7 +6434,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-59.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654018/7f4bd109-business-59.png",
     "external_url": "https:\/\/www.business-standard.com\/companies\/start-ups\/google-supports-women-led-ai-startups-in-tech-innovation-sustainability-123121300785_1.html"
 },
 {
@@ -6463,7 +6463,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-58-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653605/0d1873f5-business-58-2.png",
     "external_url": "https:\/\/www.afternoonnews.in\/article\/ficci-flo-organises-start-up-conclave"
 },
 {
@@ -6492,7 +6492,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-57.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653675/50a85bff-business-57.png",
     "external_url": "https:\/\/www.financialexpress.com\/business\/sme\/share-of-women-msmes-jumps-to-37-in-total-msmes-registered-on-govts-udyam-portal\/3335865\/"
 },
 {
@@ -6521,7 +6521,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-30.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654027/fb550c5b-business-30.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/ficci-ladies-organisation-flo-opens-its-she-can-center-of-excellence-in-noida-to-promote-skill-development-and-provide-a-network-of-support-to-women-entrepreneurs\/"
 },
 {
@@ -6550,7 +6550,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654030/1c6404bc-business-1.jpg",
     "external_url": "https:\/\/www.businesstoday.in\/mpw\/story\/womenomics-unleashed-steering-india-towards-a-5-trillion-economy-408523-2023-12-07"
 },
 {
@@ -6579,7 +6579,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-55.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654033/02500347-business-55.png",
     "external_url": "https:\/\/hospitality.economictimes.indiatimes.com\/news\/hotels\/project-maitri-to-empower-women-homestay-owners-in-indias-northeastern-region\/105588332"
 },
 {
@@ -6608,7 +6608,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-54.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654036/4c4f89ce-business-54.png",
     "external_url": "https:\/\/sundayguardianlive.com\/top-five\/efforts-on-to-address-underrepresentation-of-women-in-stem-areas"
 },
 {
@@ -6637,7 +6637,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-36.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653758/6867aaaf-business-36.png",
     "external_url": "https:\/\/www.telegraphindia.com\/edugraph\/campus\/empowering-women-entrepreneurs-bits-pilani-and-aditya-birla-capital-foundation-join-forces-with-niti-aayogs-women-entrepreneurship-platform\/cid\/1982976"
 },
 {
@@ -6666,7 +6666,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/business-53.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654046/b216e3fe-business-53.png",
     "external_url": "https:\/\/upsccolorfullnotes.com\/15000-farming-drones-for-women-shg\/"
 },
 {
@@ -6695,7 +6695,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/12\/image001-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654049/86cab8d7-image001-1.jpg",
     "external_url": "https:\/\/www.linkedin.com\/feed\/hashtag\/?keywords=teeninnovators&amp;highlightedUpdateUrns=urn%3Ali%3Aactivity%3A7136009118556827648"
 },
 {
@@ -6724,7 +6724,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-52.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653692/25294b23-business-52.png",
     "external_url": "https:\/\/www.ndtv.com\/indians-abroad\/indian-women-in-ireland-break-gender-pay-barrier-earn-more-than-men-4611723"
 },
 {
@@ -6753,7 +6753,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-51.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654053/aa7eae30-business-51.png",
     "external_url": "https:\/\/www.livemint.com\/money\/personal-finance\/bits-pilani-launches-womenpreneur-for-bharat-1-0-to-support-female-entrepreneurs-details-here-11700823739193.html"
 },
 {
@@ -6782,7 +6782,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654063/e5f815ba-business-2.png",
     "external_url": "https:\/\/www.greaterkashmir.com\/business\/skuast-k-holds-3-entrepreneurship-programmes-at-womens-polytechnic\/"
 },
 {
@@ -6811,7 +6811,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-50.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653869/ef38eaa4-business-50.png",
     "external_url": "https:\/\/www.greaterkashmir.com\/business\/skuast-k-holds-5-advanced-skill-and-management-trainings\/"
 },
 {
@@ -6840,7 +6840,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-49.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653716/c997d2a7-business-49.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/delhi\/women-weave-tales-of-empowerment-at-iitf\/articleshow\/105369853.cms"
 },
 {
@@ -6869,7 +6869,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-28.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653859/fcee3c6f-business-28.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/bengaluru\/bluru-home-to-1783-women-led-startups\/articleshow\/105341526.cms"
 },
 {
@@ -6898,7 +6898,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-48.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654072/285b1f6c-business-48.png",
     "external_url": "https:\/\/lifestyle.livemint.com\/news\/talking-point\/bihar-women-entrepreneurs-solar-energy-villages-111699941067617.html"
 },
 {
@@ -6927,7 +6927,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-47.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653781/95f4dc62-business-47.png",
     "external_url": null
 },
 {
@@ -6956,7 +6956,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/11\/business-46.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654080/bd22469f-business-46.png",
     "external_url": "https:\/\/risingkashmir.com\/skaust-k-kvk-budgam-empowers-rural-youth-and-women-in-mushroom-entrepreneurship"
 },
 {
@@ -6985,7 +6985,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-28.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653859/fcee3c6f-business-28.png",
     "external_url": "https:\/\/www.indianweb2.com\/2023\/11\/iim-kashipur-incubated-startup.html"
 },
 {
@@ -7014,7 +7014,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-26.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654090/ba75edba-business-26.png",
     "external_url": "https:\/\/www.livemint.com\/companies\/start-ups\/womenled-startups-see-18-rise-105-female-led-firms-become-unicorn-in-past-five-years-report-11698639987377.html"
 },
 {
@@ -7043,7 +7043,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-45.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653975/2e54e0e4-business-45.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/lucknow\/aktu-iim-ink-mou-to-train-women-in-finance-biz\/articleshow\/104840789.cms"
 },
 {
@@ -7072,7 +7072,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-44.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654093/f417b33e-business-44.png",
     "external_url": "http:\/\/timesofindia.indiatimes.com\/articleshow\/104708400.cms?utm_source=contentofinterest&amp;utm_medium=text&amp;utm_campaign=cppst"
 },
 {
@@ -7101,7 +7101,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653988/de5bb23c-business-1.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/gujarat\/30000-women-entrepreneurs-to-connect-with-sgcci-mission-84-niti-aayog"
 },
 {
@@ -7130,7 +7130,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-43.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654103/e19e80b7-business-43.png",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/amritsar\/flo-inks-pact-with-gndu-for-skill-dev-of-women-entrepreneurs-555222"
 },
 {
@@ -7159,7 +7159,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-42.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654111/b26fe925-business-42.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/life-style\/spotlight\/u-s-consulate-kolkata-hosts-a-bootcamp-for-womens-economic-empowerment\/articleshow\/104420945.cms?from=mdr"
 },
 {
@@ -7188,7 +7188,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-41.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654009/4bf85037-business-41.png",
     "external_url": "https:\/\/theblunttimes.in\/30k-indian-women-entrepreneurs-to-join-sgcci-mission-84-niti-aayog\/37202\/"
 },
 {
@@ -7217,7 +7217,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653988/de5bb23c-business-1.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/bangalore\/bengaluru-start-up-ecosystem-has-had-trickle-down-impact-on-rural-karnatakas-entrepreneurial-aspirations\/article67426991.ece"
 },
 {
@@ -7246,7 +7246,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-40.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654114/c3f8bceb-business-40.png",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/bangalore\/iim-b-karnataka-govt-launch-swavalambane-programme-to-empower-rural-women-entrepreneurs-8980586\/"
 },
 {
@@ -7275,7 +7275,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-33.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654119/6e131fec-business-33.png",
     "external_url": "https:\/\/telanganatoday.com\/we-hub-mentoring-an-able-generation-of-female-entrepreneurs"
 },
 {
@@ -7304,7 +7304,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-26.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654090/ba75edba-business-26.png",
     "external_url": "https:\/\/www.aninews.in\/news\/business\/niti-aayog-platform-enables-women-led-development-at-goa-workshop20231007115031\/"
 },
 {
@@ -7333,7 +7333,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-39.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653633/69e7566d-business-39.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/creative-mela-exhibition-showcasing-artistry-and-empowerment-at-amu\/"
 },
 {
@@ -7362,7 +7362,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/gorgeous-indian-woman-wear-formal-posing-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654134/f7e0b48c-gorgeous-indian-woman-wear-formal-posing-cafe.jpg",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/andhra-pradesh\/separate-cell-for-women-start-ups-will-be-set-up-in-andhra-pradesh-says-it-minister-amarnath\/article67384684.ece"
 },
 {
@@ -7391,7 +7391,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/10\/business-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654030/1c6404bc-business-1.jpg",
     "external_url": "https:\/\/www.freepressjournal.in\/indore\/iim-indore-to-roll-out-special-courses-for-women-looking-to-resume-their-careers"
 },
 {
@@ -7420,7 +7420,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-28.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653859/fcee3c6f-business-28.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/goa\/niti-aayog-workshop-for-women-entrepreneurs\/articleshow\/104113236.cms?from=mdr"
 },
 {
@@ -7449,7 +7449,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/eastern-woman-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654139/c01f4ffb-eastern-woman-cafe.jpg",
     "external_url": "https:\/\/www.thestatesman.com\/books-education\/central-university-of-punjab-organises-workshop-on-womens-entrepreneurship-1503226709.html"
 },
 {
@@ -7478,7 +7478,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654012/2afaafbb-business.jpg",
     "external_url": "https:\/\/www.republicworld.com\/world-news\/rest-of-the-world-news\/indian-ngos-talk-about-efforts-towards-womens-empowerment-gender-equality-at-unhrc-articleshow.html"
 },
 {
@@ -7507,7 +7507,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-38.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654144/8b36e59b-business-38.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/hyderabad\/hyds-ai-firms-are-breaking-the-gender-mould-women-lead-1-in-every-4-startups\/articleshow\/103723822.cms?from=mdr"
 },
 {
@@ -7536,7 +7536,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/close-up-smiling-person-conference-room.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654155/b298261b-close-up-smiling-person-conference-room.jpg",
     "external_url": "https:\/\/currentaffairs.adda247.com\/union-education-minister-launches-skills-on-wheels-initiative-to-empower-rural-youth\/"
 },
 {
@@ -7565,7 +7565,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-36.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653758/6867aaaf-business-36.png",
     "external_url": "https:\/\/www.tbsnews.net\/economy\/we-help-provide-20-types-digital-services-women-entrepreneurs-700702"
 },
 {
@@ -7594,7 +7594,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656287/84eed2db-young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
     "external_url": "https:\/\/www.cxotoday.com\/press-release\/india-sme-forum-empowers-women-in-business-through-first-ever-women-exporters-program-2023\/"
 },
 {
@@ -7623,7 +7623,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-33.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654119/6e131fec-business-33.png",
     "external_url": "https:\/\/www.devdiscourse.com\/article\/technology\/2588845-us-vietnam-firms-hold-business-summit-during-biden-visit-ai-deals-unveiled"
 },
 {
@@ -7652,7 +7652,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/eastern-woman-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654139/c01f4ffb-eastern-woman-cafe.jpg",
     "external_url": "https:\/\/zeenews.india.com\/india\/women-empowerment-in-jk-358-seats-reserved-for-women-in-municipal-elections-2659070.html"
 },
 {
@@ -7681,7 +7681,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-32.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654160/e9796a59-business-32.png",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/g20-summit-chandni-chowk-employs-female-translators-to-enhance-experience-for-foreign-guests-11694138443779.html"
 },
 {
@@ -7710,7 +7710,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/09\/business-30.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654027/fb550c5b-business-30.png",
     "external_url": "https:\/\/www.financialexpress.com\/business\/sme-g20-empower-wep-launches-mentorship-platform-for-women-entrepreneurs-3233863\/"
 },
 {
@@ -7739,7 +7739,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653988/de5bb23c-business-1.png",
     "external_url": "https:\/\/finance.yahoo.com\/news\/wgc-india-launches-empowerher-campaign-021000550.html?guccounter=1&amp;guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS8&amp;guce_referrer_sig=AQAAAE0DgDDO9VswzsoM1kUq0HZ9an9bVP1Jqjm8SkLRxYIwncD4Mz7AI08aa6dqavOfs_HzaK55E_ql14PK67HgWm0fei_l-Qfzkff2SyU4wbIYdnwUyCbXU1c_GvoyrTSg86GvcKrLPyXGzwdaQ7v8GfDsu5Zcin-fzkuLDr-DapIC"
 },
 {
@@ -7768,7 +7768,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-28.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653859/fcee3c6f-business-28.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/aicte-inaugurates-women-entrepreneurship-in-waste-management-wewp-conclave-2023\/"
 },
 {
@@ -7797,7 +7797,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654063/e5f815ba-business-2.png",
     "external_url": "https:\/\/orissadiary.com\/spark-o-thon-ignites-innovation-on-world-entrepreneurs-day\/"
 },
 {
@@ -7826,7 +7826,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/04\/Untitled-design-20.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654165/f5796b9b-Untitled-design-20.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/global-collaboration-for-empowerment-credai-chennai-joins-india-cambodia-womens-delegation\/"
 },
 {
@@ -7855,7 +7855,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/smiling-girl-with-pencil-looking-camera.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654182/2952fb2f-smiling-girl-with-pencil-looking-camera.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/business\/sme\/iimas-ciie-co-partners-with-rbis-innovation-hub-to-enable-credit-access-for-women-msmes\/3219669\/"
 },
 {
@@ -7884,7 +7884,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/4996744.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654186/0fc13abf-4996744.jpg",
     "external_url": "https:\/\/www.zeebiz.com\/small-business\/news-nbfcs-role-in-tier-2-and-tier-3-cities-for-women-entrepreneurs-msme-start-up-financing-female-entrepreneurs-stst-249240"
 },
 {
@@ -7913,7 +7913,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656287/84eed2db-young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/wfp-and-haryana-govt-sign-lou-on-strengthening-icds-womens-empowerment-in-haryana\/"
 },
 {
@@ -7942,7 +7942,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656648/7c556add-smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/villgro-and-undp-tie-up-to-bridge-finance-gap-for-women-entrepreneurs"
 },
 {
@@ -7971,7 +7971,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-26.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654090/ba75edba-business-26.png",
     "external_url": "https:\/\/smestreet.in\/infocus\/csr\/ntpc-and-edii-collaborate-to-empower-women-entrepreneurs\/"
 },
 {
@@ -8000,7 +8000,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-25.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654190/da5da882-business-25.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/patna\/bmus-organisesevent-for-womenentrepreneurs\/articleshow\/102690088.cms?from=mdr"
 },
 {
@@ -8029,7 +8029,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654063/e5f815ba-business-2.png",
     "external_url": "https:\/\/www.republicworld.com\/education\/news\/sbi-foundations-youth-for-india-program-welcomes-batch-2023-24-articleshow.html"
 },
 {
@@ -8058,7 +8058,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.inventiva.co.in\/trends\/mahila-samman-scheme-garners\/"
 },
 {
@@ -8087,7 +8087,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/08\/business-24.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654193/98621cee-business-24.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/blogs\/truth-lies-and-politics\/empowering-women-for-global-progress-pms-message-at-g20-conference-on-womens-empowerment\/"
 },
 {
@@ -8116,7 +8116,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/07\/business-22.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654195/a25499f2-business-22.png",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/ahmedabad\/state-preps-for-g20-empower-summit-smriti-irani-set-to-launch-digital-inclusion-platform-8867035\/"
 },
 {
@@ -8145,7 +8145,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/tea-picker-plantation-sri-lanka.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656299/76a3e5d9-tea-picker-plantation-sri-lanka.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/research-suggests-involving-women-in-agriculture-leads-to-greater-crop-diversity\/"
 },
 {
@@ -8174,7 +8174,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/04\/Untitled-design-20.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654165/f5796b9b-Untitled-design-20.png",
     "external_url": "https:\/\/krishijagran.com\/news\/w20-janbhagidari-event-women-led-sustainable-development-through-dairy-cooperatives-held-in-gujarat\/"
 },
 {
@@ -8203,7 +8203,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/smiling-girl-with-pencil-looking-camera.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654182/2952fb2f-smiling-girl-with-pencil-looking-camera.jpg",
     "external_url": "https:\/\/www.aninews.in\/news\/business\/business\/ficci-flo-mumbai-and-nimaya-collaborate-to-upskill-young-women20230717122420\/"
 },
 {
@@ -8232,7 +8232,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656287/84eed2db-young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
     "external_url": "https:\/\/www.dnpindia.in\/people\/stand-up-india-yojana-2023-a-boost-for-entrepreneurship-and-growth\/266921\/"
 },
 {
@@ -8261,7 +8261,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/4996744.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654186/0fc13abf-4996744.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/visa-brings-its-10000-grants-programme-shes-next-to-india-for-women-entrepreneurs\/3170517\/"
 },
 {
@@ -8290,7 +8290,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/07\/business-19.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653999/13fc9bb2-business-19.png",
     "external_url": "https:\/\/www.vibesofindia.com\/chhattisgarh-cm-baghel-drives-womens-empowerment-initiatives-in-state\/"
 },
 {
@@ -8319,7 +8319,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/07\/business-18.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654200/dbb363a6-business-18.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/iimbg-inspire-empowers-entrepreneurs-through-msme-idea-hackathon-2-0-and-launches-idea-hackathon-3-0\/"
 },
 {
@@ -8348,7 +8348,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/tea-picker-plantation-sri-lanka.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656299/76a3e5d9-tea-picker-plantation-sri-lanka.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-eodb-power-of-grassroots-entrepreneurship-role-in-job-creation-community-development-strengthening-msmes\/3157221\/"
 },
 {
@@ -8377,7 +8377,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656648/7c556add-smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/undp-and-day-nulm-to-jointly-empower-women-entrepreneurs-11687341228212.html"
 },
 {
@@ -8406,7 +8406,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/06\/business-16.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654206/2c0aaef7-business-16.png",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/amritsar\/phdccis-women-forum-to-train-female-entrepreneurs-in-punjab-520099"
 },
 {
@@ -8435,7 +8435,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/4996744.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654186/0fc13abf-4996744.jpg",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/amritsar\/flo-launches-programme-for-women-empowerment-515848"
 },
 {
@@ -8464,7 +8464,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/smiling-girl-with-pencil-looking-camera.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654182/2952fb2f-smiling-girl-with-pencil-looking-camera.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/national-commission-for-women-ncw-entrepreneurship-development-institute-of-india-edii-to-organise-100-entrepreneurship-awareness-programmes-eaps-for-potential-women-entrepreneurs-across-india-2\/"
 },
 {
@@ -8493,7 +8493,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/06\/business-3.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654215/37a433d0-business-3.png",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/mumbai\/maharashtra-cabinet-nod-to-aai-tourism-policy-women-entrepreneurs-tourists-special-benefits-8637485\/"
 },
 {
@@ -8522,7 +8522,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/Mother-and-daughter-milking-cow.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654226/d6a08604-Mother-and-daughter-milking-cow.jpg",
     "external_url": "https:\/\/agriculturepost.com\/allied-sectors\/dairying\/up-govt-mandates-nddb-dairy-services-to-empower-1-50-lakh-women-dairy-farmers-in-17-districts\/"
 },
 {
@@ -8551,7 +8551,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654063/e5f815ba-business-2.png",
     "external_url": "https:\/\/www.businesswireindia.com\/womens-entrepreneurship-accelerator-event-at-67th-session-of-the-commission-on-the-status-of-women-calls-for-gender-inclusive-digital-innovation-eco-systems-84568.html"
 },
 {
@@ -8580,7 +8580,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656648/7c556add-smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
     "external_url": "https:\/\/www.greaterkashmir.com\/todays-paper\/front-page\/jkedi-startup-india-to-organise-workshop-for-jks-women-entrepreneurs"
 },
 {
@@ -8609,7 +8609,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/indian-woman-working-laptop-street-cafe-wearing-stylish-smart-clothes-jacket-glasses.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654243/48ac2a55-indian-woman-working-laptop-street-cafe-wearing-stylish-smart-clothes-jacket-glasses.jpg",
     "external_url": "https:\/\/www.indiatoday.in\/india\/story\/defence-ministry-organise-all-women-republic-day-parade-2024-2375805-2023-05-06"
 },
 {
@@ -8638,7 +8638,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/05\/business-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653988/de5bb23c-business-1.png",
     "external_url": "https:\/\/www.siasat.com\/hyderabad-ktr-lays-foundation-for-we-ittc-at-patancheru-2578517\/"
 },
 {
@@ -8667,7 +8667,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/4901340.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654248/420a30de-4901340.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/cities\/lucknow-news\/institute-of-women-s-studies-promotes-career-opportunities-in-gender-studies-for-women-at-avadh-college-womenempowerment-genderstudies-careeropportunities-iws-lucknowuniversity-101682362274984.html"
 },
 {
@@ -8696,7 +8696,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656648/7c556add-smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/india-gives-rs-4-09-crore-to-un-entity-for-women-empowerment-11681788115584.html"
 },
 {
@@ -8725,7 +8725,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/04\/Untitled-design-20.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654165/f5796b9b-Untitled-design-20.png",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/india\/world-bank-president-david-malpass-praises-india-for-empowering-women\/articleshow\/99485998.cms"
 },
 {
@@ -8754,7 +8754,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/04\/Untitled-design-19.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654256/b65de59c-Untitled-design-19.png",
     "external_url": "https:\/\/www.aninews.in\/news\/national\/general-news\/surat-over-15000-women-participate-in-saree-walkathon-to-promote-fitness20230409103546\/"
 },
 {
@@ -8783,7 +8783,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/4901340.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654248/420a30de-4901340.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/business\/over-180-000-sc-st-and-women-beneficiaries-receive-loans-worth-rs-40-700-crore-under-stand-up-india-scheme-101680685235745.html"
 },
 {
@@ -8812,7 +8812,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/smiling-girl-with-pencil-looking-camera.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654182/2952fb2f-smiling-girl-with-pencil-looking-camera.jpg",
     "external_url": "https:\/\/www.mobilityoutlook.com\/news\/women-entrepreneurs-can-help-promote-road-safety-nitin-gadkari\/"
 },
 {
@@ -8841,7 +8841,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/4996744.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654186/0fc13abf-4996744.jpg",
     "external_url": "https:\/\/www.bizzbuzz.news\/industry\/wtc-shamshabad-vizag-signs-mou-with-aleap-1207387"
 },
 {
@@ -8870,7 +8870,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/asian-young-woman-clothes-entrepreneur-working-home-workplacestartup-small-business-owner-sme-freelance-business-online-delivery-concept.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654278/d6ccfc46-asian-young-woman-clothes-entrepreneur-working-home-workplacestartup-small-business-owner-sme-freelance-business-online-delivery-concept.jpg",
     "external_url": "https:\/\/indiacsr.in\/empowering-women-entrepreneurs-stand-up-india-scheme-grants-over-rs-30000-crore-in-loans-since-2016\/"
 },
 {
@@ -8899,7 +8899,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/4889781.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654282/3e055371-4889781.jpg",
     "external_url": "https:\/\/www.cxotoday.com\/press-release\/meta-sees-strong-momentum-in-women-entrepreneurs-using-its-apps-in-india\/"
 },
 {
@@ -8928,7 +8928,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654295/219264aa-smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
     "external_url": "https:\/\/www.zeebiz.com\/economy-infra\/news-indias-white-collar-sector-sees-35-spike-in-jobs-for-women-224772"
 },
 {
@@ -8957,7 +8957,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/03\/eastern-woman-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654139/c01f4ffb-eastern-woman-cafe.jpg",
     "external_url": "https:\/\/www.cxotoday.com\/press-release\/shakti-national-convention-2023-successful-women-entrepreneurs-felicitated\/"
 },
 {
@@ -8986,7 +8986,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/tea-picker-plantation-sri-lanka.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656299/76a3e5d9-tea-picker-plantation-sri-lanka.jpg",
     "external_url": "https:\/\/www.fibre2fashion.com\/news\/e-commerce-industry\/indian-govt-meesho-ink-mou-to-train-rural-women-to-be-online-sellers-285857-newsdetails.htm"
 },
 {
@@ -9015,7 +9015,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/8030417.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654298/874d2dcb-8030417.jpg",
     "external_url": "https:\/\/theprint.in\/world\/indias-g20-presidency-focuses-on-women-empowerment\/1371952\/"
 },
 {
@@ -9044,7 +9044,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656648/7c556add-smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear-smart-casual-cloth-smile-hand-use-tablet-woking-inventory-checking-showroom-office-daytime-background.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/delhi\/dseu-undp-to-work-on-women-entrepreneurship\/articleshow\/97783191.cms?from=mdr"
 },
 {
@@ -9073,7 +9073,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/tired-woman-architect-working-modern-cad-program-overtime-sitting-desk-start-up-office-industrial-female-engineer-studying-prototype-idea-pc-showing-cad-software-device-display.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654313/51cbf95e-tired-woman-architect-working-modern-cad-program-overtime-sitting-desk-start-up-office-industrial-female-engineer-studying-prototype-idea-pc-showing-cad-software-device-display.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/global-alliance-for-mass-entrepreneurship-game-launches-its-programme-for-enabling-access-to-formal-finance-for-women-entrepreneurs-in-maharashtra\/"
 },
 {
@@ -9102,7 +9102,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/raisa-nastukova-72GwiojCwoI-unsplash.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654326/2482bf88-raisa-nastukova-72GwiojCwoI-unsplash.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/lt-governor-inaugurates-saras-aajeevika-mela-in-jammu\/"
 },
 {
@@ -9131,7 +9131,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/02\/young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656287/84eed2db-young-businesswoman-preparing-speech-interview-company-writing-down-notes-while-sitting-outsi.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/two-day-workshop-on-entrepreneur-skills-for-women-empowerment\/"
 },
 {
@@ -9160,7 +9160,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654295/219264aa-smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/women-entrepreneurs-account-for-70-of-beneficiaries-under-mudra-yojana"
 },
 {
@@ -9189,7 +9189,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/anjali-lokhande-EphHpur1v_o-unsplash.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654330/47444703-anjali-lokhande-EphHpur1v_o-unsplash.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/india-news\/chhattisgarh-cm-announces-unemployment-allowance-from-next-financial-year-101674719308237.html"
 },
 {
@@ -9218,7 +9218,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/laptop-shopping-bags-online-shopping-concept.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654349/3662dcc9-laptop-shopping-bags-online-shopping-concept.jpg",
     "external_url": "https:\/\/www.businesstoday.in\/opinion\/story\/e-commerce-empowering-women-sellers-tier-2-and-tier-3-cities-sellers-367183-2023-01-23"
 },
 {
@@ -9247,7 +9247,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/695.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654360/b91f2eea-695.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/gem-commemorate-success-of-women-entrepreneurs\/"
 },
 {
@@ -9276,7 +9276,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/gorgeous-indian-woman-wear-formal-posing-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654134/f7e0b48c-gorgeous-indian-woman-wear-formal-posing-cafe.jpg",
     "external_url": "https:\/\/www.business-standard.com\/article\/beyond-business\/sidbi-to-partner-with-amfi-to-support-bengal-s-women-entrepreneurs-123011300874_1.html"
 },
 {
@@ -9305,7 +9305,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/smiling-girl-with-pencil-looking-camera.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654182/2952fb2f-smiling-girl-with-pencil-looking-camera.jpg",
     "external_url": "https:\/\/inc42.com\/buzz\/google-india-commits-to-mentor-1-mn-indian-women-entrepreneurs\/"
 },
 {
@@ -9334,7 +9334,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2023\/01\/Ruchi-24.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654372/10887256-Ruchi-24.png",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-eodb-video-information-discovery-biggest-hurdle-to-empowering-women-entrepreneurs-says-niti-aayogs-anna-roy\/2929289\/"
 },
 {
@@ -9363,7 +9363,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/4895215.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654375/aa682f2c-4895215.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-fin-over-80-of-stand-up-india-loans-sanctioned-to-women-entrepreneurs-govt-data\/2926030\/"
 },
 {
@@ -9392,7 +9392,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/Ruchi-23.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654381/e747ad94-Ruchi-23.png",
     "external_url": "https:\/\/kashmirlife.net\/lg-sinha-calls-upon-youth-clubs-women-entrepreneurs-to-showcase-vibrant-jk-during-indias-g-20-presidency-306540\/"
 },
 {
@@ -9421,7 +9421,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/Ruchi-22.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654384/b613c0b2-Ruchi-22.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/tamil-nadu\/1067-women-entrepreneurs-registered-on-udyam-sakhi-from-tamil-nadu"
 },
 {
@@ -9450,7 +9450,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/Ruchi-21.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654397/20aafaef-Ruchi-21.png",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-tech-niti-aayog-launches-revamped-women-entrepreneurship-portal-to-onboard-2-5-lakh-women-entrepreneurs\/2911927\/"
 },
 {
@@ -9479,7 +9479,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/shiv-prasad-BgF8HUIg2JY-unsplash.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654410/b71b843e-shiv-prasad-BgF8HUIg2JY-unsplash.jpg",
     "external_url": "https:\/\/theprint.in\/india\/minister-ktr-inaugurates-the-7th-edition-of-largest-entrepreneurship-summit-in-hyderabad\/1262910\/"
 },
 {
@@ -9508,7 +9508,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/12\/subhadeep-dishant-PuujDvWPbH0-unsplash.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654423/0c51b48c-subhadeep-dishant-PuujDvWPbH0-unsplash.jpg",
     "external_url": "https:\/\/www.newindianexpress.com\/states\/odisha\/2022\/dec\/01\/come-join-the-juggernaut-naveen-invites-investors-to-odisha-2524015.html"
 },
 {
@@ -9537,7 +9537,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/JKDAF-inauguration-session.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654427/c9ff0e45-JKDAF-inauguration-session.png",
     "external_url": null
 },
 {
@@ -9566,7 +9566,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/alka-jha-5xwBeArXd1E-unsplash.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654439/d8c3d250-alka-jha-5xwBeArXd1E-unsplash.jpg",
     "external_url": "https:\/\/www.vccircle.com\/googlekarnataka-join-hands-to-support-emerging-startups-women-entrepreneurs"
 },
 {
@@ -9595,7 +9595,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/WhatsApp-Image-2022-11-15-at-13.40.25.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771651767/925dd7f2-WhatsApp-Image-2022-11-15-at-13.40.25.jpg",
     "external_url": "https:\/\/mybigplunge.com\/startups\/startup-and-entrepreneurship\/entrepreneurs-bloom-in-jharkhand\/"
 },
 {
@@ -9624,7 +9624,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/WhatsApp-Image-2022-11-14-at-10.50.40.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771651770/bdfdbf85-WhatsApp-Image-2022-11-14-at-10.50.40.jpg",
     "external_url": "https:\/\/www.startupindia.gov.in\/content\/sih\/en\/state-startup-policies.html"
 },
 {
@@ -9653,7 +9653,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/WhatsApp-Image-2022-11-14-at-09.47.56.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771651773/7248490a-WhatsApp-Image-2022-11-14-at-09.47.56.jpg",
     "external_url": null
 },
 {
@@ -9682,7 +9682,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/11\/sunrise-dal-lake-kashmir-india.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656304/373e51b1-sunrise-dal-lake-kashmir-india.jpg",
     "external_url": "https:\/\/theprint.in\/india\/j-k-govt-identifies-181-villages-for-development-under-tvdp-to-empower-youth\/1184974\/"
 },
 {
@@ -9711,7 +9711,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/4901340.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654248/420a30de-4901340.jpg",
     "external_url": "https:\/\/www.northeasttoday.in\/2022\/10\/25\/hernow-indo-german-project-celebrates-journey-of-nagaland-based-women-entrepreneurs\/"
 },
 {
@@ -9740,7 +9740,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/full-shot-travel-concept-with-landmarks.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654457/39792791-full-shot-travel-concept-with-landmarks.jpg",
     "external_url": "http:\/\/www.uniindia.com\/kerala-to-become-fully-women-friendly-tourism-destination\/south\/news\/2848977.html"
 },
 {
@@ -9769,7 +9769,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-17.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654461/734285ff-Ruchi-17.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/women-entrepreneurship-conclave-scheduled-for-oct-29-in-kerala"
 },
 {
@@ -9798,7 +9798,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-16.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654465/6509ed18-Ruchi-16.png",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/game-signs-mou-with-nrlm-to-enable-financial-access-for-women-entrepreneurs-11665749807774.html"
 },
 {
@@ -9827,7 +9827,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/beautiful-river-snow-covered-mountains-landscape-kashmir-state-india.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656310/6f85b6c7-beautiful-river-snow-covered-mountains-landscape-kashmir-state-india.jpg",
     "external_url": "https:\/\/theprint.in\/india\/director-jkedi-reviews-functioning-of-centre-for-women-entrepreneurship-in-srinagar\/1168634\/"
 },
 {
@@ -9856,7 +9856,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-15.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654476/2f7eb793-Ruchi-15.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/global-alliance-of-mass-entrepreneurship-game-signs-an-mou-with-national-rural-livelihood-mission-nrlm-to-enable-financial-access-for-10-lakh-nano-women-entrepreneurs\/"
 },
 {
@@ -9885,7 +9885,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-14.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654489/d7606b3d-Ruchi-14.png",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/153-women-signup-for-gramin-udyami-skill-training-in-gumla-jharkhand"
 },
 {
@@ -9914,7 +9914,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-13.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654498/e61a0cab-Ruchi-13.png",
     "external_url": "https:\/\/pib.gov.in\/PressReleasePage.aspx?PRID=1866372"
 },
 {
@@ -9943,7 +9943,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-12.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654512/b186e951-Ruchi-12.png",
     "external_url": "https:\/\/newsonair.com\/2022\/10\/11\/fifa-u-17-womens-world-cup-2022-kicks-off-this-evening-india-to-play-against-usa-in-inaugural-match\/"
 },
 {
@@ -9972,7 +9972,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/Ruchi-11.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654525/369c3f9e-Ruchi-11.png",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/Tiruchirapalli\/weat-to-launch-workshop-series-to-foster-women-entrepreneurship-with-support-from-trec-step\/article65981273.ece"
 },
 {
@@ -10001,7 +10001,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/search-find-view-information-data-graphic-symbol-icon.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654541/e01d7ef2-search-find-view-information-data-graphic-symbol-icon.jpg",
     "external_url": "https:\/\/www.dnaindia.com\/business\/report-indian-women-entrepreneurs-to-get-support-training-from-google-2990050"
 },
 {
@@ -10030,7 +10030,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/droupadi_murmu_1660486578465_1660486584594_1660486584594.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654545/3efdd366-droupadi_murmu_1660486578465_1660486584594_1660486584594.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/india-news\/president-launches-herstart-platform-for-women-entrepreneurs-in-gujarat-101664894357704.html"
 },
 {
@@ -10059,7 +10059,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/10\/happy-young-asian-businessmen-businesswomen-meeting-brainstorming-ideas-about-new-paperwork-project.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654558/e81a522b-happy-young-asian-businessmen-businesswomen-meeting-brainstorming-ideas-about-new-paperwork-project.jpg",
     "external_url": "https:\/\/www.bizzbuzz.news\/markets\/india-startup-festival-from-oct-1-in-bengaluru-1170972"
 },
 {
@@ -10088,7 +10088,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/4890375.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654562/356a560c-4890375.jpg",
     "external_url": null
 },
 {
@@ -10117,7 +10117,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/Ruchi-10-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654566/94309556-Ruchi-10-1.png",
     "external_url": "https:\/\/contentmediasolution.com\/business\/iim-bangalores-nsrcel-a-boost-to-startup-ecosystem-in-india-with-its-multiple-cohorts\/"
 },
 {
@@ -10146,7 +10146,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/portrait-expressive-young-woman-with-shopping-bags.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654596/fa28f50e-portrait-expressive-young-woman-with-shopping-bags.jpg",
     "external_url": "https:\/\/www.nktv.in\/ficci-flo-organises-flo-bazaar\/"
 },
 {
@@ -10175,7 +10175,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652249/1fe36d74-rural.jpg",
     "external_url": "https:\/\/lagatar24.com\/msme-tribal-chamber-motivate-jharkhand-women-to-begin-business\/122512\/"
 },
 {
@@ -10204,7 +10204,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/515319-PIRK7R-406.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654603/d83a9761-515319-PIRK7R-406.jpg",
     "external_url": "https:\/\/morungexpress.com\/msme-training-for-women-entrepreneurs-in-nagaland"
 },
 {
@@ -10233,7 +10233,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/nirmala-sitharaman.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654607/c948c210-nirmala-sitharaman.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/economy\/finance\/fm-nirmala-sitharaman-urges-ifc-to-scale-up-india-lending-to-3-5-billion-in-3-4-years\/articleshow\/94311514.cms?from=mdr"
 },
 {
@@ -10262,7 +10262,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/Gate-of-Indian-Institute-of-Technology-Guwahati_Campus-View.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654612/5ed346ec-Gate-of-Indian-Institute-of-Technology-Guwahati_Campus-View.png",
     "external_url": "https:\/\/www.indiatoday.in\/education-today\/news\/story\/iit-guwahati-technology-incubation-centre-incubates-42-start-ups-encouraging-an-entrepreneurial-ecosystem-on-campus-2002275-2022-09-20"
 },
 {
@@ -10291,7 +10291,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/narendra-modi-gdc13e92e0_1920.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653683/e7814a02-narendra-modi-gdc13e92e0_1920.jpg",
     "external_url": "https:\/\/theprint.in\/india\/govt-to-create-new-avenues-for-women-entrepreneurs-in-villages-pm-modi\/1132316\/"
 },
 {
@@ -10299,7 +10299,7 @@ export const newsData = [
     "post_author": "9",
     "post_date": "2022-09-14 16:43:46",
     "post_date_gmt": "2022-09-14 11:13:46",
-    "post_content": "<!-- wp:paragraph -->\n<p><strong>New Delhi, Friday, 09 September 2022:<\/strong> BRICS CCI hosted the 2nd edition of the Start-up Series ‘Start-up Stories: Unfolding the Unicorn journey aimed at providing a wholesome approach for young entrepreneurs and build young leaders to effectively articulate their ideas in a meaningful manner by networking, mentorship, partnerships and funding for young entrepreneurs.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Shri Ashwini Kumar Chaubey, MoS Consumer Affairs, Food and Public Distribution, Govt of India<\/strong>, who graced the event as Chief Guest focused on the Indian values in Startup culture.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Shri Sameep Shastri, Vice Chairman BRICS CCI<\/strong>, said “We have the power of innovation, we have new ideas, we are full of youthful energy and we are changing the way of doing business. Our start-ups are changing the rules of the game.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Mr. Ruhail Ranjan (Head, Investment Vertical, BRICS CCI)<\/strong> highlighted the key role of Central Govt policies in nurturing the startup ecosystem.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Many eminent Unicorn and Soonicorn founders presented their experiences and thoughts as speakers and panelists, which are as follows- Mr. Prashant Pitti (Co-Founder &amp; CEO, EaseMyTrip.com), Dr. Vaibhav Kapoor (Founder, PristynCare); Mr. Gajendra Jangid (Co-Founder &amp; CMO, CARS24), Mr. Alakh Pandey (Founder &amp; CEO, Physicswallah), Mr. Varun Alagh (Co-Founder &amp; CEO, Mamaearth), Dr. Jitendra Das (Director, FORE School of Management), Mr. Aseem Garg (Founder, DCDC Kidney Care), Ms. Smiti Bhatt Deorah (Co- founder Advantage Club), Mr. Jitendra Sharma (Founder, HairOriginals), Mr. Bibin Babu (Co-founder, Payiza), Mr. Amit Singhal (Founder &amp; CEO, Fluid Ventures), Mr. Sushil Sharma (Founder &amp; CEO, Marwari Catalysts Pvt. Ltd.), Mr. Prashant Narang (Founder and CEO, Agility Ventures), Rajesh Sawhney (Board Member, GSF India), Sandro Stephen (Vice President, Indian Angel Network), Mr. Avi Mittal (MD, Golden Ace Ventures LLP), Mr. Teja Gudluru (Founder &amp; CEO, UDo-Now).&nbsp;<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":16296,\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"is-style-default\"} -->\n<figure class=\"wp-block-image size-full is-style-default\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/BRICCS-1.jpg\" alt=\"\" class=\"wp-image-16296\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>Some of the other eminent personalities at the event also shared their views, <strong>H. E. Mr. Hugo Javier Gobbi- Ambassador, Embassy of Argentina in New Delhi<\/strong>, said‘Indian IT establishment in Argentina is one of the most recent developments in the affable relation of the two countries’.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>H.E. Mrs. Hayet Talbi EP Bilel, Ambassador, Embassy of Tunisia in New Delhi<\/strong>, congratulated BRICS CCI for being at the forefront for promoting youth entrepreneurship and developing networks and harmonious relations.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Several Govt officials, diplomats, bureaucrats and other dignitaries were also in attendance.<\/p>\n<!-- \/wp:paragraph -->",
+    "post_content": "<!-- wp:paragraph -->\n<p><strong>New Delhi, Friday, 09 September 2022:<\/strong> BRICS CCI hosted the 2nd edition of the Start-up Series ‘Start-up Stories: Unfolding the Unicorn journey aimed at providing a wholesome approach for young entrepreneurs and build young leaders to effectively articulate their ideas in a meaningful manner by networking, mentorship, partnerships and funding for young entrepreneurs.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Shri Ashwini Kumar Chaubey, MoS Consumer Affairs, Food and Public Distribution, Govt of India<\/strong>, who graced the event as Chief Guest focused on the Indian values in Startup culture.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Shri Sameep Shastri, Vice Chairman BRICS CCI<\/strong>, said “We have the power of innovation, we have new ideas, we are full of youthful energy and we are changing the way of doing business. Our start-ups are changing the rules of the game.”<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Mr. Ruhail Ranjan (Head, Investment Vertical, BRICS CCI)<\/strong> highlighted the key role of Central Govt policies in nurturing the startup ecosystem.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Many eminent Unicorn and Soonicorn founders presented their experiences and thoughts as speakers and panelists, which are as follows- Mr. Prashant Pitti (Co-Founder &amp; CEO, EaseMyTrip.com), Dr. Vaibhav Kapoor (Founder, PristynCare); Mr. Gajendra Jangid (Co-Founder &amp; CMO, CARS24), Mr. Alakh Pandey (Founder &amp; CEO, Physicswallah), Mr. Varun Alagh (Co-Founder &amp; CEO, Mamaearth), Dr. Jitendra Das (Director, FORE School of Management), Mr. Aseem Garg (Founder, DCDC Kidney Care), Ms. Smiti Bhatt Deorah (Co- founder Advantage Club), Mr. Jitendra Sharma (Founder, HairOriginals), Mr. Bibin Babu (Co-founder, Payiza), Mr. Amit Singhal (Founder &amp; CEO, Fluid Ventures), Mr. Sushil Sharma (Founder &amp; CEO, Marwari Catalysts Pvt. Ltd.), Mr. Prashant Narang (Founder and CEO, Agility Ventures), Rajesh Sawhney (Board Member, GSF India), Sandro Stephen (Vice President, Indian Angel Network), Mr. Avi Mittal (MD, Golden Ace Ventures LLP), Mr. Teja Gudluru (Founder &amp; CEO, UDo-Now).&nbsp;<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":16296,\"sizeSlug\":\"full\",\"linkDestination\":\"none\",\"className\":\"is-style-default\"} -->\n<figure class=\"wp-block-image size-full is-style-default\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654615/0513a589-BRICCS-1.jpg\" alt=\"\" class=\"wp-image-16296\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p>Some of the other eminent personalities at the event also shared their views, <strong>H. E. Mr. Hugo Javier Gobbi- Ambassador, Embassy of Argentina in New Delhi<\/strong>, said‘Indian IT establishment in Argentina is one of the most recent developments in the affable relation of the two countries’.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>H.E. Mrs. Hayet Talbi EP Bilel, Ambassador, Embassy of Tunisia in New Delhi<\/strong>, congratulated BRICS CCI for being at the forefront for promoting youth entrepreneurship and developing networks and harmonious relations.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Several Govt officials, diplomats, bureaucrats and other dignitaries were also in attendance.<\/p>\n<!-- \/wp:paragraph -->",
     "post_title": "MoS Ashwini Kumar Choubey Stresses on the Value of ‘Vasudev Kutumbakam’ in India, Emerging as a VishwaGuru at BRICS CCI’s Event Startup Stories: Unfolding the Unicorn Journey - a Game Changer",
     "post_excerpt": "",
     "post_status": "publish",
@@ -10320,7 +10320,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/WhatsApp-Image-2022-09-14-at-15.44.52.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654618/79389fc4-WhatsApp-Image-2022-09-14-at-15.44.52.jpg",
     "external_url": null
 },
 {
@@ -10349,7 +10349,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/front-view-hand-adding-coins-stack-covered-dirt-plants.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654622/067e4d54-front-view-hand-adding-coins-stack-covered-dirt-plants.jpg",
     "external_url": "https:\/\/www.herzindagi.com\/education-career-tech\/women-entrepreneur-struggle-in-india-to-get-loans-approved-article-207891"
 },
 {
@@ -10378,7 +10378,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/4901337.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654625/e00cf032-4901337.jpg",
     "external_url": "https:\/\/www.oneindia.com\/india\/women-in-engineering-science-and-technology-west-launching-of-a-new-i-stem-initiative-3458389.html?story=2"
 },
 {
@@ -10407,7 +10407,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/6505894.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654632/b26907e9-6505894.jpg",
     "external_url": "https:\/\/www.news9live.com\/utility\/mahila-e-haat-all-you-need-to-know-about-online-marketing-platform-launched-to-facilitate-women-entrepreneurs-194430"
 },
 {
@@ -10436,7 +10436,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654295/219264aa-smiley-businesswoman-posing-outdoors-with-arms-crossed-copy-space.jpg",
     "external_url": "http:\/\/bwpeople.businessworld.in\/article\/India-And-Australia-Come-Together-To-Push-Female-Tech-Talent-\/09-09-2022-445991\/"
 },
 {
@@ -10465,7 +10465,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/person-using-tablet.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654649/f0e12539-person-using-tablet.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/tech\/startups\/how-kerala-startup-mission-ksum-is-providing-an-opportunity-for-innovation-investment-and-entrepreneurship-in-the-startup-ecosystem\/articleshow\/94008063.cms"
 },
 {
@@ -10494,7 +10494,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/indian-woman-working-laptop-street-cafe-wearing-stylish-smart-clothes-jacket-glasses.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654243/48ac2a55-indian-woman-working-laptop-street-cafe-wearing-stylish-smart-clothes-jacket-glasses.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/iim-shillong-ncw-on-a-mission-to-accelerate-efforts-to-promote-women-entrepreneurship\/"
 },
 {
@@ -10523,7 +10523,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/09\/asian-young-woman-clothes-entrepreneur-working-home-workplacestartup-small-business-owner-sme-freelance-business-online-delivery-concept.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654278/d6ccfc46-asian-young-woman-clothes-entrepreneur-working-home-workplacestartup-small-business-owner-sme-freelance-business-online-delivery-concept.jpg",
     "external_url": "https:\/\/www.thehansindia.com\/business\/we-hub-tide-to-support-women-led-smes-759258"
 },
 {
@@ -10552,7 +10552,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/20945093.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654662/b042d661-20945093.jpg",
     "external_url": "https:\/\/www.timesnownews.com\/technology-science\/google-in-collaboration-with-indian-it-ministry-launches-initiatives-to-improve-online-safety-article-93771857"
 },
 {
@@ -10581,7 +10581,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.thehansindia.com\/telangana\/cowe-hhca-to-nurture-rural-talent-759692"
 },
 {
@@ -10610,7 +10610,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/1085454-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654665/4dcea762-1085454-women.jpg",
     "external_url": "https:\/\/www.ndtv.com\/india-news\/naveen-patnaik-launches-startup-odisha-yatra-2-0-to-promote-youth-entrepreneurship-3290875"
 },
 {
@@ -10639,7 +10639,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/4890375.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654668/bf09376c-4890375.jpg",
     "external_url": "https:\/\/www.devdiscourse.com\/article\/business\/2153135-wee---women-entrepreneurs-enclave-organized-wee-business-excellence-awards"
 },
 {
@@ -10668,7 +10668,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/WhatsApp-Image-2022-06-11-at-8.07.45-PM.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652054/5eba8f70-WhatsApp-Image-2022-06-11-at-8.07.45-PM.jpg",
     "external_url": "https:\/\/www.indiatoday.in\/education-today\/news\/story\/govt-of-karnataka-inks-mou-with-iim-bangalore-to-train-sc-st-women-graduates-in-entrepreneurship-1991128-2022-08-22"
 },
 {
@@ -10697,7 +10697,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/Ruchi-4.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654681/069e3c21-Ruchi-4.png",
     "external_url": "https:\/\/www.aninews.in\/news\/business\/business\/gtf-women-excellence-summit-2022-breaking-barriers20220818151202\/"
 },
 {
@@ -10726,7 +10726,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/download-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654683/29d5836f-download-3.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/sidbi-to-set-up-300-more-swavalamban-silai-schools-to-encourage-women-entrepreneurs-in-villages"
 },
 {
@@ -10755,7 +10755,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/36918.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654692/74e2599b-36918.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/skill-development-training-for-women-youth-in-bfsi-sector-launched-in-jk"
 },
 {
@@ -10784,7 +10784,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/4054826.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654695/f94c2036-4054826.jpg",
     "external_url": "https:\/\/inc42.com\/buzz\/up-mulling-changes-to-msme-policy-to-boost-women-entrepreneurship\/"
 },
 {
@@ -10813,7 +10813,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/OR7TU60.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654704/bb1cf354-OR7TU60.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/kotak-mahindra-bank-partners-iim-bangalore-and-nsrcel-for-developing-indias-future-women-entrepreneurs\/"
 },
 {
@@ -10842,7 +10842,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656315/78dd9b48-businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/delhi-govt-to-facilitate-creation-of-city-level-women-federation"
 },
 {
@@ -10871,7 +10871,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/widely-smiling-businesswoman-working-laptop-sitting-cafe-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656324/c0cdfc6e-widely-smiling-businesswoman-working-laptop-sitting-cafe-1.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/msme\/over-17-lakh-women-owned-msmes-registered-on-udyam-registration-portal-says-mos-bhanu-pratap-singh"
 },
 {
@@ -10900,7 +10900,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/saving-money-concept-preset-by-male-hand-putting-money-coin-stack-growing-business-arrange-coins-into-heaps-with-hands-content-about-money.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654721/ea578d77-saving-money-concept-preset-by-male-hand-putting-money-coin-stack-growing-business-arrange-coins-into-heaps-with-hands-content-about-money.jpg",
     "external_url": "https:\/\/www.tribuneindia.com\/news\/himachal\/women-set-up-1-969-units-under-state-scheme-419942"
 },
 {
@@ -10929,7 +10929,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/08\/4380.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654725/23c7415f-4380.jpg",
     "external_url": "https:\/\/smefutures.com\/walmart-and-flipkart-sign-mou-with-assam-government-to-support-msmes\/"
 },
 {
@@ -10958,7 +10958,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/beautiful-female-office-worker-carrying-out-administrative-work-company.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654742/50e47c50-beautiful-female-office-worker-carrying-out-administrative-work-company.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/ficci-ladies-organization-uttarakhand-organized-first-uttarakhand-women-entrepreneurs-meet\/"
 },
 {
@@ -10987,7 +10987,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/download-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654683/29d5836f-download-3.jpg",
     "external_url": "https:\/\/ommcomnews.com\/odisha-news\/kendraparas-golden-grass-artisans-now-equipped-with-skills-for-the-future"
 },
 {
@@ -11016,7 +11016,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/OR7TU60.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654704/bb1cf354-OR7TU60.jpg",
     "external_url": "https:\/\/inc42.com\/buzz\/bihar-sets-up-startup-policy-to-offer-interest-free-seed-fund-coworking-space-more\/"
 },
 {
@@ -11045,7 +11045,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/businesswomen-fist-bump-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656337/8bd6273a-businesswomen-fist-bump-1.jpg",
     "external_url": "https:\/\/www.aninews.in\/news\/business\/business\/icc-ncw-women-empowerment-summit-202220220727161138\/"
 },
 {
@@ -11074,7 +11074,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/download-5.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654746/048d963a-download-5.jpg",
     "external_url": "https:\/\/theprint.in\/economy\/india-poised-for-usd-30-trillion-economy-in-three-decades-says-minister-goyal\/1055605\/"
 },
 {
@@ -11103,7 +11103,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/29021.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654760/167884cf-29021.jpg",
     "external_url": "https:\/\/www.outlookindia.com\/business\/more-women-enter-auto-manufacturing-as-tata-motors-hero-mg-accelerate-gender-diversity-drive-news-211574"
 },
 {
@@ -11132,7 +11132,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/3339160.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654768/64b0820e-3339160.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-eodb-women-msmes-key-govt-schemes-see-more-women-takers-as-beneficiary-count-jumps-in-fy22-from-previous-year\/2601994\/"
 },
 {
@@ -11161,7 +11161,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/5469.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654779/5afccfc7-5469.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/odisha-registers-1300-start-ups-40-led-by-women-entrepreneurs"
 },
 {
@@ -11190,7 +11190,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656315/78dd9b48-businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/entrepreneurship\/more-women-seek-entrepreneurship-opportunities-during-pandemic-shows-linkedin-data\/articleshow\/92851061.cms"
 },
 {
@@ -11219,7 +11219,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/4890375.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654562/356a560c-4890375.jpg",
     "external_url": "https:\/\/www.eastmojo.com\/meghalaya\/2022\/07\/18\/iim-shillong-ncw-partner-to-train-women-entrepreneurs-in-northeast\/"
 },
 {
@@ -11248,7 +11248,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/3662276.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654783/2ecddc2e-3662276.jpg",
     "external_url": "https:\/\/www.aninews.in\/news\/national\/general-news\/womens-commission-nalsa-launch-pan-india-legal-awareness-programme-for-women20211031064629\/"
 },
 {
@@ -11277,7 +11277,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/asian-female-woman-gardener-apron-working-outdoor-garden-home-studiofemale-gardener-using-tablet-computer-setting-water-drop-system-greenhousemodern-greenhouse-farm-ideas-concept.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656349/2d638c9e-asian-female-woman-gardener-apron-working-outdoor-garden-home-studiofemale-gardener-using-tablet-computer-setting-water-drop-system-greenhousemodern-greenhouse-farm-ideas-concept.jpg",
     "external_url": "https:\/\/theprint.in\/india\/j-k-sees-rapid-growth-of-agriculture-entrepreneurs\/1038557\/"
 },
 {
@@ -11306,7 +11306,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/india\/nari-adalats-for-rural-women-focus-on-creches-for-children-of-working-women\/articleshow\/92890473.cms"
 },
 {
@@ -11335,7 +11335,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/5264880.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654788/8ebbc080-5264880.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/entrepreneurship\/easier-access-to-information-can-create-a-level-playing-field-for-women-entrepreneurs-google-indias-sapna-chadha\/articleshow\/92868507.cms"
 },
 {
@@ -11364,7 +11364,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656315/78dd9b48-businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/undp-invites-nominations-from-smes-to-acknowledge-workplace-gender-parity"
 },
 {
@@ -11393,7 +11393,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/5013256.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654792/a9243095-5013256.jpg",
     "external_url": "https:\/\/smefutures.com\/msins-and-game-signs-mou-to-promote-entrepreneurship-in-maharashtra\/"
 },
 {
@@ -11422,7 +11422,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/Ruchi-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654795/22b95c03-Ruchi-1.png",
     "external_url": "https:\/\/indiaeducationdiary.in\/smartideathon-2022-begins-at-gitam-entries-received-from-27-states\/"
 },
 {
@@ -11451,7 +11451,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/happy-beautiful-girl-standing-with-note-books-backpack-showing-thumb-up-smiling.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654810/0ebda0aa-happy-beautiful-girl-standing-with-note-books-backpack-showing-thumb-up-smiling.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/knowledge-resource\/\/wise-organises-entrepreneurship-programme-for-mba-students"
 },
 {
@@ -11480,7 +11480,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/house-boat-river.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656354/7a1786e3-house-boat-river.jpg",
     "external_url": "https:\/\/www.newsclick.in\/Kerala-Emerges-Top-Performer-2021-Start-up-Rankings"
 },
 {
@@ -11509,7 +11509,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/05\/WLD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652140/214a1ca6-WLD.jpg",
     "external_url": "https:\/\/www.punekarnews.in\/tie-pune-nurture-mentoring-program-for-entrepreneurs-goes-global\/"
 },
 {
@@ -11538,7 +11538,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/WhatsApp-Image-2022-07-04-at-10.05.48-AM.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652016/c48ebfe6-WhatsApp-Image-2022-07-04-at-10.05.48-AM.jpg",
     "external_url": "https:\/\/grant.halsteadbead.com\/"
 },
 {
@@ -11567,7 +11567,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/220px-Maneka-Gandhi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654814/8e5c4810-220px-Maneka-Gandhi.jpg",
     "external_url": "https:\/\/www.news18.com\/news\/india\/centre-launches-e-haat-to-promote-women-entrepreneurs-1213183.html"
 },
 {
@@ -11596,7 +11596,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/download-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654683/29d5836f-download-3.jpg",
     "external_url": "https:\/\/indianexpress.com\/article\/meta-stories-of-strength-2022\/backed-by-self-help-groups-women-in-bharuch-learn-to-stand-on-their-feet\/"
 },
 {
@@ -11625,7 +11625,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/07\/narendra-modi-gdc13e92e0_1920.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653683/e7814a02-narendra-modi-gdc13e92e0_1920.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/sme-sector\/govt-taking-measures-to-help-msmes-increase-exports-pm-modi\/articleshow\/92589165.cms"
 },
 {
@@ -11654,7 +11654,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/20944250.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654825/a8faa27a-20944250.jpg",
     "external_url": "https:\/\/www.business-standard.com\/article\/companies\/renew-partners-with-unep-sewa-to-train-1-000-women-salt-pan-workers-122063000557_1.html"
 },
 {
@@ -11683,7 +11683,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/business-colleagues-rooftop-talking.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654840/bb2cb2bc-business-colleagues-rooftop-talking.jpg",
     "external_url": "https:\/\/www.newindianexpress.com\/states\/karnataka\/2022\/jun\/27\/women-msme-entrepreneurs-up-by-only-13-per-centin-last-8-years-2470127.html"
 },
 {
@@ -11712,7 +11712,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/finance-accounting-paper-desk-using.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656358/596a8354-finance-accounting-paper-desk-using.jpg",
     "external_url": "https:\/\/www.sentinelassam.com\/guwahati-city\/taxpayer-outreach-programme-held-in-guwahati-city-598217"
 },
 {
@@ -11741,7 +11741,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/smiling-pretty-woman-holding-document-cafe-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654861/d503b030-smiling-pretty-woman-holding-document-cafe-1.jpg",
     "external_url": "https:\/\/yourstory.com\/herstory\/2022\/06\/skill-training-programmes-women-entrepreneurs"
 },
 {
@@ -11770,7 +11770,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/iim-jammu-in-collaboration-with-ncw-commences-a-programme-for-aspiring-women-entrepreneurs\/"
 },
 {
@@ -11799,7 +11799,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/WhatsApp-Image-2022-06-21-at-12.44.02-PM.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652030/807d265e-WhatsApp-Image-2022-06-21-at-12.44.02-PM.jpg",
     "external_url": null
 },
 {
@@ -11828,7 +11828,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/WhatsApp-Image-2022-06-21-at-8.45.34-AM.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652033/9b81eb66-WhatsApp-Image-2022-06-21-at-8.45.34-AM.jpg",
     "external_url": null
 },
 {
@@ -11857,7 +11857,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/Final-Women-Entrepreneurs-1-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652037/564fca64-Final-Women-Entrepreneurs-1-.jpg",
     "external_url": null
 },
 {
@@ -11886,7 +11886,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/West-Bengal-Schemes-and-Incentives.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652048/e4a90da0-West-Bengal-Schemes-and-Incentives.jpg",
     "external_url": "http:\/\/msmebengalinvest.in\/portal\/home\/aboutus"
 },
 {
@@ -11915,7 +11915,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/11077.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654877/e40f819a-11077.jpg",
     "external_url": null
 },
 {
@@ -11944,7 +11944,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/20944139.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654881/392587eb-20944139.jpg",
     "external_url": "https:\/\/www.herzindagi.com\/society-culture\/bank-schemes-that-benefit-women-article-201114"
 },
 {
@@ -11973,7 +11973,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652249/1fe36d74-rural.jpg",
     "external_url": "https:\/\/www.inventiva.co.in\/trends\/enhancing-womens-employability\/"
 },
 {
@@ -12002,7 +12002,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/4860250.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654885/cc5dc017-4860250.jpg",
     "external_url": "https:\/\/www.businessinsider.in\/education\/news\/google-to-launch-accelerator-programme-for-women-entrepreneurs-in-india\/articleshow\/92204141.cms"
 },
 {
@@ -12031,7 +12031,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/beautiful-snow-covered-mountains-landscape-kashmir-state-india.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656363/f618d624-beautiful-snow-covered-mountains-landscape-kashmir-state-india.jpg",
     "external_url": "https:\/\/www.thejakartapost.com\/opinion\/2022\/06\/11\/the-rising-stars-of-the-valley-women-in-kashmir.html"
 },
 {
@@ -12060,7 +12060,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/05\/WLD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652140/214a1ca6-WLD.jpg",
     "external_url": "https:\/\/knnindia.co.in\/news\/newsdetails\/state\/tn-msme-minister-launches-homepreneur-awards-2022-recognising-women-entrepreneurs"
 },
 {
@@ -12089,7 +12089,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/person-using-tablet.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654649/f0e12539-person-using-tablet.jpg",
     "external_url": "https:\/\/www.indiatoday.in\/education-today\/news\/story\/maharashtra-to-launch-rs-200-crore-fund-for-women-led-startups-1961234-2022-06-11"
 },
 {
@@ -12118,7 +12118,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/modi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653796/82859085-modi.jpg",
     "external_url": "https:\/\/www.biospectrumindia.com\/news\/20\/21398\/birac-celebrates-10-years-with-biotech-startup-expo-2022.html"
 },
 {
@@ -12147,7 +12147,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/05\/WLD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652140/214a1ca6-WLD.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/education-2\/bridging-skill-development-gaps-for-womens-empowerment\/2548505\/"
 },
 {
@@ -12176,7 +12176,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Kovind_1200x768.webp",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654889/68ede4f0-Kovind_1200x768.webp",
     "external_url": "https:\/\/indianexpress.com\/article\/cities\/lucknow\/need-to-increase-women-representation-in-up-assembly-council-says-kovind-7956239\/"
 },
 {
@@ -12205,7 +12205,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/download-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654683/29d5836f-download-3.jpg",
     "external_url": "https:\/\/www.dailypioneer.com\/2022\/state-editions\/aisect-implementing-skill-training--livelihood-under-rise-programme-in-eight-states.html"
 },
 {
@@ -12234,7 +12234,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/5360501.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652062/4bcbe908-5360501.jpg",
     "external_url": null
 },
 {
@@ -12263,7 +12263,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/widely-smiling-businesswoman-working-laptop-sitting-cafe-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656324/c0cdfc6e-widely-smiling-businesswoman-working-laptop-sitting-cafe-1.jpg",
     "external_url": "https:\/\/news.careers360.com\/iim-udaipur-inaugrates-first-batch-of-women-in-tech-accelerator-programme"
 },
 {
@@ -12292,7 +12292,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/1085454-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654665/4dcea762-1085454-women.jpg",
     "external_url": "https:\/\/telanganatoday.com\/we-hub-calls-for-women-led-startups"
 },
 {
@@ -12321,7 +12321,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/06\/beautiful-female-office-worker-carrying-out-administrative-work-company.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654742/50e47c50-beautiful-female-office-worker-carrying-out-administrative-work-company.jpg",
     "external_url": "https:\/\/www.news18.com\/news\/education-career\/dseu-partners-with-small-industries-development-bank-of-india-to-offer-entrepreneurship-courses-5291299.html"
 },
 {
@@ -12350,7 +12350,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/modi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653796/82859085-modi.jpg",
     "external_url": "https:\/\/theprint.in\/india\/cabinet-approves-procurement-by-cooperatives-through-gem-portal\/979394\/"
 },
 {
@@ -12379,7 +12379,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/smiling-pretty-woman-holding-document-cafe.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654906/a2785bf6-smiling-pretty-woman-holding-document-cafe.jpg",
     "external_url": "https:\/\/www.punekarnews.in\/pune-knowledge-cluster-launches-research-scholarship-program-for-women-in-maharashtra-financial-support-for-women-entrepreneurs\/"
 },
 {
@@ -12408,7 +12408,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/7uoc_oa0r_210409.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652076/622478b3-7uoc_oa0r_210409.jpg",
     "external_url": "http:\/\/cs-india.com\/startup-benefits-for-women-entrepreneurs\/"
 },
 {
@@ -12437,7 +12437,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/portrait-business-woman-working-laptop.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654920/12df950a-portrait-business-woman-working-laptop.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/10-days-entrepreneurship-development-programme-by-jkedi-concludes-at-gbl-pul\/"
 },
 {
@@ -12466,7 +12466,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/business-people-using-internet.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656376/1f3b8cb5-business-people-using-internet.jpg",
     "external_url": null
 },
 {
@@ -12495,7 +12495,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Yogi-Adityanath-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654924/78b88d31-Yogi-Adityanath-.jpg",
     "external_url": null
 },
 {
@@ -12524,7 +12524,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/woman-picking-tea-leaves-by-hand-green-tea-farm.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654940/ccf424e2-woman-picking-tea-leaves-by-hand-green-tea-farm.jpg",
     "external_url": "https:\/\/www.dailypioneer.com\/2022\/state-editions\/bau-skilling-women-to-develop-entrepreneurship.html"
 },
 {
@@ -12553,7 +12553,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/focused-team-leader-presenting-marketing-plan-interested-multiracial-coworkers-serious-speaker-boss-executive-business-trainer-explaining-development-strategy-motivated-mixed-race-employees.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654945/a034bf43-focused-team-leader-presenting-marketing-plan-interested-multiracial-coworkers-serious-speaker-boss-executive-business-trainer-explaining-development-strategy-motivated-mixed-race-employees.jpg",
     "external_url": "https:\/\/telanganatoday.com\/we-hub-sanctions-rs-4-5-crore-fund-to-13-women-led-startups"
 },
 {
@@ -12582,7 +12582,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-8.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654950/42e2b6aa-Parul-Tarang-Bhargava-8.png",
     "external_url": "https:\/\/www.nationalheraldindia.com\/india\/girl-empowerment-mission-2022-programme-commences-at-ntpc-dadri"
 },
 {
@@ -12611,7 +12611,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-7.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654954/6e61a5a3-Parul-Tarang-Bhargava-7.png",
     "external_url": "https:\/\/www.freepressjournal.in\/press-release\/the-7th-edition-of-women-power-summit-awards-2022-concludes-with-a-grander-approbation"
 },
 {
@@ -12640,7 +12640,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-6.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654965/b249ed4d-Parul-Tarang-Bhargava-6.png",
     "external_url": "https:\/\/www.thehansindia.com\/featured\/womenia\/woman-entrepreneur-spreads-wings-in-aerospace-engineering-sector-744152"
 },
 {
@@ -12669,7 +12669,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/theprint.in\/opinion\/indian-law-needs-to-account-for-women-make-finance-inclusive\/958165\/"
 },
 {
@@ -12698,7 +12698,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/download-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654683/29d5836f-download-3.jpg",
     "external_url": "https:\/\/www.timesnownews.com\/business-economy\/economy\/gem-and-sewa-ink-mou-to-enable-engagement-of-last-mile-women-entrepreneurs-article-91678779"
 },
 {
@@ -12727,7 +12727,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/6617.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654976/ea153a69-6617.jpg",
     "external_url": "https:\/\/www.freepressjournal.in\/business\/shaping-women-entrepreneurs-in-rural-areas-through-fintech"
 },
 {
@@ -12756,7 +12756,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-4.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654989/61ba90cd-Parul-Tarang-Bhargava-4.png",
     "external_url": "https:\/\/yourstory.com\/herstory\/2022\/05\/gurugram-foodtech-startup-culinary-experience-home-knosh"
 },
 {
@@ -12785,7 +12785,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/5112629.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654992/eac5ea8c-5112629.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/blogs\/col-nagial\/impact-of-women-empowerment-in-jammu-and-kashmir\/"
 },
 {
@@ -12814,7 +12814,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Stroy-Thinking.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652152/8a28fd84-Stroy-Thinking.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/indias-rising-stars-how-india-is-witnessing-momentous-change-in-women-entrepreneurship-in-last-two-decades\/2526269\/"
 },
 {
@@ -12843,7 +12843,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-3.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654996/744bd0a6-Parul-Tarang-Bhargava-3.png",
     "external_url": "https:\/\/www.mid-day.com\/brand-media\/article\/top-10-emerging-women-entrepreneurs-of-the-year-2021-22-by-fame-finders-23226707"
 },
 {
@@ -12872,7 +12872,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/medium-shot-agronomists-taking-picture-strawberry-with-digital-tablet_1098-19397.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654999/8deb240c-medium-shot-agronomists-taking-picture-strawberry-with-digital-tablet_1098-19397.jpg",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/mumbai\/women-led-agri-tech-start-ups-win-big\/article65410271.ece"
 },
 {
@@ -12901,7 +12901,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/aerial-view-business-team_53876-124515.webp",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655001/e2cc70a6-aerial-view-business-team_53876-124515.webp",
     "external_url": "https:\/\/edtimes.in\/modi-government-encouraging-and-participation-of-businessmen-startup-entrepreneur-women-entrepreneur-for-indias-5-trillion-dollar-economy-vinay-choudhary\/"
 },
 {
@@ -12930,7 +12930,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/news-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652224/093a0ada-news-3.jpg",
     "external_url": "https:\/\/www.telegraphindia.com\/edugraph\/news\/iim-kozhikode-ncw-join-hands-to-launch-programme-for-women-entrepreneurs\/cid\/1864565"
 },
 {
@@ -12959,7 +12959,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/Covid19-news.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652186/57649f6f-Covid19-news.jpg",
     "external_url": "https:\/\/krishijagran.com\/news\/two-special-programmes-launched-for-women-entrepreneurs-check-application-link-inside\/"
 },
 {
@@ -12988,7 +12988,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Mask-making.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655007/3cc8eed8-Mask-making.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-fin-stand-up-india-over-23000-loans-sanctioned-under-govts-pet-scheme-for-women-scst-entrepreneurs-in-fy22\/2516578\/"
 },
 {
@@ -13017,7 +13017,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Kovind_1200x768.webp",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654889/68ede4f0-Kovind_1200x768.webp",
     "external_url": "https:\/\/theprint.in\/india\/president-kovind-calls-for-mindset-of-becoming-job-creators-instead-of-job-seekers\/947778\/"
 },
 {
@@ -13025,7 +13025,7 @@ export const newsData = [
     "post_author": "9",
     "post_date": "2022-05-08 11:48:33",
     "post_date_gmt": "2022-05-08 06:18:33",
-    "post_content": "<!-- wp:paragraph -->\n<p><strong><em>sheatwork examines what is the secret ‘mantra’ that mompreneurs follow - to successfully manage their business ventures &amp; families<\/em><\/strong>.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Mother's Day<\/em>&nbsp;is a celebration honouring the ‘mother’ of the family; it also extends to motherhood, maternal bonds and the influence of mothers in the family. A mother’s job is a job that is ever-changing and frequently frustrating; for Moms don’t get days off nor do they receive attractive salaries. Instead, their reward lies embedded in the satisfaction of seeing their children grow up to be happy, healthy adults. But then, ambitious Mothers have branched out to start businesses of their own and keep it going too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, this is a good occasion to celebrate Mompreneurs. We gathered view points from some Mompreneurs on what is the secret of their success. The question was – <strong><em>“<\/em><\/strong><strong><em>How did you succeed in managing your venture and your children simultaneously; striking the right balance and culling the desired results on both ends?”<\/em><\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here’s what they have to say….<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":15915,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/pics-1024x576.jpg\" alt=\"\" class=\"wp-image-15915\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p><strong>Ruby Sinha, Founder, Sheatwork<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"It is never easy being an entrepreneur and doubly challenging when you are a mompreneur. But over the years I have realised that being an entrepreneur also has its perks. I have the flexibility to work out my schedules instead of being bound by a 9-5 routine. Ofcourse, you work round the clock literally as an entrepreneur but if you manage good work life integration, the journey becomes smoother. Our personal and professional lives do have to co-exist in today’s digital age. Also, my mother has always advised me to try and maintain a balance between career ambitions and parental duties. This has helped me try and get my priorities right and set realistic goals instead of trying to achieve everything. Infact, I owe a lot to her for being my pillar of support over the years both when I was growing up and later when I became a mother myself.\"<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Sandhya Chaturvedi, Founder, and COO, Mummy's Kitchen, NOIDA<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“For me, striking the balance meant I religiously followed some guidelines I had set for myself when I decided to launch my business. So, I would say, to succeed as a Mompreneur, you need to first plan (to finish chores, or cook for orders); then be flexible and get the work done, keeping in mind how to manage resources well (always look to keep that passion alive). Keep yourself driven\/motivated: a change of weather, especially the heat wave, can take a toll on your will to stand in the kitchen; whether for the house or for business. But, I would seriously advise - every once in a while, please take some time out!”<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Bhavana Gulati, Owner &amp; Founder, Engraved Store<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“My proiority was always my family plus my business. As a single mother (with my geologist husband being away on site) I managed to groom my son and my business side-by-side. &nbsp;As my son grew up, he helped me too, especially managing my social media. So, I would say being a mother, you must bring about a balance. If you groom your children, your business will also be groomed.”&nbsp;&nbsp;<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Dr Priyanka Goyat, Co Founder, Rejove Aligners<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"Being a mompreneur during the pandemic has been challenging but, the experience has taught me an important life lesson - that as a mompreneur, you are responsible for not just your children and family but also your team and their families as well. Despite the challenges of juggling different roles as a mother, entrepreneur, and doctor, I believe that if we have the confidence and honesty to face any situation, we can work towards accomplishing a successful business with grit and perseverance\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Himani Mishra, CEO, Brand Radiator<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Having being born in a patriarchal society, people did everything to traumatize my mom for being the mother of three girls; and it certainly sparked some frightening moments for me too. I grew up with two sisters (and they were no angels), but my parents had to deal with most situations, without compromising on anything. &nbsp;‘What kept me going was my parents’ motivation stating - “Chin up princess or else the crown falls”’. Stepping into an entrepreneurial journey, the heat is always on delivering the best (within a time-frame), to the industry requirements, untiringly with motto – We All Win.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Another challenge for me is finding the right skill fit in Bihar, so I consistently work on making my team ‘future ready’. Life has experienced ups and downs fairly well. There are extremely painful days when my perceptions are challenged, for being a Momrepreneur is tasking and strenuous. On one side, I am married with a 14+ year old son who demands my time, while on the other hand, I am married to my venture. The Pareto theory to address the top 20% of challenges that contribute to the 80% of priorities, both personally and professionally, helps me maintain a healthy balance between both”.<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em><strong>Ms Shilpa Singhal, Founder, Sitare Foundation<\/strong><\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"My husband Amit and I, started the foundation when our kids were a little older - our daughter was in college and our son in high school. Being a very dedicated and involved mom when our kids were growing up, my learning started long back when they were small, as an active volunteer in their schools. And, I continued learning for almost sixteen years! This had little to do with what I imbibed in college or my professional life. I was just a proud MOM.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>I learned that even in developed countries, lack of resources and role models for children in underprivileged homes make it very challenging for even the brightest of kids to succeed. I felt sad for kids who don't have the parental support (unlike my kids). My heart cried out when I saw children on the streets, during our visits to India. Over the years, I developed a strong urge to help underprivileged children who want to change their lives, but just don't know how.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>This is how Sitare came into being, and ‘motherhood’ at home gave birth to Mompreneur - for over four hundred children in the Sitare Foundation\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Debjani Mukherjee, Founder Nanighar Ghar se Dil Tak &amp; Brandigence: Intelligence Ahead<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Self decipline and prioritizing things are the most important for success, specially when you are multi-tasking, at the same time being adament and focused are my mantras.”<\/em><\/p>\n<!-- \/wp:paragraph -->",
+    "post_content": "<!-- wp:paragraph -->\n<p><strong><em>sheatwork examines what is the secret ‘mantra’ that mompreneurs follow - to successfully manage their business ventures &amp; families<\/em><\/strong>.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Mother's Day<\/em>&nbsp;is a celebration honouring the ‘mother’ of the family; it also extends to motherhood, maternal bonds and the influence of mothers in the family. A mother’s job is a job that is ever-changing and frequently frustrating; for Moms don’t get days off nor do they receive attractive salaries. Instead, their reward lies embedded in the satisfaction of seeing their children grow up to be happy, healthy adults. But then, ambitious Mothers have branched out to start businesses of their own and keep it going too.<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>So, this is a good occasion to celebrate Mompreneurs. We gathered view points from some Mompreneurs on what is the secret of their success. The question was – <strong><em>“<\/em><\/strong><strong><em>How did you succeed in managing your venture and your children simultaneously; striking the right balance and culling the desired results on both ends?”<\/em><\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p>Here’s what they have to say….<\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:image {\"id\":15915,\"sizeSlug\":\"large\",\"linkDestination\":\"none\"} -->\n<figure class=\"wp-block-image size-large\"><img src=\"https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648753/96932387-pics-1024x576.jpg\" alt=\"\" class=\"wp-image-15915\"\/><\/figure>\n<!-- \/wp:image -->\n\n<!-- wp:paragraph -->\n<p><strong>Ruby Sinha, Founder, Sheatwork<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"It is never easy being an entrepreneur and doubly challenging when you are a mompreneur. But over the years I have realised that being an entrepreneur also has its perks. I have the flexibility to work out my schedules instead of being bound by a 9-5 routine. Ofcourse, you work round the clock literally as an entrepreneur but if you manage good work life integration, the journey becomes smoother. Our personal and professional lives do have to co-exist in today’s digital age. Also, my mother has always advised me to try and maintain a balance between career ambitions and parental duties. This has helped me try and get my priorities right and set realistic goals instead of trying to achieve everything. Infact, I owe a lot to her for being my pillar of support over the years both when I was growing up and later when I became a mother myself.\"<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Sandhya Chaturvedi, Founder, and COO, Mummy's Kitchen, NOIDA<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“For me, striking the balance meant I religiously followed some guidelines I had set for myself when I decided to launch my business. So, I would say, to succeed as a Mompreneur, you need to first plan (to finish chores, or cook for orders); then be flexible and get the work done, keeping in mind how to manage resources well (always look to keep that passion alive). Keep yourself driven\/motivated: a change of weather, especially the heat wave, can take a toll on your will to stand in the kitchen; whether for the house or for business. But, I would seriously advise - every once in a while, please take some time out!”<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Bhavana Gulati, Owner &amp; Founder, Engraved Store<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“My proiority was always my family plus my business. As a single mother (with my geologist husband being away on site) I managed to groom my son and my business side-by-side. &nbsp;As my son grew up, he helped me too, especially managing my social media. So, I would say being a mother, you must bring about a balance. If you groom your children, your business will also be groomed.”&nbsp;&nbsp;<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Dr Priyanka Goyat, Co Founder, Rejove Aligners<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"Being a mompreneur during the pandemic has been challenging but, the experience has taught me an important life lesson - that as a mompreneur, you are responsible for not just your children and family but also your team and their families as well. Despite the challenges of juggling different roles as a mother, entrepreneur, and doctor, I believe that if we have the confidence and honesty to face any situation, we can work towards accomplishing a successful business with grit and perseverance\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Himani Mishra, CEO, Brand Radiator<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Having being born in a patriarchal society, people did everything to traumatize my mom for being the mother of three girls; and it certainly sparked some frightening moments for me too. I grew up with two sisters (and they were no angels), but my parents had to deal with most situations, without compromising on anything. &nbsp;‘What kept me going was my parents’ motivation stating - “Chin up princess or else the crown falls”’. Stepping into an entrepreneurial journey, the heat is always on delivering the best (within a time-frame), to the industry requirements, untiringly with motto – We All Win.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>Another challenge for me is finding the right skill fit in Bihar, so I consistently work on making my team ‘future ready’. Life has experienced ups and downs fairly well. There are extremely painful days when my perceptions are challenged, for being a Momrepreneur is tasking and strenuous. On one side, I am married with a 14+ year old son who demands my time, while on the other hand, I am married to my venture. The Pareto theory to address the top 20% of challenges that contribute to the 80% of priorities, both personally and professionally, helps me maintain a healthy balance between both”.<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em><strong>Ms Shilpa Singhal, Founder, Sitare Foundation<\/strong><\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>\"My husband Amit and I, started the foundation when our kids were a little older - our daughter was in college and our son in high school. Being a very dedicated and involved mom when our kids were growing up, my learning started long back when they were small, as an active volunteer in their schools. And, I continued learning for almost sixteen years! This had little to do with what I imbibed in college or my professional life. I was just a proud MOM.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>I learned that even in developed countries, lack of resources and role models for children in underprivileged homes make it very challenging for even the brightest of kids to succeed. I felt sad for kids who don't have the parental support (unlike my kids). My heart cried out when I saw children on the streets, during our visits to India. Over the years, I developed a strong urge to help underprivileged children who want to change their lives, but just don't know how.<\/em><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>This is how Sitare came into being, and ‘motherhood’ at home gave birth to Mompreneur - for over four hundred children in the Sitare Foundation\".<\/em> <\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><strong>Debjani Mukherjee, Founder Nanighar Ghar se Dil Tak &amp; Brandigence: Intelligence Ahead<\/strong><\/p>\n<!-- \/wp:paragraph -->\n\n<!-- wp:paragraph -->\n<p><em>“Self decipline and prioritizing things are the most important for success, specially when you are multi-tasking, at the same time being adament and focused are my mantras.”<\/em><\/p>\n<!-- \/wp:paragraph -->",
     "post_title": "Celebrating Mompreneurs on Mother’s Day",
     "post_excerpt": "",
     "post_status": "publish",
@@ -13046,7 +13046,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Untitled-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648758/dba1b112-Untitled-1.jpg",
     "external_url": null
 },
 {
@@ -13075,7 +13075,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/PC-Instagram-tage_rita.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655010/c93a1b24-PC-Instagram-tage_rita.jpg",
     "external_url": "https:\/\/www.eastmojo.com\/arunachal-pradesh\/2022\/05\/06\/arunachalee-entrepreneur-nominated-for-mentoring-programme-in-us\/"
 },
 {
@@ -13104,7 +13104,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/yourstory.com\/socialstory\/2022\/05\/how-project-saksham-is-aiming-to-empower-50-000-women\/amp"
 },
 {
@@ -13133,7 +13133,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655023/a1b1870c-Parul-Tarang-Bhargava-1.png",
     "external_url": "https:\/\/yourstory.com\/herstory\/2022\/05\/woman-entrepreneur-last-mile-delivery-amazon-delhi-ncr"
 },
 {
@@ -13162,7 +13162,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/Parul-Tarang-Bhargava.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655035/d90f7aa3-Parul-Tarang-Bhargava.png",
     "external_url": "https:\/\/www.aninews.in\/news\/business\/business\/parul-tarang-bhargava-named-as-promising-women-ceo-of-the-year-by-business-mint20220504142301\/"
 },
 {
@@ -13191,7 +13191,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-Women-from-all-over-NCR-attend-meet-up-for-female-entrepreneurs-in-Noida.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655039/f546ea69-News-3-Women-from-all-over-NCR-attend-meet-up-for-female-entrepreneurs-in-Noida.jpg",
     "external_url": "https:\/\/www.republicworld.com\/education\/news\/embassy-of-israel-iit-delhi-develop-six-week-mentorship-programme-for-women-entrepreneurs-articleshow.html"
 },
 {
@@ -13220,7 +13220,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/05\/businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771656315/78dd9b48-businesswoman-leader-modern-office-with-businesspeople-workin.jpg",
     "external_url": "https:\/\/www.newindianexpress.com\/cities\/bhubaneswar\/2022\/apr\/28\/iwec-womensbusiness-mela-inbhubaneswar-from-may-4-2447448.html"
 },
 {
@@ -13249,7 +13249,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/news-112.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655042/874a1bde-news-112.jpg",
     "external_url": "https:\/\/www.wltx.com\/article\/news\/local\/street-squad\/claflin-university-india-women-entrepreneurs\/101-732dc8f4-76e5-44d8-b128-7a774672d23c"
 },
 {
@@ -13278,7 +13278,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-6-India-lags-way-behind-China-US-on-women-entrepreneurship-index.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655045/6b695428-News-6-India-lags-way-behind-China-US-on-women-entrepreneurship-index.jpg",
     "external_url": "https:\/\/english.sakshi.com\/news\/telangana\/google-joins-hands-telangana-govt-bring-benefits-digital-economy-youth-and-women"
 },
 {
@@ -13307,7 +13307,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/o-GENDER-EQUALITY-SIGN-facebook.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771649101/7ebbb011-o-GENDER-EQUALITY-SIGN-facebook.jpg",
     "external_url": null
 },
 {
@@ -13336,7 +13336,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/avenuemail.in\/jharkhandwomen-empowerment-on-cm-directive-82002-sakhi-mandals-formed\/"
 },
 {
@@ -13365,7 +13365,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/01\/laughter.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652129/4cabf0bd-laughter.jpg",
     "external_url": null
 },
 {
@@ -13394,7 +13394,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/YDay20.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652148/a9778fa0-YDay20.jpg",
     "external_url": null
 },
 {
@@ -13423,7 +13423,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/IWD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648762/03a543f9-IWD.jpg",
     "external_url": null
 },
 {
@@ -13452,7 +13452,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Stats-date.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652332/c98eec95-Stats-date.jpg",
     "external_url": "https:\/\/www.dropbox.com\/s\/chh241w2k2r9qx5\/State%20of%20Women%20Tech%20Entrepreneurship%20in%20India_SheatWork%20Report.pdf?dl=0"
 },
 {
@@ -13481,7 +13481,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-dt.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652143/fd1ba402-news-dt.jpg",
     "external_url": "https:\/\/www.techgig.com\/challenge\/nlb"
 },
 {
@@ -13510,7 +13510,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.freepressjournal.in\/business\/tide-to-incubate-500000-women-led-small-businesses-in-india-by-end-2027"
 },
 {
@@ -13539,7 +13539,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/sustainable.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652135/092e819a-sustainable.jpg",
     "external_url": null
 },
 {
@@ -13568,7 +13568,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": null
 },
 {
@@ -13597,7 +13597,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/bfsi.eletsonline.com\/yes-foundation-and-hppi-join-hands-to-train-women-entrepreneurs\/"
 },
 {
@@ -13626,7 +13626,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648257/7e2f2193-event-9.jpg",
     "external_url": null
 },
 {
@@ -13655,7 +13655,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655051/70f158d8-First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
     "external_url": "https:\/\/ruralmarketing.in\/stories\/csr-empowering-women-entrepreneurs\/"
 },
 {
@@ -13684,7 +13684,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/event-6.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648274/fd9bd083-event-6.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/business\/india-business\/women-hold-17-1-of-board-seats-in-india-report\/articleshow\/89452464.cms"
 },
 {
@@ -13713,7 +13713,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652249/1fe36d74-rural.jpg",
     "external_url": "https:\/\/ruralmarketing.in\/stories\/amazon-india-signs-mou-with-karnataka-to-make-rural-women-entrepreneurs-across-state\/"
 },
 {
@@ -13742,7 +13742,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/budget-HIghlights.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655054/e1b647b7-budget-HIghlights.jpg",
     "external_url": null
 },
 {
@@ -13771,7 +13771,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": null
 },
 {
@@ -13800,7 +13800,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/01\/meta.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655057/bded8ce1-meta.jpg",
     "external_url": "https:\/\/www.thehindu.com\/business\/Industry\/meta-partners-ficci-to-support-5-lakh-women-led-smbs-in-india\/article38340439.ece"
 },
 {
@@ -13829,7 +13829,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "https:\/\/african.business\/2022\/01\/apo-newsfeed\/fao-japan-seek-to-empower-women-and-youth-in-agriculture\/"
 },
 {
@@ -13858,7 +13858,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/FDAY21.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648795/f82ea2e3-FDAY21.jpg",
     "external_url": null
 },
 {
@@ -13887,7 +13887,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-dt.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652143/fd1ba402-news-dt.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/entertainment\/events\/delhi\/a-campaign-to-promote-digital-empowerment-among-women-entrepreneurs\/articleshow\/88993125.cms?from=mdr"
 },
 {
@@ -13916,7 +13916,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/network-marketing-lead-generation.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652436/8c61d68f-network-marketing-lead-generation.jpg",
     "external_url": "https:\/\/yourstory.com\/2022\/01\/iventure-isb-iwin-program-help-women-startups-scale\/amp"
 },
 {
@@ -13945,7 +13945,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/investment7a-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655060/3a77fbd4-investment7a-1.jpg",
     "external_url": "https:\/\/uz.usembassy.gov\/usaid-to-empower-rural-women\/"
 },
 {
@@ -13974,7 +13974,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Stats-date.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652332/c98eec95-Stats-date.jpg",
     "external_url": "https:\/\/www.vccircle.com\/women-comprise-28-of-unicorn-founders-orios-venture-partner-report"
 },
 {
@@ -14003,7 +14003,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655051/70f158d8-First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-fin-pm-modis-stand-up-india-scheme-nearly-30-jump-in-loans-sanctioned-to-women-sc-st-msmes-in-2021\/2389970\/"
 },
 {
@@ -14032,7 +14032,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/YDay20.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652148/a9778fa0-YDay20.jpg",
     "external_url": null
 },
 {
@@ -14061,7 +14061,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2022\/01\/laughter.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652129/4cabf0bd-laughter.jpg",
     "external_url": null
 },
 {
@@ -14090,7 +14090,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655063/3636c944-rural.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/umeed-hope-for-financial-independence-empowerment-of-rural-women\/"
 },
 {
@@ -14119,7 +14119,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/success.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648302/6b2f1549-success.jpg",
     "external_url": null
 },
 {
@@ -14148,7 +14148,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.thehindu.com\/news\/cities\/Kochi\/women-entrepreneurship-programme-under-nrlm-extended-to-more-blocks-in-ernakulam\/article38061482.ece"
 },
 {
@@ -14177,7 +14177,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/stop-covid.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652111/4a0cb406-stop-covid.jpg",
     "external_url": null
 },
 {
@@ -14206,7 +14206,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/12\/BRICS-CCI-WE-Session.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655067/e4dc0953-BRICS-CCI-WE-Session.jpg",
     "external_url": null
 },
 {
@@ -14235,7 +14235,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/sustainable.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652135/092e819a-sustainable.jpg",
     "external_url": null
 },
 {
@@ -14264,7 +14264,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-dt.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652143/fd1ba402-news-dt.jpg",
     "external_url": "https:\/\/businessnewswales.com\/natwest-funds-major-women-entrepreneurship-programme-in-wales\/"
 },
 {
@@ -14293,7 +14293,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/Stanford-innovation-enterpreneurship_MAIN_0.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652325/02e20978-Stanford-innovation-enterpreneurship_MAIN_0.jpg",
     "external_url": "https:\/\/www.moneycontrol.com\/news\/trends\/features\/irep-gives-women-entrepreneurs-the-support-they-need-7796381.html"
 },
 {
@@ -14322,7 +14322,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/Social-Entrepreneurship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652164/1fb34667-Social-Entrepreneurship.jpg",
     "external_url": null
 },
 {
@@ -14351,7 +14351,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/startup.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655073/dd62fd5a-startup.jpg",
     "external_url": "https:\/\/kashmirobserver.net\/2021\/12\/02\/jktpo-jk-bank-sign-mou-for-promoting-women-entrepreneurship-in-jk\/"
 },
 {
@@ -14380,7 +14380,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": null
 },
 {
@@ -14409,7 +14409,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/domestic-abuse-768.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652173/b9134406-domestic-abuse-768.jpg",
     "external_url": null
 },
 {
@@ -14438,7 +14438,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/fday.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652229/e7c46347-fday.jpg",
     "external_url": "https:\/\/www.business-standard.com\/article\/companies\/amazon-india-inks-collaborations-to-empower-women-entrepreneurs-121111901032_1.html"
 },
 {
@@ -14467,7 +14467,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/Reach-Goals.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652156/b300f131-Reach-Goals.jpg",
     "external_url": "https:\/\/www.newindianexpress.com\/states\/karnataka\/2021\/nov\/19\/karnataka-govt-plans-four-industrial-parks-for-women-2385408.html"
 },
 {
@@ -14496,7 +14496,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/Covid19-news.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652186/57649f6f-Covid19-news.jpg",
     "external_url": null
 },
 {
@@ -14525,7 +14525,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/investment7a-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655060/3a77fbd4-investment7a-1.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/companies\/msme\/kerala-financial-corporation-to-lend-up-to-1-cr-to-smes-at-5-rate\/article37532640.ece"
 },
 {
@@ -14554,7 +14554,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/05\/WLD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652140/214a1ca6-WLD.jpg",
     "external_url": null
 },
 {
@@ -14583,7 +14583,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "https:\/\/www.yenisafak.com\/en\/world\/european-bank-to-channel-600m-for-turkish-women-led-firms-3583736"
 },
 {
@@ -14612,7 +14612,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/dream.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652117/62e59239-dream.jpg",
     "external_url": "http:\/\/www.uniindia.com\/ksum-launches-soft-loan-scheme-exclusively-for-women-start-ups\/business-economy\/news\/2554386.html"
 },
 {
@@ -14641,7 +14641,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/11\/logo-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655078/5a5a444c-logo-2.jpg",
     "external_url": null
 },
 {
@@ -14670,7 +14670,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/MSME-Ministry-launches-new-scheme-to-promote-entrepreneurship-and-solve-social-problems.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655081/da773881-MSME-Ministry-launches-new-scheme-to-promote-entrepreneurship-and-solve-social-problems.jpg",
     "external_url": "https:\/\/www.greaterkashmir.com\/editorial-page-2\/tejaswini-funding-women-entrepreneurship"
 },
 {
@@ -14699,7 +14699,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/bidea.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648298/6cbc1a78-bidea.jpg",
     "external_url": "https:\/\/www.blackenterprise.com\/digitalundivided-partnering-with-jpmorgan-chase-offering-5000-grants-to-help-black-and-latinx-women-entrepreneurs\/?test=prebid"
 },
 {
@@ -14728,7 +14728,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Poverty.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652193/d8ceb1da-Poverty.jpg",
     "external_url": null
 },
 {
@@ -14757,7 +14757,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/10\/echat-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648775/d4c6066a-echat-9.jpg",
     "external_url": "http:\/\/www.youthideathon.in"
 },
 {
@@ -14786,7 +14786,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/republic-of-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652199/40515a80-republic-of-women.jpg",
     "external_url": null
 },
 {
@@ -14815,7 +14815,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/10\/video-thumbnail.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655090/6c4e6b4f-video-thumbnail.jpg",
     "external_url": null
 },
 {
@@ -14844,7 +14844,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/10\/Untitled-122.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655093/24714b88-Untitled-122.jpg",
     "external_url": null
 },
 {
@@ -14873,7 +14873,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/thinking-business.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652108/852e6d3c-thinking-business.jpg",
     "external_url": "https:\/\/www.thehansindia.com\/news\/national\/niti-aayog-sought-applications-to-reward-women-entrepreneurship-709180"
 },
 {
@@ -14902,7 +14902,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655063/3636c944-rural.jpg",
     "external_url": "https:\/\/mybigplunge.com\/startups\/funding-news\/rural-tech-startup-hesa-receives-450k-grant-from-nabard-to-upskill-rural-women\/"
 },
 {
@@ -14931,7 +14931,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/stop-covid.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652111/4a0cb406-stop-covid.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/world-news\/us-initiative-to-help-women-entrepreneurs-in-india-101633113339589.html"
 },
 {
@@ -14960,7 +14960,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Yogi-Adityanath-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654924/78b88d31-Yogi-Adityanath-.jpg",
     "external_url": "https:\/\/www.dailypioneer.com\/2021\/state-editions\/cm-yogi-to-launch----women-entrepreneurs----empowerment-helpline.html"
 },
 {
@@ -14989,7 +14989,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/IPD-21.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655096/d19824a5-IPD-21.jpg",
     "external_url": null
 },
 {
@@ -15018,7 +15018,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648257/7e2f2193-event-9.jpg",
     "external_url": "https:\/\/www.freepressjournal.in\/business\/visa-nasscom-foundation-to-train-women-micro-entrepreneurs-in-5-states"
 },
 {
@@ -15047,7 +15047,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/Launch-of-India@75-Youth-Ideathon-Pix-1-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655099/8785be4a-Launch-of-India%4075-Youth-Ideathon-Pix-1-.jpg",
     "external_url": "http:\/\/www.youthideathon.in"
 },
 {
@@ -15076,7 +15076,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "https:\/\/www.sproutwired.com\/us-embassy-launches-free-courses-for-women-entrepreneurs-news-mercury-online-diary\/"
 },
 {
@@ -15105,7 +15105,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2018\/05\/o-GENDER-EQUALITY-SIGN-facebook.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771649101/7ebbb011-o-GENDER-EQUALITY-SIGN-facebook.jpg",
     "external_url": null
 },
 {
@@ -15134,7 +15134,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/rejouve-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655103/886cfe62-rejouve-2.jpg",
     "external_url": null
 },
 {
@@ -15163,7 +15163,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/Cover-EP-8.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655111/d48cbe3c-Cover-EP-8.jpg",
     "external_url": null
 },
 {
@@ -15192,7 +15192,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/Reach-Goals.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652156/b300f131-Reach-Goals.jpg",
     "external_url": "https:\/\/www.eastmojo.com\/manipur\/2021\/09\/12\/manipur-empowering-women-key-to-improving-rural-areas-says-minister\/"
 },
 {
@@ -15221,7 +15221,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/teamwork.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652179/5e834d15-teamwork.jpg",
     "external_url": "https:\/\/www.nagalandpost.com\/idan-signs-mou-to-boost-women-entrepreneurship\/240065.html"
 },
 {
@@ -15250,7 +15250,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.newindianexpress.com\/cities\/kochi\/2021\/sep\/10\/kalamassery-to-upskill-its-youth-women-2356612.html"
 },
 {
@@ -15279,7 +15279,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/09\/ILD-21.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652217/fb75c135-ILD-21.png",
     "external_url": null
 },
 {
@@ -15308,7 +15308,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/YDay20.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652148/a9778fa0-YDay20.jpg",
     "external_url": null
 },
 {
@@ -15337,7 +15337,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/m.kashmirobserver.net\/2021\/09\/01\/lg-seeks-help-of-women-entrepreneurs-to-end-violence\/amp\/"
 },
 {
@@ -15366,7 +15366,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/Aatmanirbhar.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655114/dcc63ed0-Aatmanirbhar.png",
     "external_url": "https:\/\/udaipurkiran.com\/sakhi-hindustan-zincs-comprehensive-approach-to-women-empowerment-through-msmes\/"
 },
 {
@@ -15395,7 +15395,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655051/70f158d8-First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
     "external_url": "https:\/\/en.gaonconnection.com\/national-small-industry-day-key-reforms-introduced-in-msmes-with-focus-on-rural-enterprises\/"
 },
 {
@@ -15424,7 +15424,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648257/7e2f2193-event-9.jpg",
     "external_url": "http:\/\/timesofindia.indiatimes.com\/articleshow\/85751070.cms?utm_source=contentofinterest&amp;utm_medium=text&amp;utm_campaign=cppst"
 },
 {
@@ -15453,7 +15453,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/Reach-Goals.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652156/b300f131-Reach-Goals.jpg",
     "external_url": "https:\/\/www.thehansindia.com\/business\/reckitt-un-women-partners-to-create-employment-entrepreneurship-opportunities-for-women-in-india-703621"
 },
 {
@@ -15482,7 +15482,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/08\/wep-next.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655116/0b893c09-wep-next.jpg",
     "external_url": "https:\/\/www.devdiscourse.com\/article\/business\/1706502-niti-aayog-and-cisco-launch-next-phase-of-women-entrepreneurship-platform"
 },
 {
@@ -15511,7 +15511,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Yogi-Adityanath-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654924/78b88d31-Yogi-Adityanath-.jpg",
     "external_url": "https:\/\/www.news18.com\/news\/india\/up-start-up-village-entrepreneurship-scheme-uplifts-11454-rural-women-4127261.html"
 },
 {
@@ -15540,7 +15540,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/Stanford-innovation-enterpreneurship_MAIN_0.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652325/02e20978-Stanford-innovation-enterpreneurship_MAIN_0.jpg",
     "external_url": "https:\/\/www.themayor.eu\/en\/a\/view\/veneto-triples-subsidies-for-women-s-entrepreneurship-8713"
 },
 {
@@ -15569,7 +15569,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/Social-Entrepreneurship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652164/1fb34667-Social-Entrepreneurship.jpg",
     "external_url": "https:\/\/www.dailypioneer.com\/2021\/state-editions\/---ranchi-ki-roshni----lighting-up-lives-of-rural-women.html"
 },
 {
@@ -15598,7 +15598,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/WED.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652220/66227564-WED.jpg",
     "external_url": null
 },
 {
@@ -15627,7 +15627,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648257/7e2f2193-event-9.jpg",
     "external_url": "https:\/\/www.businesswire.com\/news\/home\/20210818005701\/en\/Wells-Fargo-Delivers-Mentorship-for-500-Women-Owned-Businesses-Announces-Grants-to-Over-90-Nonprofits"
 },
 {
@@ -15656,7 +15656,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/08\/1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655120/064ba189-1.jpg",
     "external_url": null
 },
 {
@@ -15685,7 +15685,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/08\/IT-min.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655122/f6dfb319-IT-min.jpg",
     "external_url": "https:\/\/www.devdiscourse.com\/article\/technology\/1696804-it-minister-launches-amrit-mahotsav-shri-shakti-challenge-2021"
 },
 {
@@ -15714,7 +15714,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/08\/RDX-Play.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655125/f06fd08a-RDX-Play.jpg",
     "external_url": null
 },
 {
@@ -15743,7 +15743,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/republic-of-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652199/40515a80-republic-of-women.jpg",
     "external_url": null
 },
 {
@@ -15772,7 +15772,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/74.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655130/61057f81-74.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/india-news\/pm-modi-releases-rs-1-625-crore-for-women-entrepreneurs-101628764476126.html"
 },
 {
@@ -15801,7 +15801,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/modi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653796/82859085-modi.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-fin-mudra-yojana-pm-modis-micro-credit-scheme-sanctioned-majority-loans-to-women-entrepreneurs-in-six-years\/2308652\/"
 },
 {
@@ -15830,7 +15830,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/brand-marketing.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652312/ca9b3f8f-brand-marketing.jpg",
     "external_url": "https:\/\/www.indulgexpress.com\/gadgets\/2021\/aug\/09\/apple-entrepreneur-camp-ishelping-indian-women-entrepreneurs-go-global-35097.html"
 },
 {
@@ -15859,7 +15859,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/Reach-Goals.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652156/b300f131-Reach-Goals.jpg",
     "external_url": "https:\/\/www.abqjournal.com\/2417268\/native-women-entrepreneurs-get-a-10m-boost.html"
 },
 {
@@ -15888,7 +15888,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/08\/E711tV1VcAUPhhx.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655134/c0ae3c78-E711tV1VcAUPhhx.png",
     "external_url": null
 },
 {
@@ -15917,7 +15917,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/investment7a-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655060/3a77fbd4-investment7a-1.jpg",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/city\/ranchi\/us-consulate-to-train-women-entrepreneurs-in-jharkhand-bihar\/articleshow\/85081423.cms?from=mdr"
 },
 {
@@ -15946,7 +15946,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-dt.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652143/fd1ba402-news-dt.jpg",
     "external_url": "https:\/\/finance.yahoo.com\/news\/minister-ng-announces-investment-women-144100527.html"
 },
 {
@@ -15975,7 +15975,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/Stanford-innovation-enterpreneurship_MAIN_0.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652325/02e20978-Stanford-innovation-enterpreneurship_MAIN_0.jpg",
     "external_url": "https:\/\/www.gemconsortium.org\/file\/open?fileId=50691"
 },
 {
@@ -16004,7 +16004,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/fday.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652229/e7c46347-fday.jpg",
     "external_url": null
 },
 {
@@ -16033,7 +16033,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/bidea.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648298/6cbc1a78-bidea.jpg",
     "external_url": "https:\/\/www.theindianwire.com\/news\/sequoia-india-launches-fellowship-worth-100000-for-women-entrepreneurs-apply-by-sep-15-318044\/"
 },
 {
@@ -16062,7 +16062,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.thenewsminute.com\/article\/we-hub-launches-three-new-programmes-women-entrepreneurs-startups-153115"
 },
 {
@@ -16091,7 +16091,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648257/7e2f2193-event-9.jpg",
     "external_url": "https:\/\/www.risingkashmir.com\/500-women-entrepreneurs-enrolled--100-to-get-fin-assistance--70523"
 },
 {
@@ -16120,7 +16120,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/business-network.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652323/672a22dc-business-network.jpg",
     "external_url": "https:\/\/www.sunnewsonline.com\/ecobank-to-ellevate-nigerian-women-in-business\/"
 },
 {
@@ -16149,7 +16149,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "https:\/\/theshillongtimes.com\/2021\/07\/27\/fb-calls-for-applications-under-women-entrepreneurship-initiative\/"
 },
 {
@@ -16178,7 +16178,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/teamwork.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652179/5e834d15-teamwork.jpg",
     "external_url": "https:\/\/www.thekashmirmonitor.net\/born-to-win-jk-opens-purse-strings-to-help-aspiring-women-entrepreneurs-to-live-their-dreams\/"
 },
 {
@@ -16207,7 +16207,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/Covid-Safety.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652257/7e777669-Covid-Safety.jpg",
     "external_url": "https:\/\/www.warrington-worldwide.co.uk\/2021\/07\/24\/fund-her-north-announces-new-partnership-with-natwest-for-female-entrepreneurs\/"
 },
 {
@@ -16236,7 +16236,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/business-network.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652323/672a22dc-business-network.jpg",
     "external_url": "https:\/\/indianewengland.com\/2021\/07\/tie-boston-launches-pitch-competition-to-support-female-founders-100k-for-the-global-winner-and-cash-prizes-for-boston\/"
 },
 {
@@ -16265,7 +16265,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/fday.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652229/e7c46347-fday.jpg",
     "external_url": "https:\/\/indiaeducationdiary.in\/aisect-to-implement-skill-development-training-for-women-beneficiaries-under-csr-partnership-with-microsoft-and-nsdc\/amp\/"
 },
 {
@@ -16294,7 +16294,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/Covid19-news.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652186/57649f6f-Covid19-news.jpg",
     "external_url": "https:\/\/www.wyso.org\/local-and-statewide-news\/2021-07-19\/ywca-dayton-launches-womens-entrepreneurship-program"
 },
 {
@@ -16323,7 +16323,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652249/1fe36d74-rural.jpg",
     "external_url": "https:\/\/www.telegraphindia.com\/india\/odisha-government-will-provide-business-worth-rs-5000-crore-in-five-years-to-women-self-help-groups\/cid\/1822995"
 },
 {
@@ -16352,7 +16352,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/other-states\/plan-to-link-csr-funding-with-women-entrepreneurship\/article35333114.ece"
 },
 {
@@ -16381,7 +16381,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/07\/Smriti-irani-tw1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655137/c3409872-Smriti-irani-tw1.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-tech-smriti-irani-to-meet-traders-on-friday-for-campaign-to-promote-women-engagement-in-e-commerce\/2290203\/"
 },
 {
@@ -16410,7 +16410,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-5-Women-Entrepreneurs’-to-get-more-policy-support-in-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655140/80c2027f-News-5-Women-Entrepreneurs%E2%80%99-to-get-more-policy-support-in-2020.jpg",
     "external_url": "https:\/\/www.thehindu.com\/news\/national\/andhra-pradesh\/govt-ties-up-with-14-entities-to-encourage-women-entrepreneurs\/article35287746.ece"
 },
 {
@@ -16439,7 +16439,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Meetings.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652339/b91427f0-Meetings.jpg",
     "external_url": "http:\/\/nder the theme Connecting Women Entrepreneurs Globally: From Recovery to Prosperity."
 },
 {
@@ -16468,7 +16468,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Gender-diversity-in-leadership.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655144/a734002c-News-Gender-diversity-in-leadership.jpg",
     "external_url": "https:\/\/english.lokmat.com\/aurangabad\/massia-to-set-up-independent-cell-for-women-entrepreneurs\/"
 },
 {
@@ -16497,7 +16497,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/market-place.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652425/25568fd2-market-place.jpg",
     "external_url": "https:\/\/aithority.com\/technology\/martech\/entreprenista-and-shopify-join-forces-to-help-women-entrepreneurs-grow-their-e-commerce-businesses\/"
 },
 {
@@ -16526,7 +16526,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "http:\/\/www.newspatrolling.com\/shri-k-taraka-rama-rao-launches-indian-banks-msme-prerana-in-telangana\/"
 },
 {
@@ -16555,7 +16555,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/business-network.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652323/672a22dc-business-network.jpg",
     "external_url": "https:\/\/irishtechnews.ie\/new-women-mentoring-initiative-launched\/amp\/?__cf_chl_captcha_tk__=c3d71159e54927b4dc51cb59e1c6c5907452130e-1625549428-0-Ae_EFanyFle5SyE9lFDx-h8szoixzW-jtAVeut2-EvB5ISMBPh3WKXOJXalD-IZSXwmj3sqqtdT6Y4-N6Z6xJyTV9y2aXGibbg5sYMZY2qBWUASCXMygUAEDFtAVPU_ohiAbk51PxzCeoV3xdOezOPl_85vsx32sMrvofTZgdioujyi5BVNv6wAlA7zU6Xbd3IkaAA7kz8Eg-dpPfvw9YBmjqe0wpDDP2OwgB4PmpR20K6p4jE23RjCM_w9uijI6BF3HGecYZND47mr8shJQX-g9clmTJEXMwF5GB1b_m4jyx2mIcQjD90DMzrQ7-SkmOsTDbqXIbmIeLMLdu0V_wV2Lf7twMUFBpT3z6h2Ma8R8cvCmZAUoBgM0nrfxtozUw3AasHjx08rVnJQuw7f7KscuAEO4ACc3iDEYyoQQJ3O1d80h2_sFZWcjqkt1kN6GH8FWjKPV-LMZdtC7otiWiMtT1Ei_2TURTvbtrEm98-c_f7FRpPe1i9HkYh3UThyTblelpcbrNa_qazhgUuXKMjy3G6eGZ_9m74HzK_i0MqUjC_Qxq3gW15rUFV8gvQnt7MG44dVWf9cu9RkIBuTZhw0ZB76R7QqNSWPvwysoMq7Hc0UZpifyQh5afDdcIuAlpY16Kl4rjLm9vLShy5MOn0VmdUIwD-pSnjk8qhioqUHijGLhPiQ5lk2eYwVXItuU16bLgac4GjwqLUM7LaGhqiE1tFhFjBLftFP54mo8rWRA"
 },
 {
@@ -16584,7 +16584,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/news-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652224/093a0ada-news-3.jpg",
     "external_url": "https:\/\/gulfnews.com\/world\/asia\/pakistan\/us-embassy-launches-womens-entrepreneurship-programme-in-pakistan-1.80427264"
 },
 {
@@ -16613,7 +16613,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652249/1fe36d74-rural.jpg",
     "external_url": "https:\/\/www.deccanherald.com\/national\/south\/anganwadis-to-be-fully-electrified-in-kerala-1004404.html"
 },
 {
@@ -16642,7 +16642,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/investment7a-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655060/3a77fbd4-investment7a-1.jpg",
     "external_url": "https:\/\/www.microcapital.org\/microcapital-brief-ifc-we-fi-invest-2-5m-in-flat6labs-to-support-entrepreneurship-in-jordan\/"
 },
 {
@@ -16671,7 +16671,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/WFH-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652098/ca615ba5-WFH-2.jpg",
     "external_url": "https:\/\/www.theexaminer.com\/news\/governors-commission-announces-funding-women-owned-businesses"
 },
 {
@@ -16700,7 +16700,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/07\/echat-Dr-Goyat.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648784/d208edac-echat-Dr-Goyat.jpg",
     "external_url": null
 },
 {
@@ -16729,7 +16729,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/news-31.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655148/af0aeba6-news-31.jpg",
     "external_url": "http:\/\/brighterkashmir.com\/historic-initiative-aims-at-starting-a-new-era-in-women-entrepreneurship-socio-economic-development-process-in-the-ut-lg"
 },
 {
@@ -16758,7 +16758,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/budget-HIghlights.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655054/e1b647b7-budget-HIghlights.jpg",
     "external_url": null
 },
 {
@@ -16787,7 +16787,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/images.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655150/ed961f00-images.png",
     "external_url": "https:\/\/www.business-standard.com\/article\/companies\/game-partners-with-sidbi-to-help-msmes-revive-biz-amid-pandemic-121062700370_1.html"
 },
 {
@@ -16816,7 +16816,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/techobserver.in\/2021\/06\/24\/ict-division-new-projects-to-create-50000-women-entrepreneurs-bangladesh-it-minister\/"
 },
 {
@@ -16845,7 +16845,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648310/c1e5de3f-News.jpg",
     "external_url": "https:\/\/www.freepressjournal.in\/business\/from-35-subsidy-on-loans-to-small-businesses-to-promoting-women-entrepreneurs-food-processing-sector-gets-going-in-up"
 },
 {
@@ -16874,7 +16874,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/business-network.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652323/672a22dc-business-network.jpg",
     "external_url": "https:\/\/mybigplunge.com\/startups\/startup-and-entrepreneurship\/action-for-india-launches-its-first-ever-program-for-women-in-social-entrepreneurship\/"
 },
 {
@@ -16903,7 +16903,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.indianweb2.com\/2021\/06\/sidbis-umbrella-mission-swavalamban.html?m=1"
 },
 {
@@ -16932,7 +16932,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/natlie-echat.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648788/5f85b82f-natlie-echat.jpg",
     "external_url": null
 },
 {
@@ -16961,7 +16961,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/FDAY21.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648795/f82ea2e3-FDAY21.jpg",
     "external_url": null
 },
 {
@@ -16990,7 +16990,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/telanganatoday.com\/goi-widened-scope-and-access-of-stand-up-india-scheme-sidbi-cmd"
 },
 {
@@ -17019,7 +17019,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/weshare-campaign-750x430-1.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655152/c86b2871-weshare-campaign-750x430-1.jpg",
     "external_url": "https:\/\/sambadenglish.com\/iwec-launches-weshare-initiative-to-help-local-businesses\/"
 },
 {
@@ -17048,7 +17048,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/download.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655154/340a96d5-download.jpg",
     "external_url": "https:\/\/iccwbo.org\/media-wall\/news-speeches\/launch-of-etradehubs-to-simplify-trade-processes-for-woman-small-business-owners-in-afcfta\/"
 },
 {
@@ -17077,7 +17077,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/business-network.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652323/672a22dc-business-network.jpg",
     "external_url": "https:\/\/adigitalboom.com\/fastercapital-supports-women-founders-entrepreneurs\/"
 },
 {
@@ -17106,7 +17106,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/rel-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655157/888a42bb-rel-2.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/sme-sector\/govt-simplifies-registration-process-for-msmes\/articleshow\/83551195.cms?utm_source=contentofinterest&amp;utm_medium=text&amp;utm_campaign=cppst"
 },
 {
@@ -17135,7 +17135,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/Nitish-Kumar-770x433-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655159/23e50176-Nitish-Kumar-770x433-1.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/cities\/patna-news\/bihar-unveils-interest-free-incentive-scheme-to-promote-women-entrepreneurship-101618918777818.html-"
 },
 {
@@ -17164,7 +17164,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/opinion\/postcovid19-women-and-the-green-economy-101623503734200.html"
 },
 {
@@ -17193,7 +17193,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/stop-covid.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652111/4a0cb406-stop-covid.jpg",
     "external_url": "https:\/\/theprint.in\/opinion\/2020-lockdown-shut-11-women-msmes-only-1-got-back-on-feet-with-govt-help-finds-study\/666319\/"
 },
 {
@@ -17222,7 +17222,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/06\/1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655162/6b683664-1.jpg",
     "external_url": null
 },
 {
@@ -17251,7 +17251,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/05\/REL-FLO-4-5-21.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655167/2f0c49ae-REL-FLO-4-5-21.jpg",
     "external_url": null
 },
 {
@@ -17280,7 +17280,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/04\/WHD.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652253/aaec7184-WHD.jpg",
     "external_url": null
 },
 {
@@ -17309,7 +17309,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/BRICS-CCI-WE-Women-for-Atmanirbhar-Bharat-Summit-Awards.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655170/08f0401e-BRICS-CCI-WE-Women-for-Atmanirbhar-Bharat-Summit-Awards.jpg",
     "external_url": null
 },
 {
@@ -17338,7 +17338,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/podcast.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655177/d7e83b1a-podcast.jpg",
     "external_url": null
 },
 {
@@ -17367,7 +17367,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/03\/IWD-2021.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655180/36a172ad-IWD-2021.jpg",
     "external_url": null
 },
 {
@@ -17396,7 +17396,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655187/d4c29ef8-1.jpg",
     "external_url": null
 },
 {
@@ -17425,7 +17425,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/RR-Temp.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655194/56213238-RR-Temp.jpg",
     "external_url": null
 },
 {
@@ -17454,7 +17454,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/release-brics.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655198/43dfe298-release-brics.jpg",
     "external_url": null
 },
 {
@@ -17483,7 +17483,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/union-budget-21.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648799/cfe0e4f2-union-budget-21.jpg",
     "external_url": null
 },
 {
@@ -17512,7 +17512,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/02\/budget-HIghlights.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655054/e1b647b7-budget-HIghlights.jpg",
     "external_url": null
 },
 {
@@ -17541,7 +17541,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/modi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653796/82859085-modi.jpg",
     "external_url": "https:\/\/www.livemint.com\/news\/india\/pm-modi-announces-rs-1-000-crore-seed-fund-to-support-startups-11610803083877.html"
 },
 {
@@ -17570,7 +17570,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Anisha-Singh-Cover.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655207/4fad58e2-Anisha-Singh-Cover.jpg",
     "external_url": null
 },
 {
@@ -17599,7 +17599,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/Yogi-Adityanath-.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771654924/78b88d31-Yogi-Adityanath-.jpg",
     "external_url": "https:\/\/newsroompost.com\/india\/bud-chip-plantation-yogi-govt-training-rural-women-to-become-self-reliant\/571006.html"
 },
 {
@@ -17628,7 +17628,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2021\/01\/2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655210/34179d60-2.jpg",
     "external_url": null
 },
 {
@@ -17657,7 +17657,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/event-6.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648274/fd9bd083-event-6.jpg",
     "external_url": "https:\/\/www.livemint.com\/opinion\/columns\/2021-to-mark-a-new-era-for-the-indian-startup-ecosystem-11609258202561.html"
 },
 {
@@ -17686,7 +17686,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/EP-4-Post.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655213/479ddc52-EP-4-Post.jpg",
     "external_url": null
 },
 {
@@ -17715,7 +17715,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/Banner_1200x500PX.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655218/59c2c321-Banner_1200x500PX.jpg",
     "external_url": null
 },
 {
@@ -17744,7 +17744,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/website-release.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655224/a1bb4d5a-website-release.jpg",
     "external_url": "http:\/\/www.entrepreneurship.edu.in\/"
 },
 {
@@ -17773,7 +17773,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-24-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771653909/768af535-news-24-12.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/cafe-sme\/msme-tech-micro-entrepreneurship-how-women-in-hinterland-are-turning-catalyst-to-indias-entrepreneurship-culture\/2154963\/"
 },
 {
@@ -17802,7 +17802,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/news-21-12.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652168/9e0ce183-news-21-12.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/msme-fin-pm-modis-standup-india-scheme-nears-1-lakh-loan-sanctions-up-nearly-8-in-fy21-so-far\/2150598\/"
 },
 {
@@ -17831,7 +17831,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/Mastercard-IWE.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655227/6a974519-Mastercard-IWE.jpg",
     "external_url": "https:\/\/mastercardcontentexchange.com\/research-reports\/2020\/mastercard-index-of-women-entrepreneurs\/"
 },
 {
@@ -17860,7 +17860,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655237/f22fd659-2.jpg",
     "external_url": null
 },
 {
@@ -17889,7 +17889,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/template-4.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655243/a2805a4d-template-4.jpg",
     "external_url": null
 },
 {
@@ -17918,7 +17918,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-img.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655246/b3f6ddde-news-img.jpg",
     "external_url": "https:\/\/www.livemint.com\/companies\/start-ups\/beauty-startups-see-sales-spike-on-festival-demand-11605269105030.html"
 },
 {
@@ -17947,7 +17947,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/Social-Template-Podcast-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655252/258b12b4-Social-Template-Podcast-2.jpg",
     "external_url": null
 },
 {
@@ -17976,7 +17976,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/11\/news-dt.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652143/fd1ba402-news-dt.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/a-symbiotic-relationship-startups-give-even-as-they-take\/2121102\/"
 },
 {
@@ -18005,7 +18005,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/melinda-gates.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655256/be929bbf-melinda-gates.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/magazines\/panache\/et-womens-forum-covid-plans-need-women-experts-says-melinda-gates\/articleshow\/78924127.cms"
 },
 {
@@ -18034,7 +18034,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/webinar-ficci-post.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655258/f97bdb18-webinar-ficci-post.jpg",
     "external_url": null
 },
 {
@@ -18063,7 +18063,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/mygen.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655261/f874592e-mygen.jpg",
     "external_url": "http:\/\/myjen.ai\/"
 },
 {
@@ -18092,7 +18092,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/yt-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655265/1b965e37-yt-2.jpg",
     "external_url": null
 },
 {
@@ -18121,7 +18121,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/thoughtful-woman-holding-sheet-paper-cafe_1262-1204.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652226/0162c9ab-thoughtful-woman-holding-sheet-paper-cafe_1262-1204.jpg",
     "external_url": "https:\/\/www.livemint.com\/companies\/news\/women-run-biz-eye-pickup-11602637849710.html"
 },
 {
@@ -18150,7 +18150,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/Piyush-Goyal.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655268/3a1ba383-Piyush-Goyal.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/small-biz\/startups\/newsbuzz\/piyush-goyal-invites-startups-to-register-on-public-procurement-portal-gem\/articleshow\/78518727.cms"
 },
 {
@@ -18179,7 +18179,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/statue-of-gandhi-500x500-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655270/2b640979-statue-of-gandhi-500x500-1.jpg",
     "external_url": "https:\/\/www.livemint.com\/companies\/start-ups\/50-startups-with-ideas-of-gandhi-11601600910437.html"
 },
 {
@@ -18208,7 +18208,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/10\/thumbnail.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655273/58bf3218-thumbnail.jpg",
     "external_url": null
 },
 {
@@ -18237,7 +18237,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/Road-Ahead.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655277/bbc05555-Road-Ahead.jpg",
     "external_url": null
 },
 {
@@ -18266,7 +18266,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655282/0fe3336f-1.jpg",
     "external_url": null
 },
 {
@@ -18295,7 +18295,7 @@ export const newsData = [
     "comment_count": "1",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/AI.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655286/580970cd-AI.jpg",
     "external_url": "https:\/\/www.livemint.com\/news\/business-of-life\/all-women-team-in-bharat-helps-world-adopt-ai-11600618195996.html"
 },
 {
@@ -18324,7 +18324,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/wp.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655291/ba94c342-wp.jpg",
     "external_url": "https:\/\/economictimes.indiatimes.com\/news\/company\/corporate-trends\/more-reason-to-celebrate-indias-woman-power\/articleshow\/78226541.cms"
 },
 {
@@ -18353,7 +18353,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/bidea.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648298/6cbc1a78-bidea.jpg",
     "external_url": "https:\/\/www.hindustantimes.com\/analysis\/boosting-women-s-entrepreneurship-and-economic-leadership\/story-uneUWvKDjNBkyFFSIpZSNL.html"
 },
 {
@@ -18382,7 +18382,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/cyber-security.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655294/c9adc961-cyber-security.jpg",
     "external_url": "https:\/\/readytalk.webcasts.com\/starthere.jsp?ei=1350527&amp;tp_key=d4b05e4d6c&amp;sti=scoreeventpage"
 },
 {
@@ -18411,7 +18411,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/asia.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655300/1cba443e-asia.jpg",
     "external_url": "https:\/\/betakit.com\/federal-government-to-host-virtual-south-korea-trade-mission-for-women-entrepreneurs\/"
 },
 {
@@ -18440,7 +18440,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/news-111.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655304/e99be6f8-news-111.jpg",
     "external_url": "https:\/\/entrepreneurship.babson.edu\/women-entrepreneurs-pandemic\/"
 },
 {
@@ -18469,7 +18469,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/trafficing.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655309/67072876-trafficing.jpg",
     "external_url": null
 },
 {
@@ -18477,7 +18477,7 @@ export const newsData = [
     "post_author": "3",
     "post_date": "2020-09-07 13:50:19",
     "post_date_gmt": "2020-09-07 08:20:19",
-    "post_content": "<!-- wp:paragraph {\"fontSize\":\"large\"} -->\n<p class=\"has-large-font-size\"><a href=\"https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/sheatwork-AatmaNirbharShe-Focus-Bihar-report.pdf\">Click here to view full report<\/a><\/p>\n<!-- \/wp:paragraph -->",
+    "post_content": "<!-- wp:paragraph {\"fontSize\":\"large\"} -->\n<p class=\"has-large-font-size\"><a href=\"https://res.cloudinary.com/dd56n5ykp/raw/upload/v1771657691/4e294b22-sheatwork-AatmaNirbharShe-Focus-Bihar-report.pdf\">Click here to view full report<\/a><\/p>\n<!-- \/wp:paragraph -->",
     "post_title": "Key Takeaways Report: Sheatwork.com AatmaNirbharShe- Focus Bihar",
     "post_excerpt": "",
     "post_status": "publish",
@@ -18498,8 +18498,8 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/cover.jpg",
-    "external_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/sheatwork-AatmaNirbharShe-Focus-Bihar-report.pdf"
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655314/02632815-cover.jpg",
+    "external_url": "https://res.cloudinary.com/dd56n5ykp/raw/upload/v1771657691/4e294b22-sheatwork-AatmaNirbharShe-Focus-Bihar-report.pdf"
 },
 {
     "ID": "15268",
@@ -18527,7 +18527,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/ss.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655321/a0f6cac9-ss.jpg",
     "external_url": null
 },
 {
@@ -18556,7 +18556,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/website-1.1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648261/85168f5e-website-1.1.jpg",
     "external_url": null
 },
 {
@@ -18585,7 +18585,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/website-1.1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771648261/85168f5e-website-1.1.jpg",
     "external_url": "https:\/\/www.facebook.com\/sheatwork"
 },
 {
@@ -18614,7 +18614,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/Chunauti.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655325/70694ec5-Chunauti.jpg",
     "external_url": "https:\/\/www.outlookindia.com\/newsscroll\/it-minister-launches-startup-contest-chunauti\/1924838"
 },
 {
@@ -18643,7 +18643,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/rev-drop.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655327/06e196d2-rev-drop.jpg",
     "external_url": "https:\/\/www.thehindu.com\/business\/women-entrepreneurs-saw-big-revenue-drop-in-lockdown\/article32459384.ece"
 },
 {
@@ -18672,7 +18672,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/CII-Post.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655332/e8990443-CII-Post.jpg",
     "external_url": null
 },
 {
@@ -18701,7 +18701,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/BRICS-WE-EP1-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655336/2a5e813a-BRICS-WE-EP1-1.jpg",
     "external_url": null
 },
 {
@@ -18730,7 +18730,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/BRICS-WE-EP1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655345/da23625b-BRICS-WE-EP1.jpg",
     "external_url": null
 },
 {
@@ -18759,7 +18759,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/release-techm.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655348/ea4dd4fc-release-techm.jpg",
     "external_url": "http:\/\/wep.gov.in\/"
 },
 {
@@ -18788,7 +18788,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/femcom.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655351/88db1074-femcom.jpg",
     "external_url": "https:\/\/www.fibre2fashion.com\/news\/textile-news\/femcom-project-to-empower-women-in-burundi-textile-sector-269368-newsdetails.htm"
 },
 {
@@ -18817,7 +18817,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/news-workingwoman.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655353/3dcda78c-news-workingwoman.jpg",
     "external_url": "https:\/\/moderndiplomacy.eu\/2020\/08\/22\/women-entrepreneurs-finance-initiative-invests-in-over-15000-women-led-businesses\/"
 },
 {
@@ -18846,7 +18846,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/newz.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655356/e8ecfeb6-newz.jpg",
     "external_url": "https:\/\/wam.ae\/en\/details\/1395302862975"
 },
 {
@@ -18875,7 +18875,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/74.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655130/61057f81-74.jpg",
     "external_url": null
 },
 {
@@ -18904,7 +18904,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/news-112.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655042/874a1bde-news-112.jpg",
     "external_url": "https:\/\/thelogicalindian.com\/good-governance\/jk-shortlists-youth-for-empowerement-programme-22867"
 },
 {
@@ -18933,7 +18933,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655366/87aa605a-2.jpg",
     "external_url": null
 },
 {
@@ -18962,7 +18962,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/rel-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655157/888a42bb-rel-2.jpg",
     "external_url": null
 },
 {
@@ -18991,7 +18991,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/Aatmanirbhar.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655114/dcc63ed0-Aatmanirbhar.png",
     "external_url": "https:\/\/timesofindia.indiatimes.com\/blogs\/voices\/powering-aatmanirbhar-bharat-through-innovation-entrepreneurship\/"
 },
 {
@@ -19020,7 +19020,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/startup.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655073/dd62fd5a-startup.jpg",
     "external_url": "https:\/\/www.financialexpress.com\/industry\/sme\/india-fourth-in-terms-of-start-up-unicorn-numbers-less-than-tenth-of-chinas-hurun-index\/2045057\/"
 },
 {
@@ -19049,7 +19049,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/investment7a-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655060/3a77fbd4-investment7a-1.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/news\/investments-in-indian-start-ups-soar-322-in-july\/article32260179.ece"
 },
 {
@@ -19078,7 +19078,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/jp.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655369/9b64f7a5-jp.png",
     "external_url": null
 },
 {
@@ -19107,7 +19107,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/turning.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655377/49e8dad9-turning.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/companies\/riding-the-hobby-horse-to-entrepreneurship\/article32206251.ece"
 },
 {
@@ -19136,7 +19136,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/local.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655385/676e38c3-local.jpg",
     "external_url": "https:\/\/www.livemint.com\/companies\/news\/-local-economy-will-dominate-the-future-11595554757324.html"
 },
 {
@@ -19165,7 +19165,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/atmanirbhar.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655390/ea90b82c-atmanirbhar.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/opinion\/columns\/from-the-viewsroom\/making-start-ups-atmanribhar\/article32174999.ece"
 },
 {
@@ -19194,7 +19194,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/woman-shopping-online-1024x683-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655393/6f78e775-woman-shopping-online-1024x683-1.jpg",
     "external_url": "https:\/\/www.thehindubusinessline.com\/specials\/emerging-entrepreneurs\/making-payments-smoother-for-businesses\/article32140531.ece"
 },
 {
@@ -19223,7 +19223,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/news-3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652224/093a0ada-news-3.jpg",
     "external_url": "https:\/\/bit.ly\/3gzQu2j"
 },
 {
@@ -19252,7 +19252,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/news-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655396/0a9c4b64-news-1.jpg",
     "external_url": "https:\/\/bit.ly\/2CdLC3Q"
 },
 {
@@ -19281,7 +19281,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/post-corona.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655399/4422d8ab-post-corona.jpg",
     "external_url": "https:\/\/www.pressreader.com\/india\/business-standard\/20200629\/281831466004419"
 },
 {
@@ -19310,7 +19310,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/mobile.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652214/edf6b208-mobile.jpg",
     "external_url": "https:\/\/bit.ly\/31JSy3o"
 },
 {
@@ -19339,7 +19339,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/BL23STAUP.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655402/2b624214-BL23STAUP.jpg",
     "external_url": "https:\/\/bit.ly\/31ckZqM"
 },
 {
@@ -19368,7 +19368,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/Dr-Kiran-Mazumdar-Shaw.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655404/2d3994c7-Dr-Kiran-Mazumdar-Shaw.jpg",
     "external_url": "https:\/\/bit.ly\/2AjteWH"
 },
 {
@@ -19397,7 +19397,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/rural.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655063/3636c944-rural.jpg",
     "external_url": "https:\/\/bit.ly\/2AAEfTe"
 },
 {
@@ -19426,7 +19426,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/kimplovelocaljpg.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655407/9e3a62d3-kimplovelocaljpg.jpg",
     "external_url": "https:\/\/bit.ly\/3eGfjZg"
 },
 {
@@ -19455,7 +19455,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/BOPP.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652171/addc9823-BOPP.jpg",
     "external_url": "https:\/\/bit.ly\/2LYEOcd"
 },
 {
@@ -19484,7 +19484,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/J3.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655411/a4dae0a7-J3.jpg",
     "external_url": null
 },
 {
@@ -19513,7 +19513,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/3175bf60-97b0-11ea-a70f-56702cb102ce.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655414/6d11ab7a-3175bf60-97b0-11ea-a70f-56702cb102ce.jpg",
     "external_url": "https:\/\/bit.ly\/2znm8A8"
 },
 {
@@ -19542,7 +19542,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Straightening_the_Curve.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655417/83835b7f-Straightening_the_Curve.jpg",
     "external_url": "https:\/\/bit.ly\/36kFYbv"
 },
 {
@@ -19571,7 +19571,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/sitharmaan.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655420/5f723cec-sitharmaan.jpg",
     "external_url": "https:\/\/bit.ly\/3ctYkZL"
 },
 {
@@ -19600,7 +19600,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/women-at-her-work-station-1200x675-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655423/68445efd-women-at-her-work-station-1200x675-1.jpg",
     "external_url": "https:\/\/bit.ly\/2SU4FWI"
 },
 {
@@ -19629,7 +19629,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/7eda921bccdb163-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655426/e7a288fb-7eda921bccdb163-1.jpg",
     "external_url": "https:\/\/bit.ly\/2WLAxOb"
 },
 {
@@ -19658,7 +19658,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Untitleddesign50-1588246549503.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655429/6f2f4e76-Untitleddesign50-1588246549503.png",
     "external_url": "https:\/\/bit.ly\/2SB44sL"
 },
 {
@@ -19687,7 +19687,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/Mask-making.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655007/3cc8eed8-Mask-making.jpg",
     "external_url": "https:\/\/bit.ly\/2W6ZUec"
 },
 {
@@ -19716,7 +19716,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/ficci-1.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655432/a0c4c528-ficci-1.png",
     "external_url": null
 },
 {
@@ -19745,7 +19745,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/AC30-APR-Dany-Eid.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655435/f72d6dd1-AC30-APR-Dany-Eid.jpg",
     "external_url": "https:\/\/bit.ly\/2YzIU1R"
 },
 {
@@ -19774,7 +19774,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/New-Article-Banners-2.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652211/d1e46cca-New-Article-Banners-2.png",
     "external_url": "https:\/\/bit.ly\/2YzIU1R"
 },
 {
@@ -19803,7 +19803,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/sumansingh1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655438/2f4d1de0-sumansingh1.jpg",
     "external_url": null
 },
 {
@@ -19832,7 +19832,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/domestic-abuse-768.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652173/b9134406-domestic-abuse-768.jpg",
     "external_url": "https:\/\/bit.ly\/2KIvxo0"
 },
 {
@@ -19861,7 +19861,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/04\/Covid19-news.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652186/57649f6f-Covid19-news.jpg",
     "external_url": "https:\/\/mybs.in\/2YMRfDk"
 },
 {
@@ -19890,7 +19890,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/GAME-states-up-to-43-of-Indian-MSMEs-could-shut-down-if-lockdown-persists.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655441/ae338684-GAME-states-up-to-43-of-Indian-MSMEs-could-shut-down-if-lockdown-persists.jpg",
     "external_url": null
 },
 {
@@ -19919,7 +19919,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/National-Skill-Training-Institutes-to-be-converted-to-quarantine-centres-to-fight-Coronavirus.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655445/b12ffe53-National-Skill-Training-Institutes-to-be-converted-to-quarantine-centres-to-fight-Coronavirus.jpg",
     "external_url": null
 },
 {
@@ -19948,7 +19948,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Event-Pic-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655458/1b699354-Event-Pic-2.jpg",
     "external_url": "https:\/\/sheatwork.com\/"
 },
 {
@@ -19977,7 +19977,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/News-1-Microsoft-and-Accenture-team-up-to-help-startups-expand-their-reach-and-create-social-impact.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655460/323dbb38-News-1-Microsoft-and-Accenture-team-up-to-help-startups-expand-their-reach-and-create-social-impact.jpg",
     "external_url": null
 },
 {
@@ -20006,7 +20006,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/News-2-Kinara-Capital-to-offer-special-business-loans-to-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655463/365705b8-News-2-Kinara-Capital-to-offer-special-business-loans-to-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -20035,7 +20035,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/News-1-Start-up-Exhibition-organised-by-IIT-M-Incubation-Cell-to-celebrate-winners-of-NEA-2019.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655466/2177dcf0-News-1-Start-up-Exhibition-organised-by-IIT-M-Incubation-Cell-to-celebrate-winners-of-NEA-2019.jpg",
     "external_url": null
 },
 {
@@ -20064,7 +20064,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/News-3-Union-minister-Nitin-Gadkari-announces-government-initiative-to-boost-Indian-MSME-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655469/b31c4387-News-3-Union-minister-Nitin-Gadkari-announces-government-initiative-to-boost-Indian-MSME-sector.jpg",
     "external_url": null
 },
 {
@@ -20093,7 +20093,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Startup-Festival-2020-held-in-Vadodara-to-promote-entrepreneurship-and-innovation.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655472/e13313e0-Startup-Festival-2020-held-in-Vadodara-to-promote-entrepreneurship-and-innovation.jpg",
     "external_url": null
 },
 {
@@ -20122,7 +20122,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Conference-on-‘SC-ST-Entrepreneurship-and-Women-Empowerment’-held-in-Shillong.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655475/a5e35b29-Conference-on-%E2%80%98SC-ST-Entrepreneurship-and-Women-Empowerment%E2%80%99-held-in-Shillong.jpg",
     "external_url": null
 },
 {
@@ -20151,7 +20151,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/CII-to-set-up-centre-for-innovation-entrepreneurship-and-startups-in-Telangana.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655478/45140984-CII-to-set-up-centre-for-innovation-entrepreneurship-and-startups-in-Telangana.jpg",
     "external_url": null
 },
 {
@@ -20180,7 +20180,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Atal-Innovation-Mission-by-NITI-Aayog-drives-innovation-and-entrepreneurship-in-India-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655481/df8ae0b9-Atal-Innovation-Mission-by-NITI-Aayog-drives-innovation-and-entrepreneurship-in-India-1.jpg",
     "external_url": null
 },
 {
@@ -20209,7 +20209,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/IIM-Shillong-organises-two-day-entrepreneurship-summit.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655483/e29c27fd-IIM-Shillong-organises-two-day-entrepreneurship-summit.jpg",
     "external_url": null
 },
 {
@@ -20238,7 +20238,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/03\/Consortium-of-IITs-and-IIMs-launched-to-promote-entrepreneurship-and-innovation.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771652259/5268173f-Consortium-of-IITs-and-IIMs-launched-to-promote-entrepreneurship-and-innovation.jpg",
     "external_url": null
 },
 {
@@ -20267,7 +20267,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-8-Delhi-govt-announces-17000-entrepreneurs-will-interact-with-students-in-government-schools.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655486/b5628507-News-8-Delhi-govt-announces-17000-entrepreneurs-will-interact-with-students-in-government-schools.jpg",
     "external_url": null
 },
 {
@@ -20296,7 +20296,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-1-Trade-apprenticeship-cum-recruitment-fairs-to-be-organised-in-Tamil-Nadu-for-state’s-youth.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655489/aa349199-News-1-Trade-apprenticeship-cum-recruitment-fairs-to-be-organised-in-Tamil-Nadu-for-state%E2%80%99s-youth.jpg",
     "external_url": null
 },
 {
@@ -20325,7 +20325,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-2-GGSC-institute-in-Nashik-organises-Udaan-a-startup-mentoring-programme.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655491/7910f3dc-News-2-GGSC-institute-in-Nashik-organises-Udaan-a-startup-mentoring-programme.jpg",
     "external_url": null
 },
 {
@@ -20354,7 +20354,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-3-Schwab-Foundation-and-Jubilant-Bhartia-Foundation-presents-the-Hindustan-Times-Fellowship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655494/6527bb16-News-3-Schwab-Foundation-and-Jubilant-Bhartia-Foundation-presents-the-Hindustan-Times-Fellowship.jpg",
     "external_url": null
 },
 {
@@ -20383,7 +20383,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-4-Study-by-Google-states-women-entrepreneurship-can-create-150-170-million-jobs-in-India-by-2030.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655497/88f162e2-News-4-Study-by-Google-states-women-entrepreneurship-can-create-150-170-million-jobs-in-India-by-2030.jpg",
     "external_url": null
 },
 {
@@ -20412,7 +20412,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-5-Microsoft-reveals-plans-to-launch-innovation-center-in-NCR-for-employees.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655499/aa463d48-News-5-Microsoft-reveals-plans-to-launch-innovation-center-in-NCR-for-employees.jpg",
     "external_url": null
 },
 {
@@ -20441,7 +20441,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-6-Centre-of-Excellence-set-up-to-promote-gaming-entrepreneurship-in-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655502/b2b36e3c-News-6-Centre-of-Excellence-set-up-to-promote-gaming-entrepreneurship-in-India.jpg",
     "external_url": null
 },
 {
@@ -20470,7 +20470,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/News-7-Jury-meet-for-women-entrepreneurship-awards-takes-place-in-New-Delhi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655505/91b4069d-News-7-Jury-meet-for-women-entrepreneurship-awards-takes-place-in-New-Delhi.jpg",
     "external_url": null
 },
 {
@@ -20499,7 +20499,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/CII-welcomes-new-budget-presented-by-Tamil-Nadu-CM.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655507/baeebe1e-CII-welcomes-new-budget-presented-by-Tamil-Nadu-CM.jpg",
     "external_url": null
 },
 {
@@ -20528,7 +20528,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Startup-India-announces-5000-entrepreneurs-benefitted-from-its-partnership-with-Zoho.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655510/e482078b-Startup-India-announces-5000-entrepreneurs-benefitted-from-its-partnership-with-Zoho.jpg",
     "external_url": null
 },
 {
@@ -20557,7 +20557,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Women-entrepreneurship-conclave-takes-place-in-Jamshedpur.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655512/266e71d6-Women-entrepreneurship-conclave-takes-place-in-Jamshedpur.jpg",
     "external_url": null
 },
 {
@@ -20586,7 +20586,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655051/70f158d8-First-ever-organic-food-festival-to-be-held-in-Delhi-to-promote-the-sector.jpg",
     "external_url": null
 },
 {
@@ -20615,7 +20615,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/KSUM-announces-70-Crore-investment-into-startups-from-several-sectors.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655515/84a40709-KSUM-announces-70-Crore-investment-into-startups-from-several-sectors.jpg",
     "external_url": "http:\/\/matrimony.com"
 },
 {
@@ -20644,7 +20644,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Safejob-launches-Dhasu-Woman-campaign-in-partnership-with-NITI-Aayog.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655517/07bff5af-Safejob-launches-Dhasu-Woman-campaign-in-partnership-with-NITI-Aayog.jpg",
     "external_url": null
 },
 {
@@ -20673,7 +20673,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Shiprocket-launches-Aarambh-2020-for-Indian-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655520/d7c552c0-Shiprocket-launches-Aarambh-2020-for-Indian-women-entrepreneurs.jpg",
     "external_url": "http:\/\/www.shiprocket.in"
 },
 {
@@ -20702,7 +20702,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Anisha-Sharma-from-Hamirpur-Himachal-Pradesh-wins-national-award-for-entreneurship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655522/f657212c-Anisha-Sharma-from-Hamirpur-Himachal-Pradesh-wins-national-award-for-entreneurship.jpg",
     "external_url": null
 },
 {
@@ -20731,7 +20731,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/MSME-Ministry-launches-new-scheme-to-promote-entrepreneurship-and-solve-social-problems.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655081/da773881-MSME-Ministry-launches-new-scheme-to-promote-entrepreneurship-and-solve-social-problems.jpg",
     "external_url": null
 },
 {
@@ -20760,7 +20760,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/TiE-Women-launches-new-chapter-in-Coimbatore.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655525/3cb35ba0-TiE-Women-launches-new-chapter-in-Coimbatore.jpg",
     "external_url": null
 },
 {
@@ -20789,7 +20789,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Assam-Govt.-collaborates-with-Microsoft-to-offer-technological-growth-and-exposure-to-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655528/c50b9408-Assam-Govt.-collaborates-with-Microsoft-to-offer-technological-growth-and-exposure-to-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -20818,7 +20818,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Mumbai-2020-The-Decade-of-Start-Ups-–-Kick-starting-the-Future.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655530/10909b71-Mumbai-2020-The-Decade-of-Start-Ups-%E2%80%93-Kick-starting-the-Future.jpg",
     "external_url": null
 },
 {
@@ -20847,7 +20847,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/NTLF-2020-to-focus-on-key-themes-of-entrepreneurship-and-data-ethics-and-trust.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655533/827c9d3e-NTLF-2020-to-focus-on-key-themes-of-entrepreneurship-and-data-ethics-and-trust.jpg",
     "external_url": null
 },
 {
@@ -20876,7 +20876,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Leadership-Conclave-held-in-Madurai-to-encourage-young-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655535/f092b5ff-Leadership-Conclave-held-in-Madurai-to-encourage-young-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -20905,7 +20905,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/IOB-announces-loan-of-Rs-26-crore-during-outreach-programme-at-Trichy-Tamil-Nadu.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655538/7851f87f-IOB-announces-loan-of-Rs-26-crore-during-outreach-programme-at-Trichy-Tamil-Nadu.jpg",
     "external_url": null
 },
 {
@@ -20934,7 +20934,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Entrepreneurship-Development-Programme-launched-at-Warangal.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655541/58bef48e-Entrepreneurship-Development-Programme-launched-at-Warangal.jpg",
     "external_url": null
 },
 {
@@ -20963,7 +20963,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Godrej-Disha-initiative-of-Godrej-Boyce-has-trained-more-than-1.41-lakh-youth-across-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655543/1a7adf8b-Godrej-Disha-initiative-of-Godrej-Boyce-has-trained-more-than-1.41-lakh-youth-across-India.jpg",
     "external_url": null
 },
 {
@@ -20992,7 +20992,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Entrepreneurship-Development-Programme-begins-at-Jammu-and-Kashmir-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655546/33811dca-Entrepreneurship-Development-Programme-begins-at-Jammu-and-Kashmir-1.jpg",
     "external_url": null
 },
 {
@@ -21021,7 +21021,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/Devendra-Fadnavis-inaugurates-Indrayani-Thadi-for-women-entrepreneurs-at-Bhosari-in-Pune.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655549/dd593db7-Devendra-Fadnavis-inaugurates-Indrayani-Thadi-for-women-entrepreneurs-at-Bhosari-in-Pune.jpg",
     "external_url": null
 },
 {
@@ -21050,7 +21050,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/02\/budget-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655552/9da2297f-budget-2020.jpg",
     "external_url": null
 },
 {
@@ -21079,7 +21079,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Government-offers-Rs-100-crore-loan-guarantee-for-womens-corporation.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655554/ead1d4cf-Government-offers-Rs-100-crore-loan-guarantee-for-womens-corporation.jpg",
     "external_url": null
 },
 {
@@ -21108,7 +21108,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Rural-Development-Ministry-signs-MoU-with-Gates-Foundation-to-promote-entrepreneurship-in-rural-areas.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655557/e11597ce-Rural-Development-Ministry-signs-MoU-with-Gates-Foundation-to-promote-entrepreneurship-in-rural-areas.jpg",
     "external_url": null
 },
 {
@@ -21137,7 +21137,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/WE-HUB-partners-with-Hyderabad-City-Police-to-reduce-crime-using-technological-solutions.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655560/8feffdac-WE-HUB-partners-with-Hyderabad-City-Police-to-reduce-crime-using-technological-solutions.jpg",
     "external_url": null
 },
 {
@@ -21166,7 +21166,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Flipkart-onboards-Gujarat-handicraft-artisans-to-develop-local-entrepreneurship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655563/4939418b-Flipkart-onboards-Gujarat-handicraft-artisans-to-develop-local-entrepreneurship.jpg",
     "external_url": null
 },
 {
@@ -21195,7 +21195,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/KVIB-Raha-conducts-entrepreneurship-awareness-programme-in-Morigaon-Assam.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655565/c1185d79-KVIB-Raha-conducts-entrepreneurship-awareness-programme-in-Morigaon-Assam.jpg",
     "external_url": null
 },
 {
@@ -21224,7 +21224,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/India-Assist-wins-Indian-Women-Excellence-and-Leadership-Award.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655568/6876e512-India-Assist-wins-Indian-Women-Excellence-and-Leadership-Award.jpg",
     "external_url": null
 },
 {
@@ -21253,7 +21253,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/India-earns-highest-score-on-the-Women-Business-and-Law-Index-2020-in-South-Asia.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655571/ee2c6424-India-earns-highest-score-on-the-Women-Business-and-Law-Index-2020-in-South-Asia.jpg",
     "external_url": null
 },
 {
@@ -21282,7 +21282,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/RBI-survey-shows-less-than-six-percent-of-all-Indian-startups-have-only-women-founders.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655574/c818c596-RBI-survey-shows-less-than-six-percent-of-all-Indian-startups-have-only-women-founders.jpg",
     "external_url": null
 },
 {
@@ -21311,7 +21311,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-FICCI-FLO-partners-with-WE-Hub-to-promote-and-support-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655576/6acff2bd-News-2-FICCI-FLO-partners-with-WE-Hub-to-promote-and-support-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -21340,7 +21340,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/IIM-Bangalore-and-IBM-launch-Tanmatra-leadership-course-for-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655579/2eb4cf88-IIM-Bangalore-and-IBM-launch-Tanmatra-leadership-course-for-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -21369,7 +21369,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/UNSW-Business-School-receives-funding-from-Australia-Govt.-to-empower-women-entrepreneurship-in-Southeast-Asian-countries.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655581/4d67d3f5-UNSW-Business-School-receives-funding-from-Australia-Govt.-to-empower-women-entrepreneurship-in-Southeast-Asian-countries.jpg",
     "external_url": null
 },
 {
@@ -21398,7 +21398,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-ICC-Women’s-Entrepreneurship-Committee-launched-in-Odisha-by-Chief-Minister-Naveen-Patnaik.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655584/fce0d453-News-3-ICC-Women%E2%80%99s-Entrepreneurship-Committee-launched-in-Odisha-by-Chief-Minister-Naveen-Patnaik.jpg",
     "external_url": null
 },
 {
@@ -21427,7 +21427,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Smriti-Irani-launches-Yashaswini-scheme-and-Swasthya-Sakhi-project-in-Goa.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655587/431436f2-News-2-Smriti-Irani-launches-Yashaswini-scheme-and-Swasthya-Sakhi-project-in-Goa.jpg",
     "external_url": null
 },
 {
@@ -21456,7 +21456,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-MSME-EPC-announces-international-summit-to-promote-entrepreneurship-in-Northeast-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655589/e9fde06f-News-1-MSME-EPC-announces-international-summit-to-promote-entrepreneurship-in-Northeast-India.jpg",
     "external_url": null
 },
 {
@@ -21485,7 +21485,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Kerala-CM-announces-slew-of-measures-to-promote-investment-in-the-state-at-ASCEND-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655592/78b5c639-News-2-Kerala-CM-announces-slew-of-measures-to-promote-investment-in-the-state-at-ASCEND-2020.jpg",
     "external_url": null
 },
 {
@@ -21514,7 +21514,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Women-in-Karnataka-choose-entrepreneurship-in-terracotta-products-for-a-creative-future.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655595/58d56537-News-1-Women-in-Karnataka-choose-entrepreneurship-in-terracotta-products-for-a-creative-future.jpg",
     "external_url": null
 },
 {
@@ -21543,7 +21543,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-NSRCEL-IIM-B’s-innovation-and-entrepreneurial-centre-aims-to-grow-presence-in-Mumbai-and-Delhi.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655597/c83d87c6-News-1-NSRCEL-IIM-B%E2%80%99s-innovation-and-entrepreneurial-centre-aims-to-grow-presence-in-Mumbai-and-Delhi.jpg",
     "external_url": null
 },
 {
@@ -21572,7 +21572,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Enterprising-Women-Magazine-names-founders-of-Health-Wellness-Partners-LLC-Enterprising-Women-of-the-Year.png",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655600/459592f9-News-1-Enterprising-Women-Magazine-names-founders-of-Health-Wellness-Partners-LLC-Enterprising-Women-of-the-Year.png",
     "external_url": null
 },
 {
@@ -21601,7 +21601,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Meet-94-year-old-woman-whom-Anand-Mahindra-calls-entrepreneur-of-the-year.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655603/ab9e9f40-Meet-94-year-old-woman-whom-Anand-Mahindra-calls-entrepreneur-of-the-year.jpg",
     "external_url": null
 },
 {
@@ -21630,7 +21630,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Sahachari-Foundation-showcases-power-of-women-to-change-lives-of-downtrodden.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655606/d7831200-Sahachari-Foundation-showcases-power-of-women-to-change-lives-of-downtrodden.jpg",
     "external_url": null
 },
 {
@@ -21659,7 +21659,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/Niti-Aayog-plans-index-to-rank-states-on-women-empowerment.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655608/a761af2d-Niti-Aayog-plans-index-to-rank-states-on-women-empowerment.jpg",
     "external_url": null
 },
 {
@@ -21688,7 +21688,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Piyush-Goyal-stresses-need-for-SMEs-to-produce-world-class-products-and-government-to-guide-them.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655611/1206cc84-News-1-Piyush-Goyal-stresses-need-for-SMEs-to-produce-world-class-products-and-government-to-guide-them.jpg",
     "external_url": null
 },
 {
@@ -21717,7 +21717,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Indian-Bank-enters-partnership-with-WEWA-to-support-and-encourage-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655613/a480b096-News-2-Indian-Bank-enters-partnership-with-WEWA-to-support-and-encourage-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -21746,7 +21746,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-Madhya-Pradesh-CM-Kamal-Nath-amends-MSME-policy-to-promote-entrepreneurship-in-the-state.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655616/f7dd918b-News-3-Madhya-Pradesh-CM-Kamal-Nath-amends-MSME-policy-to-promote-entrepreneurship-in-the-state.jpg",
     "external_url": null
 },
 {
@@ -21775,7 +21775,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-Trend-Micro-to-pick-most-promising-technology-entrepreneurs-in-the-world-at-CES-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655619/5f5cc7c7-News-3-Trend-Micro-to-pick-most-promising-technology-entrepreneurs-in-the-world-at-CES-2020.jpg",
     "external_url": null
 },
 {
@@ -21804,7 +21804,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Indian-government-forms-advisory-council-to-strengthen-and-empower-startups.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655622/776f3eb2-News-2-Indian-government-forms-advisory-council-to-strengthen-and-empower-startups.jpg",
     "external_url": null
 },
 {
@@ -21833,7 +21833,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-The-5-international-women-entrepreneurs-to-watch-out-for-in-2020-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655625/8f64f51f-News-1-The-5-international-women-entrepreneurs-to-watch-out-for-in-2020-2.jpg",
     "external_url": null
 },
 {
@@ -21862,7 +21862,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-Women-Chauffeurs-take-to-the-road-to-drive-change-in-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655627/f6858cb6-News-3-Women-Chauffeurs-take-to-the-road-to-drive-change-in-India.jpg",
     "external_url": null
 },
 {
@@ -21891,7 +21891,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Brinda-Somaya-launches-Women-in-Design-2020-to-encourage-and-support-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655630/2ab94158-News-2-Brinda-Somaya-launches-Women-in-Design-2020-to-encourage-and-support-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -21920,7 +21920,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Nitin-Gadkaris-wife-launches-4-Day-MSME-expo-for-women-entrepreneurs-in-Nagpur.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655632/c7315f57-News-1-Nitin-Gadkaris-wife-launches-4-Day-MSME-expo-for-women-entrepreneurs-in-Nagpur.jpg",
     "external_url": null
 },
 {
@@ -21949,7 +21949,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-Assam-govt-to-give-Rs-30000-to-every-bride-who-shuns-child-marriage.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655635/3056ae1a-News-3-Assam-govt-to-give-Rs-30000-to-every-bride-who-shuns-child-marriage.jpg",
     "external_url": null
 },
 {
@@ -21978,7 +21978,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Rajasthan-government-unveils-Rs-1000-crore-fund-for-women-empowerment.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655638/982e8a61-News-2-Rajasthan-government-unveils-Rs-1000-crore-fund-for-women-empowerment.jpg",
     "external_url": null
 },
 {
@@ -22007,7 +22007,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Tough-steps-proposed-to-end-torture-of-Bangladeshi-female-expat-workers.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655640/f87806aa-News-1-Tough-steps-proposed-to-end-torture-of-Bangladeshi-female-expat-workers.jpg",
     "external_url": null
 },
 {
@@ -22036,7 +22036,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Budget-2020-New-initiatives-to-promote-Entrepreneurship.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655643/6e6ccf30-News-1-Budget-2020-New-initiatives-to-promote-Entrepreneurship.jpg",
     "external_url": null
 },
 {
@@ -22065,7 +22065,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Shehri-Samrddhi-Utsav-to-promote-skills-of-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655645/3777bbc5-News-2-Shehri-Samrddhi-Utsav-to-promote-skills-of-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22094,7 +22094,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-3-Biz-Sakhi-to-focus-on-increasing-entrepreneurship-among-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655648/67fad828-News-3-Biz-Sakhi-to-focus-on-increasing-entrepreneurship-among-women.jpg",
     "external_url": null
 },
 {
@@ -22123,7 +22123,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-4-PWC-report-states-corporate-sector-must-play-an-important-role-to-promote-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655651/b4705164-News-4-PWC-report-states-corporate-sector-must-play-an-important-role-to-promote-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22152,7 +22152,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-5-ICEFB-2020-in-Mumbai-To-debate-future-of-entrepreneurship-in-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655653/3096de9b-News-5-ICEFB-2020-in-Mumbai-To-debate-future-of-entrepreneurship-in-India.jpg",
     "external_url": null
 },
 {
@@ -22181,7 +22181,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-6-EDII-Bengaluru-to-create-3000-entrepreneurs-in-five-states-of-South-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655656/b9f6b4b4-News-6-EDII-Bengaluru-to-create-3000-entrepreneurs-in-five-states-of-South-India.jpg",
     "external_url": null
 },
 {
@@ -22210,7 +22210,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-Bank-of-Baroda-signs-MoU-with-Gujarat-govt-to-enable-speedy-loans-to-MSME-sector.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655659/3b0ff31f-News-1-Bank-of-Baroda-signs-MoU-with-Gujarat-govt-to-enable-speedy-loans-to-MSME-sector.jpg",
     "external_url": null
 },
 {
@@ -22239,7 +22239,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-7-How-Jyoti-Wadhwas-Rs-50000-gave-birth-to-a-Rs-10-crore-business.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655662/f125f676-News-7-How-Jyoti-Wadhwas-Rs-50000-gave-birth-to-a-Rs-10-crore-business.jpg",
     "external_url": null
 },
 {
@@ -22268,7 +22268,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-6-India-lags-way-behind-China-US-on-women-entrepreneurship-index.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655045/6b695428-News-6-India-lags-way-behind-China-US-on-women-entrepreneurship-index.jpg",
     "external_url": null
 },
 {
@@ -22297,7 +22297,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-5-Women-struggle-to-find-funds-for-business-investors-still-under-hold-of-patriarchy.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655664/c84a1cda-News-5-Women-struggle-to-find-funds-for-business-investors-still-under-hold-of-patriarchy.jpg",
     "external_url": null
 },
 {
@@ -22326,7 +22326,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-4-More-women-employable-in-India-but-participation-rate-still-low.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655667/81c2cecf-News-4-More-women-employable-in-India-but-participation-rate-still-low.jpg",
     "external_url": null
 },
 {
@@ -22355,7 +22355,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-How-a-painful-twist-of-fate-turned-this-woman-into-a-champion-entrepreneur.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655670/ac59fc13-News-3-How-a-painful-twist-of-fate-turned-this-woman-into-a-champion-entrepreneur.jpg",
     "external_url": null
 },
 {
@@ -22384,7 +22384,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-Tata-Power-empowers-women-through-powerful-Dhaaga-programme.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655672/063c9921-News-2-Tata-Power-empowers-women-through-powerful-Dhaaga-programme.jpg",
     "external_url": null
 },
 {
@@ -22413,7 +22413,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-Caring-for-family-still-a-penalty-for-working-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655675/df731070-News-1-Caring-for-family-still-a-penalty-for-working-women.jpg",
     "external_url": null
 },
 {
@@ -22442,7 +22442,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-Government-constitutes-Special-awards-for-Startups-to-help-Women-Entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655677/0acc274f-News-3-Government-constitutes-Special-awards-for-Startups-to-help-Women-Entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22471,7 +22471,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-ICC-extends-partnership-with-UNICEF-till-Womens-T20-World-Cup-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655680/104fcf95-News-2-ICC-extends-partnership-with-UNICEF-till-Womens-T20-World-Cup-2020.jpg",
     "external_url": null
 },
 {
@@ -22500,7 +22500,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-Johnson-Controls-India-Limited-launchesnew-skill-development-centre-in-Tirupati.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655683/4916852f-News-1-Johnson-Controls-India-Limited-launchesnew-skill-development-centre-in-Tirupati.jpg",
     "external_url": null
 },
 {
@@ -22529,7 +22529,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-6-Tribal-economy-to-get-boost-through-Women-Entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655686/31936b61-News-6-Tribal-economy-to-get-boost-through-Women-Entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22558,7 +22558,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-5-Women-Entrepreneurs’-to-get-more-policy-support-in-2020.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655140/80c2027f-News-5-Women-Entrepreneurs%E2%80%99-to-get-more-policy-support-in-2020.jpg",
     "external_url": null
 },
 {
@@ -22587,7 +22587,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-WE-Hub-partners-with-Startup-India-to-launch-women-entrepreneurship-program-in-Telangana.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655691/fc915021-News-1-WE-Hub-partners-with-Startup-India-to-launch-women-entrepreneurship-program-in-Telangana.jpg",
     "external_url": null
 },
 {
@@ -22616,7 +22616,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-Spokane-WA-conducts-womens-entrepreneurship-programmewith-US-Rep.-Cathy-McMorris-Rodgers-and-DSA.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655694/2a6d548e-News-2-Spokane-WA-conducts-womens-entrepreneurship-programmewith-US-Rep.-Cathy-McMorris-Rodgers-and-DSA.jpg",
     "external_url": null
 },
 {
@@ -22645,7 +22645,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-Women-from-all-over-NCR-attend-meet-up-for-female-entrepreneurs-in-Noida.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655039/f546ea69-News-3-Women-from-all-over-NCR-attend-meet-up-for-female-entrepreneurs-in-Noida.jpg",
     "external_url": null
 },
 {
@@ -22674,7 +22674,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-4-Dells-global-networking-for-Women-Entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655698/cae1130d-News-4-Dells-global-networking-for-Women-Entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22703,7 +22703,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-4-DDI-India-report-shows-Indian-women-increasingly-losing-out-on-leadership-opportunities-Option-2.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655702/36927fb5-News-4-DDI-India-report-shows-Indian-women-increasingly-losing-out-on-leadership-opportunities-Option-2.jpg",
     "external_url": null
 },
 {
@@ -22732,7 +22732,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-Twelve-bio-entrepreneurs-emerge-victorious-at-NBEC-2019.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655706/abdecc45-News-2-Twelve-bio-entrepreneurs-emerge-victorious-at-NBEC-2019.jpg",
     "external_url": null
 },
 {
@@ -22761,7 +22761,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-DMIMS-conducts-lecture-session-for-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655709/25a569e5-News-1-DMIMS-conducts-lecture-session-for-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -22790,7 +22790,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-India-falls-to-112th-rank-in-global-gender-gap-index-by-World-Economic-Forum.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655712/a9a24a17-News-3-India-falls-to-112th-rank-in-global-gender-gap-index-by-World-Economic-Forum.jpg",
     "external_url": null
 },
 {
@@ -22819,7 +22819,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-Women-entrepreneurship-programme-kicks-off-in-Tawang-Arunachal-Pradesh.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655716/be173b30-News-2-Women-entrepreneurship-programme-kicks-off-in-Tawang-Arunachal-Pradesh.jpg",
     "external_url": null
 },
 {
@@ -22848,7 +22848,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-GAME-publishes-detailed-study-on-women-entrepreneurship-in-India.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655720/330e1282-News-1-GAME-publishes-detailed-study-on-women-entrepreneurship-in-India.jpg",
     "external_url": null
 },
 {
@@ -22877,7 +22877,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-3-Indian-Women-Network-holds-women-entrepreneurship-conference-in-Bhopal.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655725/e9463c84-News-3-Indian-Women-Network-holds-women-entrepreneurship-conference-in-Bhopal.jpg",
     "external_url": null
 },
 {
@@ -22906,7 +22906,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-Punjab-govt-announces-Rs-100-cr-MSME-marketing-cell-to-promote-startups.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655728/b8164007-News-2-Punjab-govt-announces-Rs-100-cr-MSME-marketing-cell-to-promote-startups.jpg",
     "external_url": null
 },
 {
@@ -22935,7 +22935,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-Number-of-women-on-boards-of-Indian-companies-doubles-but-still-negligible.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655731/db8f0048-News-1-Number-of-women-on-boards-of-Indian-companies-doubles-but-still-negligible.jpg",
     "external_url": null
 },
 {
@@ -22964,7 +22964,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-2-First-ever-National-Startup-Awards-2020-launched-by-DPIIT.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655733/20ef2683-News-2-First-ever-National-Startup-Awards-2020-launched-by-DPIIT.jpg",
     "external_url": null
 },
 {
@@ -22993,7 +22993,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-1-Bengal-Chamber-of-Commerce-and-Industry-BCCI-launches-Women-Entrepreneurship-Cell.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655736/2fc9563f-News-1-Bengal-Chamber-of-Commerce-and-Industry-BCCI-launches-Women-Entrepreneurship-Cell.jpg",
     "external_url": null
 },
 {
@@ -23022,7 +23022,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-BDC-Study-shows-more-than-one-fourth-of-Canadian-entrepreneurs-are-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655740/bdb91f37-News-BDC-Study-shows-more-than-one-fourth-of-Canadian-entrepreneurs-are-women.jpg",
     "external_url": null
 },
 {
@@ -23051,7 +23051,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Women-entrepreneurs-reclaiming-their-Bragging-rights-in-the-global-market.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655744/ae1a5e46-News-Women-entrepreneurs-reclaiming-their-Bragging-rights-in-the-global-market.jpg",
     "external_url": null
 },
 {
@@ -23080,7 +23080,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-India-sees-2.1-rise-in-women-salaried-workers-NSO-Survey.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655748/fef16d52-News-India-sees-2.1-rise-in-women-salaried-workers-NSO-Survey.jpg",
     "external_url": null
 },
 {
@@ -23109,7 +23109,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Deshi-MBA-programme-empowering-rural-Indias-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655752/b4832d52-News-Deshi-MBA-programme-empowering-rural-Indias-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -23138,7 +23138,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-KMT-women-allowed-flexible-duty-hours-for-taking-care-of-family.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655756/a01e607a-News-KMT-women-allowed-flexible-duty-hours-for-taking-care-of-family.jpg",
     "external_url": null
 },
 {
@@ -23167,7 +23167,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Ahmedabad-women-run-pay-and-park-facilities-get-empowered.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655759/3715f8b0-News-Ahmedabad-women-run-pay-and-park-facilities-get-empowered.jpg",
     "external_url": null
 },
 {
@@ -23196,7 +23196,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Gender-diversity-in-leadership.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655144/a734002c-News-Gender-diversity-in-leadership.jpg",
     "external_url": null
 },
 {
@@ -23225,7 +23225,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Karnataka-women-now-free-to-work-on-graveyard-shift.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655762/c7d226f8-News-Karnataka-women-now-free-to-work-on-graveyard-shift.jpg",
     "external_url": null
 },
 {
@@ -23254,7 +23254,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/12\/News-Navys-first-woman-pilot-Sub-Lt-Shivangis-journey-from-Bihar-mofussil-to-Dornier-cockpit.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655764/22889448-News-Navys-first-woman-pilot-Sub-Lt-Shivangis-journey-from-Bihar-mofussil-to-Dornier-cockpit.jpg",
     "external_url": null
 },
 {
@@ -23283,7 +23283,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-85-year-old-naani-provides-spark-25-year-old-granddaughter-lights-Roshni.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655767/6a4ad1de-News-85-year-old-naani-provides-spark-25-year-old-granddaughter-lights-Roshni.jpg",
     "external_url": null
 },
 {
@@ -23312,7 +23312,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-IIM-and-MRPL-join-hands-to-groom-women-entrepreneurs-under-Start-Up-India-mission.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655769/d058a7d8-News-IIM-and-MRPL-join-hands-to-groom-women-entrepreneurs-under-Start-Up-India-mission.jpg",
     "external_url": null
 },
 {
@@ -23341,7 +23341,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Indias-women-entrepreneurs-break-taboos-redefine-dating-world.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655771/ac5f3298-News-Indias-women-entrepreneurs-break-taboos-redefine-dating-world.jpg",
     "external_url": null
 },
 {
@@ -23370,7 +23370,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-With-just-6-women-chairpersons-it-will-take-India-108-years-to-bridge-gender-gap.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655774/1449f226-News-With-just-6-women-chairpersons-it-will-take-India-108-years-to-bridge-gender-gap.jpg",
     "external_url": null
 },
 {
@@ -23399,7 +23399,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-HSBC-Private-Banking-and-AllBright-bring-cheer-to-Hong-Kong-women-starting-a-business.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655777/052faefa-News-HSBC-Private-Banking-and-AllBright-bring-cheer-to-Hong-Kong-women-starting-a-business.jpg",
     "external_url": null
 },
 {
@@ -23428,7 +23428,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Aye-Finance-goes-Dutch-raises-Rs-125-crore-from-Europe-Bank-for-Indian-biz-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655779/18c60cf7-News-Aye-Finance-goes-Dutch-raises-Rs-125-crore-from-Europe-Bank-for-Indian-biz-women.jpg",
     "external_url": null
 },
 {
@@ -23457,7 +23457,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-TiE-Women-to-support-female-entrepreneurs-with-70000-fund-Option-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655782/d2560c98-News-TiE-Women-to-support-female-entrepreneurs-with-70000-fund-Option-1.jpg",
     "external_url": null
 },
 {
@@ -23486,7 +23486,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-1-EY-course-tries-to-tame-women-employees-says-female-brain-is-like-pancake-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655784/dbf4fe50-News-1-EY-course-tries-to-tame-women-employees-says-female-brain-is-like-pancake-1.jpg",
     "external_url": null
 },
 {
@@ -23515,7 +23515,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-4-Women-fighting-stress-at-workplace-40-more-prone-to-heart-diseases.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655787/d6c1da34-News-4-Women-fighting-stress-at-workplace-40-more-prone-to-heart-diseases.jpg",
     "external_url": null
 },
 {
@@ -23544,7 +23544,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-3-Women-in-Japan-protest-against-employers-flat-shoes-are-bad-manners-policy.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655789/8724cca3-News-3-Women-in-Japan-protest-against-employers-flat-shoes-are-bad-manners-policy.jpg",
     "external_url": null
 },
 {
@@ -23573,7 +23573,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-2-Women-empowerment-possible-through-quotas-in-Parliament-Vice-President-Venkaiah-Naidu.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655792/708b03ed-News-2-Women-empowerment-possible-through-quotas-in-Parliament-Vice-President-Venkaiah-Naidu.jpg",
     "external_url": null
 },
 {
@@ -23602,7 +23602,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Goldman-Sachs-makes-suits-ties-optional-to-attract-top-talent.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655794/740ed76a-News-Goldman-Sachs-makes-suits-ties-optional-to-attract-top-talent.jpg",
     "external_url": null
 },
 {
@@ -23631,7 +23631,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Japanese-workplaces-draw-flak-for-bizarre-glasses-ban-for-women-employees.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655796/a12933d7-News-Japanese-workplaces-draw-flak-for-bizarre-glasses-ban-for-women-employees.jpg",
     "external_url": null
 },
 {
@@ -23660,7 +23660,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-How-women-are-critical-for-Modis-5-trillion-GDP-target.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655799/9d662ab6-News-How-women-are-critical-for-Modis-5-trillion-GDP-target.jpg",
     "external_url": null
 },
 {
@@ -23689,7 +23689,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Sowing-seeds-for-women-entrepreneurs-of-the-future_1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655802/171308e2-News-Sowing-seeds-for-women-entrepreneurs-of-the-future_1.jpg",
     "external_url": null
 },
 {
@@ -23718,7 +23718,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Saksham-empowers-women-entrepreneurs-in-Indian-villages.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655804/031ac0f2-News-Saksham-empowers-women-entrepreneurs-in-Indian-villages.jpg",
     "external_url": null
 },
 {
@@ -23747,7 +23747,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Policy-and-financial-push-key-to-Indian-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655807/fe52a0e7-News-Policy-and-financial-push-key-to-Indian-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -23776,7 +23776,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/11\/News-Indian-women-entrepreneurs-going-global-for-big-market.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655809/def8b2a8-News-Indian-women-entrepreneurs-going-global-for-big-market.jpg",
     "external_url": null
 },
 {
@@ -23805,7 +23805,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/HSBC-reformed-childcare-policy-comes-as-boon-for-women-employees.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655812/601cd8df-HSBC-reformed-childcare-policy-comes-as-boon-for-women-employees.jpg",
     "external_url": null
 },
 {
@@ -23834,7 +23834,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/German-offices-fast-turning-into-hunting-grounds-for-sexual-predators.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655814/c6f04b3c-German-offices-fast-turning-into-hunting-grounds-for-sexual-predators.jpg",
     "external_url": "http:\/\/dw.com"
 },
 {
@@ -23863,7 +23863,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/How-Megha-Ahuja-taught-women-to-face-and-defeat-cancer-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655816/837cbbef-How-Megha-Ahuja-taught-women-to-face-and-defeat-cancer-1.jpg",
     "external_url": "http:\/\/yourstory.com"
 },
 {
@@ -23892,7 +23892,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Tamil-Nadu-nurse-wins-fight-for-recognition-as-transgender-professional.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655819/2854a719-Tamil-Nadu-nurse-wins-fight-for-recognition-as-transgender-professional.jpg",
     "external_url": null
 },
 {
@@ -23921,7 +23921,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/TiEs-unique-project-breeds-women-entrepreneurs-from-Indias-small-cities.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655821/43e1a281-TiEs-unique-project-breeds-women-entrepreneurs-from-Indias-small-cities.jpg",
     "external_url": null
 },
 {
@@ -23950,7 +23950,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/What-makes-K-Raheja-Corp-a-dream-workplace-for-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655824/2bdccac5-What-makes-K-Raheja-Corp-a-dream-workplace-for-women.jpg",
     "external_url": null
 },
 {
@@ -23979,7 +23979,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/India-Germany-partnership-seeks-to-prop-up-businesswomen-in-Northeast.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655827/28740738-India-Germany-partnership-seeks-to-prop-up-businesswomen-in-Northeast.jpg",
     "external_url": null
 },
 {
@@ -24008,7 +24008,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Tech-savvy-girls-at-grassroots-key-to-robust-women-entrepreneurship-Experts.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655829/9d17b5e5-Tech-savvy-girls-at-grassroots-key-to-robust-women-entrepreneurship-Experts.jpg",
     "external_url": null
 },
 {
@@ -24037,7 +24037,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/How-Bina-Modi-defeated-substantial-odds-to-head-1.5-billion-conglomerate.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655832/fa30010e-How-Bina-Modi-defeated-substantial-odds-to-head-1.5-billion-conglomerate.jpg",
     "external_url": null
 },
 {
@@ -24066,7 +24066,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Home-Page-News-1-IIMK-MRPL-initiative.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655835/6b607882-Home-Page-News-1-IIMK-MRPL-initiative.jpg",
     "external_url": null
 },
 {
@@ -24095,7 +24095,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/Home-Page-News-2-Startup-India-DPIIT-help-women-entrepreneurs.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655838/44895ad7-Home-Page-News-2-Startup-India-DPIIT-help-women-entrepreneurs.jpg",
     "external_url": null
 },
 {
@@ -24124,7 +24124,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-1-Women-entrepreneurs-with-award-in-software-space.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655840/488b996e-News-1-Women-entrepreneurs-with-award-in-software-space.jpg",
     "external_url": null
 },
 {
@@ -24153,7 +24153,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-2-Former-SBI-Chief-Arundhati-Bhattacharya.jpeg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655846/fd9f70dc-News-2-Former-SBI-Chief-Arundhati-Bhattacharya.jpg",
     "external_url": null
 },
 {
@@ -24182,7 +24182,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-3-Diageo-blazes.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655849/dddbd73c-News-3-Diageo-blazes.jpg",
     "external_url": null
 },
 {
@@ -24211,7 +24211,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-4-Ruby-Sinha.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655851/15276d1b-News-4-Ruby-Sinha.jpg",
     "external_url": "https:\/\/womansera.com\/ruby-sinha-founder-sheatwork-com-a-one-stop-knowledge-hub-for-women-entrepreneurs-3\/"
 },
 {
@@ -24240,7 +24240,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-5-Check-out-Sheroes-Sairee-Chahal.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655854/0020a6ca-News-5-Check-out-Sheroes-Sairee-Chahal.jpg",
     "external_url": null
 },
 {
@@ -24269,7 +24269,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-6-Learning-English-Vinglish-Pranshu-Bhandari.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655857/4f2e8210-News-6-Learning-English-Vinglish-Pranshu-Bhandari.jpg",
     "external_url": null
 },
 {
@@ -24298,7 +24298,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-7-FICCI-and-Griffith-Business-School.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655859/07700af5-News-7-FICCI-and-Griffith-Business-School.jpg",
     "external_url": null
 },
 {
@@ -24327,7 +24327,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-8-On-My-Own-Anitas-driving-school.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655862/9c0ef45a-News-8-On-My-Own-Anitas-driving-school.jpg",
     "external_url": "https:\/\/driveonmyown.com"
 },
 {
@@ -24356,7 +24356,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-9-Pooja-Apte-Badamikars-BlinkGreen.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655864/4bd75af3-News-9-Pooja-Apte-Badamikars-BlinkGreen.jpg",
     "external_url": null
 },
 {
@@ -24385,7 +24385,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-10-Making-paper-lamps-Story-of-Godavari-Satpute.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655867/39155693-News-10-Making-paper-lamps-Story-of-Godavari-Satpute.jpg",
     "external_url": null
 },
 {
@@ -24414,7 +24414,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-11-Metropolis-MD-says-women-entrepreneurs-lonely.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655869/e88bf615-News-11-Metropolis-MD-says-women-entrepreneurs-lonely.jpg",
     "external_url": null
 },
 {
@@ -24443,7 +24443,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-12-Only-10-of-Indian-start-up-founders-are-women-Seema-Chaturvedi-chairman-of-AIRSWEEE.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655872/f47411d3-News-12-Only-10-of-Indian-start-up-founders-are-women-Seema-Chaturvedi-chairman-of-AIRSWEEE.jpg",
     "external_url": null
 },
 {
@@ -24472,7 +24472,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-13-Just-two-women-in-100-most-powerful-Indians-list.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655875/0a9f3d70-News-13-Just-two-women-in-100-most-powerful-Indians-list.jpg",
     "external_url": null
 },
 {
@@ -24501,7 +24501,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-14-Hows-the-Junoon-Suchita-Oswal.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655877/d87c8857-News-14-Hows-the-Junoon-Suchita-Oswal.jpg",
     "external_url": "http:\/\/yourstory.com"
 },
 {
@@ -24530,7 +24530,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-15-China-has-failed-its-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655880/ab84177b-News-15-China-has-failed-its-women.jpg",
     "external_url": null
 },
 {
@@ -24559,7 +24559,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-16-Twinkle-Khanna-launch-her-new-venture-tweak.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655883/aae69fd9-News-16-Twinkle-Khanna-launch-her-new-venture-tweak.jpg",
     "external_url": null
 },
 {
@@ -24588,7 +24588,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-17-Youtube-Indian-woman.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655885/7193a4f3-News-17-Youtube-Indian-woman.jpg",
     "external_url": null
 },
 {
@@ -24617,7 +24617,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-18-Cancer-Survivor-Tanisha-Roy.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655888/8c267a36-News-18-Cancer-Survivor-Tanisha-Roy.jpg",
     "external_url": "http:\/\/yourstory.com"
 },
 {
@@ -24646,7 +24646,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-19-Women-go-getters-shine-at-Puducherry.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655890/f991f12b-News-19-Women-go-getters-shine-at-Puducherry.jpg",
     "external_url": null
 },
 {
@@ -24675,7 +24675,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-20-WAWE-Summit-2019.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655893/d57977c6-News-20-WAWE-Summit-2019.jpg",
     "external_url": null
 },
 {
@@ -24704,7 +24704,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-21-Piggy-Chops-Bumble-invites-women.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655896/95a95729-News-21-Piggy-Chops-Bumble-invites-women.jpg",
     "external_url": null
 },
 {
@@ -24733,7 +24733,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-22-Menstrual-Hygien-1.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655898/e339b5bb-News-22-Menstrual-Hygien-1.jpg",
     "external_url": null
 },
 {
@@ -24762,7 +24762,7 @@ export const newsData = [
     "comment_count": "0",
     "section_id": "70",
     "section_name": "News",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2019\/10\/News-23-United-Nations.jpg",
+    "featured_image_url": "https://res.cloudinary.com/dd56n5ykp/image/upload/v1771655901/3dc7b366-News-23-United-Nations.jpg",
     "external_url": "https:\/\/etradeforall.org\/etrade-for-women\/"
 }
 ]

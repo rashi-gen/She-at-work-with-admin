@@ -26,7 +26,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/09\/WhatsApp-Image-2025-09-11-at-23.16.23.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648237\/da6ab4cb-WhatsApp-Image-2025-09-11-at-23.16.23.jpg",
     "external_url": null
 },
 {
@@ -55,7 +55,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/08\/WhatsApp-Image-2025-08-18-at-10.47.38.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648242\/0b0f2989-WhatsApp-Image-2025-08-18-at-10.47.38.jpg",
     "external_url": null
 },
 {
@@ -84,7 +84,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/07\/WhatsApp-Image-2025-07-09-at-12.14.56.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648247\/b0275596-WhatsApp-Image-2025-07-09-at-12.14.56.jpg",
     "external_url": null
 },
 {
@@ -113,7 +113,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2025\/05\/WhatsApp-Image-2025-05-25-at-9.04.19-AM.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648253\/2f251e1a-WhatsApp-Image-2025-05-25-at-9.04.19-AM.jpg",
     "external_url": null
 },
 {
@@ -142,7 +142,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/12\/event-9.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648257\/7e2f2193-event-9.jpg",
     "external_url": "https:\/\/indianexpress.com\/article\/business\/startups\/dpiit-to-organise-global-summit-on-startups-on-january-15-16-next-year-7116475\/"
 },
 {
@@ -171,7 +171,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/09\/website-1.1.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648261\/85168f5e-website-1.1.jpg",
     "external_url": "https:\/\/www.facebook.com\/sheatwork"
 },
 {
@@ -200,7 +200,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "https:\/\/sheatwork.com\/wp-content\/uploads\/2020\/08\/Reimagine-1.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648264\/1c4601ea-Reimagine-1.jpg",
     "external_url": "https:\/\/www.startupnews.fyi\/webinars"
 },
 {
@@ -229,7 +229,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/reopen.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648269\/0c0a2291-reopen.jpg",
     "external_url": null
 },
 {
@@ -258,7 +258,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/publish-website.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648272\/d2a06bc9-publish-website.jpg",
     "external_url": "https:\/\/readytalk.webcasts.com\/starthere.jsp?ei=1332359&amp;tp_key=17d3442813&amp;sti=scoreeventpage"
 },
 {
@@ -287,7 +287,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/event-6.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648274\/fd9bd083-event-6.jpg",
     "external_url": "https:\/\/www.score.org\/event\/prepare-persevere-future-technology-business"
 },
 {
@@ -316,7 +316,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/remotely.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648277\/ed56411a-remotely.jpg",
     "external_url": "https:\/\/www.score.org\/event\/connect-customers-and-manage-your-business-remotely"
 },
 {
@@ -345,7 +345,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/07\/brand-news.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648281\/363e4592-brand-news.jpg",
     "external_url": "https:\/\/register.gotowebinar.com\/register\/4423080599171664397?source=EventPage"
 },
 {
@@ -374,7 +374,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/event2.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648284\/14103a6f-event2.jpg",
     "external_url": "https:\/\/www.entrepreneur.com\/article\/352475"
 },
 {
@@ -403,7 +403,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/competitive-advantage.png",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648286\/1904a396-competitive-advantage.png",
     "external_url": "https:\/\/register.gotowebinar.com\/register\/4394964987517959183?source=EventPage"
 },
 {
@@ -432,7 +432,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/fraud.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648289\/07feab48-fraud.jpg",
     "external_url": "https:\/\/www.score.org\/event\/protecting-your-business-fraud"
 },
 {
@@ -461,7 +461,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/ficci-logo.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648294\/2e59841b-ficci-logo.jpg",
     "external_url": "http:\/\/www.ficci.in\/events-page.asp?evid=24897"
 },
 {
@@ -490,7 +490,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/bidea.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648298\/6cbc1a78-bidea.jpg",
     "external_url": "https:\/\/register.gotowebinar.com\/register\/4156562279313218061?source=EventPage"
 },
 {
@@ -519,7 +519,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/success.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648302\/6b2f1549-success.jpg",
     "external_url": "https:\/\/bit.ly\/3cTR9cK"
 },
 {
@@ -548,7 +548,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/BOPP.jpeg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648304\/2a3a6fd3-BOPP.jpg",
     "external_url": "https:\/\/bit.ly\/2YjYahN"
 },
 {
@@ -577,7 +577,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/06\/LF_Blog_RemoteWork_TC_May2018_FEATURE-SIZE.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648307\/615afe61-LF_Blog_RemoteWork_TC_May2018_FEATURE-SIZE.jpg",
     "external_url": "https:\/\/bit.ly\/3eZDmCD"
 },
 {
@@ -606,7 +606,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/05\/News.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648310\/c1e5de3f-News.jpg",
     "external_url": "https:\/\/bit.ly\/2WXvYAy"
 },
 {
@@ -635,7 +635,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-1-Women-Entrepreneurs-Meet-in-Chennai.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648313\/41e44879-News-1-Women-Entrepreneurs-Meet-in-Chennai.jpg",
     "external_url": "https:\/\/bit.ly\/38JE57Q"
 },
 {
@@ -664,7 +664,7 @@ export const eventsData = [
     "comment_count": "0",
     "section_id": "64",
     "section_name": "Events",
-    "featured_image_url": "http:\/\/sheatwork.com\/wp-content\/uploads\/2020\/01\/News-2-Future-of-Women-2020.jpg",
+    "featured_image_url": "https:\/\/res.cloudinary.com\/dd56n5ykp\/image\/upload\/v1771648315\/fe4dd210-News-2-Future-of-Women-2020.jpg",
     "external_url": "https:\/\/bit.ly\/2TXedBu"
 },
 {
